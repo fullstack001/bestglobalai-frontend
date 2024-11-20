@@ -11,3 +11,64 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ql-snow .ql-editor pre.ql-syntax{
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+
+.Toastify__toast-theme--light{
+  background-color: #EA518D !important;
+  color: white !important;
+}
+
+.error-toast {
+  background-color: #EA518D !important;
+  color: white !important;
+  font-family: "Arial", sans-serif;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.Toastify__toast-icon{
+    display: none !important;
+}
+
+.custom-toast .icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+.custom-toast p {
+  margin: 0;
+  font-size: 14px;
+  color: #f1f1f1;
+}
+
+.custom-toast strong {
+  font-size: 16px;
+  display: block;
+}
+
+.custom-icon{
+    font-size: 40px;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.flag-select__btn{
+  /* width: 100%; */
+  color: #e5e7eb !important;
+}
+
+.flag-select__options{
+  background-color: #374151 !important;
+}
+
