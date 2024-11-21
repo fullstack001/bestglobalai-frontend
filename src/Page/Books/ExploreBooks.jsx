@@ -28,7 +28,7 @@ const ExploreBooks = () => {
     const fetchEbooks = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`${apiPort}/api/books/getPublicBooks`, {
+        const response = await axios.get(`${apiPort}/api/books/public`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
