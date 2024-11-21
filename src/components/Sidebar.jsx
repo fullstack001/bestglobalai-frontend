@@ -53,6 +53,14 @@ const Sidebar = () => {
           Profile
         </a>
         <a
+          href="/change-password"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/change-password") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Change Password
+        </a>
+        <a
           href="/user-management"
           className={`block py-2 px-3 rounded  ${
             isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
@@ -60,12 +68,17 @@ const Sidebar = () => {
         >
           User Management
         </a>
+
+        <a
+          href="/explore-ebooks"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/explore-ebooks") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Explore Ebooks
+        </a>
       </nav>
-      <div className="mt-10">
-        <button className="w-full bg-blue-600 py-2 rounded text-white">
-          Explore Books
-        </button>
-      </div>
+      
     </aside>
   );
 };

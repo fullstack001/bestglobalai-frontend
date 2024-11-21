@@ -33,14 +33,21 @@ function EbookViewer() {
     // Fetch the ebook file path from the backend
     const fetchEbookContent = async () => {
       try {
+        const role = localStorage.getItem("role");
         // Fetch book details including ebook file URL
         const response = await axios.get(`${apiPort}/api/books/${id}`);
         const bookData = response.data.book;
         const ebookFileUrl = response.data.book.ebookFile;
         const waterMarkFileUrl = response.data.book.watermarkFile;
+
+        if(role == "user"){
+          setBookUrl(`${apiPort}${waterMarkFileUrl}`);
+        }else{
+          setBookUrl(`${apiPort}${ebookFileUrl}`);
+        }
        
         // Set the complete book URL
-        setBookUrl(`${apiPort}${ebookFileUrl}`);
+        
         setTitle(bookData.title);
         setAuthor(bookData.author);
         setAudioItems(bookData.audioItems);
@@ -66,7 +73,11 @@ function EbookViewer() {
 
     if(previousLocaction == '/myEbooks'){
       navigate('/myEbooks');
-    }    
+    } 
+    
+    if(previousLocaction == '/explore-ebooks'){
+      navigate('/explore-ebooks');
+    } 
   }
 
   return (

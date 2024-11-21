@@ -22,6 +22,8 @@ import MyBooks from "./Page/Creator/MyBooks";
 import AdminUserManagement from "./Page/User/AdminUserManagement";
 import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./Page/User/ProfilePage";
+import ChangePassword from "./Page/User/ChangePassword";
+import ExploreBooks from "./Page/Books/ExploreBooks";
 import Chat from "./Page/Chat/Chat";
 
 function App() {
@@ -35,7 +37,7 @@ function App() {
             <Route
               path="/user-management"
               element={
-                <PrivateRoute allowedRoles={["admin"]}>
+                <PrivateRoute allowedRoles={["superAdmin", "admin"]}>
                   <AdminUserManagement />
                 </PrivateRoute>
               }
@@ -44,7 +46,7 @@ function App() {
             <Route
               path="/creator"
               element={
-                <PrivateRoute allowedRoles={["admin", "editor"]}>
+                <PrivateRoute allowedRoles={["superAdmin", "admin", "editor"]}>
                   <CreatorDashboard />
                 </PrivateRoute>
               }
@@ -53,7 +55,7 @@ function App() {
             <Route
               path="/myEbooks"
               element={
-                <PrivateRoute allowedRoles={["admin", "editor"]}>
+                <PrivateRoute allowedRoles={["superAdmin", "admin", "editor"]}>
                   <MyBooks />
                 </PrivateRoute>
               }
@@ -62,7 +64,7 @@ function App() {
             <Route
               path="/profile"
               element={
-                <PrivateRoute allowedRoles={["admin", "editor", "user"]}>
+                <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
                   <ProfilePage />
                 </PrivateRoute>
               }
@@ -71,16 +73,34 @@ function App() {
             <Route
               path="#chat"
               element={
-                <PrivateRoute allowedRoles={["admin", "editor", "user"]}>
+                <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
                   {/* <Chat /> */}
                 </PrivateRoute>
               }
             />
 
+            <Route
+              path="/change-password"
+              element={
+                <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
+                  <ChangePassword />
+                </PrivateRoute>
+              }
+            />
+
+            <Route
+              path="/explore-ebooks"
+              element={
+                <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
+                  <ExploreBooks />
+                </PrivateRoute>
+              }
+            />
+
+
             <Route path="/creator/create" element={<BookCreator />} />
             <Route path="/creator/editor/:id" element={<EbookEditor />} />
-            <Route path="/creator/viewer/:id" element={<EbookViewer />} />
-
+            <Route path="/creator/viewer/:id" element={<EbookViewer />} />          
             <Route path="/reader" element={<BookReader />} />
             <Route path="/unauthorized" element={<h1>Access Denied</h1>} />
           </Routes>

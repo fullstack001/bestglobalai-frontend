@@ -34,7 +34,7 @@ const Login = () => {
       localStorage.setItem("role", role);
 
       // Redirect to dashboard
-      if(role == 'admin' || role =='editor'){
+      if(role == 'superAdmin' || role == 'admin' || role =='editor'){
         navigate("/creator");
       }
 

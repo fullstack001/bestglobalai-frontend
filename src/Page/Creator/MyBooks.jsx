@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useDispatch } from "react-redux";
-import {
-  setEbookTitle,
-  setEbookAuthor,
-  setCoverImage,
-} from "../../store/ebookSlice";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -14,6 +10,8 @@ import {
   faEye,
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
+import { FaShareAlt } from "react-icons/fa";
+
 import default_cover from "../../assets/images/covers/cover1.jpg";
 import Layout from "../../components/Layout";
 import UploadEbookModal from "./EbookLoadModal";
@@ -87,6 +85,29 @@ const MyBooks = () => {
     }
   };
 
+  const publicEbook = async (id) => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.put(
+        `${apiPort}/api/books/${id}/make-public`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      alert(response.data.message);
+      setEbooks((prevEbooks) =>
+        prevEbooks.map((book) =>
+          book._id === id ? { ...book, private: false } : book
+        )
+      );
+    } catch (error) {
+      console.error("Error public ebook");
+    }
+  };
+
   return (
     <Layout>
       <section className="mt-8">
@@ -123,40 +144,72 @@ const MyBooks = () => {
                   {book.author}
                 </p>
                 <p className="text-xs text-gray-400 text-center">
-                  Created by: {book.userId.name} ({book.userId.email})
+                  Created by: {book.userId.fullName} ({book.userId.email})
                 </p>
                 <div className="mt-2 flex justify-between">
                   {book.bookType == "uploaded" ? (
                     ""
                   ) : (
-                    <button
-                      className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1"
-                      onClick={() => editEbook(book._id)}
-                    >
-                      <FontAwesomeIcon icon={faEdit} />
-                    </button>
+                    <div className="relative group mt-3 ">
+                      <button
+                        className="px-2 py-2 bg-blue-500 text-white rounded-lg mr-1"
+                        onClick={() => editEbook(book._id)}
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
+                        Edit eBook
+                      </div>
+                    </div>
                   )}
 
-                  <button
-                    className="mt-3 px-2 py-1 bg-green-500 text-white rounded-lg mr-1"
-                    onClick={() => viewEbook(book._id)}
-                  >
-                    <FontAwesomeIcon icon={faEye} className="" />
-                  </button>
+                  <div className="relative group mt-3 ">
+                    <button
+                      className="px-2 py-2 bg-green-500 text-white rounded-lg mr-1"
+                      onClick={() => viewEbook(book._id)}
+                    >
+                      <FontAwesomeIcon icon={faEye} className="" />
+                    </button>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
+                      View eBook
+                    </div>
+                  </div>
 
-                  <button
-                    className="mt-3 px-2 py-1 bg-gray-500 text-white rounded-lg mr-1"
-                    onClick={() => downloadEbook(book._id)}
-                  >
-                    <FontAwesomeIcon icon={faDownload} className="" />
-                  </button>
+                  <div className="relative group mt-3 ">
+                    <button
+                      className="p-2 bg-gray-500 text-white rounded-lg mr-1"
+                      onClick={() => downloadEbook(book._id)}
+                    >
+                      <FontAwesomeIcon icon={faDownload} className="" />
+                    </button>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
+                      Download eBook
+                    </div>
+                  </div>
 
-                  <button
-                    className="mt-3 px-2 py-1 bg-red-500 text-white rounded-lg mr-1"
-                    onClick={() => deleteEbook(book._id)}
-                  >
-                    <FontAwesomeIcon icon={faTrash} className="" />
-                  </button>
+                  <div className="relative group mt-3 ">
+                    <button
+                      className="px-2 py-3 bg-gray-500 text-white rounded-lg mr-1"
+                      onClick={() => publicEbook(book._id)}
+                    >
+                      <FaShareAlt />
+                    </button>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
+                      Share eBook
+                    </div>
+                  </div>
+
+                  <div className="relative group mt-3 ">
+                    <button
+                      className="px-2 py-2 bg-red-500 text-white rounded-lg mr-1"
+                      onClick={() => deleteEbook(book._id)}
+                    >
+                      <FontAwesomeIcon icon={faTrash} className="" />
+                    </button>
+                    <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
+                      Delete eBook
+                    </div>
+                  </div>
                 </div>
               </div>
             ))

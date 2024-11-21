@@ -42,7 +42,7 @@ const CreatorDashboard = () => {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
         let response;
-        if(role == "admin"){
+        if(role == "admin" || role == "superAdmin"){
           response = await axios.get(`${apiPort}/api/books`, {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -151,7 +151,7 @@ const CreatorDashboard = () => {
                   {book.author}
                 </p>
                 <p className="text-xs text-gray-400 text-center">
-                  Created by: {book.userId.name} ({book.userId.email})
+                  Created by: {book.userId.fullName} ({book.userId.email})
                 </p>
                 <div className="mt-2 flex justify-between">
                   <button
