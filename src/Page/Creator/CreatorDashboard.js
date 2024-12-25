@@ -242,17 +242,7 @@ const CreatorDashboard = () => {
               className="w-full mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded"
             />
           </div>
-          <div>
-            <label className="block text-gray-400">Template</label>
-            <select
-              value={template}
-              onChange={(e) => setTemplate(e.target.value)}
-              className="w-full mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded"
-            >
-              <option value="empty">Empty</option>
-              <option value="template1">Template 1</option>
-            </select>
-          </div>
+        
           <button
             onClick={createEbook}
             className="w-full bg-blue-600 py-2 rounded text-white"
