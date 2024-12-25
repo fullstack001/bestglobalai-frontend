@@ -1,15 +1,15 @@
 import { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
 import { useNavigate } from "react-router-dom";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAdd, faTrash, faSave } from "@fortawesome/free-solid-svg-icons";
 import ReactQuill from "react-quill";
+import Modal from "react-modal";
 import "react-quill/dist/quill.snow.css";
+import "react-confirm-alert/src/react-confirm-alert.css";
 import { Tooltip } from "react-tooltip";
+
 import logo_icon from "../../assets/icons/logo.svg";
 
 const apiPort = process.env.REACT_APP_API_PORT;
@@ -36,15 +36,114 @@ function BookCreator() {
   const [currentYoutubeTitle, setCurrentYoutubeTitle] = useState("");
   const [currentYoutubeLink, setCurrentYoutubeLink] = useState("");
 
+  const [isStoryChoiceModalOpen, setStoryChoiceModalOpen] = useState(false);
+  const [currentPageIndex, setCurrentPageIndex] = useState(null);
+
+  const [storyChoiceData, setStoryChoiceData] = useState({
+    linkText: "",
+    story: "",
+    choiceGroup: "",
+  });
+
+  // const quillRef = useRef(null);
+  const quillRefs = useRef([]);
   const lastPageRef = useRef(null);
   const navigate = useNavigate();
+  
 
- 
+  // useEffect(() => {
+  //   const quill = quillRef.current?.getEditor();
+  //   if (quill) {
+  //     const toolbar = quill.getModule("toolbar");
+  //     if (toolbar) {
+  //       toolbar.addHandler("storychoice", () => {         
+  //         setStoryChoiceModalOpen(true); // Open the modal when the button is clicked
+  //       });
+  //     }
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    quillRefs.current = quillRefs.current.slice(0, pages.length);
+  }, [pages]);
+
+  useEffect(() => {
+    const storyChoiceButtons = document.querySelectorAll(".ql-storychoice");
+    storyChoiceButtons.forEach((button, index) => {
+      button.innerHTML = "📖 Insert Story Choice";
+      button.style.width = "auto";
+      button.addEventListener("click", () => handleStoryChoiceClick(index));
+    });
+
+    return () => {
+      storyChoiceButtons.forEach((button, index) =>
+        button.removeEventListener("click", () => handleStoryChoiceClick(index))
+      );
+    };
+  }, [pages]);
+
+
+
+  const handleStoryChoiceClick = (index) => {
+    setCurrentPageIndex(index);
+    setStoryChoiceModalOpen(true);
+  };
+
   useEffect(() => {
     if (lastPageRef.current) {
-      lastPageRef.current.scrollIntoView({ behavior: "smooth" });
-    }
+      lastPageRef.current.scrollIntoView({ behavior: "smooth" });      
+      // const storyChoiceButton = lastPageRef.current.querySelector(".ql-storychoice");
+      // if (storyChoiceButton) {
+      //   storyChoiceButton.innerHTML = "📖 Insert Story Choice";
+      //   storyChoiceButton.style.width = "auto";
+  
+      //   storyChoiceButton.addEventListener("click", () => {
+      //     setStoryChoiceModalOpen(true); 
+      //   });
+      // }  
+      // return () => {
+      //   if (storyChoiceButton) {
+      //     storyChoiceButton.removeEventListener("click", () => {
+      //       setStoryChoiceModalOpen(true);
+      //     });
+      //   }
+      // };
+    }  
   }, [pages.length]);
+
+  const insertChoice = (linkText, story, choiceGroup, editor) => {
+    const choiceHTML = `
+        <br />      
+        <a href="#" class="choicegroup${choiceGroup}">
+          ${linkText}
+        </a>
+        <div class="choicegroup${choiceGroup}">
+          <p>${story}</p>
+        </div>
+        <p>(After story)</p>
+      
+    `;
+    // const quill = quillRef.current.getEditor();
+    const range = editor.getSelection(true);
+    editor.clipboard.dangerouslyPasteHTML(range.index, choiceHTML);
+  };
+
+  const handleInsertStoryChoice = () => {
+    const { linkText, story, choiceGroup } = storyChoiceData;
+    // if (linkText && story ) {
+    //   insertChoice(linkText, story, choiceGroup);
+    //   setStoryChoiceData({ linkText: "", story: "", choiceGroup: "" });
+    //   setStoryChoiceModalOpen(false);
+    // }
+    if (linkText && story && currentPageIndex !== null) {
+      const editor = quillRefs.current[currentPageIndex]?.getEditor();
+      if (editor) {
+        insertChoice(linkText, story, choiceGroup, editor);
+      }
+      setStoryChoiceData({ linkText: "", story: "", choiceGroup: "" });
+      setStoryChoiceModalOpen(false);
+    }
+  };
 
   const addPage = () => {
     setPages([...pages, { name: "", content: "" }]);
@@ -78,28 +177,22 @@ function BookCreator() {
 
   const toolbarOptions = {
     toolbar: [
-      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
-      ['blockquote', 'code-block'],
-      ['link', 'image', 'video', 'formula'],
-    
-      [{ 'header': 1 }, { 'header': 2 }],               // custom button values
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }, { 'list': 'check' }],
-      [{ 'script': 'sub'}, { 'script': 'super' }],      // superscript/subscript
-      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
-      [{ 'direction': 'rtl' }],                         // text direction
-    
-      [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-    
-      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
-      [{ 'font': [] }],
-      [{ 'align': [] }],
-    
-      ['clean'] 
+      ["bold", "italic", "underline", "strike"],
+      ["blockquote", "code-block"],
+      ["link", "image", "video", "formula"],
+      [{ header: 1 }, { header: 2 }],
+      [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
+      [{ script: "sub" }, { script: "super" }],
+      [{ indent: "-1" }, { indent: "+1" }],
+      [{ direction: "rtl" }],
+      [{ size: ["small", false, "large", "huge"] }],
+      [{ header: [1, 2, 3, 4, 5, 6, false] }],
+      [{ color: [] }, { background: [] }],
+      [{ font: [] }],
+      [{ align: [] }],
+      ["clean"],
+      ["storychoice"], // Add custom button to the toolbar
     ],
-    clipboard: {
-      matchVisual: false,
-    },
   };
 
   const handleAudioChange = (e) => {
@@ -163,11 +256,9 @@ function BookCreator() {
     setYoutubeItems(updatedItems);
   };
 
-
-
   const submitBook = async () => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem("token");
       const formData = new FormData();
       formData.append("title", title);
       formData.append("author", author);
@@ -187,9 +278,9 @@ function BookCreator() {
       videoItems.forEach((item) => formData.append("videoFiles", item.file));
 
       const response = await axios.post(`${apiPort}/api/books`, formData, {
-        headers: { 
+        headers: {
           Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data" 
+          "Content-Type": "multipart/form-data",
         },
       });
 
@@ -201,7 +292,6 @@ function BookCreator() {
     }
   };
 
-  
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
       {/* Sidebar */}
@@ -410,11 +500,14 @@ function BookCreator() {
                     onChange={(e) => updatePageName(index, e.target.value)}
                   />
                   <ReactQuill
+                    // ref={quillRef}
+                    ref={(el) => (quillRefs.current[index] = el)}
                     value={page.content}
                     onChange={(content) => updatePageContent(index, content)}
                     className="h-[50vh] w-full text-black bg-white"
                     modules={toolbarOptions}
                   />
+
                   <p className="mt-6 -mb-2 text-sm text-white text-right pr-2">
                     {index + 1}
                   </p>
@@ -435,6 +528,72 @@ function BookCreator() {
           </div>
         </div>
       </div>
+
+      <Modal
+        isOpen={isStoryChoiceModalOpen}
+        onRequestClose={() => setStoryChoiceModalOpen(false)}
+        contentLabel="Insert Story Choice"
+        ariaHideApp={false}
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            width: "400px",
+          },
+        }}
+      >
+        <h2 className="text-lg font-bold">Insert Story Choice</h2>
+        <div className="mt-4">
+          <label>Link Text</label>
+          <input
+            type="text"
+            value={storyChoiceData.linkText}
+            onChange={(e) =>
+              setStoryChoiceData({
+                ...storyChoiceData,
+                linkText: e.target.value,
+              })
+            }
+            className="w-full p-2 mt-1 mb-2 border"
+          />
+          <label>Story</label>
+          <textarea
+            value={storyChoiceData.story}
+            onChange={(e) =>
+              setStoryChoiceData({ ...storyChoiceData, story: e.target.value })
+            }
+            className="w-full p-2 mt-1 mb-2 border"
+          />
+          <label>Choice Group</label>
+          <input
+            type="text"
+            value={storyChoiceData.choiceGroup}
+            onChange={(e) =>
+              setStoryChoiceData({
+                ...storyChoiceData,
+                choiceGroup: e.target.value,
+              })
+            }
+            className="w-full p-2 mt-1 mb-4 border"
+          />
+        </div>
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded mr-2"
+          onClick={handleInsertStoryChoice}
+        >
+          Insert
+        </button>
+        <button
+          className="px-4 py-2 bg-gray-500 text-white rounded"
+          onClick={() => setStoryChoiceModalOpen(false)}
+        >
+          Cancel
+        </button>
+      </Modal>
     </div>
   );
 }

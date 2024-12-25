@@ -150,9 +150,7 @@ const CreatorDashboard = () => {
                 <p className="text-sm mt-2 text-gray-400 text-center">
                   {book.author}
                 </p>
-                <p className="text-xs text-gray-400 text-center">
-                  Created by: {book.userId.fullName} ({book.userId.email})
-                </p>
+                
                 <div className="mt-2 flex justify-between">
                   <button
                     className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1"
