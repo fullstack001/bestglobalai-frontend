@@ -88,6 +88,7 @@ function AdminUserManagement() {
           <option value="user">User</option>
           <option value="admin">Admin</option>
           <option value="editor">Editor</option>
+          <option value="editor">Editor</option>
         </select>
       ),
     },
