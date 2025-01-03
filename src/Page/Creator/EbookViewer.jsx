@@ -53,22 +53,25 @@ function EbookViewer() {
   }, [id]);
 
   useEffect(() => {
-    // Adjust sandbox attributes for ReactReader's iframe
-    const updateIframeSandbox = () => {
+    // Adjust sandbox attributes for iframe elements
+    const adjustIframeSandbox = () => {
       const iframes = document.querySelectorAll("iframe");
       iframes.forEach((iframe) => {
-        iframe.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups");
+        iframe.setAttribute(
+          "sandbox",
+          "allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
+        );
       });
     };
 
-    updateIframeSandbox();
+    adjustIframeSandbox();
 
     // Use MutationObserver to monitor for new iframes
-    const observer = new MutationObserver(updateIframeSandbox);
+    const observer = new MutationObserver(adjustIframeSandbox);
     observer.observe(document.body, { childList: true, subtree: true });
 
     return () => observer.disconnect();
-  }, [bookUrl]);
+  }, []);
 
   const returnBack = () => {
     navigate(previousLocation);
@@ -172,7 +175,7 @@ function EbookViewer() {
                     className="w-full h-auto"
                     src={`${item.link}?autoplay=1`}
                     title="YouTube video player"
-                    sandbox="allow-scripts allow-same-origin allow-popups"
+                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
                     frameBorder="0"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
