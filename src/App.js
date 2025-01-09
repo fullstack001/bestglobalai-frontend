@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import { SocketProvider } from "./contexts/SocketContext";
 
+import Landing from "./Page/Landing/Landing";
 import Login from "./Page/Auth/Login";
 import Signup from "./Page/Auth/Signup";
 
@@ -32,7 +33,8 @@ function App() {
       {/* <SocketProvider> */}
         <Router>
           <Routes>
-            <Route path="/" element={<Login />} />
+            <Route path="/" element={<Landing />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route
               path="/user-management"
