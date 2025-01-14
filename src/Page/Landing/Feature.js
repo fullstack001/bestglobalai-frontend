@@ -84,8 +84,17 @@ const Feature = () => {
         </button>
         <h2 className="text-3xl sm:text-4xl mt-5 mb-8">Main Features</h2>
         <p className="text-lg sm:text-xl text-gray-300 max-w-screen-md m-auto mt-5">
-          There are many variations of passages of Lorem Ipsum available but the
-          majority have suffered alteration in some form.
+          The only three platforms you'll need to scale your social marketing to
+          the next level. It's your “one-stop shop” for creating dynamic,
+          interactive social media landing pages that collect new users to
+          market to later. Deliver to your followers and buyers in the most
+          secure interface available for world-wide marketing. Whether you're a
+          new solopreneurs or a larger professional, you'll be given a plan that
+          goes with your specific business model. Whether you need just a simple
+          plan to increase traffic and sales, or an entire API installation and
+          integration, we can help you reach your goals and objectives matching
+          you with experienced, full-stack developers and designers at a price
+          you can afford.
         </p>
       </div>
 
@@ -336,8 +345,14 @@ const Feature = () => {
         </h3>
 
         <div className="mt-2 text-xl text-gray-400">
-          There are many variations of passages of Lorem Ipsum available but the
-          majority have suffered alteration in some form.
+          Whether you want to do it yourself, or you want to pay us to manage it
+          and do it for you, there's a plan for you! When you sign-up, you'll be
+          asked what your business model is, and then we'll match you up with an
+          experienced consultant to give you some possible options to grow your
+          social media presence. You'll also get a full menu of possible API
+          integrations if you need them on your website. Finally, our CEO's
+          ePub3 text Best Global AI: Making AI Personal will be available on
+          your free eReader inside the Embellisher Studio.
         </div>
 
         <div className="relative    mt-10">

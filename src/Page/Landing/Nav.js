@@ -2,12 +2,17 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 
-import logo_icon from "../../assets/icons/logo.svg"; // Replace with your actual logo path
+import axios from "axios";
+import logo_icon from "../../assets/icons/logo.svg";
+const apiPort = process.env.REACT_APP_API_PORT;
+
+// Replace with your actual logo path
 
 const Nav = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
+  const [user, setUser] = useState(null); // State to hold user information
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -23,11 +28,32 @@ const Nav = () => {
       }
     };
 
+    const fetchUser = async () => {
+      try {
+        const token = localStorage.getItem("token");
+        if (token) {
+          const response = await axios.get(`${apiPort}/api/auth/me`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
+          setUser(response.data.user);
+        }
+      } catch (error) {
+        console.error("Failed to fetch user data:", error);
+      }
+    };
+    fetchUser();
+    
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleLogout = () => {
+    // Clear token from localStorage
+    localStorage.removeItem("token");
+    setUser(null);
+  };
 
   return (
     <nav
@@ -69,22 +95,45 @@ const Nav = () => {
           </button>
         </div>
         <div className="hidden md:flex space-x-6">
-          <div className="flex space-x-6">
-            <button
-              onClick={() => navigate("/login")}
-              className="bg-transparent px-6 py-2 flex space-x-2"
-            >
-              Sign In
-              <FiArrowUpRight className="ml-2 mt-1" />
-            </button>
-            <button
-              onClick={() => navigate("/signup")}
-              className="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 flex space-x-2"
-            >
-              Sign Up
-              <FiArrowUpRight className="ml-2 mt-1" />
-            </button>
-          </div>
+          {user ? (
+            <>
+              <div className="h-10 w-10 bg-gray-600 rounded-full flex items-center justify-center">
+                {user.profileImage ? (
+                  <img
+                    src={`${apiPort}${user.profileImage}`}
+                    alt="Profile"
+                    className="profile-image-preview w-28"
+                  />
+                ) : (
+                  <span>{user.fullName.charAt(0).toUpperCase()}</span>
+                )}
+              </div>
+              <p className="mt-2">{user.fullName}</p>
+              <button
+                onClick={handleLogout}
+                className=" text-white py-2 px-4 rounded-lg"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <div className="flex space-x-6">
+              <button
+                onClick={() => navigate("/login")}
+                className="bg-transparent px-6 py-2 flex space-x-2"
+              >
+                Sign In
+                <FiArrowUpRight className="ml-2 mt-1" />
+              </button>
+              <button
+                onClick={() => navigate("/signup")}
+                className="bg-gray-700 px-6 py-2 rounded-lg hover:bg-gray-600 flex space-x-2"
+              >
+                Sign Up
+                <FiArrowUpRight className="ml-2 mt-1" />
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Mobile Hamburger Menu */}
@@ -135,19 +184,47 @@ const Nav = () => {
               >
                 Contact
               </button>
+
               <div className="flex flex-col space-y-4">
-                <button
-                  onClick={() => navigate("/login")}
-                  className="bg-transparent border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-900"
-                >
-                  Sign In
-                </button>
-                <button
-                  onClick={() => navigate("/signup")}
-                  className="bg-blue-500 px-6 py-2 rounded-full hover:bg-blue-600"
-                >
-                  Sign Up
-                </button>
+                {user ? (
+                  <div className="text-center">
+                    <div className="flex justify-center space-x-5">
+                      <div className="h-10 w-10 bg-gray-600 rounded-full flex items-center justify-center">
+                        {user.profileImage ? (
+                          <img
+                            src={`${apiPort}${user.profileImage}`}
+                            alt="Profile"
+                            className="profile-image-preview w-28"
+                          />
+                        ) : (
+                          <span>{user.fullName.charAt(0).toUpperCase()}</span>
+                        )}
+                      </div>
+                      <p className="mt-2">{user.fullName}</p>
+                    </div>
+                    <button
+                      onClick={handleLogout}
+                      className=" text-white py-2 px-4 rounded-lg text-center"
+                    >
+                      Logout
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <button
+                      onClick={() => navigate("/login")}
+                      className="bg-transparent border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-900"
+                    >
+                      Sign In
+                    </button>
+                    <button
+                      onClick={() => navigate("/signup")}
+                      className="bg-blue-500 px-6 py-2 rounded-full hover:bg-blue-600"
+                    >
+                      Sign Up
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

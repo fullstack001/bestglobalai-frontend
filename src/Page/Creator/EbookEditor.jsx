@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,6 +12,7 @@ import {
 import ReactQuill from "react-quill"; // Import ReactQuill
 import "react-quill/dist/quill.snow.css"; // Import ReactQuill's CSS
 import logo_icon from "../../assets/icons/logo.svg";
+import JoditEditor from "jodit-react";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
@@ -371,13 +372,17 @@ const EbookEditor = () => {
                 className="w-full px-3 py-2 mb-2 bg-white text-black rounded"
                 placeholder="Chapter name"
               />
-              <ReactQuill
+              {/* <ReactQuill
                 value={chapter.content}
                 onChange={(content) => updateChapter(index, "content", content)}
                 className="w-full px-3 py-2 bg-white text-black rounded min-h-20"
                 theme="snow"
                 modules={toolbarOptions}
-              />
+              /> */}
+               <RichTextEditor
+                    initialValue={chapter.content}
+                    getValue={(content) => updateChapter(index, "content", content)}
+                  />
             </div>
           ))}
         </div>
@@ -392,6 +397,20 @@ const EbookEditor = () => {
         </button>
       </div>
     </div>
+  );
+};
+
+export const RichTextEditor = ({ initialValue, getValue }) => {
+  const editor = useRef(null);
+
+  return (
+    <JoditEditor
+      ref={editor}
+      value={initialValue}
+      tabIndex={1}
+      onChange={(newContent) => getValue(newContent)}
+      className="text-black"
+    />
   );
 };
 

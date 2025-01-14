@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { ReactReader } from "react-reader";
@@ -38,7 +38,11 @@ function EbookViewer() {
         const ebookFileUrl = bookData.ebookFile;
         const watermarkFileUrl = bookData.watermarkFile;
 
-        setBookUrl(role === "user" ? `${apiPort}${watermarkFileUrl}` : `${apiPort}${ebookFileUrl}`);
+        setBookUrl(
+          role === "user"
+            ? `${apiPort}${watermarkFileUrl}`
+            : `${apiPort}${ebookFileUrl}`
+        );
         setTitle(bookData.title);
         setAuthor(bookData.author);
         setAudioItems(bookData.audioItems);
@@ -127,11 +131,17 @@ function EbookViewer() {
             className="rounded-lg"
           >
             <ReactReader
-              url={bookUrl} // Pass the full URL of the EPUB file
-              location={location} // Set the initial location
+              url={bookUrl}
+              location={location}
               locationChanged={(epubcfi) => setLocation(epubcfi)}
+              epubOptions={{
+                allowPopups: true, // Adds `allow-popups` to sandbox-attribute
+                allowScriptedContent: true, // Adds `allow-scripts` to sandbox-attribute
+              }}
             />
           </div>
+
+         
         </div>
         <div>
           {selectedTab === 0 && (
@@ -142,8 +152,14 @@ function EbookViewer() {
                     className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
                     controls
                   >
-                    <source src={`${apiPort}${item.fileUrl}`} type="audio/ogg" />
-                    <source src={`${apiPort}${item.fileUrl}`} type="audio/mp3" />
+                    <source
+                      src={`${apiPort}${item.fileUrl}`}
+                      type="audio/ogg"
+                    />
+                    <source
+                      src={`${apiPort}${item.fileUrl}`}
+                      type="audio/mp3"
+                    />
                     Your browser does not support the audio element.
                   </audio>
                   <div className="mt-1 text-center mb-2">{item.title}</div>
@@ -159,7 +175,10 @@ function EbookViewer() {
                     className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
                     controls
                   >
-                    <source src={`${apiPort}${item.fileUrl}`} type="video/mp4" />
+                    <source
+                      src={`${apiPort}${item.fileUrl}`}
+                      type="video/mp4"
+                    />
                     Your browser does not support the video element.
                   </video>
                   <div className="mt-1 text-center mb-2">{item.title}</div>

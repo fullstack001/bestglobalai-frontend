@@ -6,8 +6,6 @@ import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 const Extra = () => {
   return (
     <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 gap-2 items-center mt-24 text-center container ">
-      
-
       <h3 className="text-4xl sm:text-4xl md:text-6xl mt-6 ">Extras</h3>
 
       <div
@@ -36,32 +34,34 @@ const Extra = () => {
           </button>
         </div>
         <div className="mt-8 text-left bg-white p-4 border rounded-3xl flex flex-col justify-center">
-          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">What's Included</h4>
+          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">
+            What's Included
+          </h4>
           <ul className="mt-4 text-gray-700 ">
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Access to 25,000+ top courses
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Over 128 API choices in 12 business categories.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Certification prep
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Qualified Fullstack Developer matched to your business model.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Goal-focused recommendations
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Goal-focused recommendations.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              AI-powered coding exercises
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              AI-powered automation and guaranteed results.
             </li>
             <li className="flex items-start">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Advanced analytics and insights
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Negotiations secure and invoicing detailed.
             </li>
           </ul>
         </div>
@@ -96,32 +96,34 @@ const Extra = () => {
           </button>
         </div>
         <div className="mt-8 text-left bg-white p-4 border rounded-3xl flex flex-col justify-center">
-          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">What's Included</h4>
+          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">
+            What's Included
+          </h4>
           <ul className="mt-4 text-gray-700 ">
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Access to 25,000+ top courses
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Created inside your account with the Embellisher editor.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Certification prep
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Qualified Professional Graphics and Video Designer.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Goal-focused recommendations
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Matched to your campaign audience and objectives.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              AI-powered coding exercises
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              SEO/SEM created for your landing page.
             </li>
             <li className="flex items-start">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Advanced analytics and insights
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Advanced analytics and insights.
             </li>
           </ul>
         </div>
@@ -156,32 +158,34 @@ const Extra = () => {
           </button>
         </div>
         <div className="mt-8 text-left bg-white p-4 border rounded-3xl flex flex-col justify-center">
-          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">What's Included</h4>
+          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">
+            What's Included
+          </h4>
           <ul className="mt-4 text-gray-700 ">
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Access to 25,000+ top courses
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Created on your website location with latest AI technologies.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Certification prep
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Qualified Professional Business Website Designer.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Goal-focused recommendations
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Matched to your business objectives and brand model.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              AI-powered coding exercises
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              SEO/SEM created for your home page.
             </li>
             <li className="flex items-start">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Advanced analytics and insights
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Guaranteed to match your design needs and instructions.
             </li>
           </ul>
         </div>
@@ -217,32 +221,34 @@ const Extra = () => {
           </button>
         </div>
         <div className="mt-8 text-left bg-white p-4 border rounded-3xl flex flex-col justify-center">
-          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">What's Included</h4>
+          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">
+            What's Included
+          </h4>
           <ul className="mt-4 text-gray-700 ">
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Access to 25,000+ top courses
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Created for your chosen marketing campaign or webpage.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Certification prep
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Qualified Professional SEO/SEM developer assigned.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Goal-focused recommendations
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Matched to your campaign audience and objectives.
             </li>
             <li className="flex items-start mb-3">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              AI-powered coding exercises
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Meets your business model campaign goals and objectives.
             </li>
             <li className="flex items-start">
               {" "}
-              <IoIosCheckmarkCircleOutline className="bg-green-400 text-white mt-1 rounded-full text-xl mr-1" />{" "}
-              Advanced analytics and insights
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Advanced analytics and insights.
             </li>
           </ul>
         </div>
