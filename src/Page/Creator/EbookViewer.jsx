@@ -92,7 +92,7 @@ function EbookViewer() {
       try {
         const range = await renditionRef.current.getRange(epubcfi);
         console.log(range);
-        const firstPart = range.commonAncestorContainer.baseURI.split(".")[0];
+        const firstPart = range.commonAncestorContainer.baseURI.split(".xhtml")[0];
         console.log(firstPart);
         const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
         console.log(pageNumber);
