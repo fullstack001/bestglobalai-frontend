@@ -27,7 +27,7 @@ const Footer = () => {
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Company</h3>
             <a href="" className="text-lg block hover:text-gray-400">
-              Hero Alt
+                Company Trust
             </a>
             <a href="" className="text-lg block hover:text-gray-400 mt-2">
               Pricing
@@ -52,9 +52,7 @@ const Footer = () => {
             <a href="" className="text-lg block hover:text-gray-400 mt-2">
               Privacy Policy
             </a>
-            <a href="" className="text-lg block hover:text-gray-400 mt-2">
-              404
-            </a>
+            
           </div>
         </div>
       </div>

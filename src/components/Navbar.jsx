@@ -9,7 +9,6 @@ const Navbar = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch logged-in user information
     const fetchUser = async () => {
       try {
         const token = localStorage.getItem("token");
@@ -19,16 +18,16 @@ const Navbar = () => {
           });
           setUser(response.data.user);
         }
-      } catch (error) {
+      } catch (error) {        
         console.error("Failed to fetch user data:", error);
+        localStorage.removeItem("token");
+        navigate("/");
       }
     };
-
     fetchUser();
   }, []);
 
   const handleLogout = () => {
-    // Clear token from localStorage
     localStorage.removeItem("token");
     navigate("/"); // Redirect to login page
   };

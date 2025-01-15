@@ -152,12 +152,14 @@ const CreatorDashboard = () => {
                 </p>
                 
                 <div className="mt-2 flex justify-between">
-                  <button
+       
+                  {book.bookType == "created" ?<button
                     className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1"
                     onClick={() => editEbook(book._id)}
                   >
                     <FontAwesomeIcon icon={faEdit} />
-                  </button>
+                  </button> : ""}
+                  
                   <button
                     className="mt-3 px-2 py-1 bg-green-500 text-white rounded-lg mr-1"
                     onClick={() => viewEbook(book._id)}

@@ -19,7 +19,7 @@ const Landing = () => {
         <Feature />
         <Subscription />
         <Extra />
-        <Faq />
+        {/* <Faq /> */}
         <Blog />
         <Footer />
       </div>

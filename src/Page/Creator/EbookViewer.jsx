@@ -18,6 +18,14 @@ function EbookViewer() {
   const [videoItems, setVideoItems] = useState([]);
   const [youtubeItems, setYoutubeItems] = useState([]);
   const [selectedTab, setSelectedTab] = useState(0);
+  const [bookContents, setBookContents] = useState([]);
+  const [bookType, setBookType] = useState("");
+
+  const [translatedText, setTranslatedText] = useState("");
+  const [language, setLanguage] = useState("en"); // Default language: English
+  const [originalContent, setOriginalContent] = useState("");
+
+  const renditionRef = useRef(null);
 
   const tabs = [
     { id: 0, label: "Audio" },
@@ -37,6 +45,7 @@ function EbookViewer() {
         const bookData = response.data.book;
         const ebookFileUrl = bookData.ebookFile;
         const watermarkFileUrl = bookData.watermarkFile;
+        const bookContents = bookData.pages;
 
         setBookUrl(
           role === "user"
@@ -48,6 +57,8 @@ function EbookViewer() {
         setAudioItems(bookData.audioItems);
         setVideoItems(bookData.videoItems);
         setYoutubeItems(bookData.youtubeItems);
+        setBookContents(bookContents);
+        setBookType(bookData.bookType);
       } catch (error) {
         console.error("Error fetching ebook content:", error);
       }
@@ -56,26 +67,42 @@ function EbookViewer() {
     fetchEbookContent();
   }, [id]);
 
-  useEffect(() => {
-    // Adjust sandbox attributes for iframe elements
-    const adjustIframeSandbox = () => {
-      const iframes = document.querySelectorAll("iframe");
-      iframes.forEach((iframe) => {
-        iframe.setAttribute(
-          "sandbox",
-          "allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
-        );
+  const translateContent = async (content) => {
+    try {
+      const response = await axios.post(`${apiPort}/api/translate`, {
+        text: content,
+        targetLanguage: language,
       });
-    };
+      setTranslatedText(response.data.translatedText);
+    } catch (error) {
+      console.error("Error translating content:", error);
+    }
+  };
 
-    adjustIframeSandbox();
+  const handleTranslate = () => {
+    if (originalContent) {
+      translateContent(originalContent);
+    }
+  };
 
-    // Use MutationObserver to monitor for new iframes
-    const observer = new MutationObserver(adjustIframeSandbox);
-    observer.observe(document.body, { childList: true, subtree: true });
-
-    return () => observer.disconnect();
-  }, []);
+  const handleLocationChanged = async (epubcfi) => {
+    setLocation(epubcfi);
+    if (renditionRef.current) {
+      try {
+        const range = await renditionRef.current.getRange(epubcfi);
+        const firstPart = range.commonAncestorContainer.baseURI.split(".")[0];
+        const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
+        const pageContent = bookContents[pageNumber];
+        setOriginalContent(pageContent.content);
+        setTranslatedText(""); // Clear translated text when location changes
+      } catch (error) {
+        console.error(
+          "Error fetching content for the current location:",
+          error
+        );
+      }
+    }
+  };
 
   const returnBack = () => {
     navigate(previousLocation);
@@ -133,15 +160,48 @@ function EbookViewer() {
             <ReactReader
               url={bookUrl}
               location={location}
-              locationChanged={(epubcfi) => setLocation(epubcfi)}
+              locationChanged={handleLocationChanged}
+              getRendition={(rendition) => {
+                renditionRef.current = rendition;
+              }}
               epubOptions={{
-                allowPopups: true, // Adds `allow-popups` to sandbox-attribute
-                allowScriptedContent: true, // Adds `allow-scripts` to sandbox-attribute
+                allowPopups: true, 
+                allowScriptedContent: true,
               }}
             />
           </div>
 
-         
+          {bookType == "created" ? (
+            <div>
+              {" "}
+              <div className="mt-4">
+                <select
+                  className="bg-gray-700 text-white py-2 px-4 rounded-lg"
+                  value={language}
+                  onChange={(e) => setLanguage(e.target.value)}
+                >
+                  <option value="en">English</option>
+                  <option value="fr">French</option>
+                  <option value="de">German</option>
+                </select>
+                <button
+                  onClick={handleTranslate}
+                  className="bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg"
+                >
+                  Translate
+                </button>
+              </div>
+              <div className="mt-4 bg-gray-700 p-4 rounded-lg">
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: translatedText || "No translation available.",
+                  }}
+                />
+              </div>{" "}
+            </div>
+          ) : (
+            ""
+          )}
         </div>
         <div>
           {selectedTab === 0 && (
