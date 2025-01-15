@@ -88,11 +88,16 @@ function EbookViewer() {
   const handleLocationChanged = async (epubcfi) => {
     setLocation(epubcfi);
     if (renditionRef.current) {
+      console.log(renditionRef.current);
       try {
         const range = await renditionRef.current.getRange(epubcfi);
+        console.log(range);
         const firstPart = range.commonAncestorContainer.baseURI.split(".")[0];
+        console.log(firstPart);
         const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
+        console.log(pageNumber);
         const pageContent = bookContents[pageNumber];
+        console.log(pageContent);
         setOriginalContent(pageContent.content);
         setTranslatedText(""); // Clear translated text when location changes
       } catch (error) {
