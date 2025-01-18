@@ -89,7 +89,7 @@ const Feature = () => {
           interactive social media landing pages that collect new users to
           market to later. Deliver to your followers and buyers in the most
           secure interface available for world-wide marketing. Whether you're a
-          new solopreneurs or a larger professional, you'll be given a plan that
+          new solopreneur or a larger professional, you'll be given a plan that
           goes with your specific business model. Whether you need just a simple
           plan to increase traffic and sales, or an entire API installation and
           integration, we can help you reach your goals and objectives matching
@@ -355,18 +355,16 @@ const Feature = () => {
           your free eReader inside the Embellisher Studio.
         </div>
 
-        <div className="relative    mt-10">
-          <video
-            className="w-full max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
-            controls
-            poster={video_background}
-          >
-            <source
-              src="https://framerusercontent.com/assets/ogfiuJfKkk61kCDqLt2IWMVDhM.mp4"
-              type="video/mp4"
-            />
-            Your browser does not support the video tag.
-          </video>
+        <div className="relative mt-10">         
+          <iframe
+            className="w-full h-[400px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+            src="https://www.youtube.com/embed/AyZUvl-r6tA?si=ofjQE7eyNLkcCI2P"
+            title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         </div>
       </div>
 

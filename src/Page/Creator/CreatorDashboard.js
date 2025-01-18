@@ -213,14 +213,13 @@ const CreatorDashboard = () => {
           <div>
             <label className="block text-gray-400">
               Language (2 letter code)
-            </label>           
+            </label>  
             <ReactLanguageSelect
               defaultLanguage="en"
               languages={["en", "fr", "de", "it", "es"]}
               customLabels={{ en: "EN", fr: "FR", de: "DE", it: "IT", es: "ES" }}
               className="bg-gray-700 text-gray-200 w-full"
               onSelect={(languageCode)=>setLanguage(languageCode)}
-
             />
           </div>
           <div>

@@ -42,7 +42,7 @@ const Nav = () => {
       }
     };
     fetchUser();
-    
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
@@ -64,7 +64,7 @@ const Nav = () => {
       <div className="container mx-auto text-white p-5 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
-          <img src={logo_icon} className="w-80" alt="Logo" />
+          <img src={logo_icon} className="w-80" alt="Logo" onClick={() => navigate("/")} />
         </div>
 
         {/* Desktop Menu */}
@@ -82,7 +82,7 @@ const Nav = () => {
             About
           </button>
           <button
-            //   onClick={() => navigate("/blog")}
+              onClick={() => navigate("/blogs")}
             className="hover:text-blue-500 transition duration-300"
           >
             Blog
@@ -92,6 +92,12 @@ const Nav = () => {
             className="hover:text-blue-500 transition duration-300"
           >
             Contact
+          </button>
+          <button
+            onClick={() => navigate("/services")}
+            className="hover:text-blue-500 transition duration-300"
+          >
+            Service
           </button>
         </div>
         <div className="hidden md:flex space-x-6">
@@ -173,7 +179,7 @@ const Nav = () => {
                 About
               </button>
               <button
-                //   onClick={() => navigate("/blog")}
+                  onClick={() => navigate("/blogs")}
                 className="hover:text-blue-500 transition duration-300"
               >
                 Blog
@@ -183,6 +189,13 @@ const Nav = () => {
                 className="hover:text-blue-500 transition duration-300"
               >
                 Contact
+              </button>
+
+              <button
+                onClick={() => navigate("/services")}
+                className="hover:text-blue-500 transition duration-300"
+              >
+                Service
               </button>
 
               <div className="flex flex-col space-y-4">

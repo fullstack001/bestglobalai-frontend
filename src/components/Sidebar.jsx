@@ -28,6 +28,15 @@ const Sidebar = () => {
         >
           Tutorials
         </a>
+
+        <a
+          href="/admin/blogs"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/admin/blogs") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Blogs
+        </a>
         <a
           href="/myEbooks"
           className={`block py-2 px-3 rounded  ${

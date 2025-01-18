@@ -8,7 +8,6 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
-import { SocketProvider } from "./contexts/SocketContext";
 
 import Landing from "./Page/Landing/Landing";
 import Login from "./Page/Auth/Login";
@@ -25,7 +24,14 @@ import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./Page/User/ProfilePage";
 import ChangePassword from "./Page/User/ChangePassword";
 import ExploreBooks from "./Page/Books/ExploreBooks";
-import Chat from "./Page/Chat/Chat";
+import Service from "./Page/Landing/Service";
+
+import BlogDashboard from "./Page/Blog/BlogDashboard";
+import BlogCreator from "./Page/Blog/BlogCreator";
+import BlogEditor from "./Page/Blog/BlogEditor";
+import BlogViewer from "./Page/Blog/BlogViewer";
+
+import BlogPage from "./Page/Landing/BlogPage";
 
 function App() {
   return (
@@ -97,17 +103,38 @@ function App() {
                   <ExploreBooks />
                 </PrivateRoute>
               }
-            />
-
+            />          
 
             <Route path="/creator/create" element={<BookCreator />} />
             <Route path="/creator/editor/:id" element={<EbookEditor />} />
-            <Route path="/creator/viewer/:id" element={<EbookViewer />} />          
+            <Route path="/creator/viewer/:id" element={<EbookViewer />} />
+
+            <Route path="/blogs" element={<BlogPage />} />
+
+            <Route
+              path="/admin/blogs"
+              element={
+                <PrivateRoute allowedRoles={["superAdmin", "admin" ]}>
+                  <BlogDashboard />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="/admin/blogs/creator"
+              element={
+                <PrivateRoute allowedRoles={["superAdmin", "admin" ]}>
+                  <BlogCreator />
+                </PrivateRoute>
+              }
+            />    
+            <Route path="/admin/blogs/editor/:id" element={<BlogEditor />} />
+            <Route path="/admin/blogs/viewer/:id" element={<BlogViewer />} />            
+
             <Route path="/reader" element={<BookReader />} />
             <Route path="/unauthorized" element={<h1>Access Denied</h1>} />
+            <Route path="/services" element={<Service />} />
           </Routes>
         </Router>
-      {/* </SocketProvider> */}
     </Provider>
   );
 }
