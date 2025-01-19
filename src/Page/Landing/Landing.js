@@ -10,7 +10,6 @@ import Blog from "./Blog";
 import Footer from "./Footer";
 
 const Landing = () => {
-  const navigate = useNavigate();
   return (
     <div className="bg-gray-950 text-white font-sans">
       <div className="">
