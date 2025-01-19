@@ -32,6 +32,7 @@ import BlogEditor from "./Page/Blog/BlogEditor";
 import BlogViewer from "./Page/Blog/BlogViewer";
 
 import BlogPage from "./Page/Landing/BlogPage";
+import BlogDetail from "./Page/Landing/BlogDetail";
 
 function App() {
   return (
@@ -110,6 +111,8 @@ function App() {
             <Route path="/creator/viewer/:id" element={<EbookViewer />} />
 
             <Route path="/blogs" element={<BlogPage />} />
+            <Route path="/blog/:id" element={<BlogDetail />} />
+            
 
             <Route
               path="/admin/blogs"

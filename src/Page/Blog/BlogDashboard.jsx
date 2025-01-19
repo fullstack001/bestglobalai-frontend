@@ -91,7 +91,7 @@ const BlogDashboard = () => {
         <div className="flex justify-end">
           <button
             className="mt-3 px-4 py-1 bg-blue-500 text-white rounded-lg mr-1 text-lg"
-            onClick={() => navigate("/blogs/creator")}
+            onClick={() => navigate("/admin/blogs/creator")}
           >
             Create Blog
           </button>
