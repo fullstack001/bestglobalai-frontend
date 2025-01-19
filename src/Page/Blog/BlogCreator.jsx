@@ -25,7 +25,6 @@ const BlogCreator = () => {
     if (file) {
       setFeaturedImage(file);
 
-      // Create a preview URL for the image
       const previewUrl = URL.createObjectURL(file);
       setPreviewImage(previewUrl);
     }
