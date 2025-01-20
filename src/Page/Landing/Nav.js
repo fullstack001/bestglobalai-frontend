@@ -12,7 +12,8 @@ const Nav = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
   const [isSticky, setIsSticky] = useState(false);
-  const [user, setUser] = useState(null); // State to hold user information
+  const [user, setUser] = useState(null);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -55,6 +56,10 @@ const Nav = () => {
     setUser(null);
   };
 
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
   return (
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition duration-300 ${
@@ -64,7 +69,12 @@ const Nav = () => {
       <div className="container mx-auto text-white p-5 flex justify-between items-center">
         {/* Logo */}
         <div className="flex items-center">
-          <img src={logo_icon} className="w-80" alt="Logo" onClick={() => navigate("/")} />
+          <img
+            src={logo_icon}
+            className="w-80"
+            alt="Logo"
+            onClick={() => navigate("/")}
+          />
         </div>
 
         {/* Desktop Menu */}
@@ -82,7 +92,7 @@ const Nav = () => {
             About
           </button>
           <button
-              onClick={() => navigate("/blogs")}
+            onClick={() => navigate("/blogs")}
             className="hover:text-blue-500 transition duration-300"
           >
             Blog
@@ -100,28 +110,39 @@ const Nav = () => {
             Service
           </button>
         </div>
-        <div className="hidden md:flex space-x-6">
+        <div className="relative space-x-6">
           {user ? (
-            <>
-              <div className="h-10 w-10 bg-gray-600 rounded-full flex items-center justify-center">
-                {user.profileImage ? (
-                  <img
-                    src={`${apiPort}${user.profileImage}`}
-                    alt="Profile"
-                    className="profile-image-preview w-28"
-                  />
-                ) : (
-                  <span>{user.fullName.charAt(0).toUpperCase()}</span>
-                )}
+            <div className="">
+              <div className="  " onClick={toggleDropdown}>
+                <div className="flex items-center justify-center bg-gray-600 rounded-full p-2">
+                  {user.profileImage ? (
+                    <img
+                      src={`${apiPort}${user.profileImage}`}
+                      alt="Profile"
+                      className="profile-image-preview h-8 w-8 cursor-pointer"
+                    />
+                  ) : (
+                    <span>{user.fullName.charAt(0).toUpperCase()}</span>
+                  )}
+                </div>
+                <p className="font-semibold">{user.fullName}</p>
               </div>
-              <p className="mt-2">{user.fullName}</p>
-              <button
-                onClick={handleLogout}
-                className=" text-white py-2 px-4 rounded-lg"
-              >
-                Logout
-              </button>
-            </>
+
+              {isDropdownOpen && (
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 shadow-lg rounded-lg text-white z-10">
+                  <div className="px-4 py-2 border-b border-gray-700">
+                    <a href="creator">
+                        Dashboard
+                    </a>
+                  </div>
+                  <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                    <button onClick={handleLogout} className="w-full text-left">
+                      Logout
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
           ) : (
             <div className="flex space-x-6">
               <button
@@ -179,7 +200,7 @@ const Nav = () => {
                 About
               </button>
               <button
-                  onClick={() => navigate("/blogs")}
+                onClick={() => navigate("/blogs")}
                 className="hover:text-blue-500 transition duration-300"
               >
                 Blog

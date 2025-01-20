@@ -9,7 +9,9 @@ const Sidebar = () => {
   return (
     <aside className="w-64 p-6 bg-gray-800">
       <div className="mb-8">
-        <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
+        <a href="/">
+          <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
+        </a>
       </div>
       <nav className="space-y-2">
         <a
@@ -87,7 +89,6 @@ const Sidebar = () => {
           Explore Ebooks
         </a>
       </nav>
-      
     </aside>
   );
 };

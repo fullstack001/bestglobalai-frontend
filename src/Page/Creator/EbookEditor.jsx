@@ -355,9 +355,12 @@ const EbookEditor = () => {
       <div className="p-8 w-full">
         <div className="flex justify-between">
           <h2 className="text-2xl font-bold mb-4">Edit Ebook</h2>
-          <div className="cursor-pointer" onClick={returnBack}>
+          <button
+            onClick={returnBack}
+            className="bg-blue-500 text-white py-2 px-4 rounded-lg"
+          >
             Back
-          </div>
+          </button>
         </div>
 
         {/* Chapter Management with ReactQuill */}
