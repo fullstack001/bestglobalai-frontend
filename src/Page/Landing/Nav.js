@@ -114,7 +114,7 @@ const Nav = () => {
           {user ? (
             <div className="">
               <div className="  " onClick={toggleDropdown}>
-                <div className="flex items-center justify-center bg-gray-600 rounded-full p-2">
+                <div className="flex items-center justify-center bg-gray-600 rounded-full p-2 w-fit">
                   {user.profileImage ? (
                     <img
                       src={`${apiPort}${user.profileImage}`}
