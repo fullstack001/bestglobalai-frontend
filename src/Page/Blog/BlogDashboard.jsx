@@ -23,13 +23,15 @@ const BlogDashboard = () => {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
         let response;
-        if (role == "admin" || role == "superAdmin") {
+        if ( role == "superAdmin") {
           response = await axios.get(`${apiPort}/api/blogs`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-        } else {
+        } 
+        
+        if (role == "admin") {
           response = await axios.get(`${apiPort}/api/blogs/mine`, {
             headers: {
               Authorization: `Bearer ${token}`,
