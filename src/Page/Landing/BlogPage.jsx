@@ -68,7 +68,7 @@ const BlogPage = () => {
                     <div>
                       <div className="mt-2 ml-2 text-xl">{blog.title}</div>
                       <div
-                        className="mt-2 ml-2 "
+                        className="mt-2 ml-2 line-clamp-3 overflow-hidden"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
                       ></div>
                       <button

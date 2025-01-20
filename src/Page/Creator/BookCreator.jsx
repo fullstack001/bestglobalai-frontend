@@ -2,8 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import OpenAI from "openai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faTrash, faSave } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAdd,
+  faTrash,
+  faSave,
+  faMagic,
+} from "@fortawesome/free-solid-svg-icons";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
 import { Tooltip } from "react-tooltip";
@@ -12,6 +18,7 @@ import JoditEditor from "jodit-react";
 import logo_icon from "../../assets/icons/logo.svg";
 
 const apiPort = process.env.REACT_APP_API_PORT;
+const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 function BookCreator() {
   // Using useSelector to get title and author from Redux store
@@ -20,7 +27,7 @@ function BookCreator() {
   const coverImage = useSelector((state) => state.ebook.coverImage);
 
   // Initialize pages state as an array with a default page
-  const [pages, setPages] = useState([{ name: "", content: "" }]);
+  const [pages, setPages] = useState([{ name: "", content: "", keyword: "" }]);
 
   // State for managing multiple audio files and titles
   const [audioItems, setAudioItems] = useState([]);
@@ -38,6 +45,7 @@ function BookCreator() {
   const quillRefs = useRef([]);
   const lastPageRef = useRef(null);
   const navigate = useNavigate();
+  // const openai = new OpenAI({ openAiApiKey, dangerouslyAllowBrowser: true });
 
   useEffect(() => {
     quillRefs.current = quillRefs.current.slice(0, pages.length);
@@ -50,7 +58,7 @@ function BookCreator() {
   }, [pages.length]);
 
   const addPage = () => {
-    setPages([...pages, { name: "", content: "" }]);
+    setPages([...pages, { name: "", content: "", keyword: "" }]);
   };
 
   const updatePageName = (index, newName) => {
@@ -73,6 +81,16 @@ function BookCreator() {
     const updatedPages = pages.map((page, pageIndex) => {
       if (pageIndex === index) {
         return { ...page, content: newContent };
+      }
+      return page;
+    });
+    setPages(updatedPages);
+  };
+
+  const updatePageField = (index, field, value) => {
+    const updatedPages = pages.map((page, pageIndex) => {
+      if (pageIndex === index) {
+        return { ...page, [field]: value };
       }
       return page;
     });
@@ -138,6 +156,42 @@ function BookCreator() {
   const removeYoutubeItem = (index) => {
     const updatedItems = youtubeItems.filter((_, i) => i !== index);
     setYoutubeItems(updatedItems);
+  };
+
+  const generateContentWithAI = async (index) => {
+    try {
+      const keyword = pages[index].keyword.trim();
+      if (!keyword) {
+        alert("Please provide a keyword before generating content.");
+        return;
+      }
+
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-4",
+          messages: [
+            {
+              role: "user",
+              content: `Generate detailed content based on the keyword: "${keyword}" for an ebook titled "${title}" by "${author}".`,
+            },
+          ],
+          temperature: 0.7,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${openAiApiKey}`,
+          },
+        }
+      );
+
+      const aiContent = response.data.choices[0].message.content.trim();
+      updatePageField(index, "content", aiContent);
+    } catch (error) {
+      console.error("Error generating content with AI:", error);
+      alert("Failed to generate content with AI. Please try again.");
+    }
   };
 
   const submitBook = async () => {
@@ -369,9 +423,15 @@ function BookCreator() {
       {/* Main Content */}
       <div className="w-full shadow-lg min-w-3/4 p-5 bg-gray-700 h-screen">
         <div className="space-y-4 flex flex-col justify-center w-full h-full relative">
-          <div className="cursor-pointer text-right mt-2" onClick={returnBack}>
-            Back
+          <div className="flex justify-end">
+            <button
+              className="cursor-pointer mt-2 bg-blue-500 text-white py-2 px-4 rounded-lg w-fit"
+              onClick={returnBack}
+            >
+              Back
+            </button>
           </div>
+
           <div className="text-2xl text-white ml-5">Book: {title}</div>
           <div className="overflow-auto h-full items-center w-full">
             {pages.map((page, index) => (
@@ -386,11 +446,34 @@ function BookCreator() {
                     className="px-4 py-2 border mb-5 text-black"
                     placeholder="Chapter Name"
                     value={page.name}
-                    onChange={(e) => updatePageName(index, e.target.value)}
+                    onChange={(e) =>
+                      updatePageField(index, "name", e.target.value)
+                    }
                   />
+
+                  <input
+                    type="text"
+                    className="px-4 py-2 border mb-3 text-black"
+                    placeholder="Keyword for Content Generation"
+                    value={page.keyword}
+                    onChange={(e) =>
+                      updatePageField(index, "keyword", e.target.value)
+                    }
+                  />
+
+                  <button
+                    className="mb-3 px-4 py-2 bg-purple-500 text-white rounded-lg flex items-center"
+                    onClick={() => generateContentWithAI(index)}
+                  >
+                    <FontAwesomeIcon icon={faMagic} className="mr-2" />
+                    AI Generate Content
+                  </button>
+
                   <RichTextEditor
                     initialValue={page.content}
-                    getValue={(content) => updatePageContent(index, content)}
+                    getValue={(content) =>
+                      updatePageField(index, "content", content)
+                    }
                   />
                 </div>
               </div>

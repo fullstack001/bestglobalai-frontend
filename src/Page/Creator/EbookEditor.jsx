@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faMagic } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import {
   setEbookTitle,
@@ -15,13 +15,16 @@ import logo_icon from "../../assets/icons/logo.svg";
 import JoditEditor from "jodit-react";
 
 const apiPort = process.env.REACT_APP_API_PORT;
+const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const EbookEditor = () => {
   const { id } = useParams(); // Get the book ID from the route params
   const [bookTitle, setBookTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [coverImage, setCoverImage] = useState(null);
-  const [chapters, setChapters] = useState([{ name: "", content: "" }]); // Default chapter structure
+  const [chapters, setChapters] = useState([
+    { name: "", content: "", keyword: "" },
+  ]); // Default chapter structure
   const [songItems, setSongItems] = useState([]);
   const [videoItems, setVideoItems] = useState([]);
   const [youtubeItems, setYoutubeItems] = useState([]);
@@ -118,9 +121,47 @@ const EbookEditor = () => {
     }
   };
 
+  const generateContentWithAI = async (index) => {
+    try {
+      const keyword = chapters[index].keyword.trim();
+      if (!keyword) {
+        alert("Please provide a keyword before generating content.");
+        return;
+      }
+
+      const response = await axios.post(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          model: "gpt-4",
+          messages: [
+            {
+              role: "user",
+              content: `Generate detailed content for the keyword: "${keyword}" in a chapter titled "${chapters[index].name}" for a book titled "${bookTitle}" by "${author}".`,
+            },
+          ],
+          temperature: 0.7,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${openAiApiKey}`,
+          },
+        }
+      );
+
+      const aiContent = response.data.choices[0].message.content.trim();
+      const updatedChapters = [...chapters];
+      updatedChapters[index].content = aiContent;
+      setChapters(updatedChapters);
+    } catch (error) {
+      console.error("Error generating content with AI:", error);
+      alert("Failed to generate content with AI. Please try again.");
+    }
+  };
+
   // Handle adding chapters dynamically
   const addChapter = () => {
-    setChapters([...chapters, { name: "", content: "" }]);
+    setChapters([...chapters, { name: "", content: "", keyword: "" }]);
   };
 
   // Handle updating chapters
@@ -145,32 +186,6 @@ const EbookEditor = () => {
     setVideoItems(videoItems.filter((_, i) => i !== index));
   const removeYoutubeItem = (index) =>
     setYoutubeItems(youtubeItems.filter((_, i) => i !== index));
-
-  const toolbarOptions = {
-    toolbar: [
-      ["bold", "italic", "underline", "strike"], // toggled buttons
-      ["blockquote", "code-block"],
-      ["link", "image", "video", "formula"],
-
-      [{ header: 1 }, { header: 2 }], // custom button values
-      [{ list: "ordered" }, { list: "bullet" }, { list: "check" }],
-      [{ script: "sub" }, { script: "super" }], // superscript/subscript
-      [{ indent: "-1" }, { indent: "+1" }], // outdent/indent
-      [{ direction: "rtl" }], // text direction
-
-      [{ size: ["small", false, "large", "huge"] }], // custom dropdown
-      [{ header: [1, 2, 3, 4, 5, 6, false] }],
-
-      [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-      [{ font: [] }],
-      [{ align: [] }],
-
-      ["clean"],
-    ],
-    clipboard: {
-      matchVisual: false,
-    },
-  };
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
@@ -375,17 +390,28 @@ const EbookEditor = () => {
                 className="w-full px-3 py-2 mb-2 bg-white text-black rounded"
                 placeholder="Chapter name"
               />
-              {/* <ReactQuill
-                value={chapter.content}
-                onChange={(content) => updateChapter(index, "content", content)}
-                className="w-full px-3 py-2 bg-white text-black rounded min-h-20"
-                theme="snow"
-                modules={toolbarOptions}
-              /> */}
-               <RichTextEditor
-                    initialValue={chapter.content}
-                    getValue={(content) => updateChapter(index, "content", content)}
-                  />
+
+              <input
+                type="text"
+                value={chapter.keyword}
+                onChange={(e) =>
+                  updateChapter(index, "keyword", e.target.value)
+                }
+                className="w-full px-3 py-2 mb-2 bg-white text-black rounded"
+                placeholder="Keyword for AI Content"
+              />
+              <button
+                onClick={() => generateContentWithAI(index)}
+                className="bg-purple-500 text-white py-2 px-4 rounded-lg mb-2"
+              >
+                <FontAwesomeIcon icon={faMagic} className="mr-2" />
+                Generate Content
+              </button>
+
+              <RichTextEditor
+                initialValue={chapter.content}
+                getValue={(content) => updateChapter(index, "content", content)}
+              />
             </div>
           ))}
         </div>
