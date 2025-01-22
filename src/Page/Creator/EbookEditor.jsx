@@ -7,9 +7,7 @@ import { useDispatch } from "react-redux";
 import {
   setEbookTitle,
   setEbookAuthor,
-  setCoverImage,
 } from "../../store/ebookSlice"; // Redux actions
-import ReactQuill from "react-quill"; // Import ReactQuill
 import "react-quill/dist/quill.snow.css"; // Import ReactQuill's CSS
 import logo_icon from "../../assets/icons/logo.svg";
 import JoditEditor from "jodit-react";
@@ -32,17 +30,16 @@ const EbookEditor = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const [previousUrl, setPreviousUrl] = useState("");
   const currentLocation = useLocation();
   const previousLocaction =
     currentLocation.state?.previousUrl || "No previous URL";
 
   const returnBack = () => {
-    if (previousLocaction == "/creator") {
+    if (previousLocaction === "/creator") {
       navigate("/creator");
     }
 
-    if (previousLocaction == "/myEbooks") {
+    if (previousLocaction === "/myEbooks") {
       navigate("/myEbooks");
     }
   };

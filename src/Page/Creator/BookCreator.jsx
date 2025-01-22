@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import OpenAI from "openai";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAdd,
@@ -61,15 +60,6 @@ function BookCreator() {
     setPages([...pages, { name: "", content: "", keyword: "" }]);
   };
 
-  const updatePageName = (index, newName) => {
-    const updatedPages = pages.map((page, pageIndex) => {
-      if (pageIndex === index) {
-        return { ...page, name: newName };
-      }
-      return page;
-    });
-    setPages(updatedPages);
-  };
 
   const deletePage = () => {
     if (pages.length > 1) {
@@ -77,16 +67,7 @@ function BookCreator() {
     }
   };
 
-  const updatePageContent = (index, newContent) => {
-    const updatedPages = pages.map((page, pageIndex) => {
-      if (pageIndex === index) {
-        return { ...page, content: newContent };
-      }
-      return page;
-    });
-    setPages(updatedPages);
-  };
-
+  
   const updatePageField = (index, field, value) => {
     const updatedPages = pages.map((page, pageIndex) => {
       if (pageIndex === index) {

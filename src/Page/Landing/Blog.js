@@ -1,14 +1,11 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FiArrowUpRight } from "react-icons/fi";
-import { useNavigate, useLocation } from "react-router-dom";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
 const Blog = () => {
   const [blogs, setBlogs] = useState([]);
-  const location = useLocation();
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLatestBlogs = async () => {

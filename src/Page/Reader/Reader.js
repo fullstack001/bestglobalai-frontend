@@ -37,6 +37,8 @@ const Reader = ({ file }) => {
     reader.readAsArrayBuffer(file);
   }, [file]);
 
+  console.log(book);
+
   const updateNavigationControls = (rendition) => {
     const currentLocation = rendition.currentLocation();
     const startCfi = currentLocation?.start?.cfi ?? "Start CFI not available";

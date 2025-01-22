@@ -162,7 +162,7 @@ const Subscription = () => {
           >
             <h3
               className={`text-xl font-semibold mb-4 ${
-                plan.title == "Plus+" ? " text-blue-500" : " "
+                plan.title === "Plus+" ? " text-blue-500" : " "
               }`}
             >
               {plan.title}
@@ -192,7 +192,7 @@ const Subscription = () => {
             <button
               onClick={() => handlePayment(plan, "stripe")}
               className={` ${
-                plan.title == "Plus+"
+                plan.title === "Plus+"
                   ? "bg-blue-500 text-white hover:text-blue-500"
                   : " text-blue-500  border border-blue-500"
               } py-2 px-4 rounded-lg hover:bg-blue-200 transition flex justify-center mb-2`}

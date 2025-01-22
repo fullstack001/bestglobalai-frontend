@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faMagic } from "@fortawesome/free-solid-svg-icons";
 import JoditEditor from "jodit-react";
@@ -17,11 +17,8 @@ const BlogEditor = () => {
   const [previewImage, setPreviewImage] = useState(null);
   const [keyword, setKeyword] = useState("");
   const navigate = useNavigate();
-  const currentLocation = useLocation();
-  const previousLocaction = currentLocation.state?.previousUrl || "/blogs";
 
   const returnBack = () => {
-    // navigate(previousLocaction);
     navigate("/admin/blogs");
   };
 

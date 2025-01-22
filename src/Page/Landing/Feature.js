@@ -15,15 +15,7 @@ import chart_icon from "../../assets/images/landing/chart_icon.png";
 import customizable_icon from "../../assets/images/landing/customizable_icon.png";
 import customizable_image from "../../assets/images/landing/budget_background.png";
 import three_steps from "../../assets/images/landing/3steps.png";
-import video_background from "../../assets/images/landing/video_background.png";
-import ai_powered_marketing from "../../assets/images/landing/ai_powered_marketing.png";
-import interactive_avatars_for_engagement from "../../assets/images/landing/interactive_avatars_for_engagement.png";
-import seamless_integration from "../../assets/images/landing/seamless_integration.png";
-import perfect_for_saas_business from "../../assets/images/landing/perfect_for_saas_business.png";
-import tailored from "../../assets/images/landing/tailored.png";
-import perfect_for_startup from "../../assets/images/landing/perfect_for_startup.png";
-import rich_documentation from "../../assets/images/landing/rich_documentation.png";
-import developer_friendly from "../../assets/images/landing/developer_friendly.png";
+
 
 const Feature = () => {
   const navigate = useNavigate();

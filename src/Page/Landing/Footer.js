@@ -12,7 +12,7 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto px-6 py-12 md:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-12">
           {/* Logo Section */}
           <div className="text-center md:text-left">
-            <img src={logo_icon} className="w-auto h-20 mx-auto md:mx-0" />
+            <img src={logo_icon} className="w-auto h-20 mx-auto md:mx-0" alt="logo_icon" />
           </div>
 
           {/* Features Section */}

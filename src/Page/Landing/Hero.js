@@ -1,5 +1,4 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 
 import hero_background from "../../assets/images/landing/hero.png";
 import bolt_shift_icon from "../../assets/images/landing/bolt_shift.png";
@@ -9,7 +8,6 @@ import spherule from "../../assets/images/landing/spherule.png";
 import globalBank from "../../assets/images/landing/globalBank.png";
 
 const Hero = () => {
-  const navigate = useNavigate();
 
   return (
     <section
@@ -20,7 +18,6 @@ const Hero = () => {
 
       <div className="relative z-10 text-center text-white max-w-5xl mx-auto pt-10 md:pt-32 px-6 md:px-12">
         <button
-          //   onClick={() => navigate("/get-started")}
           className="bg-gray-800 text-lg px-8 py-1 rounded-full hover:bg-gray-800 transition duration-300 mb-8 text-gray-300"
         >
           WELCOME TO THE FUTURE

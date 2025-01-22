@@ -6,7 +6,6 @@ import {
   faEdit,
   faTrash,
   faEye,
-  faDownload,
 } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/Layout";
 const apiPort = process.env.REACT_APP_API_PORT;
@@ -23,7 +22,7 @@ const BlogDashboard = () => {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
         let response;
-        if ( role == "superAdmin") {
+        if ( role === "superAdmin") {
           response = await axios.get(`${apiPort}/api/blogs`, {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -31,7 +30,7 @@ const BlogDashboard = () => {
           });
         } 
         
-        if (role == "admin") {
+        if (role === "admin") {
           response = await axios.get(`${apiPort}/api/blogs/mine`, {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -63,6 +62,8 @@ const BlogDashboard = () => {
 
     fetchUser();
   }, []);
+
+  console.log(user);
 
   const editBlog = (id) => {
     navigate(`/admin/blogs/editor/${id}`, {

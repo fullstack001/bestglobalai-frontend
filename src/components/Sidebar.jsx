@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 import logo_icon from "../assets/icons/logo.svg";
 
@@ -21,15 +21,7 @@ const Sidebar = () => {
           }`}
         >
           Dashboard
-        </a>
-        <a
-          href="#tutorials"
-          className={`block py-2 px-3 rounded  ${
-            isActive("/tutorials") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Tutorials
-        </a>
+        </a>        
 
         <a
           href="/admin/blogs"
@@ -87,6 +79,14 @@ const Sidebar = () => {
           }`}
         >
           Explore Ebooks
+        </a>
+        <a
+          href="/admin/contacts"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Contact Informations
         </a>
       </nav>
     </aside>

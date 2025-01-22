@@ -1,15 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAdd, faTrash, faSave, faMagic } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faMagic } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
-import { Tooltip } from "react-tooltip";
 import JoditEditor from "jodit-react";
 import Layout from "../../components/Layout";
-import logo_icon from "../../assets/icons/logo.svg";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;

@@ -173,7 +173,7 @@ function EbookViewer() {
             />
           </div>
 
-          {bookType == "created" ? (
+          {bookType === "created" ? (
             <div>
               {" "}
               <div className="mt-4">

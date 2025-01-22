@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faEdit,
-  faTrash,
+
   faEye,
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
@@ -16,13 +14,8 @@ const apiPort = process.env.REACT_APP_API_PORT;
 
 const ExploreBooks = () => {
   const [ebooks, setEbooks] = useState([]);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
-
-  const handleUploadSuccess = (newBook) => {
-    setEbooks((prev) => [...prev, newBook]);
-  };
 
   useEffect(() => {
     const fetchEbooks = async () => {

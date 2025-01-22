@@ -14,7 +14,6 @@ import {
   faEye,
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
-import ReactLanguageSelect from "react-languages-select";
 import "react-languages-select/css/react-languages-select.css";
 
 import default_cover from "../../assets/images/covers/cover1.jpg";
@@ -25,12 +24,9 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const CreatorDashboard = () => {
   const [bookTitle, setBookTitle] = useState("");
   const [author, setAuthor] = useState("");
-  const [language, setLanguage] = useState("");
   const [paginationDirection, setPaginationDirection] = useState("ltr");
   const [bookCoverImage, setBookCoverImage] = useState(null);
-  const [template, setTemplate] = useState("");
   const [ebooks, setEbooks] = useState([]); // State to hold fetched ebooks
-  const [user, setUser] = useState(null);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -42,7 +38,7 @@ const CreatorDashboard = () => {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
         let response;
-        if(role == "admin" || role == "superAdmin"){
+        if(role === "admin" || role === "superAdmin"){
           response = await axios.get(`${apiPort}/api/books`, {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -69,7 +65,6 @@ const CreatorDashboard = () => {
           const response = await axios.get(`${apiPort}/api/auth/me`, {
             headers: { Authorization: `Bearer ${token}` },
           });
-          setUser(response.data.user);
           setAuthor(response.data.user.fullName);
         }
       } catch (error) {
@@ -153,7 +148,7 @@ const CreatorDashboard = () => {
                 
                 <div className="mt-2 flex justify-between">
        
-                  {book.bookType == "created" ?<button
+                  {book.bookType === "created" ?<button
                     className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1"
                     onClick={() => editEbook(book._id)}
                   >
@@ -210,18 +205,7 @@ const CreatorDashboard = () => {
               className="w-full mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded"
             />
           </div>
-          <div>
-            <label className="block text-gray-400">
-              Language (2 letter code)
-            </label>  
-            <ReactLanguageSelect
-              defaultLanguage="en"
-              languages={["en", "fr", "de", "it", "es"]}
-              customLabels={{ en: "EN", fr: "FR", de: "DE", it: "IT", es: "ES" }}
-              className="bg-gray-700 text-gray-200 w-full"
-              onSelect={(languageCode)=>setLanguage(languageCode)}
-            />
-          </div>
+          
           <div>
             <label className="block text-gray-400">Pagination direction</label>
             <select

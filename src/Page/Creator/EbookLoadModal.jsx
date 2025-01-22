@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-const apiPort = process.env.REACT_APP_API_PORT;
 
 const UploadEbookModal = ({ isOpen, onClose, onUpload }) => {
   const [title, setTitle] = useState("");

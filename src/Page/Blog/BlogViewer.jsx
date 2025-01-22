@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Layout from "../../components/Layout";
@@ -17,7 +17,7 @@ const BlogViewer = () => {
     currentLocation.state?.previousUrl || "No previous URL";
 
   const returnBack = () => {
-    if (previousLocaction == "/admin/blogs") {
+    if (previousLocaction === "/admin/blogs") {
       navigate("/admin/blogs");
     }
   };

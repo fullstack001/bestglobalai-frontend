@@ -1,0 +1,164 @@
+import React, { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { IoCloseCircleOutline } from "react-icons/io5";
+import Nav from "./Nav";
+import Footer from "./Footer";
+
+const apiPort = process.env.REACT_APP_API_PORT;
+
+const Contact = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [content, setContent] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit =  async (e) => {
+    e.preventDefault();
+
+    if (!firstName) {
+        toast.error(
+          <div className="custom-toast flex">
+            <IoCloseCircleOutline className="custom-icon" />
+            <div className="mt-4">Please enter your first name.</div>
+          </div>,
+          {
+            className: "error-toast",
+            autoClose: 3000,
+            hideProgressBar: true,
+          }
+        );
+        return;
+      }
+
+    if (!email) {
+      toast.error(
+        <div className="custom-toast flex">
+          <IoCloseCircleOutline className="custom-icon" />
+          <div className="mt-4">Please enter your email address.</div>
+        </div>,
+        {
+          className: "error-toast",
+          autoClose: 3000,
+          hideProgressBar: true,
+        }
+      );
+      return;
+    }
+
+    const response = await axios.post(`${apiPort}/api/contacts`, {
+        firstName,
+        lastName,
+        email,
+        phone,
+        content,
+      });
+
+      if (response.status === 200) {
+        toast.success("Your message has been sent successfully.");
+        navigate("/");
+      }
+
+
+  };
+
+  return (
+    <div className="bg-gray-950 text-white font-sans">
+      <Nav />
+      <form onSubmit={handleSubmit}>
+        <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-2 gap-16 items-center mt-24 container py-20">
+          <div className="col-span-2">
+            <ToastContainer />
+          </div>
+          <div className="col-span-2 mt-2 text-center">
+            <h2 className="text-3xl font-semibold">Contact Us</h2>
+          </div>
+          <div className="mt-2">
+            <div>
+              <label htmlFor="firstName">First Name</label>
+            </div>
+            <div>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+                className="w-full p-2 mt-1 rounded-md text-black"
+              />
+            </div>
+          </div>
+          <div className="mt-2">
+            <div>
+              <label htmlFor="lastName">Last Name</label>
+            </div>
+
+            <div>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
+                className="w-full p-2 mt-1 rounded-md text-black"
+              />
+            </div>
+          </div>
+          <div className="mt-2">
+            <div>
+              <label htmlFor="email">Email</label>
+            </div>
+            <div>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-2 mt-1 rounded-md text-black"
+              />
+            </div>
+          </div>
+          <div className="mt-2">
+            <div>
+              <label htmlFor="phone">Phone</label>
+            </div>
+
+            <div>
+              <input
+                type="text"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                className="w-full p-2 mt-1 rounded-md text-black"
+              />
+            </div>
+          </div>
+          <div className="col-span-2 mt-2">
+            <div>
+              <label htmlFor="message">Message</label>
+            </div>
+            <div>
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="w-full p-2 mt-1 rounded-md text-black"
+              ></textarea>
+            </div>
+          </div>
+
+          <div className="col-span-2 mt-2 text-center">
+            <button
+              className="bg-blue-500 text-white text-2xl px-4 py-2 rounded-lg"
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </div>
+      </form>
+      <Footer />
+    </div>
+  );
+};
+
+export default Contact;

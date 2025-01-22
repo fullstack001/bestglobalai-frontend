@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
 
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,7 +19,6 @@ const apiPort = process.env.REACT_APP_API_PORT;
 
 const MyBooks = () => {
   const [ebooks, setEbooks] = useState([]);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -147,7 +145,7 @@ const MyBooks = () => {
                   Created by: {book.userId.fullName} ({book.userId.email})
                 </p>
                 <div className="mt-2 flex justify-between">
-                  {book.bookType == "uploaded" ? (
+                  {book.bookType === "uploaded" ? (
                     ""
                   ) : (
                     <div className="relative group mt-3 ">

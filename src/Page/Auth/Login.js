@@ -14,7 +14,6 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [error, setError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -34,11 +33,11 @@ const Login = () => {
       localStorage.setItem("role", role);
 
       // Redirect to dashboard
-      if(role == 'superAdmin' || role == 'admin' || role =='editor'){
+      if(role === 'superAdmin' || role === 'admin' || role ==='editor'){
         navigate("/creator");
       }
 
-      if(role == 'user'){
+      if(role === 'user'){
         navigate("/profile");
       }
       

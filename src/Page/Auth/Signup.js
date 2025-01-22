@@ -30,6 +30,7 @@ function Signup() {
     e.preventDefault();
     try {
       const response = await axios.post(`${apiPort}/api/auth/signup`, formData);
+      console.log(response);
       navigate("/");
     } catch (error) {
       toast.error(

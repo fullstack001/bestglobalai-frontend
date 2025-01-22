@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { FiArrowUpRight } from "react-icons/fi";
-import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
@@ -9,23 +8,10 @@ const apiPort = process.env.REACT_APP_API_PORT;
 
 const BlogDetail = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [featuredImage, setFeaturedImage] = useState(null);
-  const currentLocation = useLocation();
-  const previousLocaction =
-    currentLocation.state?.previousUrl || "No previous URL";
-  const returnBack = () => {
-    console.log(previousLocaction);
-
-    // if (previousLocaction == "/blogs") {
-    //   navigate("/blogs");
-    // }else if(previousLocaction == "/"){
-    //     navigate("/");
-    // }
-  };
 
   useEffect(() => {
     const fetchBlogDetails = async () => {
