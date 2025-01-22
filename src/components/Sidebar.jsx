@@ -21,16 +21,8 @@ const Sidebar = () => {
           }`}
         >
           Dashboard
-        </a>        
-
-        <a
-          href="/admin/blogs"
-          className={`block py-2 px-3 rounded  ${
-            isActive("/admin/blogs") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Blogs
         </a>
+
         <a
           href="/myEbooks"
           className={`block py-2 px-3 rounded  ${
@@ -40,12 +32,47 @@ const Sidebar = () => {
           My Books
         </a>
         <a
-          href="#chat"
+          href="/explore-ebooks"
           className={`block py-2 px-3 rounded  ${
-            isActive("#chat") ? "bg-gray-700" : "text-gray-400"
+            isActive("/explore-ebooks") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
-          Chat
+          Explore Ebooks
+        </a>
+        <a
+          href="/admin/blogs"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/admin/blogs") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Blogs
+        </a>
+
+        <a
+          href="/user-management"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          User Management
+        </a>
+
+        <a
+          href="/admin/contacts"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Contact Informations
+        </a>
+
+        <a
+          href="/admin/services"
+          className={`block py-2 px-3 rounded  ${
+            isActive("/admin/services") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Service Orders
         </a>
         <a
           href="/profile"
@@ -62,31 +89,6 @@ const Sidebar = () => {
           }`}
         >
           Change Password
-        </a>
-        <a
-          href="/user-management"
-          className={`block py-2 px-3 rounded  ${
-            isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          User Management
-        </a>
-
-        <a
-          href="/explore-ebooks"
-          className={`block py-2 px-3 rounded  ${
-            isActive("/explore-ebooks") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Explore Ebooks
-        </a>
-        <a
-          href="/admin/contacts"
-          className={`block py-2 px-3 rounded  ${
-            isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Contact Informations
         </a>
       </nav>
     </aside>

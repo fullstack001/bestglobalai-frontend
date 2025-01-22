@@ -3,7 +3,7 @@ import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/Layout";
 const apiPort = process.env.REACT_APP_API_PORT;
 
@@ -95,7 +95,7 @@ const ExploreContact = () => {
               </div>
             ))
           ) : (
-            <p>No blogs available.</p>
+            <p>No contacts available.</p>
           )}
         </div>
       </section>

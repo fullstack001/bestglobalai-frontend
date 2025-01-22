@@ -18,19 +18,21 @@ import PrivateRoute from "./components/PrivateRoute";
 import ProfilePage from "./Page/User/ProfilePage";
 import ChangePassword from "./Page/User/ChangePassword";
 import ExploreBooks from "./Page/Books/ExploreBooks";
-import Service from "./Page/Landing/Service";
-import Contact from "./Page/Landing/Contact";
 
 import BlogDashboard from "./Page/Blog/BlogDashboard";
 import BlogCreator from "./Page/Blog/BlogCreator";
 import BlogEditor from "./Page/Blog/BlogEditor";
 import BlogViewer from "./Page/Blog/BlogViewer";
-
 import BlogPage from "./Page/Landing/BlogPage";
 import BlogDetail from "./Page/Landing/BlogDetail";
 
-import ExploreContact from "./Page/Contact/ExploreContactss";
+import Contact from "./Page/Landing/Contact";
+import ExploreContact from "./Page/Contact/ExploreContacts";
 import ContactViewer from "./Page/Contact/ContactView";
+
+import Service from "./Page/Landing/Service";
+import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
+import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 
 function App() {
   return (
@@ -152,6 +154,24 @@ function App() {
             element={
               <PrivateRoute allowedRoles={["superAdmin"]}>
                 <ContactViewer />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/admin/services"
+            element={
+              <PrivateRoute allowedRoles={["superAdmin"]}>
+                <ExploreServiceOrders />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/admin/services/:id"
+            element={
+              <PrivateRoute allowedRoles={["superAdmin"]}>
+                <ServiceOrderViewer />
               </PrivateRoute>
             }
           />

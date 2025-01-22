@@ -237,7 +237,7 @@ const Service = () => {
     }
 
     try {
-      const response = await fetch(`${apiPort}/api/sendEmail/services`, {
+      const response = await fetch(`${apiPort}/api/service`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
