@@ -11,7 +11,7 @@ const Hero = () => {
 
   return (
     <section
-      className="container py-28 mx-auto relative w-full h-screen bg-cover bg-center bg-opacity-30"
+      className="container py-28 mx-auto relative w-full min-h-screen bg-cover bg-center bg-opacity-30"
       style={{ backgroundImage: `url(${hero_background})` }}
     >
       <div className="absolute inset-0 bg-black opacity-50"></div>

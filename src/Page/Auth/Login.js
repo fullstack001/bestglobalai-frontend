@@ -6,14 +6,17 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
+import ReCAPTCHA from "react-google-recaptcha";
 
 import logo_icon from "../../assets/icons/logo.svg";
 
 const apiPort = process.env.REACT_APP_API_PORT;
+const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [captchaToken, setCaptchaToken] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -22,30 +25,50 @@ const Login = () => {
     });
   };
 
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      toast.error("Please complete the reCAPTCHA verification.");
+      return;
+    }
+
     try {
-      const response = await axios.post(`${apiPort}/api/auth/login`, formData);
-      const { token, role } = response.data;
+      const response = await axios.post(`${apiPort}/api/auth/login`, {
+        ...formData,
+        captchaToken,
+      });
+
+      const { token, user } = response.data;
+      let role = user.role;
+
 
       // Save token to localStorage (or cookie)
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
+      localStorage.setItem("email", user.email);
+      
 
       // Redirect to dashboard
-      if(role === 'superAdmin' || role === 'admin' || role ==='editor'){
+      if (role === "superAdmin" || role === "admin" || role === "editor") {
         navigate("/creator");
       }
 
-      if(role === 'user'){
+      if (role === "user") {
         navigate("/profile");
       }
-      
     } catch (error) {
       toast.error(
         <div className="custom-toast flex">
           <IoCloseCircleOutline className="custom-icon" />
-          <div className="mt-4">{error.response.data.message}</div>
+          <div className="mt-4">
+            {" "}
+            {error.response?.data?.message || "Login failed. Please try again."}
+          </div>
         </div>,
         {
           className: "error-toast",
@@ -131,6 +154,11 @@ const Login = () => {
               Recover Password
             </a>
           </div>
+
+          <ReCAPTCHA
+            sitekey={RECAPTCHA_SITE_KEY}
+            onChange={handleCaptchaChange}
+          />
 
           <div>
             <button

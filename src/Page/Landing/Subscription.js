@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
 const apiPort = process.env.REACT_APP_API_PORT;
 
 const Subscription = () => {
+  const navigate = useNavigate();
   const [isMonthly, setIsMonthly] = useState(true);
+  const email = localStorage.getItem("email");
+  console.log(email);
 
   const plans = [
     {
@@ -65,50 +70,55 @@ const Subscription = () => {
   ];
 
   const handlePayment = async (plan, method) => {
-    if (method === "stripe") {
-      try {
-        const response = await fetch(`${apiPort}/api/payment/stripe`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            plan,
-            price: isMonthly ? plan.monthlyPrice : plan.yearlyPrice,
-            method,
-            frequency: isMonthly ? "monthly" : "yearly",
-            email: "jameschang1528@gmail.com",
-          }),
-        });
+    if (email) {
+      if (method === "stripe") {
+        console.log('stripe');
+        try {
+          const response = await fetch(`${apiPort}/api/subscription/stripe`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              plan,
+              price: isMonthly ? plan.monthlyPrice : plan.yearlyPrice,
+              method,
+              frequency: isMonthly ? "monthly" : "yearly",
+              email: email,
+            }),
+          });
 
-        const data = await response.json();
-        console.log(data);
+          const data = await response.json();
+          console.log(data);
 
-        window.location.href = data.sessionUrl;
-      } catch (error) {
-        console.error("Payment Error: ", error);
+          window.location.href = data.sessionUrl;
+        } catch (error) {
+          console.error("Payment Error: ", error);
+        }
+      } else {
+        try {
+          const response = await fetch(`${apiPort}/api/subscription/paypal`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              plan,
+              price: isMonthly ? plan.monthlyPrice : plan.yearlyPrice,
+              method,
+              frequency: isMonthly ? "monthly" : "yearly",
+            }),
+          });
+
+          const data = await response.json();
+          console.log(data);
+          window.location.href = data.approvalUrl;
+        } catch (error) {
+          console.error("Payment Error: ", error);
+        }
       }
     } else {
-      try {
-        const response = await fetch(`${apiPort}/api/payment/paypal`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            plan,
-            price: isMonthly ? plan.monthlyPrice : plan.yearlyPrice,
-            method,
-            frequency: isMonthly ? "monthly" : "yearly",
-          }),
-        });
-
-        const data = await response.json();
-        console.log(data);
-        window.location.href = data.approvalUrl;
-      } catch (error) {
-        console.error("Payment Error: ", error);
-      }
+      navigate("/login");
     }
   };
 
@@ -168,14 +178,13 @@ const Subscription = () => {
               {plan.title}
             </h3>
             <div className="mb-4">
-                
-            {plan.descriptions.map((description, i) => (
+              {plan.descriptions.map((description, i) => (
                 <li key={i} className="flex items-start mb-3">
                   <span className="text-blue-500 mr-2">✔</span>
                   <span>{description}</span>
                 </li>
               ))}
-             </div>
+            </div>
             <p className="text-4xl font-bold mb-4">
               ${isMonthly ? plan.monthlyPrice : plan.yearlyPrice}{" "}
               <span className="text-2xl">{isMonthly ? "Month" : "Year"}</span>

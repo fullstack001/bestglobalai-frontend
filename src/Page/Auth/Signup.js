@@ -7,8 +7,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import logo_icon from "../../assets/icons/logo.svg";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const apiPort = process.env.REACT_APP_API_PORT;
+const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 function Signup() {
   const navigate = useNavigate();
@@ -19,6 +21,8 @@ function Signup() {
     confirm_password: "",
   });
 
+  const [captchaToken, setCaptchaToken] = useState("");
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -26,10 +30,34 @@ function Signup() {
     });
   };
 
+  const handleCaptchaChange = (token) => {
+    setCaptchaToken(token); // Set the reCAPTCHA token
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!captchaToken) {
+      toast.error(
+        <div className="custom-toast flex">
+          <IoCloseCircleOutline className="custom-icon" />
+          <div className="mt-4">Please complete the reCAPTCHA.</div>
+        </div>,
+        {
+          className: "error-toast",
+          autoClose: 3000,
+          hideProgressBar: true,
+        }
+      );
+      return;
+    }
+    
     try {
-      const response = await axios.post(`${apiPort}/api/auth/signup`, formData);
+      const response = await axios.post(`${apiPort}/api/auth/signup`, {
+        ...formData,
+        captchaToken,
+      });
+
       console.log(response);
       navigate("/");
     } catch (error) {
@@ -142,6 +170,13 @@ function Signup() {
                 placeholder="Confirm Password"
               />
             </div>
+          </div>
+
+          <div className="mt-4">
+            <ReCAPTCHA
+              sitekey={RECAPTCHA_SITE_KEY}
+              onChange={handleCaptchaChange}
+            />
           </div>
 
           <div className="flex items-center justify-between">

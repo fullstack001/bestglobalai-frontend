@@ -3,15 +3,23 @@ import { useLocation } from "react-router-dom";
 
 import logo_icon from "../assets/icons/logo.svg";
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
   const isActive = (path) => location.pathname === path;
   return (
-    <aside className="w-64 p-6 bg-gray-800">
+    <aside className={`fixed lg:static top-0 left-0  w-64 p-6 bg-gray-800 z-50 transform ${
+        isOpen ? "translate-x-0 h-full" : "-translate-x-full h-auto"
+      } transition-transform duration-300 lg:translate-x-0`}>
       <div className="mb-8">
         <a href="/">
           <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
         </a>
+        <button
+          onClick={toggleSidebar}
+          className="lg:hidden absolute top-4 right-4 text-gray-400"
+        >
+          ✕
+        </button>
       </div>
       <nav className="space-y-2">
         <a

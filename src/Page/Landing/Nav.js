@@ -53,6 +53,8 @@ const Nav = () => {
   const handleLogout = () => {
     // Clear token from localStorage
     localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("user");
     setUser(null);
   };
 
@@ -110,7 +112,7 @@ const Nav = () => {
             Service
           </button>
         </div>
-        <div className="relative space-x-6">
+        <div className="hidden md:relative space-x-6">
           {user ? (
             <div className="">
               <div className="  " onClick={toggleDropdown}>
@@ -142,7 +144,7 @@ const Nav = () => {
               )}
             </div>
           ) : (
-            <div className="flex space-x-6">
+            <div className="hidden md:flex space-x-6">
               <button
                 onClick={() => navigate("/login")}
                 className="bg-transparent px-6 py-2 flex space-x-2"
@@ -217,35 +219,42 @@ const Nav = () => {
                 Service
               </button>
 
-              <div className="flex flex-col space-y-4">
+              <div className=" mt-2">
                 {user ? (
                   <div className="text-center">
-                    <div className="flex justify-center space-x-5">
-                      <div className="h-10 w-10 bg-gray-600 rounded-full flex items-center justify-center">
-                        {user.profileImage ? (
-                          <img
-                            src={`${apiPort}${user.profileImage}`}
-                            alt="Profile"
-                            className="profile-image-preview w-28"
-                          />
-                        ) : (
-                          <span>{user.fullName.charAt(0).toUpperCase()}</span>
-                        )}
-                      </div>
-                      <p className="mt-2">{user.fullName}</p>
+                  <div className="  " onClick={toggleDropdown}>
+                    <div className="mx-auto text-center items-center justify-center bg-gray-600 rounded-full p-2 w-fit">
+                      {user.profileImage ? (
+                        <img
+                          src={`${apiPort}${user.profileImage}`}
+                          alt="Profile"
+                          className="profile-image-preview h-8 w-8 cursor-pointer"
+                        />
+                      ) : (
+                        <span>{user.fullName.charAt(0).toUpperCase()}</span>
+                      )}
                     </div>
-                    <button
-                      onClick={handleLogout}
-                      className=" text-white py-2 px-4 rounded-lg text-center"
-                    >
-                      Logout
-                    </button>
+                    <p className="font-semibold">{user.fullName}</p>
                   </div>
+    
+                  {isDropdownOpen && (
+                    <div className=" mt-2 w-full text-center bg-gray-800 shadow-lg rounded-lg text-white z-10">
+                      <div className="px-4 py-2 border-b border-gray-700">
+                        <a href="creator">Dashboard</a>
+                      </div>
+                      <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                        <button onClick={handleLogout} className="w-full">
+                          Logout
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 ) : (
-                  <div>
+                  <div className="mb-2 grid">
                     <button
                       onClick={() => navigate("/login")}
-                      className="bg-transparent border-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-900"
+                      className="bg-transparent border-2 mb-2 border-white px-6 py-2 rounded-full hover:bg-white hover:text-gray-900"
                     >
                       Sign In
                     </button>

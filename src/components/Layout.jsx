@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Sidebar from "./Sidebar"; // Adjust the path as needed
 import Navbar from "./Navbar"; // Adjust the path as needed
 
 const Layout = ({ children }) => {
+  const [isSidebarOpen, setSidebarOpen] = useState(false);
+  const toggleSidebar = () => {
+    setSidebarOpen(!isSidebarOpen);
+  };
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
-      <Sidebar />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
       <main className="flex-1 p-8">
-        <Navbar />
+        <Navbar toggleSidebar={toggleSidebar} />
         {children}
       </main>
     </div>

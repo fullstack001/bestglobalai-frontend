@@ -273,13 +273,13 @@ const Service = () => {
         </h1>
         <div className="relative mt-10">
           <iframe
-            className="w-full h-[400px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
-            src="https://www.youtube.com/embed/dGw7t0MWAzI"
-            title="API Installation Choices #artificialintelligencemarketing #motivation #news"
-            frameBorder="0"
+            className="w-full h-auto max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+            src="https://www.youtube.com/embed/5hq9ZBiFmrU"
+            title="API Installation Choices"
+            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerPolicy="strict-origin-when-cross-origin"
-            allowFullScreen
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
           ></iframe>
         </div>
         <form onSubmit={handleSubmit}>

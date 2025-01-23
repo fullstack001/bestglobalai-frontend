@@ -153,7 +153,7 @@ function EbookViewer() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         <div className="col-span-3">
           <div
             style={{ height: "600px", border: "1px solid #ddd" }}
@@ -178,7 +178,7 @@ function EbookViewer() {
               {" "}
               <div className="mt-4">
                 <select
-                  className="bg-gray-700 text-white py-2 px-4 rounded-lg"
+                  className="bg-gray-700 text-white py-2 px-4 rounded-lg mb-2"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
                 >
@@ -437,7 +437,7 @@ function EbookViewer() {
                 </select>
                 <button
                   onClick={handleTranslate}
-                  className="bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg"
+                  className="bg-blue-500 text-white py-2 px-4 ml-0 md:ml-2 rounded-lg"
                 >
                   Translate
                 </button>
@@ -457,62 +457,68 @@ function EbookViewer() {
         <div>
           {selectedTab === 0 && (
             <div>
-              {audioItems.map((item) => (
-                <div key={item._id}>
-                  <audio
-                    className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
-                    controls
-                  >
-                    <source
-                      src={`${apiPort}${item.fileUrl}`}
-                      type="audio/ogg"
-                    />
-                    <source
-                      src={`${apiPort}${item.fileUrl}`}
-                      type="audio/mp3"
-                    />
-                    Your browser does not support the audio element.
-                  </audio>
-                  <div className="mt-1 text-center mb-2">{item.title}</div>
-                </div>
-              ))}
+              {audioItems.length > 0
+                ? audioItems.map((item) => (
+                    <div key={item._id}>
+                      <audio
+                        className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
+                        controls
+                      >
+                        <source
+                          src={`${apiPort}${item.fileUrl}`}
+                          type="audio/ogg"
+                        />
+                        <source
+                          src={`${apiPort}${item.fileUrl}`}
+                          type="audio/mp3"
+                        />
+                        Your browser does not support the audio element.
+                      </audio>
+                      <div className="mt-1 text-center mb-2">{item.title}</div>
+                    </div>
+                  ))
+                : "Audio doesn't exist"}
             </div>
           )}
           {selectedTab === 1 && (
             <div>
-              {videoItems.map((item) => (
-                <div key={item._id}>
-                  <video
-                    className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
-                    controls
-                  >
-                    <source
-                      src={`${apiPort}${item.fileUrl}`}
-                      type="video/mp4"
-                    />
-                    Your browser does not support the video element.
-                  </video>
-                  <div className="mt-1 text-center mb-2">{item.title}</div>
-                </div>
-              ))}
+              {videoItems.length > 0
+                ? videoItems.map((item) => (
+                    <div key={item._id}>
+                      <video
+                        className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
+                        controls
+                      >
+                        <source
+                          src={`${apiPort}${item.fileUrl}`}
+                          type="video/mp4"
+                        />
+                        Your browser does not support the video element.
+                      </video>
+                      <div className="mt-1 text-center mb-2">{item.title}</div>
+                    </div>
+                  ))
+                : "Video doesn't exist"}
             </div>
           )}
           {selectedTab === 2 && (
             <div>
-              {youtubeItems.map((item) => (
-                <div key={item._id}>
-                  <iframe
-                    className="w-full h-auto"
-                    src={`${item.link}?autoplay=1`}
-                    title="YouTube video player"
-                    sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  ></iframe>
-                  <div className="mt-1 text-center mb-2">{item.title}</div>
-                </div>
-              ))}
+              {youtubeItems.length > 0
+                ? youtubeItems.map((item) => (
+                    <div key={item._id}>
+                      <iframe
+                        className="w-full h-auto"
+                        src={`${item.link}?autoplay=1`}
+                        title="YouTube video player"
+                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
+                        frameBorder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      ></iframe>
+                      <div className="mt-1 text-center mb-2">{item.title}</div>
+                    </div>
+                  ))
+                : "Youtube video doesn't exist"}
             </div>
           )}
         </div>

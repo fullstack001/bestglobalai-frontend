@@ -125,7 +125,7 @@ const CreatorDashboard = () => {
         <div className="grid md:grid-cols-4 md:gap-4 lg:grid-cols-5 lg:gap-6 mt-4">
           {ebooks.length > 0 ? (
             ebooks.map((book) => (
-              <div key={book._id} className="bg-gray-700 p-4 rounded-lg">
+              <div key={book._id} className="bg-gray-700 p-4 rounded-lg mb-2">
                 {book.coverImage ? (
                   <img
                     src={`${apiPort}${book.coverImage}`}
