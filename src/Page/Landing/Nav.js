@@ -112,7 +112,7 @@ const Nav = () => {
             Service
           </button>
         </div>
-        <div className="hidden md:relative space-x-6">
+        <div className="hidden md:flex md:relative space-x-6">
           {user ? (
             <div className="">
               <div className="  " onClick={toggleDropdown}>
