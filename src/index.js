@@ -15,3 +15,20 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+const resizeObserverLoopError = () => {
+  const suppressResizeObserverError = () => {
+    const error = new ErrorEvent('error', {
+      message: 'ResizeObserver loop limit exceeded',
+    });
+    window.dispatchEvent(error);
+  };
+  window.addEventListener('error', (event) => {
+    if (event.message === 'ResizeObserver loop limit exceeded') {
+      event.stopImmediatePropagation();
+      suppressResizeObserverError();
+    }
+  });
+};
+
+resizeObserverLoopError();

@@ -54,7 +54,7 @@ const Nav = () => {
     // Clear token from localStorage
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    localStorage.removeItem("user");
+    localStorage.removeItem("email");
     setUser(null);
   };
 

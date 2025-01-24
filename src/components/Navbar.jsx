@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
@@ -22,7 +26,7 @@ const Navbar = ({ toggleSidebar }) => {
         console.error("Failed to fetch user data:", error);
         localStorage.removeItem("token");
         localStorage.removeItem("role");
-        localStorage.removeItem("user");
+        localStorage.removeItem("email");
         navigate("/");
       }
     };
@@ -32,7 +36,7 @@ const Navbar = ({ toggleSidebar }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
-    localStorage.removeItem("user");
+    localStorage.removeItem("email");
     navigate("/"); // Redirect to login page
   };
 
@@ -42,7 +46,7 @@ const Navbar = ({ toggleSidebar }) => {
         onClick={toggleSidebar}
         className="text-white lg:hidden focus:outline-none"
       >
-        ☰
+        <FontAwesomeIcon icon={faBars} size="2x" />
       </button>
       <h1 className="text-2xl font-semibold hidden md:block">
         Welcome to the ePub Creator Studio

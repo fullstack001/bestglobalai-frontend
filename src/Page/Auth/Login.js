@@ -46,12 +46,10 @@ const Login = () => {
       const { token, user } = response.data;
       let role = user.role;
 
-
       // Save token to localStorage (or cookie)
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("email", user.email);
-      
 
       // Redirect to dashboard
       if (role === "superAdmin" || role === "admin" || role === "editor") {
@@ -83,7 +81,10 @@ const Login = () => {
     <div className="flex min-h-screen items-center justify-center bg-gray-900 ">
       <div className="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-lg shadow-lg">
         <div className="text-center">
-          <img src={logo_icon} alt="Logo" className="mx-auto h-20 w-auto" />
+          <div className="cursor-pointer" onClick={() => navigate("/")}>
+            <img src={logo_icon} alt="Logo" className="mx-auto h-20 w-auto" />
+          </div>
+
           <h2 className="mt-6 text-2xl font-bold text-white">Welcome Back</h2>
           <p className="mt-2 text-sm text-gray-400">Login into your account</p>
         </div>

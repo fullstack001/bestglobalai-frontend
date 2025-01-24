@@ -1,5 +1,9 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faClose
+} from "@fortawesome/free-solid-svg-icons";
 
 import logo_icon from "../assets/icons/logo.svg";
 
@@ -16,9 +20,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </a>
         <button
           onClick={toggleSidebar}
-          className="lg:hidden absolute top-4 right-4 text-gray-400"
+          className="lg:hidden absolute top-4 right-4 text-white"
         >
-          ✕
+          <FontAwesomeIcon icon={faClose} size="2x" />
         </button>
       </div>
       <nav className="space-y-2">

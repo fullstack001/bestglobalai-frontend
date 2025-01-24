@@ -8,6 +8,7 @@ import {
   faTrash,
   faSave,
   faMagic,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 
 import "react-confirm-alert/src/react-confirm-alert.css";
@@ -27,6 +28,7 @@ function BookCreator() {
 
   // Initialize pages state as an array with a default page
   const [pages, setPages] = useState([{ name: "", content: "", keyword: "" }]);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // State for managing multiple audio files and titles
   const [audioItems, setAudioItems] = useState([]);
@@ -56,17 +58,17 @@ function BookCreator() {
     }
   }, [pages.length]);
 
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
   const addPage = () => {
     setPages([...pages, { name: "", content: "", keyword: "" }]);
   };
-
 
   const deletePage = () => {
     if (pages.length > 1) {
       setPages(pages.slice(0, -1));
     }
   };
-
   
   const updatePageField = (index, field, value) => {
     const updatedPages = pages.map((page, pageIndex) => {
@@ -215,7 +217,9 @@ function BookCreator() {
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
       {/* Sidebar */}
-      <aside className="w-64 p-6 bg-gray-800">
+      <aside className={`fixed top-0 left-0 z-40 h-full w-64 bg-gray-800 p-6 transition-transform ${
+          isSidebarOpen ? "translate-x-0 overflow-y-auto" : "-translate-x-full"
+        } lg:translate-x-0`}>
         <div className="mb-8">
           <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
         </div>
@@ -401,9 +405,17 @@ function BookCreator() {
         </nav>
       </aside>
 
+      {/* Toggle Button */}
+      <button
+        className="absolute top-4 left-4 z-50 text-white lg:hidden"
+        onClick={toggleSidebar}
+      >
+        <FontAwesomeIcon icon={faBars} size="2x" />
+      </button>
+
       {/* Main Content */}
-      <div className="w-full shadow-lg min-w-3/4 p-5 bg-gray-700 h-screen">
-        <div className="space-y-4 flex flex-col justify-center w-full h-full relative">
+      <div className="flex-1 lg:ml-64 shadow-lg p-5 bg-gray-700">
+        <div className="space-y-4 flex flex-col w-full min-h-screen relative">
           <div className="flex justify-end">
             <button
               className="cursor-pointer mt-2 bg-blue-500 text-white py-2 px-4 rounded-lg w-fit"

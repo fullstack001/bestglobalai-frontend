@@ -1,7 +1,8 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { ReactReader } from "react-reader";
+import { debounce } from 'lodash';
 
 import logo_icon from "../../assets/icons/logo.svg";
 
@@ -85,27 +86,49 @@ function EbookViewer() {
     }
   };
 
-  const handleLocationChanged = async (epubcfi) => {
-    setLocation(epubcfi);
-    if (renditionRef.current) {
-      try {
-        const range = await renditionRef.current.getRange(epubcfi);
-        const firstPart = range.commonAncestorContainer.baseURI.split(
-          ".xhtml"
-        )[0];
-        const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
-        const pageContent = bookContents[pageNumber];
-        setOriginalContent(pageContent.content);
-        setTranslatedText(""); // Clear translated text when location changes
-      } catch (error) {
-        console.error(
-          "Error fetching content for the current location:",
-          error
-        );
+  // const handleLocationChanged = async (epubcfi) => {
+  //   setLocation(epubcfi);
+  //   if (renditionRef.current) {
+  //     try {
+  //       const range = await renditionRef.current.getRange(epubcfi);
+  //       const firstPart = range.commonAncestorContainer.baseURI.split(
+  //         ".xhtml"
+  //       )[0];
+  //       const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
+  //       const pageContent = bookContents[pageNumber];
+  //       setOriginalContent(pageContent.content);
+  //       setTranslatedText(""); // Clear translated text when location changes
+  //     } catch (error) {
+  //       console.error(
+  //         "Error fetching content for the current location:",
+  //         error
+  //       );
+  //     }
+  //   }
+  // };
+  const handleLocationChanged = useCallback(
+    debounce(async (epubcfi) => {
+      setLocation(epubcfi);
+      if (renditionRef.current) {
+        try {
+          const range = await renditionRef.current.getRange(epubcfi);
+          const firstPart = range.commonAncestorContainer.baseURI.split(
+            '.xhtml'
+          )[0];
+          const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
+          const pageContent = bookContents[pageNumber];
+          setOriginalContent(pageContent.content);
+          setTranslatedText(''); // Clear translated text when location changes
+        } catch (error) {
+          console.error(
+            'Error fetching content for the current location:',
+            error
+          );
+        }
       }
-    }
-  };
-
+    }, 500), // Adjust debounce time as needed
+    [bookContents]
+  );
   const returnBack = () => {
     navigate(previousLocation);
   };

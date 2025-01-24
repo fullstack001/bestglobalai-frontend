@@ -51,7 +51,7 @@ function Signup() {
       );
       return;
     }
-    
+
     try {
       const response = await axios.post(`${apiPort}/api/auth/signup`, {
         ...formData,
@@ -80,7 +80,9 @@ function Signup() {
       <ToastContainer />
       <div className="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-lg shadow-lg">
         <div className="text-center">
-          <img src={logo_icon} alt="Logo" className="mx-auto h-20 w-auto" />
+          <div className="cursor-pointer" onClick={() => navigate("/")}>
+            <img src={logo_icon} alt="Logo" className="mx-auto h-20 w-auto" />
+          </div>
           <h2 className="mt-6 text-2xl font-bold text-white">
             Get Started With Embellisher
           </h2>

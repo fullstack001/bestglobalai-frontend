@@ -2,12 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import axios from "axios";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSave, faMagic } from "@fortawesome/free-solid-svg-icons";
+import { faSave, faMagic, faBars } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
-import {
-  setEbookTitle,
-  setEbookAuthor,
-} from "../../store/ebookSlice"; // Redux actions
+import { setEbookTitle, setEbookAuthor } from "../../store/ebookSlice"; // Redux actions
 import "react-quill/dist/quill.snow.css"; // Import ReactQuill's CSS
 import logo_icon from "../../assets/icons/logo.svg";
 import JoditEditor from "jodit-react";
@@ -17,6 +14,7 @@ const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
 const EbookEditor = () => {
   const { id } = useParams(); // Get the book ID from the route params
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [bookTitle, setBookTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [coverImage, setCoverImage] = useState(null);
@@ -33,6 +31,8 @@ const EbookEditor = () => {
   const currentLocation = useLocation();
   const previousLocaction =
     currentLocation.state?.previousUrl || "No previous URL";
+
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   const returnBack = () => {
     if (previousLocaction === "/creator") {
@@ -186,7 +186,9 @@ const EbookEditor = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
-      <aside className="w-64 p-6 bg-gray-800">
+      <aside className={`fixed top-0 left-0 z-40 h-full w-64 bg-gray-800 p-6 transition-transform ${
+          isSidebarOpen ? "translate-x-0 overflow-y-auto" : "-translate-x-full"
+        } lg:translate-x-0`}>
         <div className="mb-8">
           <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
         </div>
@@ -364,8 +366,17 @@ const EbookEditor = () => {
           </button>
         </div>
       </aside>
-      <div className="p-8 w-full">
-        <div className="flex justify-between">
+
+      {/* Toggle Button */}
+      <button
+        className="absolute top-4 left-4 z-50 text-white lg:hidden"
+        onClick={toggleSidebar}
+      >
+        <FontAwesomeIcon icon={faBars} size="2x" />
+      </button>
+
+      <div className="flex-1 lg:ml-64 shadow-lg bg-gray-700 min-h-screen p-5 space-y-4">
+        <div className="flex justify-between mt-6">
           <h2 className="text-2xl font-bold mb-4">Edit Ebook</h2>
           <button
             onClick={returnBack}
