@@ -63,7 +63,11 @@ const ServiceOrderViewer = () => {
           {content.length > 0 ? (
             <ul>
               {content.map((item, index) => (
-                <li key={index}>{item}</li>
+                <li key={index}>
+                  <a href={item.link} target="_blank">
+                    {item.label}
+                  </a>
+                </li>
               ))}
             </ul>
           ) : (
