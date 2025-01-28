@@ -14,12 +14,12 @@ const Privacy = () => {
           <div className="mb-8">
             <p className="text-lg">
               This Privacy Policy ("Policy") applies to
-              https://bestglobalai2.com, and English Majors Reviewers and
+              https://bestglobalai.com, and English Majors Reviewers and
               Editors, LLC ("Company") and governs data collection and usage.
             </p>
             <p className="text-lg">
               For the purposes of this Privacy Policy, unless otherwise noted,
-              all references to the Company include https://bestglobalai.com/.
+              all references to the Company include https://bestglobalai.com.
               The Company's website is an E-Commerce for AI apps. site.
             </p>
             <p className="text-lg">
@@ -100,7 +100,7 @@ const Privacy = () => {
                   including for billing and collection
                 </li>
                 <li>
-                  To notify you about changes to our https://bestglobalai2.com
+                  To notify you about changes to our https://bestglobalai.com
                   or any products or services we offer or provide through it
                 </li>
                 <li>

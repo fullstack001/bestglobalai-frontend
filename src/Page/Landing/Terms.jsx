@@ -13,17 +13,17 @@ const Terms = () => {
           <h2 className="text-5xl text-center mb-12">Terms and Condition</h2>
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
-              Agreement between User and https://bestglobalai2.com
+              Agreement between User and https://bestglobalai.com
             </h2>
             <div className="text-lg">
-              <p>Welcome to https://bestglobalai2.com.</p>
+              <p>Welcome to https://bestglobalai.com.</p>
               <p>
-                The https://bestglobalai2.com website (the "Site") is comprised
+                The https://bestglobalai.com website (the "Site") is comprised
                 of various web pages operated by English Majors Reviewers and
                 Editors, LLC ("EMRE Publishing").
               </p>
               <p>
-                https://bestglobalai2.com is offered to you conditioned on your
+                https://bestglobalai.com is offered to you conditioned on your
                 acceptance without modification of the terms, conditions, and
                 notices contained herein (the "Terms").
               </p>
@@ -32,7 +32,7 @@ const Terms = () => {
                 constitutes your agreement to all such Terms. Please read these
                 terms carefully, and keep a copy of them for your reference.
               </p>
-              <p>https://bestglobalai2.com is an E-Commerce Site.</p>
+              <p>https://bestglobalai.com is an E-Commerce Site.</p>
               <p>
                 Artificial Intelligence applications for business and service
                 people.
@@ -43,7 +43,7 @@ const Terms = () => {
             <h2 className=" text-3xl mb-4">Electronic Communications</h2>
             <div className="text-lg">
               <p>
-                Visiting https://bestglobalai2.com or sending emails to EMRE
+                Visiting https://bestglobalai.com or sending emails to EMRE
                 Publishing constitutes electronic communications.
               </p>
               <p>
@@ -115,7 +115,7 @@ const Terms = () => {
             </h2>
             <div className="mb-4 text-lg">
               <p>
-                https://bestglobalai2.com may contain links to other websites
+                https://bestglobalai.com may contain links to other websites
                 ("Linked Sites").
               </p>
               <p>
