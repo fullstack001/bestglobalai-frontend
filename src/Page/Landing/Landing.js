@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import Nav from "./Nav";
 import Hero from "./Hero";
 import Feature from "./Feature";
@@ -9,6 +9,8 @@ import Blog from "./Blog";
 import Footer from "./Footer";
 
 const Landing = () => {
+  const faqRef = useRef(null);
+
   return (
     <div className="bg-gray-950 text-white font-sans">
       <div className="">
@@ -17,9 +19,9 @@ const Landing = () => {
         <Feature />
         <Subscription />
         <Extra />
-        {/* <Faq /> */}
+        <Faq ref={faqRef} />
         <Blog />
-        <Footer />
+        <Footer faqRef={faqRef}/>
       </div>
     </div>
   );

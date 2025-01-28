@@ -1,10 +1,20 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import logo_icon from "../../assets/icons/logo.svg"; // Assuming this is your logo file
 import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 
-const Footer = () => {
+const Footer = ({ faqRef }) => {
+  const navigate = useNavigate();
+
+  const scrollToFaq = () => {
+    if (faqRef && faqRef.current) {
+      faqRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <div>
       {/* Top Footer Section */}
@@ -12,47 +22,60 @@ const Footer = () => {
         <div className="max-w-6xl mx-auto px-6 py-12 md:px-12 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-12">
           {/* Logo Section */}
           <div className="text-center md:text-left">
-            <img src={logo_icon} className="w-auto h-20 mx-auto md:mx-0" alt="logo_icon" />
+            <img
+              src={logo_icon}
+              className="w-auto h-20 mx-auto md:mx-0 cursor-pointer"
+              alt="logo_icon"
+              onClick={() => navigate("/")}
+            />
           </div>
 
           {/* Features Section */}
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Features</h3>
-            <a href="" className="text-lg block hover:text-gray-400">
+            <button className="text-lg block hover:text-gray-400">
               Social Media Marketing
-            </a>
+            </button>
           </div>
 
           {/* Company Section */}
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Company</h3>
-            <a href="" className="text-lg block hover:text-gray-400">
-                Company Trust
-            </a>
-            <a href="" className="text-lg block hover:text-gray-400 mt-2">
+            <button className="text-lg block hover:text-gray-400">
+              Company Trust
+            </button>
+            <button className="text-lg block hover:text-gray-400 mt-2">
               Pricing
-            </a>
-            <a href="" className="text-lg block hover:text-gray-400 mt-2">
+            </button>
+            <button
+              onClick={() => navigate("/blogs")}
+              className="text-lg block hover:text-gray-400 mt-2"
+            >
               Blog
-            </a>
-            <a href="" className="text-lg block hover:text-gray-400 mt-2">
+            </button>
+            <button
+              onClick={() => navigate("/contact")}
+              className="text-lg block hover:text-gray-400 mt-2"
+            >
               Contact
-            </a>
+            </button>
           </div>
 
           {/* Support Section */}
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Support</h3>
-            <a href="" className="text-lg block hover:text-gray-400">
+            <button
+              onClick={scrollToFaq}
+              className="text-lg block hover:text-gray-400"
+            >
               FAQ
-            </a>
-            <a href="" className="text-lg block hover:text-gray-400 mt-2">
+            </button>
+            <button onClick={() => navigate("/terms-and-condition")} className="text-lg block hover:text-gray-400 mt-2">
               Terms & Condition
-            </a>
-            <a href="" className="text-lg block hover:text-gray-400 mt-2">
+            </button>
+            <button onClick={() => navigate("/privacy-policy")} className="text-lg block hover:text-gray-400 mt-2">
               Privacy Policy
-            </a>
-            
+            </button>
           </div>
         </div>
       </div>
