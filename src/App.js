@@ -36,6 +36,7 @@ import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 
 import Terms from "./Page/Landing/Terms";
 import Privacy from "./Page/Landing/Privacy";
+import Faq from "./Page/Landing/Faq";
 
 function App() {
   return (
@@ -187,6 +188,7 @@ function App() {
           <Route path="/services" element={<Service />} />
           <Route path="/terms-and-condition" element={<Terms />} />
           <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/faq" element={<Faq />} />
           
         </Routes>
       </Router>

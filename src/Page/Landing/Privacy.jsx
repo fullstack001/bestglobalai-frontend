@@ -448,7 +448,7 @@ const Privacy = () => {
                 EMRE Publishing welcomes your questions or comments regarding
                 the Terms:
               </p>
-              <p className="mt-4">English Majors Reviewers and Editors, LLC</p>
+              <p className="mt-4">Best Global AI, LLC</p>
               <p>6784 Caminito del Greco</p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>

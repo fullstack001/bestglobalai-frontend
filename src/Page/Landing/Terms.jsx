@@ -10,7 +10,7 @@ const Terms = () => {
       <Nav />
       <div className="container py-28 mx-auto max-w-6xl relative w-full min-h-screen ">
         <section className="py-20 text-white">
-          <h2 className="text-5xl text-center mb-12">Terms and Condition</h2>
+          <h2 className="text-5xl text-center mb-12">Terms and Conditions</h2>
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
               Agreement between User and https://bestglobalai.com
@@ -622,7 +622,7 @@ const Terms = () => {
                 EMRE Publishing welcomes your questions or comments regarding
                 the Terms:
               </p>
-              <p className="mt-4">English Majors Reviewers and Editors, LLC</p>
+              <p className="mt-4">Best Global AI, LLC</p>
               <p>6784 Caminito del Greco</p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>

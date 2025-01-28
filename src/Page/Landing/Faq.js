@@ -1,7 +1,9 @@
-import React, { useState, forwardRef  } from "react";
+import React, { useState, forwardRef } from "react";
+import Nav from "./Nav";
+import Footer from "./Footer";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 
-const Faq = forwardRef((props, ref) => {
+const Faq = () => {
   const [activeIndex, setActiveIndex] = useState(null);
 
   const faqs = [
@@ -62,21 +64,27 @@ const Faq = forwardRef((props, ref) => {
         "Best Global AI serves a wide range of industries, including publishing, education, and businesses seeking AI-driven solutions for content creation and marketing.",
     },
     {
-      question: "12. How does Best Global AI stay updated with the latest AI advancements?",
-      answer: "Best Global AI stays updated with the latest AI advancements by continuously researching and integrating new technologies into their products and services to provide cutting-edge solutions to their clients."
+      question:
+        "12. How does Best Global AI stay updated with the latest AI advancements?",
+      answer:
+        "Best Global AI stays updated with the latest AI advancements by continuously researching and integrating new technologies into their products and services to provide cutting-edge solutions to their clients.",
     },
     {
       question: "13. Are there any case studies or testimonials available?",
-      answer: "For case studies or testimonials, you can visit Best Global AI's website or contact their team directly to learn more about their success stories and client experiences."
+      answer:
+        "For case studies or testimonials, you can visit Best Global AI's website or contact their team directly to learn more about their success stories and client experiences.",
     },
     {
       question: "14. How can I contact Best Global AI for more information?",
-      answer: "You can contact Best Global AI by visiting their website and filling out the contact form. Their team will respond to your inquiries promptly."
+      answer:
+        "You can contact Best Global AI by visiting their website and filling out the contact form. Their team will respond to your inquiries promptly.",
     },
     {
-      question: "15. Does Best Global AI offer training or tutorials for their products?",
-      answer: "For information about training or tutorials, it's recommended to reach out to Best Global AI directly through their website's contact form to inquire about available resources."
-    }
+      question:
+        "15. Does Best Global AI offer training or tutorials for their products?",
+      answer:
+        "For information about training or tutorials, it's recommended to reach out to Best Global AI directly through their website's contact form to inquire about available resources.",
+    },
   ];
 
   const toggleFaq = (index) => {
@@ -84,39 +92,42 @@ const Faq = forwardRef((props, ref) => {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-6 md:px-12 mt-24 text-center container" ref={ref} id="faq-section">
-      <button className="bg-gray-800 text-lg px-8 py-1 rounded-full hover:bg-gray-800 transition duration-300 mb-8 text-gray-300 mx-auto">
-        WE'VE GOT YOU COVERED
-      </button>
-      <h3 className="text-4xl sm:text-4xl md:text-6xl mt-6 text-white">
-        Frequently Asked Questions
-      </h3>
+    <div className="bg-gray-950 text-white font-sans">
+      <Nav />
+      <div className="container py-28 mx-auto max-w-6xl relative w-full min-h-screen ">
+        <section className="py-20 text-white">
+          <h3 className="text-5xl sm:text-4xl md:text-6xl mt-6 text-white text-center">
+            Frequently Asked Questions
+          </h3>
 
-      <div className="mt-12 space-y-4">
-        {faqs.map((faq, index) => (
-          <div
-            key={index}
-            className="bg-gray-800 text-white rounded-xl p-4 shadow-md cursor-pointer"
-            onClick={() => toggleFaq(index)}
-          >
-            <div className="flex justify-between items-center">
-              <h4 className="text-2xl font-medium">{faq.question}</h4>
-              {activeIndex === index ? (
-                <FiChevronUp className="text-xl text-white" />
-              ) : (
-                <FiChevronDown className="text-xl text-white" />
-              )}
-            </div>
-            {activeIndex === index && (
-              <p className="mt-2 text-gray-400 text-left text-xl">
-                {faq.answer}
-              </p>
-            )}
+          <div className="mt-12 space-y-4">
+            {faqs.map((faq, index) => (
+              <div
+                key={index}
+                className="bg-gray-800 text-white rounded-xl p-4 shadow-md cursor-pointer"
+                onClick={() => toggleFaq(index)}
+              >
+                <div className="flex justify-between items-center">
+                  <h4 className="text-2xl font-medium">{faq.question}</h4>
+                  {activeIndex === index ? (
+                    <FiChevronUp className="text-xl text-white" />
+                  ) : (
+                    <FiChevronDown className="text-xl text-white" />
+                  )}
+                </div>
+                {activeIndex === index && (
+                  <p className="mt-2 text-gray-400 text-left text-xl">
+                    {faq.answer}
+                  </p>
+                )}
+              </div>
+            ))}
           </div>
-        ))}
+        </section>
       </div>
+      <Footer />
     </div>
   );
-});
+};
 
 export default Faq;

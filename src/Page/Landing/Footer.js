@@ -6,14 +6,10 @@ import { FaXTwitter } from "react-icons/fa6";
 import { FaInstagram } from "react-icons/fa";
 import { FaYoutube } from "react-icons/fa";
 
-const Footer = ({ faqRef }) => {
+const Footer = () => {
   const navigate = useNavigate();
 
-  const scrollToFaq = () => {
-    if (faqRef && faqRef.current) {
-      faqRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  };
+
 
   return (
     <div>
@@ -65,7 +61,7 @@ const Footer = ({ faqRef }) => {
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Support</h3>
             <button
-              onClick={scrollToFaq}
+              onClick={() => navigate('/faq')}
               className="text-lg block hover:text-gray-400"
             >
               FAQ
