@@ -18,9 +18,9 @@ const Terms = () => {
             <div className="text-lg">
               <p>Welcome to https://bestglobalai.com.</p>
               <p>
-                The https://bestglobalai.com website (the "Site") is comprised
-                of various web pages operated by English Majors Reviewers and
-                Editors, LLC ("EMRE Publishing").
+                Welcome to https://bestglobalai.com. The
+                https://bestglobalai.com website (the "Site") is comprised of
+                various web pages operated by Best Global AI, LLC ("BGAI").
               </p>
               <p>
                 https://bestglobalai.com is offered to you conditioned on your
@@ -29,8 +29,11 @@ const Terms = () => {
               </p>
               <p>
                 Your use of https://steelblue-turtle-121384.hostingersite.com
-                constitutes your agreement to all such Terms. Please read these
-                terms carefully, and keep a copy of them for your reference.
+                constitutes your agreement to all such Terms.
+              </p>
+              <p>
+                Please read these terms carefully and keep a copy of them for
+                your reference.
               </p>
               <p>https://bestglobalai.com is an E-Commerce Site.</p>
               <p>
@@ -43,11 +46,11 @@ const Terms = () => {
             <h2 className=" text-3xl mb-4">Electronic Communications</h2>
             <div className="text-lg">
               <p>
-                Visiting https://bestglobalai.com or sending emails to EMRE
-                Publishing constitutes electronic communications.
+                Visiting https://bestglobalai.com or sending emails to BGAI
+                constitutes electronic communications.
               </p>
               <p>
-                You consent to receive electronic communications and you agree
+                You consent to receive electronic communications, and you agree
                 that all agreements, notices, disclosures and other
                 communications that we provide to you electronically, via email
                 and on the Site, satisfy any legal requirement that such
@@ -70,14 +73,14 @@ const Terms = () => {
                 other person or entity.
               </p>
               <p>
-                You acknowledge that EMRE Publishing is not responsible for
-                third party access to your account that results from theft or
+                You acknowledge that BGAI is not responsible for third party
+                access to your account that results from theft or
                 misappropriation of your account.
               </p>
               <p>
-                EMRE Publishing and its associates reserve the right to refuse
-                or cancel service, terminate accounts, or remove or edit content
-                in our sole discretion.
+                BGAI and its associates reserve the right to refuse or cancel
+                service, terminate accounts, or remove or edit content in our
+                sole discretion.
               </p>
             </div>
           </div>
@@ -86,9 +89,8 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Children Under Eighteen</h2>
             <div className="mb-4 text-lg">
               <p>
-                EMRE Publishing does not knowingly collect, either online or
-                offline, personal information from persons under the age of
-                thirteen.
+                BGAI does not knowingly collect, either online or offline,
+                personal information from people under the age of thirteen.
               </p>
               <p>
                 If you are under 18, you may use
@@ -119,16 +121,15 @@ const Terms = () => {
                 ("Linked Sites").
               </p>
               <p>
-                The Linked Sites are not under the control of EMRE Publishing
-                and EMRE Publishing is not responsible for the contents of any
-                Linked Site, including without limitation any link contained in
-                a Linked Site, or any changes or updates to a Linked Site.
+                The Linked Sites are not under the control of BGAI and BGAI is
+                not responsible for the contents of any Linked Site, including
+                without limitation any link contained in a Linked Site, or any
+                changes or updates to a Linked Site.
               </p>
               <p>
-                EMRE Publishing provides these links to you only as a
-                convenience, and the inclusion of any link does not imply
-                endorsement by EMRE Publishing of the site or any association
-                with its operators.
+                BGAI provides these links to you only as a convenience, and the
+                inclusion of any link does not imply endorsement by BGAI of the
+                site or any association with its operators.
               </p>
               <p>
                 Certain services made available via https://bestglobalai.com/
@@ -136,12 +137,11 @@ const Terms = () => {
               </p>
               <p>
                 By using any product, service or functionality originating from
-                the https://bestglobalai.com/ domain, you hereby acknowledge and
-                consent that EMRE Publishing may share such information and data
-                with any third party with whom EMRE Publishing has a contractual
-                relationship to provide the requested product, service or
-                functionality on behalf of https://bestglobalai.com/ users and
-                customers.
+                the https://bestglobalai.com domain, you hereby acknowledge and
+                consent that BGAI may share such information and data with any
+                third party with whom BGAI has a contractual relationship to
+                provide the requested product, service or functionality on
+                behalf of https://bestglobalai.com users and customers.
               </p>
             </div>
           </div>
@@ -157,8 +157,7 @@ const Terms = () => {
                 accordance with these terms of use.
               </p>
               <p>
-                As a condition of your use of the Site, you warrant to EMRE
-                Publishing that you will not use the Site for any purpose that
+                As a condition of your use of the Site, you warrant to BGAI that you will not use the Site for any purpose that
                 is unlawful or prohibited by these Terms.
               </p>
               <p>
@@ -172,16 +171,10 @@ const Terms = () => {
                 or provided for through the Site.
               </p>
               <p className="mt-4">
-                All content included as part of the Service, such as text,
-                graphics, logos, images, as well as the compilation thereof, and
-                any software used on the Site, is the property of EMRE
-                Publishing or its suppliers and protected by copyright and other
-                laws that protect intellectual property and proprietary rights.
+              All content included as part of the Service, such as text, graphics, logos, images, as well as the compilation thereof, and any software used on the Site, is the property of BGAI or its suppliers and protected by copyright and other laws that protect intellectual property and proprietary rights. 
               </p>
               <p>
-                You agree to observe and abide by all copyright and other
-                proprietary notices, legends or other restrictions contained in
-                any such content and will not make any changes thereto.
+              You agree to observe and abide by all copyright and other proprietary notices, legends or other restrictions contained in any such content and will not make any changes thereto. 
               </p>
               <p className="mt-4">
                 You will not modify, publish, transmit, reverse engineer,
@@ -189,7 +182,7 @@ const Terms = () => {
                 in any way exploit any of the content, in whole or in part,
                 found on the Site.
               </p>
-              <p>EMRE Publishing content is not for resale.</p>
+              <p>BGAI content is not for resale.</p>
               <p>
                 Your use of the Site does not entitle you to make any
                 unauthorized use of any protected content, and you will not
@@ -199,7 +192,7 @@ const Terms = () => {
               <p>
                 You will use protected content solely for your personal use and
                 will make no other use of the content without the express
-                written permission of EMRE Publishing and the copyright owner.
+                written permission of BGAI and the copyright owner.
               </p>
               <p>
                 You agree that you do not acquire any ownership rights in any
@@ -207,7 +200,7 @@ const Terms = () => {
               </p>
               <p>
                 We do not grant you any licenses, express or implied, to the
-                intellectual property of EMRE Publishing or our licensors except
+                intellectual property of BGAI or our licensors except
                 as expressly authorized by these Terms.
               </p>
             </div>
@@ -259,16 +252,16 @@ const Terms = () => {
                 laws or regulations.
               </p>
               <p className="mt-4">
-                EMRE Publishing has no obligation to monitor the Communication
+                BGAI has no obligation to monitor the Communication
                 Services.
               </p>
               <p>
-                However, EMRE Publishing reserves the right to review materials
+                However, BGAI reserves the right to review materials
                 posted to a Communication Service and to remove any materials in
                 its sole discretion.
               </p>
               <p>
-                EMRE Publishing reserves the right to terminate your access to
+              BGAI reserves the right to terminate your access to
                 any or all of the Communication Services at any time without
                 notice for any reason whatsoever.
               </p>
@@ -278,16 +271,16 @@ const Terms = () => {
                 Service.
               </p>
               <p>
-                EMRE Publishing does not control or endorse the content,
+                BGAI does not control or endorse the content,
                 messages or information found in any Communication Service and,
-                therefore, EMRE Publishing specifically disclaims any liability
+                therefore, BGAI specifically disclaims any liability
                 with regard to the Communication Services and any actions
                 resulting from your participation in any Communication Service.
               </p>
               <p>
-                Managers and hosts are not authorized EMRE Publishing
+                Managers and hosts are not authorized BGAI
                 spokespersons, and their views do not necessarily reflect those
-                of EMRE Publishing.
+                of BGAI.
               </p>
               <p className="mt-4">
                 Materials uploaded to a Communication Service may be subject to
@@ -302,12 +295,12 @@ const Terms = () => {
 
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
-              Materials Provided to https://bestglobalai.com/ or Posted on Any
-              EMRE Publishing Web Page
+              Materials Provided to https://bestglobalai.com or Posted on Any
+              BGAI Web Page
             </h2>
             <div className="mb-4 text-lg">
               <p>
-                EMRE Publishing does not claim ownership of the materials you
+                BGAI does not claim ownership of the materials you
                 provide to https://bestglobalai.com (including feedback and
                 suggestions) or post, upload, input or submit to any EMRE
                 Publishing Site or our associated services (collectively
@@ -315,7 +308,7 @@ const Terms = () => {
               </p>
               <p>
                 However, by posting, uploading, inputting, providing or
-                submitting your Submission you are granting EMRE Publishing, our
+                submitting your Submission you are granting BGAI, our
                 affiliated companies and necessary sublicensees permission to
                 use your Submission in connection with the operation of their
                 Internet businesses including, without limitation, the rights
@@ -329,9 +322,9 @@ const Terms = () => {
                 Submission, as provided herein.
               </p>
               <p>
-                EMRE Publishing is under no obligation to post or use any
+                BGAI is under no obligation to post or use any
                 Submission you may provide and may remove any Submission at any
-                time in EMRE Publishing's sole discretion.
+                time in BGAI's sole discretion.
               </p>
               <p className="mt-4">
                 By posting, uploading, inputting, providing or submitting your
@@ -348,11 +341,11 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Third Party Accounts</h2>
             <div className="mb-4 text-lg">
               <p>
-                You will be able to connect your EMRE Publishing account to
+                You will be able to connect your BGAI account to
                 third party accounts.
               </p>
               <p>
-                By connecting your EMRE Publishing account to your third party
+                By connecting your BGAI account to your third party
                 account, you acknowledge and agree that you are consenting to
                 the continuous release of information about you to others (in
                 accordance with your privacy settings on those third party
@@ -377,7 +370,7 @@ const Terms = () => {
                 are responsible for compliance with all local laws.
               </p>
               <p>
-                You agree that you will not use the EMRE Publishing Content
+                You agree that you will not use the BGAI Content
                 accessed through https://bestglobalai.com in any country or in
                 any manner prohibited by any applicable laws, restrictions or
                 regulations.
@@ -399,10 +392,10 @@ const Terms = () => {
                 your violation of any applicable laws, rules or regulations.
               </p>
               <p>
-                EMRE Publishing reserves the right, at its own cost, to assume
+                BGAI reserves the right, at its own cost, to assume
                 the exclusive defense and control of any matter otherwise
                 subject to indemnification by you, in which event you will fully
-                cooperate with EMRE Publishing in asserting any available
+                cooperate with BGAI in asserting any available
                 defenses.
               </p>
             </div>
@@ -472,7 +465,7 @@ const Terms = () => {
                 ATTORNEY GENERAL ACTION AGAINST THE OTHER.
               </p>
               <p>
-                Further, unless both you and EMRE Publishing agree otherwise,
+                Further, unless both you and BGAI agree otherwise,
                 the arbitrator may not consolidate more than one person's
                 claims, and may not otherwise preside over any form of a
                 representative or class proceeding.
@@ -537,7 +530,7 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Termination/Access Restriction </h2>
             <div className="mb-4 text-lg">
               <p>
-                EMRE Publishing reserves the right, in its sole discretion, to
+                BGAI reserves the right, in its sole discretion, to
                 terminate your access to the Site and the related services or
                 any portion thereof at any time, without notice.
               </p>
@@ -555,16 +548,16 @@ const Terms = () => {
               </p>
               <p className="mt-4">
                 You agree that no joint venture, partnership, employment, or
-                agency relationship exists between you and EMRE Publishing as a
+                agency relationship exists between you and BGAI as a
                 result of this agreement or use of the Site.
               </p>
               <p>
-                EMRE Publishing's performance of this agreement is subject to
+                BGAI's performance of this agreement is subject to
                 existing laws and legal process, and nothing contained in this
-                agreement is in derogation of EMRE Publishing's right to comply
+                agreement is in derogation of BGAI's right to comply
                 with governmental, court and law enforcement requests or
                 requirements relating to your use of the Site or information
-                provided to or gathered by EMRE Publishing with respect to such
+                provided to or gathered by BGAI with respect to such
                 use.
               </p>
               <p>
@@ -578,7 +571,7 @@ const Terms = () => {
               </p>
               <p className="mt-4">
                 Unless otherwise specified herein, this agreement constitutes
-                the entire agreement between the user and EMRE Publishing with
+                the entire agreement between the user and BGAI with
                 respect to the Site and it supersedes all prior or
                 contemporaneous communications and proposals, whether
                 electronic, oral or written, between the user and EMRE
@@ -603,13 +596,13 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Changes to Terms </h2>
             <div className="mb-4 text-lg">
               <p>
-                EMRE Publishing reserves the right, in its sole discretion, to
+                BGAI reserves the right, in its sole discretion, to
                 change the Terms under which
                 https://steelblue-turtle-121384.hostingersite.com is offered.
               </p>
               <p>
                 The most current version of the Terms will supersede all
-                previous versions. EMRE Publishing encourages you to
+                previous versions. BGAI encourages you to
                 periodically review the Terms to stay informed of our updates.
               </p>
             </div>
@@ -619,7 +612,7 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Contact Us </h2>
             <div className="mb-4 text-lg">
               <p>
-                EMRE Publishing welcomes your questions or comments regarding
+                BGAI welcomes your questions or comments regarding
                 the Terms:
               </p>
               <p className="mt-4">Best Global AI, LLC</p>

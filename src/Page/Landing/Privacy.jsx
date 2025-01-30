@@ -13,9 +13,7 @@ const Privacy = () => {
           <h2 className="text-5xl text-center mb-12">Privacy Policy</h2>
           <div className="mb-8">
             <p className="text-lg">
-              This Privacy Policy ("Policy") applies to
-              https://bestglobalai.com, and English Majors Reviewers and
-              Editors, LLC ("Company") and governs data collection and usage.
+            This Privacy Policy ("Policy") applies to https://bestglobalai.com/, and Best Global AI, LLC ("Company") and governs data collection and usage.
             </p>
             <p className="text-lg">
               For the purposes of this Privacy Policy, unless otherwise noted,
@@ -369,15 +367,14 @@ const Privacy = () => {
               </p>
               <p>
                 You may disconnect your account from a third-party account at
-                any time. English Majors Reviewers and Editors, LLC
+                any time. Best Global AI, LLC 
               </p>
             </div>
           </div>
 
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
-              We respect your privacy and give you an opportunity to opt out of
-              receiving announcements of certain information.
+            Opt Out and Unsubscribe from Third-Party Communications 
             </h2>
             <div className="text-lg">
               <p>
@@ -421,7 +418,7 @@ const Privacy = () => {
               <p>
                 You may receive a notice by sending an email to the primary
                 email address specified in your account, by placing a prominent
-                notice on our English Majors Reviewers and Editors, LLC, and/or
+                notice on our Best Global AI, LLC, and/or
                 by updating any privacy information.
               </p>
               <p>
@@ -448,7 +445,7 @@ const Privacy = () => {
                 EMRE Publishing welcomes your questions or comments regarding
                 the Terms:
               </p>
-              <p className="mt-4">Best Global AI, LLC</p>
+              <p className="mt-4">Best Global AI, LLC </p>
               <p>6784 Caminito del Greco</p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>
