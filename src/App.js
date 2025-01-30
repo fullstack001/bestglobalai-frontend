@@ -38,6 +38,9 @@ import Terms from "./Page/Landing/Terms";
 import Privacy from "./Page/Landing/Privacy";
 import Faq from "./Page/Landing/Faq";
 
+import VideoCreatorPage from "./Page/Video/Create/index";
+
+
 function App() {
   return (
     <Provider store={store}>
@@ -114,6 +117,17 @@ function App() {
                 allowedRoles={["superAdmin", "admin", "editor", "user"]}
               >
                 <ExploreBooks />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/video/create-video"
+            element={
+              <PrivateRoute
+                allowedRoles={["superAdmin", "admin", "editor", "user"]}
+              >
+                <VideoCreatorPage />
               </PrivateRoute>
             }
           />

@@ -2,13 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
-const Navbar = ({ toggleSidebar }) => {
+const Navbar = ({ toggleSidebar, titleText }) => {
   const [user, setUser] = useState(null); // State to hold user information
   const navigate = useNavigate();
 
@@ -22,7 +20,7 @@ const Navbar = ({ toggleSidebar }) => {
           });
           setUser(response.data.user);
         }
-      } catch (error) {        
+      } catch (error) {
         console.error("Failed to fetch user data:", error);
         localStorage.removeItem("token");
         localStorage.removeItem("role");
@@ -49,7 +47,7 @@ const Navbar = ({ toggleSidebar }) => {
         <FontAwesomeIcon icon={faBars} size="2x" />
       </button>
       <h1 className="text-2xl font-semibold hidden md:block">
-        Welcome to the ePub Creator Studio
+        {titleText || "Welcome to the ePub Creator Studio"}
       </h1>
       <div className="flex items-center space-x-4">
         {user ? (
@@ -57,9 +55,9 @@ const Navbar = ({ toggleSidebar }) => {
             <div className="h-10 w-10 bg-gray-600 rounded-full flex items-center justify-center">
               {user.profileImage ? (
                 <img
-                src={`${apiPort}${user.profileImage}`}
-                alt="Profile"
-                className="profile-image-preview w-28"
+                  src={`${apiPort}${user.profileImage}`}
+                  alt="Profile"
+                  className="profile-image-preview w-28"
                 />
               ) : (
                 <span>{user.fullName.charAt(0).toUpperCase()}</span>
