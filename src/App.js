@@ -34,6 +34,9 @@ import Service from "./Page/Landing/Service";
 import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
 import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 
+import VideoCreatorPage from "./Page/Video/Create/index";
+
+
 function App() {
   return (
     <Provider store={store}>
@@ -110,6 +113,17 @@ function App() {
                 allowedRoles={["superAdmin", "admin", "editor", "user"]}
               >
                 <ExploreBooks />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/video/create-video"
+            element={
+              <PrivateRoute
+                allowedRoles={["superAdmin", "admin", "editor", "user"]}
+              >
+                <VideoCreatorPage />
               </PrivateRoute>
             }
           />

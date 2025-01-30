@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faClose
+  faClose,
+  faChevronDown,
+  faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 
 import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
+  const [isVideoMenuOpen, setIsVideoMenuOpen] = useState(false);
+
   const isActive = (path) => location.pathname === path;
   return (
-    <aside className={`fixed lg:static top-0 left-0  w-64 p-6 bg-gray-800 z-50 transform ${
+    <aside
+      className={`fixed lg:static top-0 left-0  w-64 p-6 bg-gray-800 z-50 transform ${
         isOpen ? "translate-x-0 h-full" : "-translate-x-full h-auto"
-      } transition-transform duration-300 lg:translate-x-0`}>
+      } transition-transform duration-300 lg:translate-x-0`}
+    >
       <div className="mb-8">
         <a href="/">
           <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
@@ -51,6 +57,49 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         >
           Explore Ebooks
         </a>
+        <div className="block">
+          <button
+            onClick={() => setIsVideoMenuOpen(!isVideoMenuOpen)}
+            className="flex items-center justify-between w-full py-2 px-3 rounded text-left text-gray-400 hover:bg-gray-700"
+          >
+            <span>Video</span>
+            <FontAwesomeIcon
+              icon={isVideoMenuOpen ? faChevronUp : faChevronDown}
+            />
+          </button>
+          {isVideoMenuOpen && (
+            <div className="ml-4 mt-2 space-y-2">
+              <a
+                href="/video/my-videos"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/video/my-videos") ? "bg-gray-700" : "text-gray-400"
+                }`}
+              >
+                My Videos
+              </a>
+              <a
+                href="/video/create-video"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/video/create-video")
+                    ? "bg-gray-700"
+                    : "text-gray-400"
+                }`}
+              >
+                Create Video
+              </a>
+              <a
+                href="/video/video-translation"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/video/video-translation")
+                    ? "bg-gray-700"
+                    : "text-gray-400"
+                }`}
+              >
+                Video Translation
+              </a>
+            </div>
+          )}
+        </div>
         <a
           href="/admin/blogs"
           className={`block py-2 px-3 rounded  ${
