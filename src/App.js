@@ -34,6 +34,10 @@ import Service from "./Page/Landing/Service";
 import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
 import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 
+import Terms from "./Page/Landing/Terms";
+import Privacy from "./Page/Landing/Privacy";
+import Faq from "./Page/Landing/Faq";
+
 import VideoCreatorPage from "./Page/Video/Create/index";
 
 
@@ -196,6 +200,10 @@ function App() {
           <Route path="/reader" element={<BookReader />} />
           <Route path="/unauthorized" element={<h1>Access Denied</h1>} />
           <Route path="/services" element={<Service />} />
+          <Route path="/terms-and-condition" element={<Terms />} />
+          <Route path="/privacy-policy" element={<Privacy />} />
+          <Route path="/faq" element={<Faq />} />
+          
         </Routes>
       </Router>
     </Provider>
