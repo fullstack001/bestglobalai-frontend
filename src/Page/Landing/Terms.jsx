@@ -302,8 +302,7 @@ const Terms = () => {
               <p>
                 BGAI does not claim ownership of the materials you
                 provide to https://bestglobalai.com (including feedback and
-                suggestions) or post, upload, input or submit to any EMRE
-                Publishing Site or our associated services (collectively
+                suggestions) or post, upload, input or submit to any BGAI Site or our associated services (collectively
                 "Submissions").
               </p>
               <p>
@@ -362,8 +361,7 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">International Users </h2>
             <div className="mb-4 text-lg">
               <p>
-                The Service is controlled, operated and administered by EMRE
-                Publishing from our offices within the USA.
+                The Service is controlled, operated and administered by BGAI from our offices within the USA.
               </p>
               <p>
                 If you access the Service from a location outside the USA, you
@@ -382,8 +380,7 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Indemnification</h2>
             <div className="mb-4 text-lg">
               <p>
-                You agree to indemnify, defend and hold harmless EMRE
-                Publishing, its officers, directors, employees, agents and third
+                You agree to indemnify, defend and hold harmless BGAI, its officers, directors, employees, agents and third
                 parties, for any losses, costs, liabilities and expenses
                 (including reasonable attorney's fees) relating to or arising
                 out of your use of or inability to use the Site or services, any
@@ -574,8 +571,7 @@ const Terms = () => {
                 the entire agreement between the user and BGAI with
                 respect to the Site and it supersedes all prior or
                 contemporaneous communications and proposals, whether
-                electronic, oral or written, between the user and EMRE
-                Publishing with respect to the Site.
+                electronic, oral or written, between the user and BGAI with respect to the Site.
               </p>
               <p>
                 A printed version of this agreement and of any notice given in
@@ -619,10 +615,10 @@ const Terms = () => {
               <p>6784 Caminito del Greco</p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>
-              <p>jamesmusgrave2122@att.net</p>
+              <p>admin@bestglobalai.com</p>
               <p className="mt-4">Telephone number:</p>
               <p>6197507360</p>
-              <p className="mt-4">Effective as of June 17, 2024</p>
+              <p className="mt-4">Effective as of January 28, 2525</p>
             </div>
           </div>
         </section>

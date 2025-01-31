@@ -442,17 +442,17 @@ const Privacy = () => {
                 please contact the Company at:
               </p>
               <p className="mt-4">
-                EMRE Publishing welcomes your questions or comments regarding
+                BGAI welcomes your questions or comments regarding
                 the Terms:
               </p>
               <p className="mt-4">Best Global AI, LLC </p>
               <p>6784 Caminito del Greco</p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>
-              <p>jamesmusgrave2122@att.net</p>
+              <p>admin@bestglobalai.com</p>
               <p className="mt-4">Telephone number:</p>
               <p>6197507360</p>
-              <p className="mt-4">Effective as of June 17, 2024</p>
+              <p className="mt-4">Effective as of January 28, 2025</p>
             </div>
           </div>
         </section>
