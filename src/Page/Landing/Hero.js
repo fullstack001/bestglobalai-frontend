@@ -34,53 +34,8 @@ const Hero = () => {
           targeting a global market or creating personalized content, our
           solution delivers intelligent, multilingual interactions that
           captivate and convert.
-        </p>
-
-        <p className="font-semibold mt-5 md:mt-20 text-lg sm:text-xl text-gray-300">
-          Trusted by thousands of companies worldwide
-        </p>
-
-        <div className="block md:flex justify-center md:space-x-8 mt-5 md:mt-20">
-          <div className="text-center mb-2 md:mb-1">
-            <img
-              src={bolt_shift_icon}
-              alt="Boltshift"
-              className="w-auto h-6 md:h-12 m-auto"
-            />
-          </div>
-
-          <div className="text-center mb-2 md:mb-1">
-            <img
-              src={light_box}
-              alt="Boltshift"
-              className="w-auto h-6 md:h-12 m-auto"
-            />
-          </div>
-
-          <div className="text-center mb-2 md:mb-1">
-            <img
-              src={featherDev}
-              alt="Boltshift"
-              className="w-auto h-6 md:h-12 m-auto"
-            />
-          </div>
-
-          <div className="text-center mb-2 md:mb-1">
-            <img
-              src={spherule}
-              alt="Boltshift"
-              className="w-auto h-6 md:h-12 m-auto"
-            />
-          </div>
-
-          <div className="text-center mb-2 md:mb-1">
-            <img
-              src={globalBank}
-              alt="Boltshift"
-              className="w-auto h-6 md:h-12 m-auto"
-            />
-          </div>
-        </div>
+        </p>       
+       
       </div>
     </section>
   );
