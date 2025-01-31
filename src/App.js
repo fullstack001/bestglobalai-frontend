@@ -39,6 +39,7 @@ import Privacy from "./Page/Landing/Privacy";
 import Faq from "./Page/Landing/Faq";
 
 import VideoCreatorPage from "./Page/Video/Create/index";
+import VideoLibraryPage from "./Page/Video/library/index";
 
 
 function App() {
@@ -132,9 +133,19 @@ function App() {
             }
           />
 
+          <Route
+            path="/video/my-videos"
+            element={
+              <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
+                <VideoLibraryPage />
+              </PrivateRoute>
+            }
+          />
+
           <Route path="/creator/create" element={<BookCreator />} />
           <Route path="/creator/editor/:id" element={<EbookEditor />} />
           <Route path="/creator/viewer/:id" element={<EbookViewer />} />
+
 
           <Route path="/contact" element={<Contact />} />
 

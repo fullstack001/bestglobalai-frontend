@@ -28,7 +28,7 @@ export const translateContent = async ({
     targetLanguage,
 }) => {
     try {
-        const response = await axiosInstance.post("/api/video-create/translate", {
+        const response = await axiosInstance.post("/api/translate/video-script", {
             text,
             targetLanguage,
         });
@@ -41,7 +41,7 @@ export const translateContent = async ({
 export const createVideo = async (videoData) => {
     try {
         const response = await axiosInstance.post(
-            "/api/video-create/create-video",
+            "/api/video/create-video",
             videoData,
         );
         return response.data;

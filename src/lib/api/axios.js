@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-    baseURL: "https://api.example.com", // Replace with your API base URL
+    baseURL: process.env.REACT_APP_API_PORT, // Replace with your API base URL
     timeout: 10000, // Optional: Timeout for requests (in milliseconds)
     headers: {
         "Content-Type": "application/json", // Default headers
@@ -12,7 +12,7 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
     (config) => {
         // Add authorization token or other custom logic
-        const token = localStorage.getItem("authToken");
+        const token = localStorage.getItem("token");
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
         }
