@@ -6,16 +6,25 @@ export default function TranslatePreview({
 }) {
   const [loading, setLoading] = useState(false);
   const [video, setVideo] = useState(null);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchVideoDetail = async (video_translate_id) => {
       setLoading(true);
-      const data = await getTranslatedVideo(video_translate_id);
-      setVideo(data);
-      setLoading(false);
+      try {
+        const data = await getTranslatedVideo(video_translate_id);
+        console.log(data);
+        setVideo(data);
+      } catch {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchVideoDetail(video_translate_id);
   }, [video_translate_id]);
+
+  if (error) return null;
 
   return (
     <div

@@ -4,6 +4,7 @@ import {
   AiOutlineDelete,
   AiOutlineInfoCircle,
 } from "react-icons/ai";
+import { Link } from "react-router-dom";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import { FaYoutube, FaGoogleDrive } from "react-icons/fa";
 import { ToastContainer, toast } from "react-toastify";
@@ -127,6 +128,9 @@ const VideoTranslatePage = () => {
 
       console.log(res);
       setSuccess(true);
+      setVideoFile(null);
+      setVideoPreview(null);
+      setUploadProgress(0);
     } catch (error) {
       setError("An error occurred while uploading.");
     } finally {
@@ -267,11 +271,16 @@ const VideoTranslatePage = () => {
 
         <button
           onClick={handleTranslate}
-          className="p-2 bg-green-300 rounded-md mt-3"
+          className="p-2 bg-green-800 rounded-md mt-3"
         >
           Translate
         </button>
       </div>
+      {success && (
+        <div className="text-center text-2xl mt-5 ">
+          Starting Translating, Please check it on <Link>My Videos</Link>
+        </div>
+      )}
       <ToastContainer />
     </Layout>
   );
