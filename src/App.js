@@ -42,7 +42,6 @@ import VideoCreatorPage from "./Page/Video/Create/index";
 import VideoLibraryPage from "./Page/Video/library/index";
 import VideoTranslatePage from "./Page/Video/translate";
 
-
 function App() {
   return (
     <Provider store={store}>
@@ -137,16 +136,20 @@ function App() {
           <Route
             path="/video/my-videos"
             element={
-              <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
+              <PrivateRoute
+                allowedRoles={["superAdmin", "admin", "editor", "user"]}
+              >
                 <VideoLibraryPage />
               </PrivateRoute>
             }
           />
-          
+
           <Route
             path="/video/video-translation"
             element={
-              <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
+              <PrivateRoute
+                allowedRoles={["superAdmin", "admin", "editor", "user"]}
+              >
                 <VideoTranslatePage />
               </PrivateRoute>
             }
@@ -155,7 +158,6 @@ function App() {
           <Route path="/creator/create" element={<BookCreator />} />
           <Route path="/creator/editor/:id" element={<EbookEditor />} />
           <Route path="/creator/viewer/:id" element={<EbookViewer />} />
-
 
           <Route path="/contact" element={<Contact />} />
 
@@ -224,7 +226,6 @@ function App() {
           <Route path="/terms-and-condition" element={<Terms />} />
           <Route path="/privacy-policy" element={<Privacy />} />
           <Route path="/faq" element={<Faq />} />
-          
         </Routes>
       </Router>
     </Provider>
