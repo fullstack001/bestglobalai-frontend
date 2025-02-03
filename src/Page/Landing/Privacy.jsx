@@ -13,13 +13,15 @@ const Privacy = () => {
           <h2 className="text-5xl text-center mb-12">Privacy Policy</h2>
           <div className="mb-8">
             <p className="text-lg">
-            This Privacy Policy ("Policy") applies to https://bestglobalai.com/, and Best Global AI, LLC ("Company") and governs data collection and usage.
+              This Privacy Policy ("Policy") applies to
+              https://bestglobalai.com, and Best Global AI, LLC ("Company") and
+              governs data collection and usage.
             </p>
             <p className="text-lg">
               For the purposes of this Privacy Policy, unless otherwise noted,
               all references to the Company include https://bestglobalai.com.
-              The Company's website is an E-Commerce for AI apps. site.
             </p>
+            <p>The Company's website is an E-Commerce for AI apps. site.</p>
             <p className="text-lg">
               By using the Company website, you consent to the data practices
               described in this statement.
@@ -72,8 +74,11 @@ const Privacy = () => {
               <p>
                 To wit, we will use your information for, but not limited to,
                 communicating with you in relation to services and/or products
-                you have requested from us. We also may gather additional
-                personal or non-personal information in the future.
+                you have requested from us.
+              </p>
+              <p>
+                We also may gather additional personal or non-personal
+                information in the future.
               </p>
             </div>
           </div>
@@ -83,7 +88,7 @@ const Privacy = () => {
             <div className="text-lg">
               <p>
                 The Company collects and uses your personal information in the
-                following ways: 
+                following ways:
               </p>
               <ul className="mt-4 ml-8 list-disc">
                 <li>To operate and deliver the services you have requested</li>
@@ -98,8 +103,8 @@ const Privacy = () => {
                   including for billing and collection
                 </li>
                 <li>
-                  To notify you about changes to our https://bestglobalai.com
-                  or any products or services we offer or provide through it
+                  To notify you about changes to our https://bestglobalai.com or
+                  any products or services we offer or provide through it
                 </li>
                 <li>
                   In any other way we may describe when you provide the
@@ -141,7 +146,7 @@ const Privacy = () => {
               </p>
               <p>
                 All such third parties are prohibited from using your personal
-                information except to provide these services tothe Company, and
+                information except to provide these services to the Company, and
                 they are required to maintain the confidentiality of your
                 information.
               </p>
@@ -170,7 +175,7 @@ const Privacy = () => {
               <ul className="mt-4 ml-4 list-disc">
                 <li>
                   The categories of personal information that we disclosed about
-                  you for a business purpose.{" "}
+                  you for a business purpose.
                 </li>
               </ul>
               <p className="mt-4">
@@ -231,38 +236,27 @@ const Privacy = () => {
 
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
-              Security of your Personal Information
+            Security of your Personal Information
             </h2>
             <div className="text-lg">
               <p>
-                The Company secures your personal information from unauthorized
-                access, use, or disclosure.
+              The Company secures your personal information from unauthorized access, use, or disclosure.
               </p>
               <p>The Company uses the following methods for this purpose: </p>
               <ul className="mt-4 ml-4 list-disc">
                 <li>SSL Protocol</li>
               </ul>
               <p className="mt-4">
-                When personal information (such as a credit card number) is
-                transmitted to other websites, it is protected through the use
-                of encryption, such as the Secure Sockets Layer (SSL) protocol.
+              When personal information (such as a credit card number) is transmitted to other websites, it is protected through the use of encryption, such as the Secure Sockets Layer (SSL) protocol.
               </p>
               <p className="mt-4">
-                We strive to take appropriate security measures to protect
-                against unauthorized access to or alteration of your personal
-                information.
+              We strive to take appropriate security measures to protect against unauthorized access to or alteration of your personal information.
               </p>
               <p>
-                Unfortunately, no data transmission over the Internet or any
-                wireless network can be guaranteed to be 100% secure.
+              Unfortunately, no data transmission over the Internet or any wireless network can be guaranteed to be 100% secure.
               </p>
               <p>
-                As a result, while we strive to protect your personal
-                information, you acknowledge that: (a) there are security and
-                privacy limitations inherent to the Internet that are beyond our
-                control; and (b) the security, integrity, and privacy of any and
-                all information and data exchanged between you and us through
-                this site cannot be guaranteed.
+              As a result, while we strive to protect your personal information, you acknowledge that: (a) there are security and privacy limitations inherent to the Internet that are beyond our control; and (b) the security, integrity, and privacy of any and all information and data exchanged between you and us through this site cannot be guaranteed. 
               </p>
             </div>
           </div>
@@ -271,115 +265,86 @@ const Privacy = () => {
             <h2 className="text-3xl mb-4">Right to Deletion</h2>
             <div className="text-lg">
               <p>
-                Subject to certain exceptions set out below, on receipt of a
-                verifiable request from you, we will:
+              Subject to certain exceptions set out below, on receipt of a verifiable request from you, we will:
               </p>
               <ul className="mt-4 ml-4 list-disc">
-                <li>Delete your personal information from our records; and </li>
+                <li>Delete your personal information from our records; and</li>
                 <li>
-                  Direct any service providers to delete your personal
-                  information from their records.
+                Direct any service providers to delete your personal information from their records.
                 </li>
               </ul>
               <p className="mt-4">
-                Please note that we may not be able to comply with requests to
-                delete your personal information if it is necessary to:
+              Please note that we may not be able to comply with requests to delete your personal information if it is necessary to:
               </p>
               <ul className="mt-4 ml-4 list-disc">
                 <li>
-                  Complete the transaction for which the personal information
-                  was collected, fulfill the terms of a written warranty or
-                  product recall conducted in accordance with federal law, and
-                  provide a good or service requested by you, or reasonably
-                  anticipated within the context of our ongoing business
-                  relationship with you, or otherwise perform a contract between
-                  you and us;
+                Complete the transaction for which the personal information was collected, fulfill the terms of a written warranty or product recall conducted in accordance with federal law, and provide a good or service requested by you, or reasonably anticipated within the context of our ongoing business relationship with you, or otherwise perform a contract between you and us;
                 </li>
                 <li>
-                  Detect security incidents, protect against malicious,
-                  deceptive, fraudulent, or illegal activity; or prosecute those
-                  responsible for that activity.
+                Detect security incidents, protect against malicious, deceptive, fraudulent, or illegal activity; or prosecute those responsible for that activity.
                 </li>
                 <li>
-                  Debug to identify and repair errors that impair existing
-                  intended functionality.
+                Debug to identify and repair errors that impair existing intended functionality.
                 </li>
                 <li>
-                  Exercise free speech, ensure the right of another consumer to
-                  exercise his or her right of free speech, or exercise another
-                  right provided for by law.
+                Exercise free speech, ensure the right of another consumer to exercise his or her right of free speech, or exercise another right provided for by law.
                 </li>
                 <li>
-                  Comply with the California Electronic Communications Privacy
-                  Act.
+                Comply with the California Electronic Communications Privacy Act.
                 </li>
                 <li>
-                  Engage in public or peer-reviewed scientific, historical, or
-                  statistical research in the public interest that adheres to
-                  all other applicable ethics and privacy laws, when our
-                  deletion of the information is likely to render impossible or
-                  seriously impair the achievement of such research, provided we
-                  have obtained your informed consent.
+                Engage in public or peer-reviewed scientific, historical, or statistical research in the public interest that adheres to all other applicable ethics and privacy laws, when our deletion of the information is likely to render impossible or seriously impair the achievement of such research, provided we have obtained your informed consent.
                 </li>
                 <li>
-                  Enable solely internal uses that are reasonably aligned with
-                  your expectations based on your relationship with us.
+                Enable solely internal uses that are reasonably aligned with your expectations based on your relationship with us.
                 </li>
-                <li>Comply with an existing legal obligation; or </li>
+                <li>Comply with an existing legal obligation; or</li>
                 <li>
-                  Otherwise use your personal information, internally, in a
-                  lawful manner that is compatible with the context in which you
-                  provided the information.
+                Otherwise use your personal information, internally, in a lawful manner that is compatible with the context in which you provided the information.
                 </li>
               </ul>
             </div>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl mb-4">Children Under Eighteen</h2>
+            <h2 className="text-3xl mb-4">Children Under Thirteen</h2>
             <div className="text-lg">
               <p>
-                The Company does not knowingly collect personally identifiable
-                information from children under the age of 13. If you are under
-                the age of 13, you must ask your parent or guardian for
-                permission to use this website.
+              The Company does not knowingly collect personally identifiable information from children under the age of 13.
+              </p>
+              <p>
+              If you are under the age of 13, you must ask your parent or guardian for permission to use this website.
               </p>
             </div>
           </div>
 
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
-              Disconnecting your Company's Account from Third Party Websites{" "}
+            Disconnecting your Company's Account from Third Party Websites
             </h2>
             <div className="text-lg">
               <p>
-                You will be able to connect your Company's account to
-                third-party accounts.
+              You will be able to connect your Company's account to third-party accounts.
               </p>
               <p>
-                BY CONNECTING YOUR COMPANY'S ACCOUNT TO YOUR THIRD-PARTY
-                ACCOUNT, YOU ACKNOWLEDGE AND AGREE THAT YOU ARE CONSENTING TO
-                THE CONTINUOUS RELEASE OF INFORMATION ABOUT YOU TO OTHERS (IN
-                ACCORDANCE WITH YOUR PRIVACY SETTINGS ON THOSE THIRD-PARTY
-                SITES). IF YOU DO NOT WANT INFORMATION ABOUT YOU, INCLUDING
-                PERSONALLY IDENTIFYING INFORMATION, TO BE SHARED IN THIS MANNER,
-                DO NOT USE THIS FEATURE.
+              BY CONNECTING YOUR COMPANY'S ACCOUNT TO YOUR THIRD-PARTY ACCOUNT, YOU ACKNOWLEDGE AND AGREE THAT YOU ARE CONSENTING TO THE CONTINUOUS RELEASE OF INFORMATION ABOUT YOU TO OTHERS (IN ACCORDANCE WITH YOUR PRIVACY SETTINGS ON THOSE THIRD-PARTY SITES). 
               </p>
               <p>
-                You may disconnect your account from a third-party account at
-                any time. Best Global AI, LLC 
+              IF YOU DO NOT WANT INFORMATION ABOUT YOU, INCLUDING PERSONALLY IDENTIFYING INFORMATION, TO BE SHARED IN THIS MANNER, DO NOT USE THIS FEATURE.
+              </p>
+              <p>
+              You may disconnect your account from a third-party account at any time. Best Global AI, LLC
               </p>
             </div>
           </div>
 
           <div className="mb-8">
             <h2 className="text-3xl mb-4">
-            Opt Out and Unsubscribe from Third-Party Communications 
+            Opt Out and Unsubscribe from Third-Party Communications
             </h2>
             <div className="text-lg">
               <p>
-                We respect your privacy and give you an opportunity to opt out
-                of receiving announcements of certain information.
+              We respect your privacy and give you an opportunity to opt out of receiving announcements of certain information.
               </p>
               {/* contact form */}
             </div>
@@ -389,14 +354,10 @@ const Privacy = () => {
             <h2 className="text-3xl mb-4">Email Communications</h2>
             <div className="text-lg">
               <p>
-                From time to time, the Company may contact you via email for the
-                purpose of providing announcements, promotional offers, alerts,
-                confirmations, surveys, and/or other general communication.
+              From time to time, the Company may contact you via email for the purpose of providing announcements, promotional offers, alerts, confirmations, surveys, and/or other general communication. 
               </p>
               <p className="mt-4">
-                If you would like to stop receiving marketing or promotional
-                communications via email from the Company, you may opt out of
-                such communications by clicking on the unsubscribe button.
+              If you would like to stop receiving marketing or promotional communications via email from the Company, you may opt out of such communications by clicking on the unsubscribe button.
               </p>
             </div>
           </div>
@@ -405,27 +366,19 @@ const Privacy = () => {
             <h2 className="text-3xl mb-4">Changes to This Statement</h2>
             <div className="text-lg">
               <p>
-                The Company reserves the right to change this Policy from time
-                to time.
+              The Company reserves the right to change this Policy from time to time.
               </p>
               <p>
-                For example, when there are changes in our services, changes in
-                our data protection practices, or changes in the law.
+              For example, when there are changes in our services, changes in our data protection practices, or changes in the law.
               </p>
               <p>
-                When changes to this Policy are significant, we will inform you.
+              When changes to this Policy are significant, we will inform you.
               </p>
               <p>
-                You may receive a notice by sending an email to the primary
-                email address specified in your account, by placing a prominent
-                notice on our Best Global AI, LLC, and/or
-                by updating any privacy information.
+              You may receive a notice by sending an email to the primary email address specified in your account, by placing a prominent notice on our Best Global AI, LLC, and/or by updating any privacy information.
               </p>
               <p>
-                Your continued use of the website and/or services available
-                after such modifications will constitute your: (a)
-                acknowledgment of the modified Policy; and (b) agreement to
-                abide and be bound by that Policy.
+              Your continued use of the website and/or services available after such modifications will constitute your: (a) acknowledgment of the modified Policy; and (b) agreement to abide and be bound by that Policy.
               </p>
             </div>
           </div>
@@ -434,25 +387,20 @@ const Privacy = () => {
             <h2 className="text-3xl mb-4">Contact Information </h2>
             <div className="text-lg">
               <p>
-                The Company welcomes your questions or comments regarding this
-                Policy.{" "}
+              The Company welcomes your questions or comments regarding this Policy.
               </p>
               <p>
-                If you believe that the Company has not adhered to this Policy,
-                please contact the Company at:
+              If you believe that the Company has not adhered to this Policy, please contact the Company at:
               </p>
-              <p className="mt-4">
-                EMRE Publishing welcomes your questions or comments regarding
-                the Terms:
-              </p>
+            
               <p className="mt-4">Best Global AI, LLC </p>
               <p>6784 Caminito del Greco</p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>
-              <p>jamesmusgrave2122@att.net</p>
+              <p>admin@bestglobalai.com</p>
               <p className="mt-4">Telephone number:</p>
               <p>6197507360</p>
-              <p className="mt-4">Effective as of June 17, 2024</p>
+              <p className="mt-4">Effective as of January 28, 2025</p>
             </div>
           </div>
         </section>

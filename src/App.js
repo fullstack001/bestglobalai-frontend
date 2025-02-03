@@ -40,6 +40,7 @@ import Faq from "./Page/Landing/Faq";
 
 import VideoCreatorPage from "./Page/Video/Create/index";
 import VideoLibraryPage from "./Page/Video/library/index";
+import VideoTranslatePage from "./Page/Video/translate";
 
 
 function App() {
@@ -138,6 +139,15 @@ function App() {
             element={
               <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
                 <VideoLibraryPage />
+              </PrivateRoute>
+            }
+          />
+          
+          <Route
+            path="/video/video-translation"
+            element={
+              <PrivateRoute allowedRoles={["superAdmin", "admin", "editor", "user"]}>
+                <VideoTranslatePage />
               </PrivateRoute>
             }
           />

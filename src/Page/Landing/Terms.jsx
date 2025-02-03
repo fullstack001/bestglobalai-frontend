@@ -18,9 +18,8 @@ const Terms = () => {
             <div className="text-lg">
               <p>Welcome to https://bestglobalai.com.</p>
               <p>
-                Welcome to https://bestglobalai.com. The
-                https://bestglobalai.com website (the "Site") is comprised of
-                various web pages operated by Best Global AI, LLC ("BGAI").
+                The https://bestglobalai.com website (the "Site") is comprised
+                of various web pages operated by Best Global AI, LLC ("BGAI").
               </p>
               <p>
                 https://bestglobalai.com is offered to you conditioned on your
@@ -28,7 +27,7 @@ const Terms = () => {
                 notices contained herein (the "Terms").
               </p>
               <p>
-                Your use of https://steelblue-turtle-121384.hostingersite.com
+                Your use of https://steelblue-turtle-121384.hostingersite.com/
                 constitutes your agreement to all such Terms.
               </p>
               <p>
@@ -86,16 +85,15 @@ const Terms = () => {
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl mb-4">Children Under Eighteen</h2>
+            <h2 className="text-3xl mb-4">Children Under Thirteen</h2>
             <div className="mb-4 text-lg">
               <p>
                 BGAI does not knowingly collect, either online or offline,
                 personal information from people under the age of thirteen.
               </p>
               <p>
-                If you are under 18, you may use
-                https://steelblue-turtle-121384.hostingersite.com only with
-                permission of a parent or guardian.
+                If you are under 18, you may use https://bestglobalai.com only
+                with permission of a parent or guardian.
               </p>
             </div>
           </div>
@@ -104,9 +102,9 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Cancellation/Refund Policy</h2>
             <div className="mb-4 text-lg">
               <p>
-                You may cancel your subscription at any time. Any cancellations
+                "You may cancel your subscription at any time. Any cancellations
                 made after 60 days of service will not qualify for a refund.
-                Please contact us at bestglobalai.com with any questions.
+                Please contact us at bestglobalai.com with any questions."
               </p>
             </div>
           </div>
@@ -132,8 +130,8 @@ const Terms = () => {
                 site or any association with its operators.
               </p>
               <p>
-                Certain services made available via https://bestglobalai.com/
-                are delivered by third party sites and organizations.
+                Certain services made available via https://bestglobalai.com are
+                delivered by third party sites and organizations.
               </p>
               <p>
                 By using any product, service or functionality originating from
@@ -153,12 +151,13 @@ const Terms = () => {
             <div className="mb-4 text-lg">
               <p>
                 You are granted a non-exclusive, non-transferable, revocable
-                license to access and use https://bestglobalai.com/ strictly in
+                license to access and use https://bestglobalai.com strictly in
                 accordance with these terms of use.
               </p>
               <p>
-                As a condition of your use of the Site, you warrant to BGAI that you will not use the Site for any purpose that
-                is unlawful or prohibited by these Terms.
+                As a condition of your use of the Site, you warrant to BGAI that
+                you will not use the Site for any purpose that is unlawful or
+                prohibited by these Terms.
               </p>
               <p>
                 You may not use the Site in any manner which could damage,
@@ -171,10 +170,16 @@ const Terms = () => {
                 or provided for through the Site.
               </p>
               <p className="mt-4">
-              All content included as part of the Service, such as text, graphics, logos, images, as well as the compilation thereof, and any software used on the Site, is the property of BGAI or its suppliers and protected by copyright and other laws that protect intellectual property and proprietary rights. 
+                All content included as part of the Service, such as text,
+                graphics, logos, images, as well as the compilation thereof, and
+                any software used on the Site, is the property of BGAI or its
+                suppliers and protected by copyright and other laws that protect
+                intellectual property and proprietary rights.
               </p>
               <p>
-              You agree to observe and abide by all copyright and other proprietary notices, legends or other restrictions contained in any such content and will not make any changes thereto. 
+                You agree to observe and abide by all copyright and other
+                proprietary notices, legends or other restrictions contained in
+                any such content and will not make any changes thereto.
               </p>
               <p className="mt-4">
                 You will not modify, publish, transmit, reverse engineer,
@@ -200,8 +205,8 @@ const Terms = () => {
               </p>
               <p>
                 We do not grant you any licenses, express or implied, to the
-                intellectual property of BGAI or our licensors except
-                as expressly authorized by these Terms.
+                intellectual property of BGAI or our licensors except as
+                expressly authorized by these Terms.
               </p>
             </div>
           </div>
@@ -252,18 +257,24 @@ const Terms = () => {
                 laws or regulations.
               </p>
               <p className="mt-4">
-                BGAI has no obligation to monitor the Communication
-                Services.
+                BGAI has no obligation to monitor the Communication Services.
               </p>
               <p>
-                However, BGAI reserves the right to review materials
-                posted to a Communication Service and to remove any materials in
-                its sole discretion.
+                However, BGAI reserves the right to review materials posted to a
+                Communication Service and to remove any materials in its sole
+                discretion.
               </p>
               <p>
-              BGAI reserves the right to terminate your access to
-                any or all of the Communication Services at any time without
-                notice for any reason whatsoever.
+                BGAI reserves the right to terminate your access to any or all
+                of the Communication Services at any time without notice for any
+                reason whatsoever.
+              </p>
+              <p className="mt-4">
+                BGAI reserves the right at all times to disclose any information
+                as necessary to satisfy any applicable law, regulation, legal
+                process or governmental request, or to edit, refuse to post or
+                to remove any information or materials, in whole or in part, in
+                BGAI's sole discretion.
               </p>
               <p className="mt-4">
                 Always use caution when giving out any personally identifying
@@ -271,16 +282,15 @@ const Terms = () => {
                 Service.
               </p>
               <p>
-                BGAI does not control or endorse the content,
-                messages or information found in any Communication Service and,
-                therefore, BGAI specifically disclaims any liability
-                with regard to the Communication Services and any actions
-                resulting from your participation in any Communication Service.
+                BGAI does not control or endorse the content, messages or
+                information found in any Communication Service and, therefore,
+                BGAI specifically disclaims any liability with regard to the
+                Communication Services and any actions resulting from your
+                participation in any Communication Service.
               </p>
               <p>
-                Managers and hosts are not authorized BGAI
-                spokespersons, and their views do not necessarily reflect those
-                of BGAI.
+                Managers and hosts are not authorized BGAI spokespersons, and
+                their views do not necessarily reflect those of BGAI.
               </p>
               <p className="mt-4">
                 Materials uploaded to a Communication Service may be subject to
@@ -300,31 +310,29 @@ const Terms = () => {
             </h2>
             <div className="mb-4 text-lg">
               <p>
-                BGAI does not claim ownership of the materials you
-                provide to https://bestglobalai.com (including feedback and
-                suggestions) or post, upload, input or submit to any EMRE
-                Publishing Site or our associated services (collectively
-                "Submissions").
+                BGAI does not claim ownership of the materials you provide to
+                https://bestglobalai.com (including feedback and suggestions) or
+                post, upload, input or submit to any BGAI Site or our associated
+                services (collectively "Submissions").
               </p>
               <p>
                 However, by posting, uploading, inputting, providing or
-                submitting your Submission you are granting BGAI, our
-                affiliated companies and necessary sublicensees permission to
-                use your Submission in connection with the operation of their
-                Internet businesses including, without limitation, the rights
-                to: copy, distribute, transmit, publicly display, publicly
-                perform, reproduce, edit, translate and reformat your
-                Submission; and to publish your name in connection with your
-                Submission.
+                submitting your Submission you are granting BGAI, our affiliated
+                companies and necessary sublicensees permission to use your
+                Submission in connection with the operation of their Internet
+                businesses including, without limitation, the rights to: copy,
+                distribute, transmit, publicly display, publicly perform,
+                reproduce, edit, translate and reformat your Submission; and to
+                publish your name in connection with your Submission.
               </p>
               <p className="mt-4">
                 No compensation will be paid with respect to the use of your
                 Submission, as provided herein.
               </p>
               <p>
-                BGAI is under no obligation to post or use any
-                Submission you may provide and may remove any Submission at any
-                time in BGAI's sole discretion.
+                BGAI is under no obligation to post or use any Submission you
+                may provide and may remove any Submission at any time in BGAI's
+                sole discretion.
               </p>
               <p className="mt-4">
                 By posting, uploading, inputting, providing or submitting your
@@ -341,15 +349,14 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Third Party Accounts</h2>
             <div className="mb-4 text-lg">
               <p>
-                You will be able to connect your BGAI account to
-                third party accounts.
+                You will be able to connect your BGAI account to third party
+                accounts.
               </p>
               <p>
-                By connecting your BGAI account to your third party
-                account, you acknowledge and agree that you are consenting to
-                the continuous release of information about you to others (in
-                accordance with your privacy settings on those third party
-                sites).
+                By connecting your BGAI account to your third party account, you
+                acknowledge and agree that you are consenting to the continuous
+                release of information about you to others (in accordance with
+                your privacy settings on those third party sites).
               </p>
               <p>
                 If you do not want information about you to be shared in this
@@ -362,18 +369,17 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">International Users </h2>
             <div className="mb-4 text-lg">
               <p>
-                The Service is controlled, operated and administered by EMRE
-                Publishing from our offices within the USA.
+                The Service is controlled, operated and administered by BGAI
+                from our offices within the USA.
               </p>
               <p>
                 If you access the Service from a location outside the USA, you
                 are responsible for compliance with all local laws.
               </p>
               <p>
-                You agree that you will not use the BGAI Content
-                accessed through https://bestglobalai.com in any country or in
-                any manner prohibited by any applicable laws, restrictions or
-                regulations.
+                You agree that you will not use the BGAI Content accessed
+                through https://bestglobalai.com in any country or in any manner
+                prohibited by any applicable laws, restrictions or regulations.
               </p>
             </div>
           </div>
@@ -382,27 +388,26 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Indemnification</h2>
             <div className="mb-4 text-lg">
               <p>
-                You agree to indemnify, defend and hold harmless EMRE
-                Publishing, its officers, directors, employees, agents and third
-                parties, for any losses, costs, liabilities and expenses
-                (including reasonable attorney's fees) relating to or arising
-                out of your use of or inability to use the Site or services, any
-                user postings made by you, your violation of any terms of this
+                You agree to indemnify, defend and hold harmless BGAI, its
+                officers, directors, employees, agents and third parties, for
+                any losses, costs, liabilities and expenses (including
+                reasonable attorney's fees) relating to or arising out of your
+                use of or inability to use the Site or services, any user
+                postings made by you, your violation of any terms of this
                 Agreement or your violation of any rights of a third party, or
                 your violation of any applicable laws, rules or regulations.
               </p>
               <p>
-                BGAI reserves the right, at its own cost, to assume
-                the exclusive defense and control of any matter otherwise
-                subject to indemnification by you, in which event you will fully
-                cooperate with BGAI in asserting any available
-                defenses.
+                BGAI reserves the right, at its own cost, to assume the
+                exclusive defense and control of any matter otherwise subject to
+                indemnification by you, in which event you will fully cooperate
+                with BGAI in asserting any available defenses.
               </p>
             </div>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl mb-4">Arbitration </h2>
+            <h2 className="text-3xl mb-4">Arbitration</h2>
             <div className="mb-4 text-lg">
               <p>
                 In the event the parties are not able to resolve any dispute
@@ -444,13 +449,13 @@ const Terms = () => {
               </p>
               <p>
                 This arbitration provision shall survive the termination of
-                these Terms and Conditions.{" "}
+                these Terms and Conditions.
               </p>
             </div>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl mb-4">Class Action Waiver </h2>
+            <h2 className="text-3xl mb-4">Class Action Waiver</h2>
             <div className="mb-4 text-lg">
               <p>
                 Any arbitration under these Terms and Conditions will take place
@@ -465,16 +470,16 @@ const Terms = () => {
                 ATTORNEY GENERAL ACTION AGAINST THE OTHER.
               </p>
               <p>
-                Further, unless both you and BGAI agree otherwise,
-                the arbitrator may not consolidate more than one person's
-                claims, and may not otherwise preside over any form of a
-                representative or class proceeding.
+                Further, unless both you and BGAI agree otherwise, the
+                arbitrator may not consolidate more than one person's claims and
+                may not otherwise preside over any form of a representative or
+                class proceeding.
               </p>
             </div>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl mb-4">Liability Disclaimer </h2>
+            <h2 className="text-3xl mb-4">Liability Disclaimer</h2>
             <div className="mb-4 text-lg">
               <p>
                 THE INFORMATION, SOFTWARE, PRODUCTS, AND SERVICES INCLUDED IN OR
@@ -482,61 +487,60 @@ const Terms = () => {
                 TYPOGRAPHICAL ERRORS.
               </p>
               <p>
-                CHANGES ARE PERIODICALLY ADDED TO THE INFORMATION HEREIN.
-                ENGLISH MAJORS REVIEWERS AND EDITORS, LLC AND/OR ITS SUPPLIERS
-                MAY MAKE IMPROVEMENTS AND/OR CHANGES IN THE SITE AT ANY TIME.
+                CHANGES ARE PERIODICALLY ADDED TO THE INFORMATION HEREIN. BEST
+                GLOBAL AI, LLC AND/OR ITS SUPPLIERS MAY MAKE IMPROVEMENTS AND/OR
+                CHANGES IN THE SITE AT ANY TIME.
               </p>
               <p className="mt-4">
-                ENGLISH MAJORS REVIEWERS AND EDITORS, LLC AND/OR ITS SUPPLIERS
+                Best Global AI, LLC AND/OR ITS SUPPLIERS
                 MAKE NO REPRESENTATIONS ABOUT THE SUITABILITY, RELIABILITY,
                 AVAILABILITY, TIMELINESS, AND ACCURACY OF THE INFORMATION,
                 SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS CONTAINED ON
                 THE SITE FOR ANY PURPOSE. TO THE MAXIMUM EXTENT PERMITTED BY
                 APPLICABLE LAW, ALL SUCH INFORMATION, SOFTWARE, PRODUCTS,
                 SERVICES AND RELATED GRAPHICS ARE PROVIDED "AS IS" WITHOUT
-                WARRANTY OR CONDITION OF ANY KIND. ENGLISH MAJORS REVIEWERS AND
-                EDITORS, LLC AND/OR ITS SUPPLIERS HEREBY DISCLAIM ALL WARRANTIES
-                AND CONDITIONS WITH REGARD TO THIS INFORMATION, SOFTWARE,
-                PRODUCTS, SERVICES AND RELATED GRAPHICS, INCLUDING ALL IMPLIED
-                WARRANTIES OR CONDITIONS OF MERCHANTABILITY, FITNESS FOR A
-                PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT.
+                WARRANTY OR CONDITION OF ANY KIND. BEST GLOBAL AI, LLC AND/OR
+                ITS SUPPLIERS HEREBY DISCLAIM ALL WARRANTIES AND CONDITIONS WITH
+                REGARD TO THIS INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND
+                RELATED GRAPHICS, INCLUDING ALL IMPLIED WARRANTIES OR CONDITIONS
+                OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND
+                NON-INFRINGEMENT.
               </p>
               <p className="mt-4">
                 TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT
-                SHALL ENGLISH MAJORS REVIEWERS AND EDITORS, LLC AND/OR ITS
-                SUPPLIERS BE LIABLE FOR ANY DIRECT, INDIRECT, PUNITIVE,
-                INCIDENTAL, SPECIAL, CONSEQUENTIAL DAMAGES OR ANY DAMAGES
-                WHATSOEVER INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF
-                USE, DATA OR PROFITS, ARISING OUT OF OR IN ANY WAY CONNECTED
-                WITH THE USE OR PERFORMANCE OF THE SITE, WITH THE DELAY OR
-                INABILITY TO USE THE SITE OR RELATED SERVICES, THE PROVISION OF
-                OR FAILURE TO PROVIDE SERVICES, OR FOR ANY INFORMATION,
-                SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS OBTAINED
-                THROUGH THE SITE, OR OTHERWISE ARISING OUT OF THE USE OF THE
-                SITE, WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT
-                LIABILITY OR OTHERWISE, EVEN IF ENGLISH MAJORS REVIEWERS AND
-                EDITORS, LLC OR ANY OF ITS SUPPLIERS HAS BEEN ADVISED OF THE
-                POSSIBILITY OF DAMAGES. BECAUSE SOME STATES/JURISDICTIONS DO NOT
-                ALLOW THE EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL
-                OR INCIDENTAL DAMAGES, THE ABOVE LIMITATION MAY NOT APPLY TO
-                YOU. IF YOU ARE DISSATISFIED WITH ANY PORTION OF THE SITE, OR
-                WITH ANY OF THESE TERMS OF USE, YOUR SOLE AND EXCLUSIVE REMEDY
-                IS TO DISCONTINUE USING THE SITE.
+                SHALL BEST GLOBAL AI, LLC AND/OR ITS SUPPLIERS BE LIABLE FOR ANY
+                DIRECT, INDIRECT, PUNITIVE, INCIDENTAL, SPECIAL, CONSEQUENTIAL
+                DAMAGES OR ANY DAMAGES WHATSOEVER INCLUDING, WITHOUT LIMITATION,
+                DAMAGES FOR LOSS OF USE, DATA OR PROFITS, ARISING OUT OF OR IN
+                ANY WAY CONNECTED WITH THE USE OR PERFORMANCE OF THE SITE, WITH
+                THE DELAY OR INABILITY TO USE THE SITE OR RELATED SERVICES, THE
+                PROVISION OF OR FAILURE TO PROVIDE SERVICES, OR FOR ANY
+                INFORMATION, SOFTWARE, PRODUCTS, SERVICES AND RELATED GRAPHICS
+                OBTAINED THROUGH THE SITE, OR OTHERWISE ARISING OUT OF THE USE
+                OF THE SITE, WHETHER BASED ON CONTRACT, TORT, NEGLIGENCE, STRICT
+                LIABILITY OR OTHERWISE, EVEN IF BEST GLOBAL AI, LLC OR ANY OF
+                ITS SUPPLIERS HAS BEEN ADVISED OF THE POSSIBILITY OF DAMAGES.
+                BECAUSE SOME STATES/JURISDICTIONS DO NOT ALLOW THE EXCLUSION OR
+                LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+                THE ABOVE LIMITATION MAY NOT APPLY TO YOU. IF YOU ARE
+                DISSATISFIED WITH ANY PORTION OF THE SITE, OR WITH ANY OF THESE
+                TERMS OF USE, YOUR SOLE AND EXCLUSIVE REMEDY IS TO DISCONTINUE
+                USING THE SITE.
               </p>
             </div>
           </div>
 
           <div className="mb-8">
-            <h2 className="text-3xl mb-4">Termination/Access Restriction </h2>
+            <h2 className="text-3xl mb-4">Termination/Access Restriction</h2>
             <div className="mb-4 text-lg">
               <p>
-                BGAI reserves the right, in its sole discretion, to
-                terminate your access to the Site and the related services or
-                any portion thereof at any time, without notice.
+                BGAI reserves the right, in its sole discretion, to terminate
+                your access to the Site and the related services or any portion
+                thereof at any time, without notice.
               </p>
               <p>
                 To the maximum extent permitted by law, this agreement is
-                governed by the laws of the State of California and you hereby
+                governed by the laws of the State of California, and you hereby
                 consent to the exclusive jurisdiction and venue of courts in
                 California in all disputes arising out of or relating to the use
                 of the Site.
@@ -548,17 +552,16 @@ const Terms = () => {
               </p>
               <p className="mt-4">
                 You agree that no joint venture, partnership, employment, or
-                agency relationship exists between you and BGAI as a
-                result of this agreement or use of the Site.
+                agency relationship exists between you and BGAI as a result of
+                this agreement or use of the Site.
               </p>
               <p>
-                BGAI's performance of this agreement is subject to
-                existing laws and legal process, and nothing contained in this
-                agreement is in derogation of BGAI's right to comply
-                with governmental, court and law enforcement requests or
-                requirements relating to your use of the Site or information
-                provided to or gathered by BGAI with respect to such
-                use.
+                BGAI's performance of this agreement is subject to existing laws
+                and legal process, and nothing contained in this agreement is in
+                derogation of BGAI's right to comply with governmental, court
+                and law enforcement requests or requirements relating to your
+                use of the Site or information provided to or gathered by BGAI
+                with respect to such use.
               </p>
               <p>
                 If any part of this agreement is determined to be invalid or
@@ -570,24 +573,13 @@ const Terms = () => {
                 the remainder of the agreement shall continue in effect.
               </p>
               <p className="mt-4">
-                Unless otherwise specified herein, this agreement constitutes
-                the entire agreement between the user and BGAI with
-                respect to the Site and it supersedes all prior or
-                contemporaneous communications and proposals, whether
-                electronic, oral or written, between the user and EMRE
-                Publishing with respect to the Site.
+              Unless otherwise specified herein, this agreement constitutes the entire agreement between the user and BGAI with respect to the Site and it supersedes all prior or contemporaneous communications and proposals, whether electronic, oral or written, between the user and BGAI with respect to the Site.
               </p>
               <p>
-                A printed version of this agreement and of any notice given in
-                electronic form shall be admissible in judicial or
-                administrative proceedings based upon or relating to this
-                agreement to the same extent and subject to the same conditions
-                as other business documents and records originally generated and
-                maintained in printed form.
+              A printed version of this agreement and of any notice given in electronic form shall be admissible in judicial or administrative proceedings based upon or relating to this agreement to the same extent and subject to the same conditions as other business documents and records originally generated and maintained in printed form. 
               </p>
               <p>
-                It is the express wish to the parties that this agreement and
-                all related documents be written in English.
+              It is the express wish to the parties that this agreement and all related documents be written in English. 
               </p>
             </div>
           </div>
@@ -596,14 +588,13 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Changes to Terms </h2>
             <div className="mb-4 text-lg">
               <p>
-                BGAI reserves the right, in its sole discretion, to
-                change the Terms under which
-                https://steelblue-turtle-121384.hostingersite.com is offered.
+              BGAI reserves the right, in its sole discretion, to change the Terms under which https://bestglobalai.com is offered. 
               </p>
               <p>
-                The most current version of the Terms will supersede all
-                previous versions. BGAI encourages you to
-                periodically review the Terms to stay informed of our updates.
+              The most current version of the Terms will supersede all previous versions.              
+              </p>
+              <p>
+              BGAI encourages you to periodically review the Terms to stay informed of our updates.
               </p>
             </div>
           </div>
@@ -612,17 +603,16 @@ const Terms = () => {
             <h2 className="text-3xl mb-4">Contact Us </h2>
             <div className="mb-4 text-lg">
               <p>
-                BGAI welcomes your questions or comments regarding
-                the Terms:
+              BGAI welcomes your questions or comments regarding the Terms:
               </p>
-              <p className="mt-4">Best Global AI, LLC</p>
-              <p>6784 Caminito del Greco</p>
+              <p className="mt-4">Best Global AI, LLC </p>
+              <p>6784 Caminito del Greco </p>
               <p>San Diego, California 92120</p>
               <p className="mt-4">Email Address:</p>
-              <p>jamesmusgrave2122@att.net</p>
+              <p>admin@bestglobalai.com</p>
               <p className="mt-4">Telephone number:</p>
               <p>6197507360</p>
-              <p className="mt-4">Effective as of June 17, 2024</p>
+              <p className="mt-4">Effective as of January 28, 2525</p>
             </div>
           </div>
         </section>
