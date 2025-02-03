@@ -98,7 +98,7 @@ export default function VideoLibraryPage() {
 
   return (
     <Layout titleText="Video Library">
-      <div className="flex min-h-full flex-col md:flex-row">
+      <div className="flex min-h-full flex-col md:flex-row mt-3">
         {/* Sidebar for video list with unique background */}
         <div className="w-full overflow-y-auto text-gray-100 p-2 md:w-1/3">
           <h1 className="mb-4 text-2xl font-bold text-gray-100">Videos</h1>

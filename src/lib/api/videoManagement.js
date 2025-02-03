@@ -12,9 +12,7 @@ export const getUserVideos = async () => {
 
 export const getUserTranslates = async () => {
   try {
-    const response = await axiosInstance.get(
-      "/api/video-management/get-user-translates"
-    );
+    const response = await axiosInstance.get("/api/video/get-translated-video");
     return response.data.translates;
   } catch (error) {
     console.error("Error fetching videos:", error);

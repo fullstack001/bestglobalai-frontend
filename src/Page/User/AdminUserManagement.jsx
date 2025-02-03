@@ -7,7 +7,7 @@ const apiPort = process.env.REACT_APP_API_PORT;
 
 function AdminUserManagement() {
   const [users, setUsers] = useState([]);
-  const [loading, setLoading] = useState(true);
+  
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -20,9 +20,7 @@ function AdminUserManagement() {
         setUsers(response.data);
       } catch (error) {
         setError("Failed to fetch users");
-      } finally {
-        setLoading(false);
-      }
+      } 
     };
 
     fetchUsers();
@@ -60,7 +58,7 @@ function AdminUserManagement() {
     }
   };
 
-  if (loading) return <p>Loading...</p>;
+
   if (error) return <p>{error}</p>;
 
   // Columns for DataTable

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClose,
@@ -7,11 +8,23 @@ import {
   faChevronUp,
 } from "@fortawesome/free-solid-svg-icons";
 
+import { openPanel, closePanel } from "../store/openPanelSlice";
+
 import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
+  const dispatch = useDispatch();
+  const panelActive = useSelector((state) => state.openPanel);
   const [isVideoMenuOpen, setIsVideoMenuOpen] = useState(false);
+
+  const handleTogglePanel = (panelType) => {
+    if (panelActive === panelType) {
+      dispatch(closePanel());
+    } else {
+      dispatch(openPanel(panelType));
+    }
+  };
 
   const isActive = (path) => location.pathname === path;
   return (
@@ -21,64 +34,73 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
       } transition-transform duration-300 lg:translate-x-0`}
     >
       <div className="mb-8">
-        <a href="/">
+        <Link to="/">
           <img src={logo_icon} alt="Logo" className="h-20 w-auto m-auto" />
-        </a>
+        </Link>
         <button
-          onClick={toggleSidebar}
+          onClick={() => {
+            toggleSidebar();
+            dispatch(closePanel());
+          }}
           className="lg:hidden absolute top-4 right-4 text-white"
         >
           <FontAwesomeIcon icon={faClose} size="2x" />
         </button>
       </div>
       <nav className="space-y-2">
-        <a
-          href="/creator"
+        <Link
+          to="/creator"
           className={`block py-2 px-3 rounded  ${
             isActive("/creator") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Dashboard
-        </a>
+        </Link>
 
-        <a
-          href="/myEbooks"
+        <Link
+          to="/myEbooks"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/myEbooks") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           My Books
-        </a>
-        <a
-          href="/explore-ebooks"
+        </Link>
+        <Link
+          to="/explore-ebooks"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/explore-ebooks") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Explore Ebooks
-        </a>
+        </Link>
         <div className="block">
           <button
-            onClick={() => setIsVideoMenuOpen(!isVideoMenuOpen)}
+            onClick={() => handleTogglePanel("video")}
             className="flex items-center justify-between w-full py-2 px-3 rounded text-left text-gray-400 hover:bg-gray-700"
           >
             <span>Video</span>
             <FontAwesomeIcon
-              icon={isVideoMenuOpen ? faChevronUp : faChevronDown}
+              icon={panelActive === "video" ? faChevronUp : faChevronDown}
             />
           </button>
-          {isVideoMenuOpen && (
+          {panelActive === "video" && (
             <div className="ml-4 mt-2 space-y-2">
-              <a
-                href="/video/my-videos"
+              <Link
+                to="/video/my-videos"
                 className={`block py-2 px-3 rounded ${
                   isActive("/video/my-videos") ? "bg-gray-700" : "text-gray-400"
                 }`}
               >
                 My Videos
-              </a>
-              <a
-                href="/video/create-video"
+              </Link>
+              <Link
+                to="/video/create-video"
                 className={`block py-2 px-3 rounded ${
                   isActive("/video/create-video")
                     ? "bg-gray-700"
@@ -86,9 +108,9 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 }`}
               >
                 Create Video
-              </a>
-              <a
-                href="/video/video-translation"
+              </Link>
+              <Link
+                to="/video/video-translation"
                 className={`block py-2 px-3 rounded ${
                   isActive("/video/video-translation")
                     ? "bg-gray-700"
@@ -96,61 +118,127 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 }`}
               >
                 Video Translation
-              </a>
+              </Link>
             </div>
           )}
         </div>
-        <a
-          href="/admin/blogs"
+
+        <div className="block">
+          <button
+            onClick={() => handleTogglePanel("social")}
+            className="flex items-center justify-between w-full py-2 px-3 rounded text-left text-gray-400 hover:bg-gray-700"
+          >
+            <span>Social Media</span>
+
+            <FontAwesomeIcon
+              icon={panelActive === "social" ? faChevronUp : faChevronDown}
+            />
+          </button>
+          {panelActive === "social" && (
+            <div className="ml-4 mt-2 space-y-2">
+              <Link
+                to="/social/link-social-accounts"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/social/link-social-accounts")
+                    ? "bg-gray-700"
+                    : "text-gray-400"
+                }`}
+              >
+                Link Your Social Accounts
+              </Link>
+              <Link
+                to="/social/create-video"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/social/create-video")
+                    ? "bg-gray-700"
+                    : "text-gray-400"
+                }`}
+              >
+                Create Video
+              </Link>
+              <Link
+                to="/social-translation"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/social/video-translation")
+                    ? "bg-gray-700"
+                    : "text-gray-400"
+                }`}
+              >
+                Video Translation
+              </Link>
+            </div>
+          )}
+        </div>
+
+        <Link
+          to="/admin/blogs"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/admin/blogs") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Blogs
-        </a>
+        </Link>
 
-        <a
-          href="/user-management"
+        <Link
+          to="/user-management"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           User Management
-        </a>
+        </Link>
 
-        <a
-          href="/admin/contacts"
+        <Link
+          to="/admin/contacts"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Contact Informations
-        </a>
+        </Link>
 
-        <a
-          href="/admin/services"
+        <Link
+          to="/admin/services"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/admin/services") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Service Orders
-        </a>
-        <a
-          href="/profile"
+        </Link>
+        <Link
+          to="/profile"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/profile") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Profile
-        </a>
-        <a
-          href="/change-password"
+        </Link>
+        <Link
+          to="/change-password"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
           className={`block py-2 px-3 rounded  ${
             isActive("/change-password") ? "bg-gray-700" : "text-gray-400"
           }`}
         >
           Change Password
-        </a>
+        </Link>
       </nav>
     </aside>
   );
