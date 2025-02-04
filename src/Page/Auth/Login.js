@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -17,12 +17,29 @@ const Login = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [captchaToken, setCaptchaToken] = useState("");
+  const [rememberMe, setRememberMe] = useState(false);
+
+  // Load stored credentials if "Remember Me" was checked
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("rememberedEmail");
+    const savedPassword = localStorage.getItem("rememberedPassword");
+
+    if (savedEmail && savedPassword) {
+      setFormData({ email: savedEmail, password: savedPassword });
+      setRememberMe(true);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+   // Handle "Remember Me" checkbox
+   const handleRememberMeChange = (e) => {
+    setRememberMe(e.target.checked);
   };
 
   const handleCaptchaChange = (token) => {
@@ -50,6 +67,15 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("email", user.email);
+
+       // Store credentials if "Remember Me" is checked, otherwise remove them
+       if (rememberMe) {
+        localStorage.setItem("rememberedEmail", formData.email);
+        localStorage.setItem("rememberedPassword", formData.password);
+      } else {
+        localStorage.removeItem("rememberedEmail");
+        localStorage.removeItem("rememberedPassword");
+      }
 
       // Redirect to dashboard
       if (role === "superAdmin" || role === "admin" || role === "editor") {
@@ -148,6 +174,8 @@ const Login = () => {
               <input
                 type="checkbox"
                 className="form-checkbox h-4 w-4 text-blue-600"
+                checked={rememberMe}
+                onChange={handleRememberMeChange}
               />
               <span className="ml-2">Remember me</span>
             </label>
