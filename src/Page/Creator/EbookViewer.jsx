@@ -68,6 +68,21 @@ function EbookViewer() {
     fetchEbookContent();
   }, [id]);
 
+  // ✅ Use ResizeObserver to handle viewport changes efficiently
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      if (renditionRef.current) {
+        requestAnimationFrame(() => {
+          console.log("Resizing ReactReader...");
+          renditionRef.current.resize(); // ✅ Adjust layout instead of full re-render
+        });
+      }
+    }, 200);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const translateContent = async (content) => {
     try {
       const response = await axios.post(`${apiPort}/api/translate/eBook`, {
@@ -86,26 +101,6 @@ function EbookViewer() {
     }
   };
 
-  // const handleLocationChanged = async (epubcfi) => {
-  //   setLocation(epubcfi);
-  //   if (renditionRef.current) {
-  //     try {
-  //       const range = await renditionRef.current.getRange(epubcfi);
-  //       const firstPart = range.commonAncestorContainer.baseURI.split(
-  //         ".xhtml"
-  //       )[0];
-  //       const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
-  //       const pageContent = bookContents[pageNumber];
-  //       setOriginalContent(pageContent.content);
-  //       setTranslatedText(""); // Clear translated text when location changes
-  //     } catch (error) {
-  //       console.error(
-  //         "Error fetching content for the current location:",
-  //         error
-  //       );
-  //     }
-  //   }
-  // };
   const handleLocationChanged = useCallback(
     debounce(async (epubcfi) => {
       setLocation(epubcfi);
@@ -129,6 +124,7 @@ function EbookViewer() {
     }, 500), // Adjust debounce time as needed
     [bookContents]
   );
+
   const returnBack = () => {
     navigate(previousLocation);
   };
@@ -182,7 +178,7 @@ function EbookViewer() {
             style={{ height: "600px", border: "1px solid #ddd" }}
             className="rounded-lg"
           >
-            <ReactReader
+            <ReactReader            
               url={bookUrl}
               location={location}
               locationChanged={handleLocationChanged}
