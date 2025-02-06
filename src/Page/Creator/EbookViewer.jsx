@@ -68,13 +68,17 @@ function EbookViewer() {
     fetchEbookContent();
   }, [id]);
 
-  // ✅ Use ResizeObserver to handle viewport changes efficiently
+  // ✅ Fix resize error using debounced event listener
   useEffect(() => {
     const handleResize = debounce(() => {
       if (renditionRef.current) {
         requestAnimationFrame(() => {
-          console.log("Resizing ReactReader...");
-          renditionRef.current.resize(); // ✅ Adjust layout instead of full re-render
+          try {
+            console.log("Resizing ReactReader...");
+            renditionRef.current.resize(); // ✅ Ensure safe resizing
+          } catch (error) {
+            console.warn("Resize error caught:", error);
+          }
         });
       }
     }, 200);
@@ -82,6 +86,7 @@ function EbookViewer() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
 
   const translateContent = async (content) => {
     try {
@@ -107,6 +112,8 @@ function EbookViewer() {
       if (renditionRef.current) {
         try {
           const range = await renditionRef.current.getRange(epubcfi);
+          if (!range || !range.commonAncestorContainer) return; // ✅ Ensure range is valid
+
           const firstPart = range.commonAncestorContainer.baseURI.split(
             '.xhtml'
           )[0];
@@ -183,7 +190,9 @@ function EbookViewer() {
               location={location}
               locationChanged={handleLocationChanged}
               getRendition={(rendition) => {
-                renditionRef.current = rendition;
+                if (rendition) {
+                    renditionRef.current = rendition;
+                  }
               }}
               epubOptions={{
                 allowPopups: true,
