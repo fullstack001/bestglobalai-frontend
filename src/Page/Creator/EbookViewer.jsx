@@ -68,6 +68,26 @@ function EbookViewer() {
     fetchEbookContent();
   }, [id]);
 
+  // ✅ Fix resize error using debounced event listener
+  useEffect(() => {
+    const handleResize = debounce(() => {
+      if (renditionRef.current) {
+        requestAnimationFrame(() => {
+          try {
+            console.log("Resizing ReactReader...");
+            renditionRef.current.resize(); // ✅ Ensure safe resizing
+          } catch (error) {
+            console.warn("Resize error caught:", error);
+          }
+        });
+      }
+    }, 200);
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+
   const translateContent = async (content) => {
     try {
       const response = await axios.post(`${apiPort}/api/translate/eBook`, {
@@ -86,32 +106,14 @@ function EbookViewer() {
     }
   };
 
-  // const handleLocationChanged = async (epubcfi) => {
-  //   setLocation(epubcfi);
-  //   if (renditionRef.current) {
-  //     try {
-  //       const range = await renditionRef.current.getRange(epubcfi);
-  //       const firstPart = range.commonAncestorContainer.baseURI.split(
-  //         ".xhtml"
-  //       )[0];
-  //       const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
-  //       const pageContent = bookContents[pageNumber];
-  //       setOriginalContent(pageContent.content);
-  //       setTranslatedText(""); // Clear translated text when location changes
-  //     } catch (error) {
-  //       console.error(
-  //         "Error fetching content for the current location:",
-  //         error
-  //       );
-  //     }
-  //   }
-  // };
   const handleLocationChanged = useCallback(
     debounce(async (epubcfi) => {
       setLocation(epubcfi);
       if (renditionRef.current) {
         try {
           const range = await renditionRef.current.getRange(epubcfi);
+          if (!range || !range.commonAncestorContainer) return; // ✅ Ensure range is valid
+
           const firstPart = range.commonAncestorContainer.baseURI.split(
             '.xhtml'
           )[0];
@@ -129,6 +131,7 @@ function EbookViewer() {
     }, 500), // Adjust debounce time as needed
     [bookContents]
   );
+
   const returnBack = () => {
     navigate(previousLocation);
   };
@@ -182,12 +185,14 @@ function EbookViewer() {
             style={{ height: "600px", border: "1px solid #ddd" }}
             className="rounded-lg"
           >
-            <ReactReader
+            <ReactReader            
               url={bookUrl}
               location={location}
               locationChanged={handleLocationChanged}
               getRendition={(rendition) => {
-                renditionRef.current = rendition;
+                if (rendition) {
+                    renditionRef.current = rendition;
+                  }
               }}
               epubOptions={{
                 allowPopups: true,

@@ -57,7 +57,7 @@ const Blog = () => {
       {/* More Updates Button */}
       <div className="text-center mt-12">
         <a
-          href="/blog"
+          href="/blogs"
           className="bg-gray-800 text-xl px-6 py-2 rounded-full hover:bg-gray-700 transition duration-300 text-white inline-flex items-center"
         >
           More Updates
