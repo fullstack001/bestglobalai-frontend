@@ -37,8 +37,8 @@ const Login = () => {
     });
   };
 
-   // Handle "Remember Me" checkbox
-   const handleRememberMeChange = (e) => {
+  // Handle "Remember Me" checkbox
+  const handleRememberMeChange = (e) => {
     setRememberMe(e.target.checked);
   };
 
@@ -69,8 +69,8 @@ const Login = () => {
       localStorage.setItem("email", user.email);
       localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
 
-       // Store credentials if "Remember Me" is checked, otherwise remove them
-       if (rememberMe) {
+      // Store credentials if "Remember Me" is checked, otherwise remove them
+      if (rememberMe) {
         localStorage.setItem("rememberedEmail", formData.email);
         localStorage.setItem("rememberedPassword", formData.password);
       } else {
