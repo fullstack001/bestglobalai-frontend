@@ -1,5 +1,3 @@
-
-
 import { useState, useEffect } from "react";
 import {
   getUserVideos,
@@ -35,7 +33,7 @@ export default function VideoLibraryPage() {
       const fetchedVideos = await getUserVideos();
       setOriginVideos(videos);
       const existVideos = fetchedVideos.filter((video) =>
-        videos.some((fetchVideo) => fetchVideo.video_id === video.video_id),
+        videos.some((fetchVideo) => fetchVideo.video_id === video.video_id)
       );
       setVideos(existVideos);
       const translateVideos = await getUserTranslates();
@@ -111,7 +109,7 @@ export default function VideoLibraryPage() {
               <p className="text-lg text-gray-500">No videos available</p>
             </div>
           ) : (
-            <div className="grid h-1/2 grid-cols-1 gap-4 overflow-y-auto  sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+            <div className="grid max-h-1/2 grid-cols-1 gap-4 overflow-y-auto  sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
               {videos.map((video) => (
                 <VideoPreview
                   key={video._id}
@@ -165,7 +163,8 @@ export default function VideoLibraryPage() {
                 />
               ) : (
                 <div className="flex h-64 items-center justify-center bg-gray-100 text-gray-500">
-                  This video is not available now. Status: {selectedVideo.status}
+                  This video is not available now. Status:{" "}
+                  {selectedVideo.status}
                 </div>
               )}
               <div className="mt-4 space-x-2">
@@ -180,7 +179,7 @@ export default function VideoLibraryPage() {
                     confirmDelete(
                       "video_translate_id" in selectedVideo
                         ? selectedVideo.video_translate_id
-                        : selectedVideo.id,
+                        : selectedVideo.id
                     )
                   }
                   className={`rounded px-4 py-2 text-white ${

@@ -42,6 +42,9 @@ import VideoCreatorPage from "./Page/Video/Create/index";
 import VideoLibraryPage from "./Page/Video/library/index";
 import VideoTranslatePage from "./Page/Video/translate";
 
+import SocialProfilePage from "./Page/Social/Profile";
+import SocialPostPage from "./Page/Social/Post";
+
 function App() {
   return (
     <Provider store={store}>
@@ -151,6 +154,28 @@ function App() {
                 allowedRoles={["superAdmin", "admin", "editor", "user"]}
               >
                 <VideoTranslatePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/social/profile"
+            element={
+              <PrivateRoute
+                allowedRoles={["superAdmin", "admin", "editor", "user"]}
+              >
+                <SocialProfilePage />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="/social/post"
+            element={
+              <PrivateRoute
+                allowedRoles={["superAdmin", "admin", "editor", "user"]}
+              >
+                <SocialPostPage />
               </PrivateRoute>
             }
           />

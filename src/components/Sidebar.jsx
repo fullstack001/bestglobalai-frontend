@@ -16,7 +16,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const location = useLocation();
   const dispatch = useDispatch();
   const panelActive = useSelector((state) => state.openPanel);
-  const [isVideoMenuOpen, setIsVideoMenuOpen] = useState(false);
 
   const handleTogglePanel = (panelType) => {
     if (panelActive === panelType) {
@@ -137,24 +136,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           {panelActive === "social" && (
             <div className="ml-4 mt-2 space-y-2">
               <Link
-                to="/social/link-social-accounts"
+                to="/social/profile"
                 className={`block py-2 px-3 rounded ${
-                  isActive("/social/link-social-accounts")
-                    ? "bg-gray-700"
-                    : "text-gray-400"
+                  isActive("/social/profile") ? "bg-gray-700" : "text-gray-400"
                 }`}
               >
-                Link Your Social Accounts
+                Profile
               </Link>
               <Link
-                to="/social/create-video"
+                to="/social/post"
                 className={`block py-2 px-3 rounded ${
-                  isActive("/social/create-video")
-                    ? "bg-gray-700"
-                    : "text-gray-400"
+                  isActive("/social/post") ? "bg-gray-700" : "text-gray-400"
                 }`}
               >
-                Create Video
+                Post
               </Link>
               <Link
                 to="/social-translation"

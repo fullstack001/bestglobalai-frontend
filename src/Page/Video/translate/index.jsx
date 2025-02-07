@@ -11,6 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import { getTranslateLanguage } from "../../../lib/api/heygen";
 import { translateVideo } from "../../../lib/api/videoTranslate";
 import Layout from "../../../components/Layout";
+import spinner from "../../../assets/icons/spinner.svg";
 
 const VideoTranslatePage = () => {
   const [videoFile, setVideoFile] = useState(null);
@@ -105,9 +106,6 @@ const VideoTranslatePage = () => {
       return;
     }
 
-    setLoading(true);
-    setUploadProgress(0);
-
     const formData = new FormData();
 
     if (uploadOption === "upload" && videoFile) {
@@ -119,6 +117,8 @@ const VideoTranslatePage = () => {
     formData.append("output_language", language);
 
     try {
+      setLoading(true);
+      setUploadProgress(0);
       const res = await translateVideo(formData, (progressEvent) => {
         const percentCompleted = Math.round(
           (progressEvent.loaded * 100) / progressEvent.total
@@ -126,10 +126,10 @@ const VideoTranslatePage = () => {
         setUploadProgress(percentCompleted);
       });
 
-      console.log(res);
       setSuccess(true);
       setVideoFile(null);
       setVideoPreview(null);
+      setLanguage("");
       setUploadProgress(0);
     } catch (error) {
       setError("An error occurred while uploading.");
@@ -137,6 +137,8 @@ const VideoTranslatePage = () => {
       setLoading(false);
     }
   };
+
+  console.log(loading, "loading");
 
   return (
     <Layout titleText="Translate Video">
@@ -271,14 +273,19 @@ const VideoTranslatePage = () => {
 
         <button
           onClick={handleTranslate}
-          className="p-2 bg-green-800 rounded-md mt-3"
+          className="p-2 bg-green-800 text-center rounded-md mt-3 min-w-32"
         >
-          Translate
+          {!loading ? (
+            "Translate"
+          ) : (
+            <img src={spinner} className="h-5 w-5 mx-auto" alt="spinner" />
+          )}
         </button>
       </div>
       {success && (
-        <div className="text-center text-2xl mt-5 ">
-          Starting Translating, Please check it on <Link>My Videos</Link>
+        <div className="text-center text-2xl mt-5">
+          Starting Translating, Please check it on{" "}
+          <Link to="/video/my-videos">My Videos</Link>
         </div>
       )}
       <ToastContainer />

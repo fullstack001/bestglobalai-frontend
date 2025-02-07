@@ -50,6 +50,7 @@ const Login = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("email", user.email);
+      localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
 
       // Redirect to dashboard
       if (role === "superAdmin" || role === "admin" || role === "editor") {
