@@ -87,6 +87,18 @@ function EbookViewer() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+   // ✅ Inject CSS inside ReactReader's iFrame
+   const injectCustomStyles = () => {
+    if (renditionRef.current) {
+      renditionRef.current.themes.default({
+        "iframe": {
+          "width": "100% !important",
+          "height": "100vh !important"
+        },
+      });
+    }
+  };
+
 
   const translateContent = async (content) => {
     try {
@@ -192,6 +204,7 @@ function EbookViewer() {
               getRendition={(rendition) => {
                 if (rendition) {
                     renditionRef.current = rendition;
+                    injectCustomStyles(); // ✅ Apply custom styles on render
                   }
               }}
               epubOptions={{
