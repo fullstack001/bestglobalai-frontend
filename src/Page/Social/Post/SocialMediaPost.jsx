@@ -1,14 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { ToastContainer, toast } from "react-toastify";
+import { Datepicker } from "flowbite-react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
-import { FaUpload } from "react-icons/fa";
 import { socialProfiles } from "../../../lib/socialProfile";
+import FileManage from "./FileManage";
+import { getMediaUrls } from "./getMediaUrls";
+import { getMediaWarning } from "./getMediaWarning";
+import PostProgressModal from "./ProgressModal";
+import { postMedia } from "../../../lib/api/social";
 
 const SocialMediaPost = ({ socials }) => {
   const [selectedNetworks, setSelectedNetworks] = useState(socialProfiles);
   const [postList, setPostList] = useState([]);
+  const [mediaFiles, setMediaFiles] = useState([]);
+  const [postText, setPostText] = useState("");
+  const [subreddit, setSubredit] = useState("");
+  const [redditLink, setRedditLink] = useState("");
+  const [postTitle, setPostTitle] = useState("");
+  const [twitterThread, setTwitterThread] = useState(false);
+  const [youtubeShort, setYoutubeShort] = useState(false);
+  const [youtubeVisiblilty, setYoutubeVisibility] = useState("private");
+  const [instagramPostType, setInstagramPostType] = useState("regular");
+  const [facebookPostType, setFacebookPostType] = useState("regular");
+  const [scheduleDate, setScheduleDate] = useState(null);
+  const [showDatePicker, setShowDatePicker] = useState(false);
+  const [postProgress, setPostProgress] = useState(false);
+  const [fetchingUrl, setFetchingUrl] = useState(false);
+  const [posting, setPosting] = useState(false);
 
   useEffect(() => {
     const enabledSocial = socialProfiles.map((profile) => ({
@@ -53,14 +73,169 @@ const SocialMediaPost = ({ socials }) => {
     );
   };
 
+  const clearForm = () => {
+    setPostTitle("");
+    setSubredit("");
+    setRedditLink("");
+    setPostText("");
+    setMediaFiles([]);
+    setTwitterThread(false);
+    setYoutubeShort(false);
+    setYoutubeVisibility("private");
+    setInstagramPostType("Regular Post");
+    setFacebookPostType("Regular Post");
+    setFetchingUrl(false);
+    setPosting(false);
+    setPostProgress(false);
+  };
+
+  const handlePost = async () => {
+    try {
+      const mediaWarnings = getMediaWarning(postList, mediaFiles);
+      if (mediaWarnings.length > 0) {
+        toast.error("Invalid media format.", {
+          autoClose: 2000,
+          hideProgressBar: true,
+        });
+        return;
+      }
+
+      if (postText.length < 1) {
+        toast.error("Please enter a post text.", {
+          autoClose: 2000,
+          hideProgressBar: true,
+        });
+        return;
+      }
+      console.log(facebookPostType, "facebookPostType");
+
+      const postOptions = {};
+
+      if (postList.includes("reddit")) {
+        //check reddit options
+        if (postTitle.length < 1) {
+          toast.error("Please enter a post title and subreddit.", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+          return;
+        }
+
+        const redditOptions = {
+          title: postTitle, // required
+          subreddit: subreddit, // required (no "/r/" needed)
+        };
+        if (redditLink.length > 1) redditOptions.link = redditLink;
+        postOptions.redditOptions = redditOptions;
+      }
+
+      if (postList.includes("youtube")) {
+        if (postTitle.length < 1) {
+          toast.error("Please enter a post title.", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+          return;
+        }
+        const youtubeOptions = {
+          title: postTitle,
+          visibility: youtubeVisiblilty,
+          shorts: youtubeShort,
+        };
+        postOptions.youTubeOptions = youtubeOptions;
+      }
+
+      if (postList.includes("facebook")) {
+        if (facebookPostType !== "regular") {
+          const facebookOptions =
+            facebookPostType === "story" ? { stories: true } : { reels: true };
+          postOptions.facebookOptions = facebookOptions;
+        }
+      }
+
+      if (postList.includes("instagram")) {
+        if (instagramPostType !== "regular") {
+          const instagramOptions =
+            instagramPostType === "story"
+              ? {
+                  stories: true,
+                }
+              : { reels: true };
+          postOptions.instagramOptions = instagramOptions;
+        }
+      }
+      if (postList.includes("gmb")) {
+        if (mediaFiles.length > 1) {
+          toast.error("Please select only one image for GMB.", {
+            autoClose: 2000,
+            hideProgressBar: true,
+          });
+          return;
+        } else if (mediaFiles.length === 1) {
+          const gmbOptions = {
+            isPhotoVideo: true,
+          };
+          postOptions.gmbOptions = gmbOptions;
+        }
+      }
+      setPostProgress(true);
+      setFetchingUrl(true);
+      const mediaUrls = await getMediaUrls(mediaFiles);
+      setFetchingUrl(false);
+
+      if (postList.includes("twitter")) {
+        if (twitterThread) {
+          const twitterOptions = {
+            thread: twitterThread,
+            mediaUrls: mediaUrls,
+          };
+          postOptions.twitterOptions = twitterOptions;
+        }
+      }
+      const postData = {
+        post: postText,
+        platforms: postList,
+        mediaUrls: mediaUrls,
+        ...postOptions,
+      };
+      if (scheduleDate) {
+        postData.scheduleDate = scheduleDate;
+      }
+      console.log(postData);
+      const response = await postMedia(postData);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleSchedulePost = () => {
+    if (!scheduleDate) {
+      toast.error(
+        <div className="custom-toast flex">
+          <IoCloseCircleOutline className="custom-icon" />
+          <div className="mt-4">
+            Please select a date and time to schedule the post.
+          </div>
+        </div>,
+        {
+          className: "error-toast",
+          autoClose: 2000,
+        }
+      );
+      return;
+    }
+    console.log(scheduleDate);
+    setShowDatePicker(false);
+    handlePost();
+  };
+
   return (
     <div className="p-6 mt-6 mx-auto bg-white text-gray-700 rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Social Networks</h2>
-      <div className="grid grid-cols-3 sm:grid-cols-4 gap-4 mb-6 mx-12">
+      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4 mb-6 mx-12">
         {selectedNetworks.map((profile) => (
           <div key={profile.key} className="flex items-center  space-x-2">
-            {profile.icon}
-
             <Switch
               checked={profile.active}
               onChange={() => toggleNetwork(profile.key)}
@@ -75,7 +250,8 @@ const SocialMediaPost = ({ socials }) => {
                 } inline-block h-4 w-4 transform rounded-full bg-white transition`}
               />
             </Switch>
-            {profile.name}
+            {profile.icon}
+            <div className="md:block hidden">{profile.name}</div>
           </div>
         ))}
       </div>
@@ -83,62 +259,68 @@ const SocialMediaPost = ({ socials }) => {
       <div className="p-6 rounded-lg shadow-md mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
         {/* Left Section */}
         <div className="w-full">
-          <div>
-            <label className="block text-sm font-medium mb-2">Post Title</label>
-            <input
-              type="text"
-              placeholder="Enter post title for YouTube, Reddit"
-              className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-            />
-          </div>
+          {(postList.includes("youtube") || postList.includes("reddit")) && (
+            <div>
+              <label className="block text-sm font-medium mb-2">
+                Post Title
+              </label>
+              <input
+                value={postTitle}
+                onChange={(e) => setPostTitle(e.target.value)}
+                type="text"
+                placeholder="Enter post title for YouTube, Reddit"
+                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              />
+            </div>
+          )}
 
-          {/* Subreddit */}
-          <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">Subreddit</label>
-            <input
-              type="text"
-              placeholder="Subreddit (please review the subreddit’s guidelines)"
-              className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-            />
-          </div>
-
-          {/* Reddit Link */}
-          <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">
-              Reddit Link
-            </label>
-            <input
-              type="url"
-              placeholder="Reddit link (optional)"
-              className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
-            />
-          </div>
+          {postList.includes("reddit") && (
+            <>
+              <div className="mt-4">
+                <label className="block text-sm font-medium mb-2">
+                  Subreddit
+                </label>
+                <input
+                  value={subreddit}
+                  type="text"
+                  onChange={(e) => setSubredit(e.target.value)}
+                  placeholder="Subreddit (please review the subreddit’s guidelines)"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                />
+              </div>
+              <div className="mt-4">
+                <label className="block text-sm font-medium mb-2">
+                  Reddit Link
+                </label>
+                <input
+                  value={redditLink}
+                  type="url"
+                  onChange={(e) => setRedditLink(e.target.value)}
+                  placeholder="Reddit link (optional)"
+                  className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+                />
+              </div>
+            </>
+          )}
 
           {/* Post Text */}
           <div className="mt-4">
             <label className="block text-sm font-medium mb-2">Post Text</label>
             <textarea
+              value={postText}
               placeholder="Enter post text"
               rows="4"
+              onChange={(e) => setPostText(e.target.value)}
               className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
             ></textarea>
           </div>
 
           {/* File Upload */}
-          <div className="mt-4">
-            <label className="block text-sm font-medium mb-2">
-              Add Images or a Video
-            </label>
-            <div className="flex flex-col items-center justify-center w-full border-2 border-dashed rounded-lg py-6 cursor-pointer hover:bg-gray-100">
-              <FaUpload className="text-blue-500 text-3xl mb-2" />
-              <span className="text-sm text-gray-500">
-                Click to Upload or Drag & Drop
-              </span>
-              <p className="text-sm text-gray-500 mt-2">
-                PNG, JPG, GIF, WEBP, MP4, MOV or AVI
-              </p>
-            </div>
-          </div>
+          <FileManage
+            postList={postList}
+            handleFile={(files) => setMediaFiles(files)}
+            mediaFiles={mediaFiles}
+          />
         </div>
 
         {/* Right Section */}
@@ -146,71 +328,143 @@ const SocialMediaPost = ({ socials }) => {
           {/* Additional Options */}
           <h2 className="text-lg font-medium mb-4">Additional Options</h2>
           <div className=" gap-4">
-            <label className="flex items-center space-x-2 mt-6">
-              <input
-                type="checkbox"
-                className="rounded border-gray-300 focus:ring-blue-300"
-              />
-              <span>
-                X/Twitter Thread <br />
-                Create a thread post for X/Twitter
-              </span>
-            </label>
-            <label className="flex items-center space-x-2 mt-6">
-              <input
-                type="checkbox"
-                className="rounded border-gray-300 focus:ring-blue-300"
-              />
-              <span>
-                YouTube Shorts
-                <br />
-                Send the video as a YouTube#shorts.
-              </span>
-            </label>
+            {postList.includes("twitter") && (
+              <label className="flex items-center space-x-2 mt-6">
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 focus:ring-blue-300"
+                  checked={twitterThread}
+                  onChange={(e) => setTwitterThread(e.target.checked)}
+                />
+                <span>
+                  X/Twitter Thread <br />
+                  Create a thread post for X/Twitter
+                </span>
+              </label>
+            )}
+            {postList.includes("youtube") && (
+              <label className="flex items-center space-x-2 mt-6">
+                <input
+                  type="checkbox"
+                  className="rounded border-gray-300 focus:ring-blue-300"
+                  checked={youtubeShort}
+                  onChange={(e) => setYoutubeShort(e.target.checked)}
+                />
+                <span>
+                  YouTube Shorts
+                  <br />
+                  Send the video as a YouTube#shorts.
+                </span>
+              </label>
+            )}
           </div>
 
-          <div className="mt-5">
-            <label className="block text-sm font-medium mb-2">
-              YouTube Visibility
-            </label>
-            <select className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300">
-              <option>Private</option>
-              <option>Public</option>
-              <option>Unlisted</option>
-            </select>
-          </div>
-          <div className="mt-5">
-            <label className="block text-sm font-medium mb-2">
-              Instagram Post Type
-            </label>
-            <select className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300">
-              <option>Regular Post</option>
-              <option>Reel Video</option>
-              <option>Story Video or Image</option>
-            </select>
-          </div>
-          <div className="mt-5">
-            <label className="block text-sm font-medium mb-2">
-              Facebook Post Type
-            </label>
-            <select className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300">
-              <option>Regular Post</option>
-              <option>Reel Video</option>
-              <option>Story Video or Image</option>
-            </select>
-          </div>
+          {postList.includes("youtube") && (
+            <div className="mt-5">
+              <label className="block text-sm font-medium mb-2">
+                YouTube Visibility
+              </label>
+              <select
+                value={youtubeVisiblilty}
+                onChange={(e) => setYoutubeVisibility(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              >
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+                <option value="unlisted">Unlisted</option>
+              </select>
+            </div>
+          )}
+
+          {postList.includes("instagram") && (
+            <div className="mt-5">
+              <label className="block text-sm font-medium mb-2">
+                Instagram Post Type
+              </label>
+              <select
+                value={instagramPostType}
+                onChange={(e) => setInstagramPostType(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              >
+                <option value="regular">Regular Post</option>
+                <option value="reel">Reel Video</option>
+                <option value="story">Story Video or Image</option>
+              </select>
+            </div>
+          )}
+
+          {postList.includes("facebook") && (
+            <div className="mt-5">
+              <label className="block text-sm font-medium mb-2">
+                Facebook Post Type
+              </label>
+              <select
+                value={facebookPostType}
+                onChange={(e) => setFacebookPostType(e.target.value)}
+                className="w-full px-4 py-2 border rounded-lg focus:ring focus:ring-blue-300"
+              >
+                <option value="regular">Regular Post</option>
+                <option value="reel">Reel Video</option>
+                <option value="story">Story Video or Image</option>
+              </select>
+            </div>
+          )}
         </div>
       </div>
 
-      <div className="flex justify-end space-x-4">
-        <button className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400">
+      <div className="flex justify-end space-x-4 mt-6">
+        <button
+          className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
+          onClick={() => setShowDatePicker(true)}
+        >
           Schedule Post
         </button>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600">
+        <button
+          className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          onClick={handlePost}
+        >
           Post Now
         </button>
       </div>
+      {showDatePicker && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg">
+            <h3 className="text-lg font-semibold mb-4">Select Date & Time</h3>
+            <Datepicker
+              selected={scheduleDate}
+              onChange={(date) => setScheduleDate(date.toISOString())}
+              showTimeSelect
+              dateFormat="Pp"
+              className="border p-2 rounded w-full"
+            />
+            <div className="flex justify-end space-x-4 mt-4">
+              <button
+                className="px-4 py-2 bg-gray-400 text-white rounded-md hover:bg-gray-500"
+                onClick={() => setShowDatePicker(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                onClick={handleSchedulePost}
+              >
+                OK
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <ToastContainer />
+      <PostProgressModal
+        postProgress={postProgress}
+        fetchingUrl={fetchingUrl}
+        posting={posting}
+        onClose={() => {
+          setPostProgress(false);
+          clearForm();
+        }}
+      />
     </div>
   );
 };

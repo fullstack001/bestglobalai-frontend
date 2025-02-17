@@ -21,7 +21,7 @@ export async function verifyCode(email, validationCode) {
       email,
       validationCode,
     });
-    return { status: 200, token: response.data.token };
+    return { status: 200, data: response.data };
   } catch (error) {
     return {
       status: 500,

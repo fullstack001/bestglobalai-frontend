@@ -1,100 +1,24 @@
 import React, { useState } from "react";
 import { FiArrowUpRight } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { plans } from "../../lib/plans";
+import { setplan } from "../../store/goSubscription";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
 const Subscription = () => {
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
   const [isMonthly, setIsMonthly] = useState(true);
   const email = localStorage.getItem("email");
-  console.log(email);
-
-  const plans = [
-    {
-      title: "Lite",
-      monthlyPrice: 0,
-      yearlyPrice: 0,
-      descriptions: [
-        "Access at Author/Reader-Only Level to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps.",
-      ],
-      features: [
-        "Free access to Embellisher eReader and Creator Editor & Sales.",
-        "Multimedia Landing Page Apps at Author/Publisher Level.",
-        "Access to marketing, coupons, and pricing of your ePub3 creations and other backend tools for your promotions and landing page multimedia ePub3 documents.",
-      ],
-    },
-    {
-      title: "Basic",
-      monthlyPrice: 15,
-      yearlyPrice: 140,
-      descriptions: [
-        "Free access to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps at Author/Publisher Level. Access to marketing, coupons, and pricing of your ePub3 creations and other backend tools for your promotions and landing page multimedia ePub3 documents.",
-      ],
-
-      features: [
-        "Five team members.",
-        "Full access to Global Replica Video Creator Platform (1,060 stock replicas with 314 Talking Photos & Personal Replica Creator).",
-        "Full access to Global Replica Video Conversation Creator Platform (7+ personas, 123 stock replicas and personal replica creator).",
-        "3 free personal replicas.",
-        "25 new personal replica creations per month.",
-        "Up to 3 concurrent conversations.",
-        "Content Moderation.",
-        "Bring your own audio",
-        "Full access to Global Audience selection, campaign creation for social media marketing with up to ten different channels (Facebook, X, Instagram, Linkedin, YouTube, Pinterest, Reddit, and more).",
-        "Full access to scheduling and transmission of social media campaign, plus full monitoring/trafficking of results.",
-      ],
-    },
-    {
-      title: "Plus+",
-      monthlyPrice: 55,
-      yearlyPrice: 500,
-      descriptions: [
-        "Free access to Embellisher eReader and Creator Editor & Sales.",
-        "Multimedia Landing Page Apps at Adminr/Publisher Level.",
-        "Including user controls and control of organizing and labeling of your ePub3 promotion topics and descriptions for your clients.",
-      ],
-      features: [
-        "Ten team members.",
-        "Full access to Global Replica Video Creator Platform (1,060 stock replicas & personal replica creator).",
-        "Full access to Global Replica Video Conversation Creator Platform (7+ personas with 314 Talking Photos & Personal Replica Creator).",
-        "10 free personal replicas.",
-        "100 new personal replicas per month.",
-        "Conversation recording & transcripts.",
-        "Content Moderation.",
-        "Bring your own audio.",
-        "Full access to Global Audience selection, campaign creation for social media marketing with up to ten different channels (Facebook, X, Instagram, Linkedin, YouTube, Pinterest, Reddit, and more).",
-        "Full access to scheduling and transmission of social media campaigns, plus full monitoring/trafficking of results.",
-      ],
-    },
-  ];
 
   const handlePayment = async (plan, method) => {
+    dispatch(setplan({ ...plan, isMonthly }));
     if (email) {
       if (method === "stripe") {
-        console.log('stripe');
-        try {
-          const response = await fetch(`${apiPort}/api/subscription/stripe`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              plan,
-              price: isMonthly ? plan.monthlyPrice : plan.yearlyPrice,
-              method,
-              frequency: isMonthly ? "monthly" : "yearly",
-              email: email,
-            }),
-          });
-
-          const data = await response.json();
-          console.log(data);
-
-          window.location.href = data.sessionUrl;
-        } catch (error) {
-          console.error("Payment Error: ", error);
-        }
+        navigate("/payment");
       } else {
         try {
           const response = await fetch(`${apiPort}/api/subscription/paypal`, {
@@ -206,7 +130,8 @@ const Subscription = () => {
                   : " text-blue-500  border border-blue-500"
               } py-2 px-4 rounded-lg hover:bg-blue-200 transition flex justify-center mb-2`}
             >
-              Pay with Stripe <FiArrowUpRight />
+              {plan.title === "Lite" ? "Try Free " : "Pay with Stripe "}{" "}
+              <FiArrowUpRight />
             </button>
             {/* <button
               onClick={() => handlePayment(plan, "paypal")}

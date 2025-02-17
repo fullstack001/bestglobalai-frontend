@@ -6,7 +6,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, Link } from "react-router-dom";
 import logo_icon from "../../../assets/icons/logo.svg";
 import VerificationForm from "./VerificationForm";
 
@@ -14,6 +15,7 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 function Signup() {
+  const plan = useSelector((state) => state.goSubscription);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -78,8 +80,28 @@ function Signup() {
     }
   };
 
-  const handleVerification = async (token) => {
-    navigate("/");
+  const handleVerification = async (token, user) => {
+    console.log(token, user);
+    let role = user.role;
+    // Save token to localStorage (or cookie)
+    localStorage.setItem("token", token);
+    localStorage.setItem("role", role);
+    localStorage.setItem("email", user.email);
+    localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
+    // Store credentials if "Remember Me" is checked, otherwise remove them
+
+    if (plan) {
+      navigate("/payment");
+    }
+
+    // Redirect to dashboard
+    if (role === "superAdmin" || role === "admin" || role === "editor") {
+      navigate("/creator");
+    }
+
+    if (role === "user") {
+      navigate("/profile");
+    }
   };
 
   return (
@@ -194,20 +216,6 @@ function Signup() {
                   onChange={handleCaptchaChange}
                 />
               </div>
-
-              <div className="flex items-center justify-between">
-                <label className="flex items-center text-gray-400">
-                  <input
-                    type="checkbox"
-                    className="form-checkbox h-4 w-4 text-blue-600"
-                  />
-                  <span className="ml-2">Remember me</span>
-                </label>
-                <a href="#" className="text-sm text-red-500 hover:underline">
-                  Recover Password
-                </a>
-              </div>
-
               <div>
                 <button
                   type="submit"
@@ -221,9 +229,9 @@ function Signup() {
             <div className="text-center text-gray-400">
               <p>
                 Don’t have an account?{" "}
-                <a href="/" className="text-blue-500 hover:underline">
+                <Link to="/login" className="text-blue-500 hover:underline">
                   Sign In
-                </a>
+                </Link>
               </p>
             </div>
           </>

@@ -33,7 +33,7 @@ const VerificationForm = ({ email, onSubmit }) => {
     try {
       const result = await verifyCode(email, verificationCode);
       if (result.status === 200) {
-        await onSubmit(result.token);
+        await onSubmit(result.data.token, result.data.user);
       } else {
         setVerificationError(result.msg);
       }

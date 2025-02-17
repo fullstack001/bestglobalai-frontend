@@ -152,14 +152,14 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 Post
               </Link>
               <Link
-                to="/social-translation"
+                to="/social/analytics"
                 className={`block py-2 px-3 rounded ${
-                  isActive("/social/video-translation")
+                  isActive("/social/analytics")
                     ? "bg-gray-700"
                     : "text-gray-400"
                 }`}
               >
-                Video Translation
+                Analytics
               </Link>
             </div>
           )}

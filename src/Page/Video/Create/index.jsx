@@ -35,7 +35,6 @@ const VideoCreatorPage = () => {
       currentStep: prevData.currentStep - 1,
     }));
   };
-  console.log(videoData);
 
   const StepComponent = steps[videoData.currentStep].component;
 

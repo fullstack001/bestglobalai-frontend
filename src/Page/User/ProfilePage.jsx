@@ -11,6 +11,8 @@ const ProfilePage = () => {
     phoneNumber: "",
     profileImage: "",
   });
+
+  const [subscription, setSubscription] = useState(null);
   const [newImage, setNewImage] = useState(null);
 
   useEffect(() => {
@@ -21,7 +23,8 @@ const ProfilePage = () => {
         const response = await axios.get(`${apiPort}/api/users/profile`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setProfile(response.data);
+        setProfile(response.data.user);
+        setSubscription(response.data.subscription);
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
@@ -119,6 +122,32 @@ const ProfilePage = () => {
               className="mt-1 bg-gray-700 text-gray-200 rounded"
             />
           </div>
+          {subscription && (
+            <>
+              <div className="mb-4">
+                <label className="block text-gray-400">Subscripion Plan</label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  value={subscription.plan}
+                  className="mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg w-full"
+                  disabled
+                />
+              </div>
+              <div className="mb-4">
+                <label className="block text-gray-400">
+                  Subscripion Expiry Date
+                </label>
+                <input
+                  type="text"
+                  name="phoneNumber"
+                  value={subscription.expiryDate.toString().slice(0, 10)}
+                  className="mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg w-full"
+                  disabled
+                />
+              </div>
+            </>
+          )}
 
           <div className="mb-4">
             <button className="bg-blue-600 px-4 py-2 rounded text-white">
