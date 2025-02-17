@@ -13,6 +13,13 @@ import { openPanel, closePanel } from "../store/openPanelSlice";
 import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  const role = localStorage.getItem("role");
+  console.log(role, "<<<<<<<<<<<<<<<<<<");
+  const isAdmin = role === "admin" || role === "superAdmin";
+  const isSuperAdmin = role === "superAdmin";
+  const isCreator =
+    role === "superAdmin" || role === "admin" || role === "editor";
+
   const location = useLocation();
   const dispatch = useDispatch();
   const panelActive = useSelector((state) => state.openPanel);
@@ -47,26 +54,29 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </button>
       </div>
       <nav className="space-y-2">
-        <Link
-          to="/creator"
-          className={`block py-2 px-3 rounded  ${
-            isActive("/creator") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Dashboard
-        </Link>
-
-        <Link
-          to="/myEbooks"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/myEbooks") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          My Books
-        </Link>
+        {isCreator && (
+          <>
+            <Link
+              to="/creator"
+              className={`block py-2 px-3 rounded  ${
+                isActive("/creator") ? "bg-gray-700" : "text-gray-400"
+              }`}
+            >
+              Dashboard
+            </Link>
+            <Link
+              to="/myEbooks"
+              onClick={() => {
+                dispatch(closePanel());
+              }}
+              className={`block py-2 px-3 rounded  ${
+                isActive("/myEbooks") ? "bg-gray-700" : "text-gray-400"
+              }`}
+            >
+              My Books
+            </Link>
+          </>
+        )}
         <Link
           to="/explore-ebooks"
           onClick={() => {
@@ -165,53 +175,60 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           )}
         </div>
 
-        <Link
-          to="/admin/blogs"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/admin/blogs") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Blogs
-        </Link>
+        {isAdmin && (
+          <Link
+            to="/user-management"
+            onClick={() => {
+              dispatch(closePanel());
+            }}
+            className={`block py-2 px-3 rounded  ${
+              isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
+            }`}
+          >
+            User Management
+          </Link>
+        )}
 
-        <Link
-          to="/user-management"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          User Management
-        </Link>
+        {isSuperAdmin && (
+          <>
+            <Link
+              to="/admin/blogs"
+              onClick={() => {
+                dispatch(closePanel());
+              }}
+              className={`block py-2 px-3 rounded  ${
+                isActive("/admin/blogs") ? "bg-gray-700" : "text-gray-400"
+              }`}
+            >
+              Blogs
+            </Link>
 
-        <Link
-          to="/admin/contacts"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Contact Informations
-        </Link>
+            <Link
+              to="/admin/contacts"
+              onClick={() => {
+                dispatch(closePanel());
+              }}
+              className={`block py-2 px-3 rounded  ${
+                isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
+              }`}
+            >
+              Contact Informations
+            </Link>
 
-        <Link
-          to="/admin/services"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/admin/services") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Service Orders
-        </Link>
+            <Link
+              to="/admin/services"
+              onClick={() => {
+                dispatch(closePanel());
+              }}
+              className={`block py-2 px-3 rounded  ${
+                isActive("/admin/services") ? "bg-gray-700" : "text-gray-400"
+              }`}
+            >
+              Service Orders
+            </Link>
+          </>
+        )}
+
         <Link
           to="/profile"
           onClick={() => {

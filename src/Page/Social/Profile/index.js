@@ -62,7 +62,7 @@ const SocialProfilePage = () => {
         <div className="mt-6">
           <SocialProfileGrid
             checkSocial={recheck}
-            activeSocialAccounts={userProfile.activeSocialAccounts}
+            activeSocialAccounts={userProfile.activeSocialAccounts || []}
           />
         </div>
       ) : (

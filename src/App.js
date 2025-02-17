@@ -67,7 +67,7 @@ const routes = [
   {
     path: "/admin/blogs/creator",
     element: <BlogCreator />,
-    allowedRoles: ["superAdmin", "admin"],
+    allowedRoles: ["superAdmin"],
   },
   {
     path: "/admin/contacts",
