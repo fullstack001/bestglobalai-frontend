@@ -125,7 +125,7 @@ function Signup() {
           />
         ) : (
           <>
-            <div className="flex justify-center space-x-4">
+            {/* <div className="flex justify-center space-x-4">
               <button className="w-1/2 py-2 px-4 bg-white text-gray-900 rounded-md flex items-center justify-center space-x-2">
                 <FcGoogle className="text-2xl" />
                 <span>Google</span>
@@ -134,7 +134,7 @@ function Signup() {
                 <FaFacebook className="rounded-full text-blue-500 text-2xl" />
                 <span>Facebook</span>
               </button>
-            </div>
+            </div> */}
 
             <div className="flex items-center justify-between">
               <hr className="w-20 border-gray-600" />
