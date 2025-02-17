@@ -2,22 +2,32 @@ import { useState } from "react";
 import Modal from "react-modal";
 import { FiUserPlus } from "react-icons/fi";
 import { FaPlayCircle, FaTimes } from "react-icons/fa";
+import { Pagination } from "flowbite-react"; // Import Flowbite pagination
 
 export default function AvatarRender({ avatars, onSelect }) {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [videoUrl, setVideoUrl] = useState(null);
   const [isOpen, setIsOpen] = useState(false); // To control modal visibility
+  const [currentPage, setCurrentPage] = useState(1); // Track current page
+
+  const avatarsPerPage = 12; // Number of avatars to display per page
+  const indexOfLastAvatar = currentPage * avatarsPerPage; // Last avatar on the page
+  const indexOfFirstAvatar = indexOfLastAvatar - avatarsPerPage; // First avatar on the page
+  const currentAvatars = avatars.slice(indexOfFirstAvatar, indexOfLastAvatar); // Get current page avatars
 
   const handlePlayVideo = (mediaUrl) => {
     setVideoUrl(mediaUrl); // Set the video URL to play
     setIsOpen(true); // Open the modal
   };
 
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber); // Update current page
+  };
+
   return (
     <div>
-      <h2 className="mb-2 text-xl font-semibold"></h2>
-      <div className="grid grid-cols-2 gap-4 overflow-y-auto  md:grid-cols-6 ">
-        {avatars.map((avatar) => (
+      <div className="grid grid-cols-2 gap-4 overflow-y-auto md:grid-cols-6">
+        {currentAvatars.map((avatar) => (
           <div
             key={avatar.avatar_id}
             className={`relative rounded-xl border-2 p-4 ${
@@ -51,6 +61,17 @@ export default function AvatarRender({ avatars, onSelect }) {
           </div>
         ))}
       </div>
+
+      {/* Pagination */}
+      <div className="mt-4">
+        <Pagination
+          currentPage={currentPage}
+          totalPages={Math.ceil(avatars.length / avatarsPerPage)} // Calculate total pages
+          onPageChange={handlePageChange}
+        />
+      </div>
+
+      {/* Video Modal */}
       {videoUrl && (
         <Modal
           isOpen={isOpen}
