@@ -156,7 +156,7 @@ const ProfilePage = () => {
           )}
           <div className="mb-4">
             <Link
-              to="/plan"
+              to="/plans"
               className="bg-blue-600 px-4 py-2 rounded text-white"
             >
               {subscription ? "Change Plan" : "Subscribe"}

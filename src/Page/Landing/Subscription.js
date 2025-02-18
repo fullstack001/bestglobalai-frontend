@@ -133,17 +133,6 @@ const Subscription = () => {
               {plan.title === "Lite" ? "Try Free " : "Pay with Stripe "}{" "}
               <FiArrowUpRight />
             </button>
-            {/* <button
-              onClick={() => handlePayment(plan, "paypal")}
-              className={` ${
-                plan.title == "Plus+"
-                  ? "bg-blue-500 text-white hover:text-blue-500"
-                  : " text-blue-500  border border-blue-500"
-              } py-2 px-4 rounded-lg hover:bg-blue-200 transition flex justify-center`}
-            >
-              Pay with PayPal
-              <FiArrowUpRight className="ml-1" />
-            </button> */}
           </div>
         ))}
       </div>

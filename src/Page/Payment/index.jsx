@@ -33,8 +33,9 @@ const Payment = ({ month, currency }) => {
         subscriptionId,
         subscriptionType,
       })
-      .then(() => {
+      .then((response) => {
         setSuccessMessage(`Your subscription payment processed successfully.`);
+        console.log(response.data);
         dispatch(clearPlan());
         navigate("/profile");
       })
