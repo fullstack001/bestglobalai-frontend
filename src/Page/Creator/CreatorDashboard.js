@@ -14,7 +14,7 @@ import {
   faEye,
   faDownload,
 } from "@fortawesome/free-solid-svg-icons";
-import "react-languages-select/css/react-languages-select.css";
+// import "react-languages-select/css/react-languages-select.css";
 
 import default_cover from "../../assets/images/covers/cover1.jpg";
 import Layout from "../../components/Layout"; // Adjust the path as needed
