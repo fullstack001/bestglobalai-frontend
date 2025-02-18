@@ -39,8 +39,6 @@ function CheckoutForm({ priceId, email, callBack }) {
         },
       });
 
-      console.log("Payment Method Result:", paymentMethod);
-
       if (paymentMethodError) {
         console.error(
           "Error creating Payment Method:",
@@ -76,8 +74,6 @@ function CheckoutForm({ priceId, email, callBack }) {
       );
 
       if (!response.ok) {
-        const errorText = await response.text();
-        console.error("Backend error:", errorText);
         alert("Failed to create subscription. Please try again.");
         setIsProcessing(false);
 

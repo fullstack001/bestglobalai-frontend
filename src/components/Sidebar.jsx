@@ -14,7 +14,6 @@ import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const role = localStorage.getItem("role");
-  console.log(role, "<<<<<<<<<<<<<<<<<<");
   const isAdmin = role === "admin" || role === "superAdmin";
   const isSuperAdmin = role === "superAdmin";
   const isCreator =

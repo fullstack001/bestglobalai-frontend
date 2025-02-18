@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
+// import { FcGoogle } from "react-icons/fc";
+// import { FaFacebook } from "react-icons/fa";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

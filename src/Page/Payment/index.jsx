@@ -22,13 +22,7 @@ const Payment = ({ month, currency }) => {
   const dispatch = useDispatch();
   const email = localStorage.getItem("email");
 
-  const stripePriceId = plan.isMonthly ? plan.monthlyId : plan.yearlyId;
-  // const paypalPriceId = paypalOriginPlanIDs.find(
-  //   (option) => option.month === Number(month)
-  // )[currency];
-  // const paypalDiscountPriceId = paypalDiscountPlanIDs.find(
-  //   (option) => option.month === Number(month)
-  // )[currency];
+  const stripePriceId = plan?.isMonthly ? plan?.monthlyId : plan?.yearlyId;
 
   const handlePurchaseSubscription = (subscriptionType, subscriptionId) => {
     axios
@@ -41,6 +35,7 @@ const Payment = ({ month, currency }) => {
       })
       .then(() => {
         setSuccessMessage(`Your subscription payment processed successfully.`);
+        dispatch(clearPlan());
         navigate("/profile");
       })
       .catch(() => {
@@ -56,13 +51,15 @@ const Payment = ({ month, currency }) => {
             Secure Payment
           </h2>
         </div>
-        <div className="flex justify-between font-bold text-xl w-full text-gray-600 mb-4">
-          <div>Selected Plan: {plan.title}</div>
-          <div>
-            {" "}
-            Price: $ {plan?.isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
+        {plan && (
+          <div className="flex justify-between font-bold text-xl w-full text-gray-600 mb-4">
+            <div>Selected Plan: {plan.title}</div>
+            <div>
+              {" "}
+              Price: $ {plan?.isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
+            </div>
           </div>
-        </div>
+        )}
 
         {successMessage ? (
           <div className="mt-4 p-4 bg-green-100 text-green-800 rounded">

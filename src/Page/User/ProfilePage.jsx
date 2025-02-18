@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 
 const apiPort = process.env.REACT_APP_API_PORT;
@@ -122,6 +123,11 @@ const ProfilePage = () => {
               className="mt-1 bg-gray-700 text-gray-200 rounded"
             />
           </div>
+          <div className="mb-4">
+            <button className="bg-blue-600 px-4 py-2 rounded text-white">
+              Update Profile
+            </button>
+          </div>
           {subscription && (
             <>
               <div className="mb-4">
@@ -148,11 +154,13 @@ const ProfilePage = () => {
               </div>
             </>
           )}
-
           <div className="mb-4">
-            <button className="bg-blue-600 px-4 py-2 rounded text-white">
-              Update Profile
-            </button>
+            <Link
+              to="/plan"
+              className="bg-blue-600 px-4 py-2 rounded text-white"
+            >
+              {subscription ? "Change Plan" : "Subscribe"}
+            </Link>
           </div>
         </form>
       </div>

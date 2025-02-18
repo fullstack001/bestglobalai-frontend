@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
+// import { FcGoogle } from "react-icons/fc";
+// import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
+import { setUser } from "../../../store/userSlice";
 import logo_icon from "../../../assets/icons/logo.svg";
 import ForgotPasswordModal from "./ForgotPasswordModal";
 
@@ -18,6 +19,7 @@ const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 const Login = () => {
   const plan = useSelector((state) => state.goSubscription);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [captchaToken, setCaptchaToken] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
@@ -64,8 +66,9 @@ const Login = () => {
         captchaToken,
       });
 
-      const { token, user } = response.data;
+      const { token, user, subscription } = response.data;
       let role = user.role;
+      dispatch(setUser({ ...user, subscription }));
 
       // Save token to localStorage (or cookie)
       localStorage.setItem("token", token);

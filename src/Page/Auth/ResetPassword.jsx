@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { FcGoogle } from "react-icons/fc";
-import { FaFacebook } from "react-icons/fa";
+// import { FcGoogle } from "react-icons/fc";
+// import { FaFacebook } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useSelector } from "react-redux";
 
 import logo_icon from "../../assets/icons/logo.svg";
 
@@ -15,7 +14,6 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const ResetPasswprdPage = () => {
-  const plan = useSelector((state) => state.goSubscription);
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
