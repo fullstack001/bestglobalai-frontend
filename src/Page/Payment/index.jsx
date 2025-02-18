@@ -18,7 +18,7 @@ const Payment = ({ month, currency }) => {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState(null);
   const plan = useSelector((state) => state.goSubscription);
-  console.log(plan);
+  
   const dispatch = useDispatch();
   const email = localStorage.getItem("email");
 

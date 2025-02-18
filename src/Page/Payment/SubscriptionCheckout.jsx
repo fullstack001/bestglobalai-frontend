@@ -6,10 +6,14 @@ import {
   CardExpiryElement,
 } from "@stripe/react-stripe-js";
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import axios from "axios";
 
 const baseUrl = process.env.REACT_APP_API_PORT;
 
 function CheckoutForm({ priceId, email, callBack }) {
+  const user = useSelector((state) => state.user.user);
+  const subscription = user?.subscription;
   const stripe = useStripe();
   const elements = useElements();
 
@@ -54,6 +58,12 @@ function CheckoutForm({ priceId, email, callBack }) {
         alert("Payment Method creation failed. Please try again.");
         setIsProcessing(false);
         return;
+      }
+
+      if (subscription) {
+        await axios.post(`${baseUrl}/api/subscription/cancel-subscription`, {
+          subscriptionId: subscription.subscriptionId,
+        });
       }
 
       // Call backend to create subscription

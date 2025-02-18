@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { plans } from "../../lib/plans"; // Importing available plans
+
+import { setplan } from "../../store/goSubscription";
 
 // Filter out the "Lite" plan from the available plans
 const paidPlans = plans.filter((plan) => plan.title !== "Lite");
 
 const PlanPage = () => {
+  const dispatch = useDispatch();
+
   const user = useSelector((state) => state.user.user); // Get user details from Redux store
   const navigate = useNavigate();
   const subscription = user?.subscription;
@@ -17,6 +21,8 @@ const PlanPage = () => {
 
   // Function to handle the payment process
   const handlePayment = async (plan, method) => {
+    dispatch(setplan({ ...plan, isMonthly }));
+
     if (email) {
       // If user is logged in, redirect to the payment page
       if (method === "stripe") {
