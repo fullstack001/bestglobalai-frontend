@@ -70,6 +70,15 @@ function EbookViewer() {
 
   // ✅ Fix resize error using debounced event listener
   useEffect(() => {
+    const resizeObserverError = (event) => {
+        if (event.message === 'ResizeObserver loop completed with undelivered notifications.') {
+            event.stopImmediatePropagation();
+        }
+    };
+    window.addEventListener('error', resizeObserverError);
+    return () => {
+        window.removeEventListener('error', resizeObserverError);
+    };
     const handleResize = debounce(() => {
       if (renditionRef.current) {
         requestAnimationFrame(() => {
@@ -85,6 +94,7 @@ function EbookViewer() {
 
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
+
   }, []);
 
    // ✅ Inject CSS inside ReactReader's iFrame
@@ -93,7 +103,8 @@ function EbookViewer() {
       renditionRef.current.themes.default({
         "iframe": {
           "width": "100% !important",
-          "height": "100vh !important"
+          "height": "auto !important",
+          "min-height": "300px !important"
         },
       });
     }
@@ -201,6 +212,9 @@ function EbookViewer() {
               url={bookUrl}
               location={location}
               locationChanged={handleLocationChanged}
+              // epubInitOptions={{
+              //   openAs: 'epub',
+              // }}
               getRendition={(rendition) => {
                 if (rendition) {
                     renditionRef.current = rendition;
@@ -210,6 +224,8 @@ function EbookViewer() {
               epubOptions={{
                 allowPopups: true,
                 allowScriptedContent: true,
+                flow: 'scrolled',
+                manager: 'continuous',
               }}
             />
           </div>
