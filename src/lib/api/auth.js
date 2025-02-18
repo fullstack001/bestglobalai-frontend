@@ -29,3 +29,17 @@ export async function verifyCode(email, validationCode) {
     };
   }
 }
+
+export async function forgotPassword(email) {
+  try {
+    const response = await axiosInstance.post(`/api/auth/forgot-password`, {
+      email,
+    });
+    return { status: 200, data: response.data };
+  } catch (error) {
+    return {
+      status: 500,
+      msg: error.response.data.msg || "An error Reaquesting password reset",
+    };
+  }
+}

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Landing from "./Page/Landing/Landing";
 import Login from "./Page/Auth/Login";
 import Signup from "./Page/Auth/Signup";
+import ResetPassword from "./Page/Auth/ResetPassword";
 import Payment from "./Page/Payment";
 import CreatorDashboard from "./Page/Creator/CreatorDashboard";
 import BookCreator from "./Page/Creator/BookCreator";
@@ -48,6 +49,7 @@ const routes = [
   { path: "/", element: <Landing /> },
   { path: "/login", element: <Login /> },
   { path: "/signup", element: <Signup /> },
+  { path: "/reset-password", element: <ResetPassword /> },
   { path: "/terms-and-condition", element: <Terms /> },
   { path: "/privacy-policy", element: <Privacy /> },
   { path: "/faq", element: <Faq /> },

@@ -9,7 +9,8 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector } from "react-redux";
 
-import logo_icon from "../../assets/icons/logo.svg";
+import logo_icon from "../../../assets/icons/logo.svg";
+import ForgotPasswordModal from "./ForgotPasswordModal";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
@@ -20,6 +21,7 @@ const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [captchaToken, setCaptchaToken] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [showFogotPasswordModal, setShowFogotPasswordModal] = useState(false);
 
   // Load stored credentials if "Remember Me" was checked
   useEffect(() => {
@@ -109,6 +111,22 @@ const Login = () => {
     }
   };
 
+  const successResetRequest = () => {
+    console.log("SUCCESS!!!!!!");
+    toast.success(
+      <div className="custom-toast flex">
+        <IoCloseCircleOutline className="custom-icon" />
+        <div className="mt-4">
+          Reset password request sent successfully. Please check your email.
+        </div>
+      </div>,
+      {
+        autoClose: 3000,
+        hideProgressBar: true,
+      }
+    );
+  };
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-gray-900 ">
       <div className="w-full max-w-md p-8 space-y-8 bg-gray-800 rounded-lg shadow-lg">
@@ -185,9 +203,12 @@ const Login = () => {
               />
               <span className="ml-2">Remember me</span>
             </label>
-            <a href="#" className="text-sm text-red-500 hover:underline">
+            <div
+              onClick={() => setShowFogotPasswordModal(true)}
+              className="text-sm text-red-500 hover:underline cursor-pointer"
+            >
               Recover Password
-            </a>
+            </div>
           </div>
 
           <ReCAPTCHA
@@ -214,6 +235,13 @@ const Login = () => {
           </p>
         </div>
       </div>
+      {showFogotPasswordModal && (
+        <ForgotPasswordModal
+          handleSuccessSend={successResetRequest}
+          show={showFogotPasswordModal}
+          handleClose={() => setShowFogotPasswordModal(false)}
+        />
+      )}
     </div>
   );
 };
