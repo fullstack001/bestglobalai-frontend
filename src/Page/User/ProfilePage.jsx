@@ -13,8 +13,11 @@ const ProfilePage = () => {
     profileImage: "",
   });
 
+  const role = localStorage.getItem("role");
+
   const [subscription, setSubscription] = useState(null);
   const [newImage, setNewImage] = useState(null);
+  console.log(role);
 
   useEffect(() => {
     // Fetch the logged-in user's profile
@@ -128,40 +131,46 @@ const ProfilePage = () => {
               Update Profile
             </button>
           </div>
-          {subscription && (
+          {role !== "superAdmin" && (
             <>
+              {subscription && (
+                <>
+                  <div className="mb-4">
+                    <label className="block text-gray-400">
+                      Subscripion Plan
+                    </label>
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      value={subscription.plan}
+                      className="mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg w-full"
+                      disabled
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block text-gray-400">
+                      Subscripion Expiry Date
+                    </label>
+                    <input
+                      type="text"
+                      name="phoneNumber"
+                      value={subscription.expiryDate.toString().slice(0, 10)}
+                      className="mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg w-full"
+                      disabled
+                    />
+                  </div>
+                </>
+              )}
               <div className="mb-4">
-                <label className="block text-gray-400">Subscripion Plan</label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value={subscription.plan}
-                  className="mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg w-full"
-                  disabled
-                />
-              </div>
-              <div className="mb-4">
-                <label className="block text-gray-400">
-                  Subscripion Expiry Date
-                </label>
-                <input
-                  type="text"
-                  name="phoneNumber"
-                  value={subscription.expiryDate.toString().slice(0, 10)}
-                  className="mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded-lg w-full"
-                  disabled
-                />
+                <Link
+                  to="/plans"
+                  className="bg-blue-600 px-4 py-2 rounded text-white"
+                >
+                  {subscription ? "Change Plan" : "Subscribe"}
+                </Link>
               </div>
             </>
           )}
-          <div className="mb-4">
-            <Link
-              to="/plans"
-              className="bg-blue-600 px-4 py-2 rounded text-white"
-            >
-              {subscription ? "Change Plan" : "Subscribe"}
-            </Link>
-          </div>
         </form>
       </div>
     </Layout>
