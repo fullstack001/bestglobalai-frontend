@@ -104,7 +104,7 @@ const Feature = () => {
             maximizing impact.
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -146,7 +146,7 @@ const Feature = () => {
             experience.
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -172,7 +172,7 @@ const Feature = () => {
             audience is.
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -215,7 +215,7 @@ const Feature = () => {
             continuously improve your strategy.
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -237,7 +237,7 @@ const Feature = () => {
             rates.
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -276,7 +276,7 @@ const Feature = () => {
             growth, and maximize your return on investment (ROI).
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -301,7 +301,7 @@ const Feature = () => {
             campaign strategies to match your brand and target audience.
           </p>
           <button
-            onClick={() => navigate("/learn-more")}
+            onClick={() => navigate("/signup")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
