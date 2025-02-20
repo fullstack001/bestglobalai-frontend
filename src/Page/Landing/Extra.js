@@ -307,11 +307,7 @@ of selife video.
               <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
               When streaming an interactive avatar, 1 API credit equals 5 minutes of streaming.
             </li>
-            <li className="flex items-start mb-3">
-              {" "}
-              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
-              Credits are measured in 1 second increments with a minimum of 30 seconds per session.
-            </li>
+            
            
           </ul>
         </div>
