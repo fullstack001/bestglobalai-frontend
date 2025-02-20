@@ -253,6 +253,69 @@ const Extra = () => {
           </ul>
         </div>
       </div>
+
+      <div
+        className="relative bg-cover bg-center w-full rounded-3xl p-8 mt-12 block md:flex justify-between"
+        style={{
+          backgroundImage: `url(${extra_background})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <div className="bg-opacity-80 rounded-xl p-6 max-w-2xl mx-auto text-left">
+          <h3 className="text-2xl font-bold text-gray-900">
+          Order the Conversational Chat Avatar with "knowledge base."
+
+          </h3>
+          <p className="mt-4 text-gray-700 text-lg">
+          The $100 fee is for use of the default avatars available in the paid plan. The $200 fee is for creation of your selfie
+video sample that we'll use to create your Chat Avatar. Use this on your own home pages or inside the landing page, mail
+campaigns, and Ayrshare posts to negotiate sales and inform your users about your products and services.
+          </p>
+          <div className="text-2xl font-bold text-gray-700 mt-6">
+            Starting at{" "}
+            <span className="text-3xl text-gray-900">$100.00 each</span>
+          </div>
+          <button className="bg-blue-600 text-white px-6 py-2 w-full text-center rounded-full mt-6 hover:bg-blue-700 transition duration-300 flex justify-center text-2xl ">
+            Purchase
+            <IoIosArrowForward className="ml-2 mt-1" />
+          </button>
+        </div>
+        <div className="mt-8 text-left bg-white p-4 border rounded-3xl flex flex-col justify-center">
+          <h4 className="text-lg font-bold text-gray-900 text-left mb-3">
+            What's Included
+          </h4>
+          <ul className="mt-4 text-gray-700 ">
+            <li className="flex items-start mb-3">
+              {" "}
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Depending on your business brand, we'll develop the knowledge base content.
+            </li>
+            <li className="flex items-start mb-3">
+              {" "}
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              You select which default template you want to use in your chat or for the $200, create your own 2-3 minutes
+of selife video.
+            </li>
+            <li className="flex items-start mb-3">
+              {" "}
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Length of your chat avatar streams is based on the following calculation:              
+            </li>
+            <li className="flex items-start mb-3">
+              {" "}
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              When streaming an interactive avatar, 1 API credit equals 5 minutes of streaming.
+            </li>
+            <li className="flex items-start mb-3">
+              {" "}
+              <IoIosCheckmarkCircleOutline className="text-green-400 rounded-full w-[28px] h-[24px] text-xl mr-1" />{" "}
+              Credits are measured in 1 second increments with a minimum of 30 seconds per session.
+            </li>
+           
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };
