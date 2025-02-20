@@ -211,7 +211,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
                 isActive("/admin/contacts") ? "bg-gray-700" : "text-gray-400"
               }`}
             >
-              Contact Informations
+              Contact Information
             </Link>
 
             <Link
