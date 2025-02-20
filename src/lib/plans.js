@@ -9,7 +9,7 @@ export const plans = [
     features: [
       "Free access to Embellisher eReader and Creator Editor & Sales.",
       "Multimedia Landing Page Apps at Author/Publisher Level.",
-      "Access to marketing, coupons, and pricing of your ePub3 creations and other backend tools for your promotions and landing page multimedia ePub3 documents.",
+     
     ],
   },
   {
@@ -19,7 +19,7 @@ export const plans = [
     monthlyId: "price_1Qs7B4HWocuqbvt5Ww2TcDOR",
     yearlyId: "price_1Qs79ZHWocuqbvt5lCTZZWkK",
     descriptions: [
-      "Free access to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps at Author/Publisher Level. Access to marketing, coupons, and pricing of your ePub3 creations and other backend tools for your promotions and landing page multimedia ePub3 documents.",
+      "Free access to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps at Author/Publisher Level.",
     ],
 
     features: [
