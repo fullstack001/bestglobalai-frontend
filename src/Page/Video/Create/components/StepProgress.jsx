@@ -4,7 +4,7 @@ const steps = ["Replica", "Background", "Content", "Create"];
 
 const StepProgress = ({ currentStep }) => {
   return (
-    <div className="mb-4 flex justify-between text-gray-500">
+    <div className="mb-4 grid grid-cols-2 sm:grid-cols-4 justify-between space-y-3  text-gray-500">
       {steps.map((step, index) => (
         <div key={index} className="flex items-center">
           <div

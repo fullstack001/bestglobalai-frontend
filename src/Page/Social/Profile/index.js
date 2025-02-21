@@ -16,7 +16,9 @@ const SocialProfilePage = () => {
     const getUserProfile = async () => {
       try {
         const res = await getSocialProfiles();
+        console.log(res);
         const profiles = res.profiles;
+        console.log(refId);
         const profile = profiles.find((item) => item.refId === refId); // Fixed findOne to find
         if (profile) setUserProfile(profile);
       } catch {
