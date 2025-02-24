@@ -4,12 +4,11 @@ export const plans = [
     monthlyPrice: 0,
     yearlyPrice: 0,
     descriptions: [
-      "Access at Author/Reader-Only Level to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps.",
+      "Access at Author/Reader-Only Level to Embellisher eReader and Creator Editor.",
     ],
     features: [
       "Free access to Embellisher eReader and Creator Editor & Sales.",
       "Multimedia Landing Page Apps at Author/Publisher Level.",
-     
     ],
   },
   {
@@ -51,7 +50,7 @@ export const plans = [
       "Full access to Global Replica Video Creator Platform (1,060 stock replicas & personal replica creator).",
       "Full access to Global Replica Video Conversation Creator Platform (7+ personas with 314 Talking Photos & Personal Replica Creator).",
       "10 free personal replicas.",
-      "100 new personal replicas per month.",      
+      "100 new personal replicas per month.",
       "Full access to Global Audience selection, campaign creation for social media marketing with up to ten different channels (Facebook, X, Instagram, Linkedin, YouTube, Pinterest, Reddit, and more).",
       "Full access to scheduling and transmission of social media campaigns, plus full monitoring/trafficking of results.",
     ],
