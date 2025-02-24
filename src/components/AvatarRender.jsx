@@ -25,8 +25,8 @@ export default function AvatarRender({ avatars, onSelect }) {
   };
 
   return (
-    <div>
-      <div className="grid grid-cols-2 gap-4 overflow-y-auto md:grid-cols-6">
+    <>
+      <div className="grid grid-col-2 sm:grid-cols-4  gap-4 overflow-y-auto md:grid-cols-6">
         {currentAvatars.map((avatar) => (
           <div
             key={avatar.avatar_id}
@@ -63,11 +63,13 @@ export default function AvatarRender({ avatars, onSelect }) {
       </div>
 
       {/* Pagination */}
-      <div className="mt-4">
+      <div className="flex overflow-x-auto sm:justify-center text-white">
         <Pagination
           currentPage={currentPage}
           totalPages={Math.ceil(avatars.length / avatarsPerPage)} // Calculate total pages
           onPageChange={handlePageChange}
+          showIcons
+          layout="table"
         />
       </div>
 
@@ -110,6 +112,6 @@ export default function AvatarRender({ avatars, onSelect }) {
           </div>
         </Modal>
       )}
-    </div>
+    </>
   );
 }

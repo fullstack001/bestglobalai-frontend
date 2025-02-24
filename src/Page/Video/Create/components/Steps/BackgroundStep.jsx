@@ -31,13 +31,11 @@ const BackgroundStep = ({ onNext, onPrev }) => {
             onChange={() => setBackgroundType("color")}
             className="mr-2 h-5 w-5"
           />
-          <span className="w-full rounded  bg-blue-200 p-2">
-            Color Background
-          </span>
+          <span className="text-green-500 p-2">Background Color</span>
         </label>
         {backgroundType === "color" && (
-          <div className="rounded-lg border bg-gray-100 p-4">
-            <p>Select a color background</p>
+          <div className="p-4 ">
+            <p className="text-gray-500"> Select a color background</p>
             <input
               type="color"
               onChange={(e) =>
@@ -55,12 +53,12 @@ const BackgroundStep = ({ onNext, onPrev }) => {
             value="image"
             checked={backgroundType === "image"}
             onChange={() => setBackgroundType("image")}
-            className="mr-2 h-5 w-5"
+            className="mr-2 h-5 w-5 shadow-lg"
           />
-          <span className="w-full rounded bg-blue-200 p-2">Image </span>
+          <span className="text-green-500 p-2">Background Image </span>
         </label>
         {backgroundType === "image" && (
-          <div className="rounded-lg border bg-gray-100 p-4">
+          <div className="p-4">
             <p>Comming Soon</p>
             {/* Add image upload component here */}
           </div>
@@ -75,10 +73,10 @@ const BackgroundStep = ({ onNext, onPrev }) => {
             onChange={() => setBackgroundType("video")}
             className="mr-2 h-5 w-5"
           />
-          <span className="w-full rounded bg-blue-200 p-2">Video </span>
+          <span className="text-green-500 p-2">Background Video </span>
         </label>
         {backgroundType === "video" && (
-          <div className="rounded-lg border bg-gray-100 p-4">
+          <div className="p-4">
             <p>Comming Soon</p>
             {/* Add video upload component here */}
           </div>

@@ -47,11 +47,13 @@ export default function TalkingPhotoRender({ talkingPhotos, onSelect }) {
       </div>
 
       {/* Pagination */}
-      <div className="mt-4">
+      <div className="flex overflow-x-auto sm:justify-center text-white">
         <Pagination
           currentPage={currentPage}
           totalPages={Math.ceil(talkingPhotos.length / photosPerPage)} // Calculate total pages
           onPageChange={handlePageChange}
+          showIcons
+          layout="table"
         />
       </div>
     </div>

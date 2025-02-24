@@ -104,12 +104,12 @@ const ContentStep = ({ onNext, onPrev, videoData }) => {
           <span className="w-full rounded  bg-blue-200 p-2">Text Script</span>
         </label>
         {voiceType === "text" && (
-          <div className="rounded-lg border bg-gray-100 p-4">
-            <div className="mx-auto  w-full  rounded-lg bg-gray-800 p-4 text-white shadow-md">
+          <div className="rounded-lg border p-2">
+            <div className="mx-auto  w-full  rounded-lg bg-gray-800  text-white shadow-md">
               <div className=" flex justify-between">
-                <div className="flex items-center">
+                <div className="grid sm:flex items-center">
                   <div
-                    className="flex cursor-pointer rounded-xl border p-3 font-semibold shadow-md"
+                    className="flex cursor-pointer rounded-xl border p-3 m-2 font-semibold shadow-md"
                     onClick={toggleModal}
                   >
                     {selectedVoice?.language} -{selectedVoice?.name}
@@ -117,7 +117,7 @@ const ContentStep = ({ onNext, onPrev, videoData }) => {
                   <select
                     value={selectedEmoji}
                     onChange={(e) => setSelectedEmoji(e.target.value)}
-                    className="ml-2 h-10 bg-transparent "
+                    className="ml-2 m-2  h-10 bg-transparent "
                   >
                     {moods.map((mood) => (
                       <option key={mood.label} value={mood.label}>

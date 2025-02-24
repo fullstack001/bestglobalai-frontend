@@ -29,7 +29,7 @@ const CreateVideoStep = ({ onPrev, videoData }) => {
   return (
     <div>
       {/* Create, Save, and Download Buttons */}
-      <div className="flex items-center justify-between">
+      <div className="block sm:flex items-center justify-between">
         {/* Prev Button */}
         <button
           className="rounded-xl bg-slate-600 px-4 py-2 text-white"
@@ -38,7 +38,7 @@ const CreateVideoStep = ({ onPrev, videoData }) => {
           Prev
         </button>
 
-        <div className="flex space-x-4">
+        <div className="flex space-x-4 mt-3">
           {/* Video Name Input */}
           {showNameInput && (
             <input
@@ -65,7 +65,7 @@ const CreateVideoStep = ({ onPrev, videoData }) => {
       </div>
       {/* Preview Area */}
       <div className="mb-6">
-        <div className="mt-4 flex h-64 w-full  items-center justify-center bg-gray-200 text-center text-lg text-gray-800">
+        <div className="mt-4 flex h-64 w-full  items-center justify-center  text-center text-lg ">
           <p>
             {success
               ? "Video is creating. Please check the status on videos page."
