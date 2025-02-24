@@ -73,7 +73,7 @@ const extraData = [
     title: "Order the PureVPN server for one month.",
     description:
       "The $10 fee is for use of the VPN server when you want to bypass hackers and spies online. Market to your social media networds without fear. Just use the coupon to redeem your month's worth of protection and use it whenever you have that special social media post to send over a private network. We also have other time limits, so just email us to see what they are. ",
-    price: "$100.00 each",
+    price: "$10.00 each",
     features: [
       "A coupon is redeemable for a month's PureVPN server use. You'll get the link to go there and get your website version.",
     ],
