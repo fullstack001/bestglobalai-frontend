@@ -73,6 +73,7 @@ code {
 }
 
 
-.jodit-ui-input{
+.jodit-ui-input,
+.jodit-ui-checkbox__label{
   color: black;
 }
