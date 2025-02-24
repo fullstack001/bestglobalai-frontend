@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,6 +13,7 @@ import { openPanel, closePanel } from "../store/openPanelSlice";
 import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
+  
   const role = localStorage.getItem("role");
   const isAdmin = role === "admin" || role === "superAdmin";
   const isSuperAdmin = role === "superAdmin";
