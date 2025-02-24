@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { ToastContainer, toast } from "react-toastify";
-import { Datepicker } from "flowbite-react";
 import { IoCloseCircleOutline } from "react-icons/io5";
 
 import { socialProfiles } from "../../../lib/socialProfile";
@@ -10,6 +9,7 @@ import { getMediaUrls } from "./getMediaUrls";
 import { getMediaWarning } from "./getMediaWarning";
 import PostProgressModal from "./ProgressModal";
 import { postMedia } from "../../../lib/api/social";
+import SchedulePostModal from "./SchedulePostModal";
 
 const SocialMediaPost = ({ socials }) => {
   const [selectedNetworks, setSelectedNetworks] = useState(socialProfiles);
@@ -209,24 +209,8 @@ const SocialMediaPost = ({ socials }) => {
     }
   };
 
-  const handleSchedulePost = () => {
-    if (!scheduleDate) {
-      toast.error(
-        <div className="custom-toast flex">
-          <IoCloseCircleOutline className="custom-icon" />
-          <div className="mt-4">
-            Please select a date and time to schedule the post.
-          </div>
-        </div>,
-        {
-          className: "error-toast",
-          autoClose: 2000,
-        }
-      );
-      return;
-    }
-    console.log(scheduleDate);
-    setShowDatePicker(false);
+  const handleSchedulePost = ({ scheduleDate, timezone }) => {
+    setScheduleDate(scheduleDate);
     handlePost();
   };
 
@@ -412,7 +396,7 @@ const SocialMediaPost = ({ socials }) => {
         </div>
       </div>
 
-      <div className="flex justify-end space-x-4 mt-6">
+      <div className="flex justify-start space-x-4 mt-6">
         <button
           className="px-4 py-2 bg-gray-300 text-gray-700 rounded-md hover:bg-gray-400"
           onClick={() => setShowDatePicker(true)}
@@ -426,7 +410,12 @@ const SocialMediaPost = ({ socials }) => {
           Post Now
         </button>
       </div>
-      {showDatePicker && (
+      <SchedulePostModal
+        isOpen={showDatePicker}
+        onClose={() => setShowDatePicker(false)}
+        onSchedule={handleSchedulePost}
+      />
+      {/* {showDatePicker && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg shadow-lg">
             <h3 className="text-lg font-semibold mb-4">Select Date & Time</h3>
@@ -453,7 +442,7 @@ const SocialMediaPost = ({ socials }) => {
             </div>
           </div>
         </div>
-      )}
+      )} */}
 
       <ToastContainer />
       <PostProgressModal
