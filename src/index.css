@@ -72,3 +72,8 @@ code {
   background-color: #374151 !important;
 }
 
+
+.jodit-ui-input,
+.jodit-ui-checkbox__label{
+  color: black;
+}
