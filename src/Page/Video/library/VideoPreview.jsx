@@ -10,24 +10,25 @@ export default function VideoPreview({
   const [loading, setLoading] = useState(false);
   const [video, setVideo] = useState(null);
   const [vidoeDetail, setVideoDetail] = useState(null);
+  const [generating, setGenerating] = useState(false);
 
   useEffect(() => {
     const fetchVideoDetail = async (video_id) => {
       setLoading(true);
       const currentVideo = originVideos.find(
-        (item) => item.video_id === video_id,
+        (item) => item.video_id === video_id
       );
       setVideo(currentVideo);
       if (currentVideo.status === "completed") {
         const res = await getVideoDetail(video_id);
         setVideoDetail(res);
       } else {
-        fetchVideoDetail(video_id);
+        setGenerating(true);
       }
       setLoading(false);
     };
     fetchVideoDetail(video_id);
-  }, [video_id]);
+  }, [video_id, originVideos]);
 
   return (
     <div
