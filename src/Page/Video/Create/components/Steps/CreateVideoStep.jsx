@@ -14,7 +14,13 @@ const CreateVideoStep = ({ onPrev, videoData }) => {
     setError(null);
 
     try {
-      // Call your API to create the video
+      console.log(videoData);
+      // if (videoData.background.type !== "color") {
+      //   const formData = new FormData();
+      //   formData.append("file", videoData.background.file);
+      // }
+
+      // Call your API to create     the video
       const response = await createVideo({ ...videoData, name: videoName });
       setSuccess(true);
 
