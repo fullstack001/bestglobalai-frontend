@@ -32,7 +32,7 @@ const Layout = ({ children, titleText }) => {
           #heygen-streaming-embed {
             z-index: 9999;
             position: fixed;
-            left: 40px;
+            right: 40px;
             bottom: 40px;
             width: 200px;
             height: 200px;
