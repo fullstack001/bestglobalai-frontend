@@ -28,8 +28,6 @@ export const plans = [
       "3 free personal replicas.",
       "25 new personal replica creations per month.",
       "Up to 3 concurrent conversations.",
-      "Content Moderation.",
-      "Bring your own audio",
       "Full access to Global Audience selection, campaign creation for social media marketing with up to ten different channels (Facebook, X, Instagram, Linkedin, YouTube, Pinterest, Reddit, and more).",
       "Full access to scheduling and transmission of social media campaign, plus full monitoring/trafficking of results.",
     ],
