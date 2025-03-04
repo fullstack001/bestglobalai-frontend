@@ -350,7 +350,7 @@ const Feature = () => {
         <div className="relative mt-10">         
           <iframe
             className="w-full h-[400px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
-            src="https://www.youtube.com/embed/AyZUvl-r6tA?si=ofjQE7eyNLkcCI2P"
+            src="https://www.youtube.com/embed/vVvKV7uKX6Q?si=F8ZfjWph0idxkVn5"
             title="API Installation Choices #artificialintelligencemarketing #motivation #news"
             frameBorder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

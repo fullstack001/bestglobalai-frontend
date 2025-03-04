@@ -13,12 +13,25 @@ import { openPanel, closePanel } from "../store/openPanelSlice";
 import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
-  
+  const user = useSelector((state) => state.user.user);
+  const token = localStorage.getItem("token");
+  const userRole = localStorage.getItem("role");
   const role = localStorage.getItem("role");
   const isAdmin = role === "admin" || role === "superAdmin";
   const isSuperAdmin = role === "superAdmin";
   const isCreator =
     role === "superAdmin" || role === "admin" || role === "editor";
+
+  const isPaidUser =  () => {
+    if (userRole === "superAdmin") return true;
+    if(!user) return false;
+    if (!user.subscription || !user.subscription?.expiryDate) {
+      return false; 
+    }
+    return true;
+  };
+
+ 
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -88,6 +101,21 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         >
           Explore Ebooks
         </Link>
+
+        {isPaidUser() && (
+          <Link
+            to="/followers"
+            onClick={() => {
+              dispatch(closePanel());
+            }}
+            className={`block py-2 px-3 rounded  ${
+              isActive("/followers") ? "bg-gray-700" : "text-gray-400"
+            }`}
+          >
+            Followers
+          </Link>
+        )}
+
         <div className="block">
           <button
             onClick={() => handleTogglePanel("video")}

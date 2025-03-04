@@ -68,13 +68,14 @@ const Login = () => {
 
       const { token, user, subscription } = response.data;
       let role = user.role;
-      dispatch(setUser({ ...user, subscription }));
-      console.log(user);
+      dispatch(setUser({ ...user, subscription }));    
 
       // Save token to localStorage (or cookie)
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("email", user.email);
+      localStorage.setItem("userId", user._id);
+      localStorage.setItem('paidUser', user.isActive);
       localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
 
       // Store credentials if "Remember Me" is checked, otherwise remove them

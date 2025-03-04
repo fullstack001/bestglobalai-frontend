@@ -37,6 +37,16 @@ code {
   padding: 16px;
 }
 
+.success-toast{
+  background-color: #18e75d !important;
+  color: white !important;
+  font-family: "Arial", sans-serif;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
 .Toastify__toast-icon{
     display: none !important;
 }

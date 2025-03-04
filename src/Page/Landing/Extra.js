@@ -78,6 +78,17 @@ const extraData = [
       "A coupon is redeemable for a month's PureVPN server use. You'll get the link to go there and get your website version.",
     ],
   },
+  {
+    title: "Campaign Package",
+    description:
+      "Some folks don't want AI to do the work. So, we think you might like us to create your campaign for you.  We'll keep you advised every step-from the creation of your interactive landing page to the posting of the invitations with Ayrshare.  We'll give you a developer, a writer, and a designer, and we'll help you market the campaign internationally with our Ayrshare API.  We'll give you the invoice total to be paid after your campaign is ready and approved to run by you in your membership account interface.",
+    price: "$1,000 each",
+    features: [
+      "Human and professional copy writer.",
+      "Fullstack Developer and Designer.",
+      "You are kept informed every step of the way."
+    ],
+  },
 ];
 
 const Extra = () => {
