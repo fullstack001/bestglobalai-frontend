@@ -18,6 +18,7 @@ const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const Login = () => {
   const plan = useSelector((state) => state.goSubscription);
+  const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -88,6 +89,8 @@ const Login = () => {
 
       if (plan) {
         navigate("/payment");
+      } else if (extra) {
+        navigate("/extra-payment");
       } else if (
         role === "superAdmin" ||
         role === "admin" ||

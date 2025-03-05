@@ -3,6 +3,7 @@ import ebookReducer from "./ebookSlice";
 import openPanelReducer from "./openPanelSlice";
 import goSubscriptionReducer from "./goSubscription";
 import userReducer from "./userSlice";
+import extraReducer from "./getExtra";
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     openPanel: openPanelReducer,
     goSubscription: goSubscriptionReducer,
     user: userReducer,
+    extra: extraReducer,
   },
 });
 

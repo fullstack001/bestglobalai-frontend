@@ -16,6 +16,7 @@ const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 function Signup() {
   const plan = useSelector((state) => state.goSubscription);
+  const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     fullName: "",
@@ -92,6 +93,10 @@ function Signup() {
 
     if (plan) {
       navigate("/payment");
+    }
+
+    if (extra) {
+      navigate("/extra-payment");
     }
 
     // Redirect to dashboard

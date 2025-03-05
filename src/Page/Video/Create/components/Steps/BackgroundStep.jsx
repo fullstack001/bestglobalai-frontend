@@ -14,8 +14,8 @@ const BackgroundStep = ({ onNext, onPrev }) => {
   };
 
   const handleNext = () => {
-    console.log(backgroundType);
-    if (backgroundType !== "color") {
+    console.log(selectedBackground?.file);
+    if (backgroundType !== "color" && selectedBackground?.file) {
       const formData = new FormData();
       formData.append("file", selectedBackground.file);
       axios
