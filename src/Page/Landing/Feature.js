@@ -259,11 +259,7 @@ const Feature = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-10 container">
         <div className="relative">
-          <img
-            src={socialMedia_integration_image}
-            alt="AI Background"
-            className="w-full rounded-lg shadow-lg"
-          />
+        
           <iframe
              className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
              src="https://www.youtube.com/embed/3UW4mZJqo9s?si=8TUtOh4TVsqMmCIf"
