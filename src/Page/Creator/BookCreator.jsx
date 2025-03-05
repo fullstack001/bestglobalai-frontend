@@ -43,14 +43,10 @@ function BookCreator() {
   const [currentYoutubeTitle, setCurrentYoutubeTitle] = useState("");
   const [currentYoutubeLink, setCurrentYoutubeLink] = useState("");
 
-  const quillRefs = useRef([]);
   const lastPageRef = useRef(null);
   const navigate = useNavigate();
   // const openai = new OpenAI({ openAiApiKey, dangerouslyAllowBrowser: true });
 
-  useEffect(() => {
-    quillRefs.current = quillRefs.current.slice(0, pages.length);
-  }, [pages]);
 
   useEffect(() => {
     if (lastPageRef.current) {
@@ -71,6 +67,8 @@ function BookCreator() {
   };
   
   const updatePageField = (index, field, value) => {
+    console.log("Updating field:", field, "with value:", value);
+    console.log("Current pages state:", pages);
     const updatedPages = pages.map((page, pageIndex) => {
       if (pageIndex === index) {
         return { ...page, [field]: value };
@@ -489,15 +487,67 @@ function BookCreator() {
   );
 }
 
+
+
 export const RichTextEditor = ({ initialValue, getValue }) => {
   const editor = useRef(null);
+  const [content, setContent] = useState(initialValue);
+  const [selectionRange, setSelectionRange] = useState(null);
+
+  useEffect(() => {
+    setContent(initialValue);
+  }, [initialValue]);
+
+  useEffect(() => {
+    if (editor.current && editor.current.editor && selectionRange) {
+      const editorInstance = editor.current.editor;
+      editorInstance.selection.restore(selectionRange);
+    }
+  }, [selectionRange, content]);
+
+  const handleChange = (newContent) => {
+    if (editor.current && editor.current.editor) {
+      const editorInstance = editor.current.editor;
+      setSelectionRange(editorInstance.selection.save());
+    }
+    setContent(newContent);
+    getValue(newContent);
+  };
+
+  const handleFocus = () => {
+    if (editor.current && editor.current.editor) {
+      const editorInstance = editor.current.editor;
+      setSelectionRange(editorInstance.selection.save());
+    }
+  };
+
+  const handleBlur = () => {
+    if (editor.current && editor.current.editor) {
+      const editorInstance = editor.current.editor;
+      setSelectionRange(editorInstance.selection.save());
+    }
+  };
 
   return (
     <JoditEditor
       ref={editor}
-      value={initialValue}
+      value={content}
       tabIndex={1}
-      onChange={(newContent) => getValue(newContent)}
+      onChange={(newContent) => {
+        if (editor.current && editor.current.editor) {
+          handleChange(newContent);
+        }
+      }}
+      onFocus={() => {
+        if (editor.current && editor.current.editor) {
+          handleFocus();
+        }
+      }}
+      onBlur={() => {
+        if (editor.current && editor.current.editor) {
+          handleBlur();
+        }
+      }}
       className="text-black"
     />
   );

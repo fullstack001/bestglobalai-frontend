@@ -42,6 +42,7 @@ import ContactViewer from "./Page/Contact/ContactView";
 import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
 import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 import BookReader from "./Page/Reader/BookReader";
+import FollowersPage from "./Page/Follower";
 
 // Components
 import PrivateRoute from "./components/PrivateRoute";
@@ -123,7 +124,7 @@ const routes = [
   {
     path: "/creator/viewer/:id",
     element: <EbookViewer />,
-    allowedRoles: ["superAdmin", "admin", "editor"],
+    allowedRoles: ["superAdmin", "admin", "editor", 'user'],
   },
   {
     path: "/myEbooks",
@@ -194,6 +195,13 @@ const routes = [
   {
     path: "/social/analytics",
     element: <AnalyticsPage />,
+    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+  },
+
+  //Follower Routes
+  {
+    path: "/followers",
+    element: <FollowersPage />,
     allowedRoles: ["superAdmin", "admin", "editor", "user"],
   },
 

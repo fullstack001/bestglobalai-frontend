@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import { FcGoogle } from "react-icons/fc";
 // import { FaFacebook } from "react-icons/fa";
 import axios from "axios";
@@ -22,12 +22,19 @@ function Signup() {
     fullName: "",
     email: "",
     password: "",
-    confirm_password: "",
+    confirm_password: "",   
   });
-
+  const [referralCode, setReferralCode] = useState("");
   const [showVerification, setShowVerification] = useState(false);
-
   const [captchaToken, setCaptchaToken] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const ref = params.get("ref");
+    if (ref) {
+      setReferralCode(ref);
+    }
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -62,6 +69,7 @@ function Signup() {
       const response = await axios.post(`${apiPort}/api/auth/signup`, {
         ...formData,
         captchaToken,
+        referralCode
       });
 
       console.log(response);
@@ -214,6 +222,21 @@ function Signup() {
                   />
                 </div>
               </div>
+
+              {referralCode && (
+                <div>
+                  <input
+                    id="referralCode"
+                    name="referralCode"
+                    type="hidden"
+                    value={referralCode}
+                    onChange={handleChange}
+                  />
+                  <p className="text-sm text-gray-600">
+                    Referral Code: {referralCode}
+                  </p>
+                </div>
+              )}
 
               <div className="mt-4">
                 <ReCAPTCHA
