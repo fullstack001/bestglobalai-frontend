@@ -122,11 +122,15 @@ const Feature = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-10 container">
         <div className="relative">
-          <img
-            src={interactive_background}
-            alt="AI Background"
-            className="w-full rounded-lg shadow-lg"
-          />
+          <iframe
+            className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+            src="https://www.youtube.com/embed/JNuihT7lCNw?si=akWv4Ma73AEmBN-m"
+            title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         </div>
 
         <div className="text-center md:text-left">
@@ -138,12 +142,9 @@ const Feature = () => {
             />
           </div>
 
-          <h3 className="text-4xl mt-6 mb-4">Interactive Avatars</h3>
+          <h3 className="text-4xl mt-6 mb-4">API Install Service Provides Flawless Automation</h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            Bring your campaigns to life with realistic, interactive avatars
-            that engage users in personalized conversations. Tailor each
-            interaction to your audience's needs for an immersive and impactful
-            experience.
+            BGAI assigns a full stack developer to install the best API to match your business goals and automation needs.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -190,11 +191,16 @@ const Feature = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-10 container">
         <div className="relative">
-          <img
-            src={socialMedia_integration_image}
-            alt="AI Background"
-            className="w-full rounded-lg shadow-lg"
-          />
+         
+          <iframe
+            className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+            src="https://www.youtube.com/embed/IKkb0rQYNzY?si=E2u2O1cENn6nhWBp"
+            title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+          ></iframe>
         </div>
 
         <div className="text-center md:text-left">
@@ -203,16 +209,14 @@ const Feature = () => {
               src={socialMedia_integration_icon}
               alt="AI Icon"
               className="w-8 h-8 mx-auto"
-            />
+            />            
           </div>
 
           <h3 className="text-4xl mt-6 mb-4">
-            Seamless Social Media Integration
+            Join the New Seller Revolt!
           </h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            Connect to major social media platforms with ease. Schedule,
-            automate, and optimize your posts while analyzing performance to
-            continuously improve your strategy.
+            Wean yourself off the high-priced oligarchy at Amazon/eBay and other huge middlemen. Join the Seller Revolution at Best Global AI.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -260,6 +264,15 @@ const Feature = () => {
             alt="AI Background"
             className="w-full rounded-lg shadow-lg"
           />
+          <iframe
+             className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+             src="https://www.youtube.com/embed/3UW4mZJqo9s?si=8TUtOh4TVsqMmCIf"
+             title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+             frameBorder="0"
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+             referrerPolicy="strict-origin-when-cross-origin"
+             allowFullScreen
+          />
         </div>
 
         <div className="text-center md:text-left">
@@ -268,12 +281,10 @@ const Feature = () => {
           </div>
 
           <h3 className="text-4xl mt-6 mb-4">
-            Real-Time Analytics and Insights
+            Take Social Media Marketing to a New Level!
           </h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            Track the success of your campaigns in real-time. Use data- driven
-            insights to fine-tune your strategy, identify opportunities for
-            growth, and maximize your return on investment (ROI).
+            BGAI gives paid users Ayrshare timed and scheduled social media posting to maximize your promotions and ads.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -294,11 +305,9 @@ const Feature = () => {
             />
           </div>
 
-          <h3 className="text-4xl mt-6 mb-4">Scalable and Customizable</h3>
+          <h3 className="text-4xl mt-6 mb-4">Only Platform with “Single-Link Marketing</h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            Whether you're a small business or a large enterprise, our platform
-            scales with your needs. Customize the avatars, messaging, and
-            campaign strategies to match your brand and target audience.
+            Turn a single link into a powerful engagement tool. BGAI Email and social media marketing is better than MailChimp and Constant Contact.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -309,10 +318,14 @@ const Feature = () => {
         </div>
 
         <div className="relative">
-          <img
-            src={customizable_image}
-            alt="AI Background"
-            className="w-full rounded-lg shadow-lg"
+          <iframe
+             className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+             src="https://www.youtube.com/embed/uEl8bTdKD1E?si=Qr6tMqUME08Xm6wT"
+             title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+             frameBorder="0"
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+             referrerPolicy="strict-origin-when-cross-origin"
+             allowFullScreen
           />
         </div>
       </div>

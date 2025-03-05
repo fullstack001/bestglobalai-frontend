@@ -115,6 +115,7 @@ function BookCreator() {
       setCurrentVideoFile(null);
     }
   };
+  
 
   // Function to handle removing a video item
   const removeVideoItem = (index) => {
