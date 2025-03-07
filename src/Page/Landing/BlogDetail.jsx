@@ -49,8 +49,9 @@ const BlogDetail = () => {
           </div>
 
           <div
+            className="responsive-iframe"
             dangerouslySetInnerHTML={{
-              __html: content,
+              __html: content,            
             }}
           />
         </div>

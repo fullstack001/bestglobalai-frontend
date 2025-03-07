@@ -87,3 +87,8 @@ code {
 .jodit-ui-checkbox__label{
   color: black;
 }
+
+.responsive-iframe iframe {
+  width: 100%;
+  height: auto;
+}
