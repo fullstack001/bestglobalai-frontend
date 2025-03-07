@@ -88,7 +88,12 @@ code {
   color: black;
 }
 
-.responsive-iframe iframe {
-  width: 100%;
-  height: auto;
+@media (max-width: 768px) {
+  .responsive-iframe iframe {
+    width: 100%;
+    height: auto;
+  }
 }
+  
+
+
