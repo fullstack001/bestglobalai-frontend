@@ -34,8 +34,8 @@ const Layout = ({ children, titleText }) => {
             position: fixed;
             right: 40px;
             bottom: 40px;
-            width: 200px;
-            height: 200px;
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: 2px solid #fff;
             box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.12);
