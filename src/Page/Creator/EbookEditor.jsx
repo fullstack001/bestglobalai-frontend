@@ -437,15 +437,43 @@ const EbookEditor = () => {
   );
 };
 
+
 export const RichTextEditor = ({ initialValue, getValue }) => {
   const editor = useRef(null);
+  const [content, setContent] = useState(initialValue);
+
+  useEffect(() => {
+    setContent(initialValue);
+  }, [initialValue]);
+
+  const handleBlur = () => {
+    if (editor.current) {
+      const editorInstance = editor.current;
+      const newContent = editorInstance.value;
+      if (editorInstance.s) {
+        // Save the cursor position before updating content
+        const selection = editorInstance.s.save();
+
+        setContent(newContent);
+        getValue(newContent);
+
+        // Restore the cursor position after updating content
+        setTimeout(() => {
+          editorInstance.s.restore(selection);
+        }, 0);
+      } else {
+        setContent(newContent);
+        getValue(newContent);
+      }
+    }
+  };
 
   return (
     <JoditEditor
       ref={editor}
-      value={initialValue}
+      value={content}
       tabIndex={1}
-      onChange={(newContent) => getValue(newContent)}
+      onBlur={handleBlur}
       className="text-black"
     />
   );

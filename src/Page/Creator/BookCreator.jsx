@@ -67,8 +67,6 @@ function BookCreator() {
   };
   
   const updatePageField = (index, field, value) => {
-    console.log("Updating field:", field, "with value:", value);
-    console.log("Current pages state:", pages);
     const updatedPages = pages.map((page, pageIndex) => {
       if (pageIndex === index) {
         return { ...page, [field]: value };
@@ -463,8 +461,9 @@ function BookCreator() {
 
                   <RichTextEditor
                     initialValue={page.content}
-                    getValue={(content) =>
-                      updatePageField(index, "content", content)
+                    getValue={(content) =>{
+                      updatePageField(index, "content", content);
+                    }
                     }
                   />
                 </div>
@@ -487,45 +486,33 @@ function BookCreator() {
     </div>
   );
 }
-
-
-
 export const RichTextEditor = ({ initialValue, getValue }) => {
   const editor = useRef(null);
   const [content, setContent] = useState(initialValue);
-  const [selectionRange, setSelectionRange] = useState(null);
 
   useEffect(() => {
     setContent(initialValue);
   }, [initialValue]);
 
-  useEffect(() => {
-    if (editor.current && editor.current.editor && selectionRange) {
-      const editorInstance = editor.current.editor;
-      editorInstance.selection.restore(selectionRange);
-    }
-  }, [selectionRange, content]);
-
-  const handleChange = (newContent) => {
-    if (editor.current && editor.current.editor) {
-      const editorInstance = editor.current.editor;
-      setSelectionRange(editorInstance.selection.save());
-    }
-    setContent(newContent);
-    getValue(newContent);
-  };
-
-  const handleFocus = () => {
-    if (editor.current && editor.current.editor) {
-      const editorInstance = editor.current.editor;
-      setSelectionRange(editorInstance.selection.save());
-    }
-  };
-
   const handleBlur = () => {
-    if (editor.current && editor.current.editor) {
-      const editorInstance = editor.current.editor;
-      setSelectionRange(editorInstance.selection.save());
+    if (editor.current) {
+      const editorInstance = editor.current;
+      const newContent = editorInstance.value;
+      if (editorInstance.s) {
+        // Save the cursor position before updating content
+        const selection = editorInstance.s.save();
+
+        setContent(newContent);
+        getValue(newContent);
+
+        // Restore the cursor position after updating content
+        setTimeout(() => {
+          editorInstance.s.restore(selection);
+        }, 0);
+      } else {
+        setContent(newContent);
+        getValue(newContent);
+      }
     }
   };
 
@@ -534,24 +521,12 @@ export const RichTextEditor = ({ initialValue, getValue }) => {
       ref={editor}
       value={content}
       tabIndex={1}
-      onChange={(newContent) => {
-        if (editor.current && editor.current.editor) {
-          handleChange(newContent);
-        }
-      }}
-      onFocus={() => {
-        if (editor.current && editor.current.editor) {
-          handleFocus();
-        }
-      }}
-      onBlur={() => {
-        if (editor.current && editor.current.editor) {
-          handleBlur();
-        }
-      }}
+      onBlur={handleBlur}
       className="text-black"
     />
   );
 };
+
+
 
 export default BookCreator;
