@@ -486,6 +486,7 @@ function BookCreator() {
     </div>
   );
 }
+
 export const RichTextEditor = ({ initialValue, getValue }) => {
   const editor = useRef(null);
   const [content, setContent] = useState(initialValue);
