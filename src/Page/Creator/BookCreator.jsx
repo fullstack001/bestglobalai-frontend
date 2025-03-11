@@ -145,7 +145,7 @@ function BookCreator() {
         alert("Please provide a keyword before generating content.");
         return;
       }
-
+  
       const response = await axios.post(
         "https://api.openai.com/v1/chat/completions",
         {
@@ -153,7 +153,7 @@ function BookCreator() {
           messages: [
             {
               role: "user",
-              content: `Generate detailed content based on the keyword: "${keyword}" for an ebook titled "${title}" by "${author}".`,
+              content: `Generate detailed HTML content based on the keyword: "${keyword}" for an ebook titled "${title}" by "${author}". The content should be formatted in HTML.`,
             },
           ],
           temperature: 0.7,
@@ -165,7 +165,7 @@ function BookCreator() {
           },
         }
       );
-
+  
       const aiContent = response.data.choices[0].message.content.trim();
       updatePageField(index, "content", aiContent);
     } catch (error) {
@@ -456,7 +456,7 @@ function BookCreator() {
                     onClick={() => generateContentWithAI(index)}
                   >
                     <FontAwesomeIcon icon={faMagic} className="mr-2" />
-                    AI Generate Content
+                    Generate Content
                   </button>
 
                   <RichTextEditor

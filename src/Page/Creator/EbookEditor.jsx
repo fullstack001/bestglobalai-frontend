@@ -133,7 +133,7 @@ const EbookEditor = () => {
           messages: [
             {
               role: "user",
-              content: `Generate detailed content for the keyword: "${keyword}" in a chapter titled "${chapters[index].name}" for a book titled "${bookTitle}" by "${author}".`,
+              content: `Generate detailed HTML content based on the keyword: "${keyword}" in a chapter titled "${chapters[index].name}" for a book titled "${bookTitle}" by "${author}".  The content should be formatted in HTML.`,
             },
           ],
           temperature: 0.7,

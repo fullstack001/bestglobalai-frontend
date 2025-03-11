@@ -44,7 +44,7 @@ const BlogCreator = () => {
           messages: [
             {
               role: "user",
-              content: `Write a detailed blog post about "${keyword}".`,
+              content: `Generate detailed HTML blog post about "${keyword}". The content should be formatted in HTML.`,
             },
           ],
           temperature: 0.7,
