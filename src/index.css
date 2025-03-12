@@ -98,6 +98,11 @@ code {
     width: 100%;
     height: auto;
   }
+  
+  #heygen-streaming-embed.expand{
+    height: 150px !important;
+    width: calc(150px* 16 / 9) !important;
+  }
 }
   
 
