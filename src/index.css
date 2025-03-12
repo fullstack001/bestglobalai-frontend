@@ -88,6 +88,11 @@ code {
   color: black;
 }
 
+#heygen-streaming-embed.expand{
+  height: 250px !important;
+  width: calc(250px* 16 / 9) !important;
+}
+
 @media (max-width: 768px) {
   .responsive-iframe iframe {
     width: 100%;
