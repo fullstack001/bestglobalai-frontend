@@ -44,6 +44,9 @@ import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
 
+import AboutUS from "./Page/AboutUs";
+import Pricing from "./Page/Pricing";
+
 // Components
 import PrivateRoute from "./components/PrivateRoute";
 
