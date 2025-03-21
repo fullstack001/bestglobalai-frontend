@@ -9,8 +9,6 @@ import { FaYoutube } from "react-icons/fa";
 const Footer = () => {
   const navigate = useNavigate();
 
-
-
   return (
     <div>
       {/* Top Footer Section */}
@@ -29,9 +27,12 @@ const Footer = () => {
           {/* Features Section */}
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Features</h3>
-            <button className="text-lg block hover:text-gray-400">
+            <a
+              className="text-lg block hover:text-gray-400"
+              href="https://youtu.be/3UW4mZJqo9s"
+            >
               Social Media Marketing
-            </button>
+            </a>
           </div>
 
           {/* Company Section */}
@@ -40,7 +41,10 @@ const Footer = () => {
             <button className="text-lg block hover:text-gray-400">
               Company Trust
             </button>
-            <button className="text-lg block hover:text-gray-400 mt-2">
+            <button
+              className="text-lg block hover:text-gray-400 mt-2"
+              onClick={() => navigate("/pricing")}
+            >
               Pricing
             </button>
             <button
@@ -61,15 +65,21 @@ const Footer = () => {
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Support</h3>
             <button
-              onClick={() => navigate('/faq')}
+              onClick={() => navigate("/faq")}
               className="text-lg block hover:text-gray-400"
             >
               FAQ
             </button>
-            <button onClick={() => navigate("/terms-and-condition")} className="text-lg block hover:text-gray-400 mt-2">
+            <button
+              onClick={() => navigate("/terms-and-condition")}
+              className="text-lg block hover:text-gray-400 mt-2"
+            >
               Terms & Condition
             </button>
-            <button onClick={() => navigate("/privacy-policy")} className="text-lg block hover:text-gray-400 mt-2">
+            <button
+              onClick={() => navigate("/privacy-policy")}
+              className="text-lg block hover:text-gray-400 mt-2"
+            >
               Privacy Policy
             </button>
           </div>
@@ -82,19 +92,19 @@ const Footer = () => {
           <p className="mb-4 md:mb-0">© 2025 AI Marketing Solutions</p>
           <div className="flex gap-4">
             <a
-              href="#"
+              href="https://x.com/jim_musgrave"
               className="flex items-center gap-2 hover:text-gray-300 transition"
             >
               <FaXTwitter className="text-xl" /> Twitter
             </a>
             <a
-              href="#"
+              href="https://www.instagram.com/efraimzgraves/"
               className="flex items-center gap-2 hover:text-gray-300 transition"
             >
               <FaInstagram className="text-xl" /> Instagram
             </a>
             <a
-              href="#"
+              href="https://www.youtube.com/@musgrave2"
               className="flex items-center gap-2 hover:text-gray-300 transition"
             >
               <FaYoutube className="text-xl" /> YouTube

@@ -43,6 +43,8 @@ import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
 import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
+import AboutUS from "./Page/AboutUs";
+import Pricing from "./Page/Pricing";
 
 // Components
 import PrivateRoute from "./components/PrivateRoute";
@@ -56,7 +58,9 @@ const routes = [
   { path: "/terms-and-condition", element: <Terms /> },
   { path: "/privacy-policy", element: <Privacy /> },
   { path: "/faq", element: <Faq /> },
-  { path: "services", element: <Service /> },
+  { path: "/services", element: <Service /> },
+  { path: "/about-us", element: <AboutUS /> },
+  { path: "/pricing", element: <Pricing /> },
 
   // Admin Routes
   {
@@ -124,7 +128,7 @@ const routes = [
   {
     path: "/creator/viewer/:id",
     element: <EbookViewer />,
-    allowedRoles: ["superAdmin", "admin", "editor", 'user'],
+    allowedRoles: ["superAdmin", "admin", "editor", "user"],
   },
   {
     path: "/myEbooks",

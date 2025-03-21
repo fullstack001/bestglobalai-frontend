@@ -88,10 +88,10 @@ const Nav = () => {
             Home
           </button>
           <button
-            //   onClick={() => navigate("/about")}
+            onClick={() => navigate("/about-us")}
             className="hover:text-blue-500 transition duration-300"
           >
-            About
+            About Us
           </button>
           <button
             onClick={() => navigate("/blogs")}
@@ -194,10 +194,10 @@ const Nav = () => {
                 Home
               </button>
               <button
-                //   onClick={() => navigate("/about")}
+                onClick={() => navigate("/about-us")}
                 className="hover:text-blue-500 transition duration-300"
               >
-                About
+                About Us
               </button>
               <button
                 onClick={() => navigate("/blogs")}
@@ -222,34 +222,34 @@ const Nav = () => {
               <div className=" mt-2">
                 {user ? (
                   <div className="text-center">
-                  <div className="  " onClick={toggleDropdown}>
-                    <div className="mx-auto text-center items-center justify-center bg-gray-600 rounded-full p-2 w-fit">
-                      {user.profileImage ? (
-                        <img
-                          src={`${apiPort}${user.profileImage}`}
-                          alt="Profile"
-                          className="profile-image-preview h-8 w-8 cursor-pointer"
-                        />
-                      ) : (
-                        <span>{user.fullName.charAt(0).toUpperCase()}</span>
-                      )}
+                    <div className="  " onClick={toggleDropdown}>
+                      <div className="mx-auto text-center items-center justify-center bg-gray-600 rounded-full p-2 w-fit">
+                        {user.profileImage ? (
+                          <img
+                            src={`${apiPort}${user.profileImage}`}
+                            alt="Profile"
+                            className="profile-image-preview h-8 w-8 cursor-pointer"
+                          />
+                        ) : (
+                          <span>{user.fullName.charAt(0).toUpperCase()}</span>
+                        )}
+                      </div>
+                      <p className="font-semibold">{user.fullName}</p>
                     </div>
-                    <p className="font-semibold">{user.fullName}</p>
+
+                    {isDropdownOpen && (
+                      <div className=" mt-2 w-full text-center bg-gray-800 shadow-lg rounded-lg text-white z-10">
+                        <div className="px-4 py-2 border-b border-gray-700">
+                          <a href="creator">Dashboard</a>
+                        </div>
+                        <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
+                          <button onClick={handleLogout} className="w-full">
+                            Logout
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
-    
-                  {isDropdownOpen && (
-                    <div className=" mt-2 w-full text-center bg-gray-800 shadow-lg rounded-lg text-white z-10">
-                      <div className="px-4 py-2 border-b border-gray-700">
-                        <a href="creator">Dashboard</a>
-                      </div>
-                      <div className="px-4 py-2 hover:bg-gray-700 cursor-pointer">
-                        <button onClick={handleLogout} className="w-full">
-                          Logout
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
                 ) : (
                   <div className="mb-2 grid">
                     <button
