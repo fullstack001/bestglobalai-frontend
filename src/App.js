@@ -46,6 +46,7 @@ import FollowersPage from "./Page/Follower";
 
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
+import Chat from "./Page/Chat";
 
 // Components
 import PrivateRoute from "./components/PrivateRoute";
