@@ -14,6 +14,7 @@ import logo_icon from "../assets/icons/logo.svg";
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   const user = useSelector((state) => state.user.user);
+
   const token = localStorage.getItem("token");
   const userRole = localStorage.getItem("role");
   const role = localStorage.getItem("role");
@@ -23,15 +24,13 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
     role === "superAdmin" || role === "admin" || role === "editor";
 
   const isPaidUser =  () => {
-    if (userRole === "superAdmin") return true;
+    if (userRole === "superAdmin") return true;  
     if(!user) return false;
     if (!user.subscription || !user.subscription?.expiryDate) {
       return false; 
     }
     return true;
-  };
-
- 
+  }; 
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -113,6 +112,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             }`}
           >
             Followers
+          </Link>
+        )}
+
+      {isPaidUser() && (
+          <Link
+            to="/chat"
+            onClick={() => {
+              dispatch(closePanel());
+            }}
+            className={`block py-2 px-3 rounded  ${
+              isActive("/chat") ? "bg-gray-700" : "text-gray-400"
+            }`}
+          >
+            Chat
           </Link>
         )}
 

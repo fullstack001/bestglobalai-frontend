@@ -43,8 +43,6 @@ import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
 import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
-import AboutUS from "./Page/AboutUs";
-import Pricing from "./Page/Pricing";
 
 // Components
 import PrivateRoute from "./components/PrivateRoute";
@@ -194,6 +192,11 @@ const routes = [
   {
     path: "/social/post",
     element: <SocialPostPage />,
+    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+  },
+  {
+    path: "/chat",
+    element: <Chat />,
     allowedRoles: ["superAdmin", "admin", "editor", "user"],
   },
   {
