@@ -43,10 +43,14 @@ const AboutUs = () => {
         <div className="flex justify-center mb-12">
           <div className="w-full md:w-3/4 lg:w-2/3 aspect-video">
             <iframe
-              className="w-full h-full rounded-lg shadow-lg"
-              src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-              title="BestGlobalAI Introduction"
-              allowFullScreen
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/fVccQLilXEQ?si=dskSM1aVccTLfaVb"
+              title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
             ></iframe>
           </div>
         </div>
