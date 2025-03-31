@@ -30,6 +30,7 @@ const Footer = () => {
             <a
               className="text-lg block hover:text-gray-400"
               href="https://youtu.be/3UW4mZJqo9s"
+              target="_blank"
             >
               Social Media Marketing
             </a>
@@ -38,7 +39,10 @@ const Footer = () => {
           {/* Company Section */}
           <div className="text-gray-200 text-center md:text-left">
             <h3 className="text-2xl font-bold mb-4">Company</h3>
-            <button className="text-lg block hover:text-gray-400">
+            <button
+              className="text-lg block hover:text-gray-400"
+              onClick={() => navigate("/about-us")}
+            >
               Company Trust
             </button>
             <button
@@ -74,7 +78,7 @@ const Footer = () => {
               onClick={() => navigate("/terms-and-condition")}
               className="text-lg block hover:text-gray-400 mt-2"
             >
-              Terms & Condition
+              Terms & Conditions
             </button>
             <button
               onClick={() => navigate("/privacy-policy")}
@@ -94,18 +98,21 @@ const Footer = () => {
             <a
               href="https://x.com/jim_musgrave"
               className="flex items-center gap-2 hover:text-gray-300 transition"
+              target="_blank"
             >
               <FaXTwitter className="text-xl" /> Twitter
             </a>
             <a
               href="https://www.instagram.com/efraimzgraves/"
               className="flex items-center gap-2 hover:text-gray-300 transition"
+              target="_blank"
             >
               <FaInstagram className="text-xl" /> Instagram
             </a>
             <a
               href="https://www.youtube.com/@musgrave2"
               className="flex items-center gap-2 hover:text-gray-300 transition"
+              target="_blank"
             >
               <FaYoutube className="text-xl" /> YouTube
             </a>

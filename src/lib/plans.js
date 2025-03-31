@@ -40,7 +40,7 @@ export const plans = [
     yearlyId: "price_1R167NGZFcsysSu1pFFw8MLf",
     descriptions: [
       "Free access to Embellisher eReader and Creator Editor & Sales.",
-      "Multimedia Landing Page Apps at Adminr/Publisher Level.",
+      "Multimedia Landing Page Apps at Admin/Publisher Level.",
       "Including user controls and control of organizing and labeling of your ePub3 promotion topics and descriptions for your clients.",
     ],
     features: [

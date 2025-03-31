@@ -109,7 +109,7 @@ const Nav = () => {
             onClick={() => navigate("/services")}
             className="hover:text-blue-500 transition duration-300"
           >
-            Service
+            Services
           </button>
         </div>
         <div className="hidden md:flex md:relative space-x-6">
