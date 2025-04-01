@@ -47,6 +47,8 @@ function AdminUserManagement() {
   };
 
   const handleDeleteUser = async (userId) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this user?");
+    if (!confirmDelete) return; // If the user cancels, do nothing
     try {
       const token = localStorage.getItem("token");
       await axios.delete(`${apiPort}/api/users/${userId}`, {
