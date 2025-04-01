@@ -124,7 +124,6 @@ function EbookViewer() {
   };
 
   const handleTranslate = () => {
-    // I want to show the loader while the translation is being fetched
     setTranslatedText("Please be patient. Translations take time to convert from html text."); // Show loading message
     if (renditionRef.current) {
       renditionRef.current.themes.default({

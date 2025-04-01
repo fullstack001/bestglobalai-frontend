@@ -89,7 +89,6 @@ const CreatorDashboard = () => {
   };
 
   const deleteEbook = async (id) => {
-    //I want to add the confirm function when the user clicks on the delete button
     const confirmDelete = window.confirm("Are you sure you want to delete this ebook?");   
     
     if (!confirmDelete) return; // If the user cancels, do nothing
