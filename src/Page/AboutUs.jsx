@@ -22,7 +22,7 @@ const teamMembers = [
     role: "Full-Stack Engineer",
     image: "/images/12_4.jpg",
     bio:
-      "Ilonka Kalanchuk is a Full-Stack Engineer at Best Global AI, with a passion for scalable AI solutions and automation. Ilona's expertise spans across various programming languages and frameworks, enabling her to develop robust and efficient software solutions. She is dedicated to optimizing processes and implementing automation to enhance productivity and reduce operational costs. Ilona's innovative approach and problem-solving skills make her a key contributor to the development of cutting-edge AI technologies at Best Global AI. Her commitment to continuous learning and improvement ensures that the company stays ahead in the rapidly evolving field of artificial intelligence.",
+      "Ilonka Kalanchuk is a Full-Stack Engineer at Best Global AI, with a passion for scalable AI solutions and automation. Ilonka's expertise spans across various programming languages and frameworks, enabling her to develop robust and efficient software solutions. She is dedicated to optimizing processes and implementing automation to enhance productivity and reduce operational costs. Ilonka's innovative approach and problem-solving skills make her a key contributor to the development of cutting-edge AI technologies at Best Global AI. Her commitment to continuous learning and improvement ensures that the company stays ahead in the rapidly evolving field of artificial intelligence.",
   },
 ];
 

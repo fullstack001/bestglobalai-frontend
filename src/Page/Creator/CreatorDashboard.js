@@ -90,9 +90,10 @@ const CreatorDashboard = () => {
 
   const deleteEbook = async (id) => {
     //I want to add the confirm function when the user clicks on the delete button
-    const confirmDelete = window.confirm("Are you sure you want to delete this ebook?");
-    if (!confirmDelete) return; // If the user cancels, do nothing
+    const confirmDelete = window.confirm("Are you sure you want to delete this ebook?");   
     
+    if (!confirmDelete) return; // If the user cancels, do nothing
+
     try {
       await axios.delete(`${apiPort}/api/books/${id}`);
       setEbooks((prevEbooks) => prevEbooks.filter((book) => book._id !== id));
