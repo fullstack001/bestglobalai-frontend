@@ -94,9 +94,7 @@ export const extraData = [
       Tiered Pricing Model:
       $10 for up to 5,000 emails/month         
       $25 for 25,000 emails/month
-      <br/>      
       $50 for 100,000 emails/month
-      <br/>
     `,
     cost: 10,
     features: [
