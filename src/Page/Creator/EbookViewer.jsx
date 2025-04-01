@@ -124,6 +124,18 @@ function EbookViewer() {
   };
 
   const handleTranslate = () => {
+    // I want to show the loader while the translation is being fetched
+    setTranslatedText("Translating..."); // Show loading message
+    if (renditionRef.current) {
+      renditionRef.current.themes.default({
+        "iframe": {
+          "width": "100% !important",
+          "height": "auto !important",
+          "min-height": "300px !important"
+        },
+      });
+    }
+    
     if (originalContent) {
       translateContent(originalContent);
     }
