@@ -155,7 +155,7 @@ function EbookViewer() {
           const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
           const pageContent = bookContents[pageNumber];
           setOriginalContent(pageContent.content);
-          setTranslatedText(''); // Clear translated text when location changes
+          // setTranslatedText(''); // Clear translated text when location changes
         } catch (error) {
           console.error(
             'Error fetching content for the current location:',

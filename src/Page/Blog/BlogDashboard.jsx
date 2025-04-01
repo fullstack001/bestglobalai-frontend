@@ -63,8 +63,6 @@ const BlogDashboard = () => {
     fetchUser();
   }, []);
 
-  console.log(user);
-
   const editBlog = (id) => {
     navigate(`/admin/blogs/editor/${id}`, {
       state: { previousUrl: location.pathname },
@@ -72,6 +70,9 @@ const BlogDashboard = () => {
   };
 
   const deleteBlog = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
+    if (!confirmDelete) return; // If the user cancels, do nothing
+
     try {
       await axios.delete(`${apiPort}/api/blogs/${id}`);
       setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));

@@ -52,6 +52,9 @@ const MyBooks = () => {
   };
 
   const deleteEbook = async (id) => {
+    const confirmDelete = window.confirm("Are you sure you want to delete this ebook?");
+    if (!confirmDelete) return; // If the user cancels, do nothing
+    
     try {
       await axios.delete(`${apiPort}/api/books/${id}`);
       setEbooks((prevEbooks) => prevEbooks.filter((book) => book._id !== id));
