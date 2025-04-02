@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 // import { FcGoogle } from "react-icons/fc";
 // import { FaFacebook } from "react-icons/fa";
+import { Link as Lnk } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
@@ -69,14 +70,14 @@ const Login = () => {
 
       const { token, user, subscription } = response.data;
       let role = user.role;
-      dispatch(setUser({ ...user, subscription }));    
+      dispatch(setUser({ ...user, subscription }));
 
       // Save token to localStorage (or cookie)
       localStorage.setItem("token", token);
       localStorage.setItem("role", role);
       localStorage.setItem("email", user.email);
       localStorage.setItem("userId", user._id);
-      localStorage.setItem('paidUser', user.isActive);
+      localStorage.setItem("paidUser", user.isActive);
       localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
 
       // Store credentials if "Remember Me" is checked, otherwise remove them
@@ -237,9 +238,9 @@ const Login = () => {
         <div className="text-center text-gray-400">
           <p>
             Don't have an account?{" "}
-            <a href="/signup" className="text-blue-500 hover:underline">
+            <Lnk to="/signup" className="text-blue-500 hover:underline">
               Sign up!
-            </a>
+            </Lnk>
           </p>
         </div>
       </div>

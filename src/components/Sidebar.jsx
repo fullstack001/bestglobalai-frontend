@@ -23,14 +23,14 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const isCreator =
     role === "superAdmin" || role === "admin" || role === "editor";
 
-  const isPaidUser =  () => {
-    if (userRole === "superAdmin") return true;  
-    if(!user) return false;
+  const isPaidUser = () => {
+    if (userRole === "superAdmin") return true;
+    if (!user) return false;
     if (!user.subscription || !user.subscription?.expiryDate) {
-      return false; 
+      return false;
     }
     return true;
-  }; 
+  };
 
   const location = useLocation();
   const dispatch = useDispatch();
@@ -115,7 +115,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </Link>
         )}
 
-      {isPaidUser() && (
+        {isPaidUser() && (
           <Link
             to="/chat"
             onClick={() => {
@@ -216,7 +216,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           )}
         </div>
 
-        {isAdmin && (
+        {isCreator && (
           <Link
             to="/user-management"
             onClick={() => {

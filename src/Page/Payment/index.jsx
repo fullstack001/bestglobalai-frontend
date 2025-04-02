@@ -9,6 +9,7 @@ import CheckoutForm from "./SubscriptionCheckout";
 // import PayPalButton from "../SubscriptionPaypalButton";
 
 import { clearPlan } from "../../store/goSubscription";
+import { setUser } from "../../store/userSlice";
 
 const stripeKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 const baseUrl = process.env.REACT_APP_API_PORT;
@@ -18,7 +19,7 @@ const Payment = ({ month, currency }) => {
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState(null);
   const plan = useSelector((state) => state.goSubscription);
-  
+
   const dispatch = useDispatch();
   const email = localStorage.getItem("email");
 
@@ -35,9 +36,25 @@ const Payment = ({ month, currency }) => {
       })
       .then((response) => {
         setSuccessMessage(`Your subscription payment processed successfully.`);
-        console.log(response.data);
+
         dispatch(clearPlan());
-        navigate("/profile");
+        const { token, user, subscription } = response.data;
+        let role = user.role;
+        dispatch(setUser({ ...user, subscription }));
+
+        // Save token to localStorage (or cookie)
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", role);
+        localStorage.setItem("email", user.email);
+        localStorage.setItem("userId", user._id);
+        localStorage.setItem("paidUser", user.isActive);
+        localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
+
+        if (role === "superAdmin" || role === "admin" || role === "editor") {
+          navigate("/creator");
+        } else if (role === "user") {
+          navigate("/profile");
+        }
       })
       .catch(() => {
         console.log("network error");

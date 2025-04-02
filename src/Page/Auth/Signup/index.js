@@ -22,7 +22,7 @@ function Signup() {
     fullName: "",
     email: "",
     password: "",
-    confirm_password: "",   
+    confirm_password: "",
   });
   const [referralCode, setReferralCode] = useState("");
   const [showVerification, setShowVerification] = useState(false);
@@ -69,7 +69,7 @@ function Signup() {
       const response = await axios.post(`${apiPort}/api/auth/signup`, {
         ...formData,
         captchaToken,
-        referralCode
+        referralCode,
       });
 
       console.log(response);
@@ -90,7 +90,7 @@ function Signup() {
   };
 
   const handleVerification = async (token, user) => {
-    console.log(token, user);
+    console.log(plan, extra);
     let role = user.role;
     // Save token to localStorage (or cookie)
     localStorage.setItem("token", token);
@@ -101,18 +101,11 @@ function Signup() {
 
     if (plan) {
       navigate("/payment");
-    }
-
-    if (extra) {
+    } else if (extra) {
       navigate("/extra-payment");
-    }
-
-    // Redirect to dashboard
-    if (role === "superAdmin" || role === "admin" || role === "editor") {
+    } else if (role === "superAdmin" || role === "admin" || role === "editor") {
       navigate("/creator");
-    }
-
-    if (role === "user") {
+    } else if (role === "user") {
       navigate("/profile");
     }
   };

@@ -63,6 +63,7 @@ function CheckoutForm({ priceId, email, callBack }) {
       if (subscription) {
         await axios.post(`${baseUrl}/api/subscription/cancel-subscription`, {
           subscriptionId: subscription.subscriptionId,
+          email,
         });
       }
 
