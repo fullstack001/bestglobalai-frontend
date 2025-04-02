@@ -72,6 +72,7 @@ const OtherAdminUserManagement = () => {
   const confirmDeleteMember = (id) => {
     setMemberToDelete(id);
     setShowDeleteModal(true);
+  };
 
   const handleConfirmDelete = async () => {
     if (memberToDelete) {
