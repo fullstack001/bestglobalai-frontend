@@ -12,24 +12,15 @@ const Chat = () => {
   const [input, setInput] = useState('');
   const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
+  const [unreadCounts, setUnreadCounts] = useState({});
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
   const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const socket = useRef(null);
 
-  // Ensure token is retrieved and set in headers unconditionally
   const token = localStorage.getItem('token');
   const userRole = localStorage.getItem("role");
   const userId = localStorage.getItem("userId");
-
-  const isPaidUser =  () => {
-    if (userRole === "superAdmin") return true;  
-    if(!user) return false;
-    if (!user.subscription || !user.subscription?.expiryDate) {
-      return false; 
-    }
-    return true;
-  };
 
   const fetchMessages = async () => {
     try {
@@ -54,12 +45,23 @@ const Chat = () => {
 
   useEffect(() => {
     socket.current = io(process.env.REACT_APP_API_URL);
+
     socket.current.on('message', (message) => {
-      setMessages((prevMessages) => [...prevMessages, message]);
+      const isCurrentChat = selectedUser && message.sender === selectedUser._id;
+      setMessages((prevMessages) =>
+        isCurrentChat ? [...prevMessages, message] : prevMessages
+      );
+
+      if (!isCurrentChat) {
+        setUnreadCounts((prev) => ({
+          ...prev,
+          [message.sender]: (prev[message.sender] || 0) + 1,
+        }));
+      }
     });
 
-    axios.get(`${apiPort}/api/chat/users`).then((response) => {     
-        setUsers(response.data);    
+    axios.get(`${apiPort}/api/chat/users`).then((response) => {
+      setUsers(response.data);
     });
 
     return () => {
@@ -67,13 +69,17 @@ const Chat = () => {
         socket.current.disconnect();
       }
     };
-  }, [user, navigate]);
+  }, [user, selectedUser]);
 
   useEffect(() => {
-    if (selectedUser) {     
+    if (selectedUser) {
       fetchMessages();
+      setUnreadCounts((prev) => ({
+        ...prev,
+        [selectedUser._id]: 0,
+      }));
     }
-  }, [selectedUser, token]);
+  }, [selectedUser]);
 
   const sendMessage = async () => {
     if (input.trim() && selectedUser) {
@@ -85,7 +91,6 @@ const Chat = () => {
     }
   };
 
-  //fetch messages neeed to run every 3 seconds to get new messages
   useEffect(() => {
     const interval = setInterval(() => {
       if (selectedUser) {
@@ -96,9 +101,8 @@ const Chat = () => {
     return () => clearInterval(interval);
   }, [selectedUser]);
 
-  const onEmojiClick = (event, emojiObject) => {
-    console.log(emojiObject.emoji);
-    setInput((prevInput) => prevInput + emojiObject.emoji);
+  const onEmojiClick = (emojiData) => {
+    setInput((prevInput) => prevInput + emojiData.emoji);
     setShowEmojiPicker(false);
   };
 
@@ -112,9 +116,16 @@ const Chat = () => {
             <div
               key={u._id}
               onClick={() => setSelectedUser(u)}
-              className={`p-2 cursor-pointer ${selectedUser && selectedUser._id === u._id ? 'bg-gray-600' : 'bg-gray-700'} text-white rounded-lg mb-2`}
+              className={`relative p-2 cursor-pointer flex justify-between items-center ${
+                selectedUser && selectedUser._id === u._id ? 'bg-gray-600' : 'bg-gray-700'
+              } text-white rounded-lg mb-2`}
             >
-              {u.fullName}
+              <span>{u.fullName}</span>
+              {unreadCounts[u._id] > 0 && (
+                <span className="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                  {unreadCounts[u._id]}
+                </span>
+              )}
             </div>
           ))}
         </div>
@@ -124,11 +135,14 @@ const Chat = () => {
           {/* Messages */}
           <div className="flex-1 p-4 overflow-y-auto">
             {messages.map((msg, index) => (
-              //sender message will show left and receiver message will show right
               <div key={index} className={`mb-2 ${msg.sender === userId ? 'text-right' : 'text-left'}`}>
-                 <span className={`inline-block p-2 rounded-lg ${msg.sender === userId ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'}`}>
-                   {msg.text}
-                 </span>
+                <span
+                  className={`inline-block p-2 rounded-lg ${
+                    msg.sender === userId ? 'bg-blue-500 text-white' : 'bg-gray-700 text-gray-300'
+                  }`}
+                >
+                  {msg.text}
+                </span>
               </div>
             ))}
           </div>
@@ -142,7 +156,7 @@ const Chat = () => {
               😊
             </button>
             {showEmojiPicker && (
-              <div className="absolute bottom-16">
+              <div className="absolute bottom-16 z-10">
                 <Picker onEmojiClick={onEmojiClick} />
               </div>
             )}
