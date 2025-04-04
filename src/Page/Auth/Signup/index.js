@@ -6,10 +6,11 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
 import ReCAPTCHA from "react-google-recaptcha";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import logo_icon from "../../../assets/icons/logo.svg";
 import VerificationForm from "./VerificationForm";
+import { setUser } from "../../../store/userSlice";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
@@ -18,6 +19,7 @@ function Signup() {
   const plan = useSelector((state) => state.goSubscription);
   const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -89,9 +91,10 @@ function Signup() {
     }
   };
 
-  const handleVerification = async (token, user) => {
+  const handleVerification = async (token, user, subscription) => {
     console.log(plan, extra);
     let role = user.role;
+    dispatch(setUser({ ...user, subscription }));
     // Save token to localStorage (or cookie)
     localStorage.setItem("token", token);
     localStorage.setItem("role", role);

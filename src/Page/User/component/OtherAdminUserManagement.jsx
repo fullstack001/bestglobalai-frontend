@@ -10,9 +10,6 @@ const OtherAdminUserManagement = () => {
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
   const [newMember, setNewMember] = useState({ name: "", email: "" });
-  const [remainingMembers, setRemainingMembers] = useState(0);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [memberToDelete, setMemberToDelete] = useState(null);
 
   const token = localStorage.getItem("token");
   const email = localStorage.getItem("email");
@@ -38,15 +35,6 @@ const OtherAdminUserManagement = () => {
     fetchTeamMembers();
   }, []);
 
-  useEffect(() => {
-    const calculateRemainingMembers = () => {
-      const maxMembers = role === "admin" ? 10 : role === "editor" ? 5 : 0;
-      setRemainingMembers(Math.max(0, maxMembers - teamMembers.length));
-    };
-
-    calculateRemainingMembers();
-  }, [role, teamMembers]);
-
   const handleAddMember = async () => {
     try {
       const token = localStorage.getItem("token");
@@ -69,26 +57,13 @@ const OtherAdminUserManagement = () => {
     }
   };
 
-  const confirmDeleteMember = (id) => {
-    setMemberToDelete(id);
-    setShowDeleteModal(true);
-  };
-
-  const handleConfirmDelete = async () => {
-    if (memberToDelete) {
-      await handleDeleteMember(memberToDelete);
-      setShowDeleteModal(false);
-      setMemberToDelete(null);
-    }
-  };
-
   const handleDeleteMember = async (id) => {
     try {
       const token = localStorage.getItem("token");
       await axios.delete(`${apiPort}/api/users/delete-team-user/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
-      setTeamMembers(teamMembers.filter((member) => member._id !== id));
+      setTeamMembers(teamMembers.filter((member) => member.id !== id));
     } catch (error) {
       console.error("Error deleting member:", error);
     }
@@ -117,7 +92,7 @@ const OtherAdminUserManagement = () => {
           color="failure"
           size="xs"
           className="rounded-lg px-4 py-2"
-          onClick={() => confirmDeleteMember(row._id)}
+          onClick={() => handleDeleteMember(row.id)}
         >
           Delete
         </Button>
@@ -127,14 +102,10 @@ const OtherAdminUserManagement = () => {
 
   return (
     <div className="p-4 mt-6">
-      <div className="mb-4 text-lg font-semibold">
-        Remaining Members You Can Add: {remainingMembers}
-      </div>
       <Button
         style={{ backgroundColor: "#4CAF50", color: "white" }}
         onClick={() => setShowAddModal(true)}
         className="mb-4 rounded-lg px-4 py-2 ml-auto"
-        disabled={remainingMembers === 0}
       >
         Add Member
       </Button>
@@ -195,32 +166,6 @@ const OtherAdminUserManagement = () => {
             className="rounded-lg px-4 py-2"
           >
             Add Member
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Delete Member Modal */}
-      <Modal show={showDeleteModal} onClose={() => setShowDeleteModal(false)}>
-        <Modal.Header>
-          <h3 className="text-lg font-semibold">Confirm Delete</h3>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Are you sure you want to delete this member?</p>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            color="gray"
-            onClick={() => setShowDeleteModal(false)}
-            className="rounded-lg px-4 py-2"
-          >
-            Cancel
-          </Button>
-          <Button
-            color="failure"
-            onClick={handleConfirmDelete}
-            className="rounded-lg px-4 py-2"
-          >
-            Delete
           </Button>
         </Modal.Footer>
       </Modal>
