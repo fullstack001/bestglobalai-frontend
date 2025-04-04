@@ -124,7 +124,7 @@ const Nav = () => {
                       className="profile-image-preview h-8 w-8 cursor-pointer"
                     />
                   ) : (
-                    <span>{user.fullName.charAt(0).toUpperCase()}</span>
+                    <span className=" px-2 cursor-pointer">{user.fullName.charAt(0).toUpperCase()}</span>
                   )}
                 </div>
                 <p className="font-semibold">{user.fullName}</p>
