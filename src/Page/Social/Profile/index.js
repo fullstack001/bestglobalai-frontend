@@ -69,6 +69,38 @@ const SocialProfilePage = () => {
         </div>
       ) : (
         <div className="text-center w-full mt-10">
+          <div className="max-w-3xl mx-auto bg-purple-600 text-white p-6 rounded-xl shadow-md mb-6">
+            <ul className="list-disc list-inside space-y-3 text-left text-sm md:text-base">
+              <li>
+                <strong>
+                  Set up your social profile. This will act as your central
+                  control panel.
+                </strong>
+              </li>
+              <li>
+                <strong>Set Up Your Business Profiles on Social Media</strong>
+                <br />
+                On each social media platform (like Facebook, Instagram,
+                LinkedIn), make sure you’ve added your{" "}
+                <strong>business logo and branding</strong>.
+              </li>
+              <li>
+                <strong>Link Your Social Media Accounts</strong>
+                <br />
+                Connect your business profiles to your BGAI social profile — all
+                in just a few clicks.
+              </li>
+              <li>
+                <strong>Manage Everything from One Place</strong>
+                <ul className="list-disc list-inside ml-6 mt-1">
+                  <li>Create and schedule posts</li>
+                  <li>Analyze your content performance</li>
+                  <li>Stay on brand with your logo and identity</li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+
           <Button
             className="mx-auto bg-green-600 hover:bg-gray-600 p-3"
             onClick={handleCreateProfile}

@@ -93,7 +93,7 @@ const SocialPostPage = () => {
   };
 
   return (
-    <Layout titleText="Social Profile">
+    <Layout titleText="Social Analytics">
       {loading ? (
         <Loading
           spinnerSrc="/assets/icons/spinner.svg"

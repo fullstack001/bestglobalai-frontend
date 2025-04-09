@@ -30,7 +30,7 @@ const SocialPostPage = () => {
   }, [refId]);
 
   return (
-    <Layout titleText="Social Profile">
+    <Layout titleText="Social Post">
       {loading ? (
         <Loading
           spinnerSrc="/assets/icons/spinner.svg"
