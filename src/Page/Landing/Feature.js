@@ -16,7 +16,6 @@ import customizable_icon from "../../assets/images/landing/customizable_icon.png
 import customizable_image from "../../assets/images/landing/budget_background.png";
 import three_steps from "../../assets/images/landing/3steps.png";
 
-
 const Feature = () => {
   const navigate = useNavigate();
   const [scrollDirection, setScrollDirection] = useState(0);
@@ -142,12 +141,15 @@ const Feature = () => {
             />
           </div>
 
-          <h3 className="text-4xl mt-6 mb-4">API Install Service Provides Flawless Automation</h3>
+          <h3 className="text-4xl mt-6 mb-4">
+            API Install Service Provides Flawless Automation
+          </h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            BGAI assigns a full stack developer to install the best API to match your business goals and automation needs.
+            BGAI assigns a full stack developer to install the best API to match
+            your business goals and automation needs.
           </p>
           <button
-            onClick={() => navigate("/signup")}
+            onClick={() => navigate("/services")}
             className="bg-blue-500 text-lg px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 border-s-blue-800"
           >
             Learn more
@@ -191,7 +193,6 @@ const Feature = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-10 container">
         <div className="relative">
-         
           <iframe
             className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
             src="https://www.youtube.com/embed/IKkb0rQYNzY?si=E2u2O1cENn6nhWBp"
@@ -209,14 +210,13 @@ const Feature = () => {
               src={socialMedia_integration_icon}
               alt="AI Icon"
               className="w-8 h-8 mx-auto"
-            />            
+            />
           </div>
 
-          <h3 className="text-4xl mt-6 mb-4">
-            Join the New Seller Revolt!
-          </h3>
+          <h3 className="text-4xl mt-6 mb-4">Join the New Seller Revolt!</h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            Wean yourself off the high-priced oligarchy at Amazon/eBay and other huge middlemen. Join the Seller Revolution at Best Global AI.
+            Wean yourself off the high-priced oligarchy at Amazon/eBay and other
+            huge middlemen. Join the Seller Revolution at Best Global AI.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -259,15 +259,14 @@ const Feature = () => {
 
       <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-1 md:grid-cols-2 gap-16 items-center mt-10 container">
         <div className="relative">
-        
           <iframe
-             className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
-             src="https://www.youtube.com/embed/3UW4mZJqo9s?si=8TUtOh4TVsqMmCIf"
-             title="API Installation Choices #artificialintelligencemarketing #motivation #news"
-             frameBorder="0"
-             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-             referrerPolicy="strict-origin-when-cross-origin"
-             allowFullScreen
+            className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+            src="https://www.youtube.com/embed/3UW4mZJqo9s?si=8TUtOh4TVsqMmCIf"
+            title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
           />
         </div>
 
@@ -280,7 +279,8 @@ const Feature = () => {
             Take Social Media Marketing to a New Level!
           </h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            BGAI gives paid users Ayrshare timed and scheduled social media posting to maximize your promotions and ads.
+            BGAI gives paid users Ayrshare timed and scheduled social media
+            posting to maximize your promotions and ads.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -301,9 +301,13 @@ const Feature = () => {
             />
           </div>
 
-          <h3 className="text-4xl mt-6 mb-4">Only Platform with “Single-Link Marketing</h3>
+          <h3 className="text-4xl mt-6 mb-4">
+            Only Platform with “Single-Link Marketing
+          </h3>
           <p className="text-lg sm:text-xl text-gray-300 mb-6">
-            Turn a single link into a powerful engagement tool. BGAI Email and social media marketing is better than MailChimp and Constant Contact.
+            Turn a single link into a powerful engagement tool. BGAI Email and
+            social media marketing is better than MailChimp and Constant
+            Contact.
           </p>
           <button
             onClick={() => navigate("/signup")}
@@ -315,13 +319,13 @@ const Feature = () => {
 
         <div className="relative">
           <iframe
-             className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
-             src="https://www.youtube.com/embed/uEl8bTdKD1E?si=Qr6tMqUME08Xm6wT"
-             title="API Installation Choices #artificialintelligencemarketing #motivation #news"
-             frameBorder="0"
-             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-             referrerPolicy="strict-origin-when-cross-origin"
-             allowFullScreen
+            className="w-full h-[315px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
+            src="https://www.youtube.com/embed/uEl8bTdKD1E?si=Qr6tMqUME08Xm6wT"
+            title="API Installation Choices #artificialintelligencemarketing #motivation #news"
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
           />
         </div>
       </div>
@@ -356,7 +360,7 @@ const Feature = () => {
           your free eReader inside the Embellisher Studio.
         </div>
 
-        <div className="relative mt-10">         
+        <div className="relative mt-10">
           <iframe
             className="w-full h-[400px] max-w-4xl mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
             src="https://www.youtube.com/embed/vVvKV7uKX6Q?si=F8ZfjWph0idxkVn5"
