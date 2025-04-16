@@ -40,6 +40,7 @@ const Payment = ({ month, currency }) => {
         dispatch(clearPlan());
         const { token, user, subscription } = response.data;
         let role = user.role;
+        console.log(subscription);
         dispatch(setUser({ ...user, subscription }));
 
         // Save token to localStorage (or cookie)

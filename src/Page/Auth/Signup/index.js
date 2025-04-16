@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 // import { FcGoogle } from "react-icons/fc";
 // import { FaFacebook } from "react-icons/fa";
 import axios from "axios";
@@ -16,6 +16,7 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 function Signup() {
+  const recaptchaRef = useRef();
   const plan = useSelector((state) => state.goSubscription);
   const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
@@ -88,6 +89,8 @@ function Signup() {
           hideProgressBar: true,
         }
       );
+      setCaptchaToken("");
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -236,6 +239,7 @@ function Signup() {
 
               <div className="mt-4">
                 <ReCAPTCHA
+                  ref={recaptchaRef}
                   sitekey={RECAPTCHA_SITE_KEY}
                   onChange={handleCaptchaChange}
                 />

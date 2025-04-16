@@ -16,26 +16,27 @@ const Contact = () => {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [content, setContent] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const handleSubmit =  async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!firstName) {
-        toast.error(
-          <div className="custom-toast flex">
-            <IoCloseCircleOutline className="custom-icon" />
-            <div className="mt-4">Please enter your first name.</div>
-          </div>,
-          {
-            className: "error-toast",
-            autoClose: 3000,
-            hideProgressBar: true,
-          }
-        );
-        return;
-      }
+      toast.error(
+        <div className="custom-toast flex">
+          <IoCloseCircleOutline className="custom-icon" />
+          <div className="mt-4">Please enter your first name.</div>
+        </div>,
+        {
+          className: "error-toast",
+          autoClose: 3000,
+          hideProgressBar: true,
+        }
+      );
+      return;
+    }
 
     if (!email) {
       toast.error(
@@ -51,21 +52,37 @@ const Contact = () => {
       );
       return;
     }
+    setLoading(true);
 
     const response = await axios.post(`${apiPort}/api/contacts`, {
-        firstName,
-        lastName,
-        email,
-        phone,
-        content,
-      });
+      firstName,
+      lastName,
+      email,
+      phone,
+      content,
+    });
 
-      if (response.status === 200) {
-        toast.success("Your message has been sent successfully.");
-        navigate("/");
-      }
-
-
+    if (response.status === 200) {
+      toast.error(
+        <div className="custom-toast flex">
+          <IoCloseCircleOutline className="custom-icon" />
+          <div className="mt-4">Your message has been sent successfully.</div>
+        </div>,
+        {
+          className: "success-toast",
+          autoClose: 3000,
+          hideProgressBar: true,
+        }
+      );
+      setContent("");
+      setEmail("");
+      setFirstName("");
+      setLastName("");
+      setPhone("");
+    } else {
+      toast.error("Server Error. Please try again later.");
+    }
+    setLoading(true);
   };
 
   return (
@@ -151,7 +168,7 @@ const Contact = () => {
               className="bg-blue-500 text-white text-2xl px-4 py-2 rounded-lg"
               type="submit"
             >
-              Submit
+              {loading ? "Sending..." : "Send"}
             </button>
           </div>
         </div>

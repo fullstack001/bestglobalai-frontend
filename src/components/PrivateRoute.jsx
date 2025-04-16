@@ -5,10 +5,11 @@ import { useSelector } from "react-redux";
 const PrivateRoute = ({ children, allowedRoles }) => {
   const user = useSelector((state) => state.user.user);
   const token = localStorage.getItem("token");
+  const trial = user.trial || false; // Ensure trial is defined
   const userRole = localStorage.getItem("role"); // Assuming role is stored in localStorage after login
   const isSubscriptionActive = () => {
     if (userRole === "superAdmin") return true;
-        if(!user) return false
+    if (!user) return false;
     if (!user.subscription || !user.subscription?.expiryDate) {
       return false; // No subscription or expiry date means it's inactive
     }
@@ -22,8 +23,8 @@ const PrivateRoute = ({ children, allowedRoles }) => {
     return <Navigate to="/login" />;
   }
 
-  if (!allowedRoles.includes(userRole || "")) {
-    return <Navigate to="/unauthorized" />;
+  if (!allowedRoles.includes(userRole || "") && !trial) {
+    return <Navigate to="/plans" />;
   }
 
   const restrictedPaths = [

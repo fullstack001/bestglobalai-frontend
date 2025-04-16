@@ -71,7 +71,7 @@ const FollowersPage = () => {
         }
       );
       return;
-    };
+    }
 
     const formData = new FormData();
     formData.append("csvFile", file);
@@ -209,14 +209,24 @@ const FollowersPage = () => {
         <h2 className="text-xl font-bold mb-4">My Followers</h2>
 
         <div className="mt-2">
-          <p>Your Invite Link:</p>
-          <input
-            className="w-full p-2 border text-gray-700"
-            value={inviteLink}
-            readOnly
-          />
+          <p className="mb-1">Your Invite Link:</p>
+          <div className="flex">
+            <input
+              className="flex-grow p-2 border text-gray-700 rounded-l"
+              value={inviteLink}
+              readOnly
+            />
+            <button
+              onClick={() => {
+                navigator.clipboard.writeText(inviteLink);
+                toast.success("Invite link copied to clipboard!");
+              }}
+              className="bg-blue-600 text-white px-4 py-2 rounded-r hover:bg-blue-700 transition"
+            >
+              Copy
+            </button>
+          </div>
         </div>
-       
 
         <div className="mt-4">
           <h3 className="text-lg font-bold mt-6">Upload Followers CSV</h3>
@@ -235,7 +245,7 @@ const FollowersPage = () => {
         <div className="mt-4">
           <h3 className="text-lg font-bold mb-4">Follower List</h3>
 
-          <DataTable           
+          <DataTable
             columns={columns}
             data={followers}
             pagination
@@ -258,7 +268,7 @@ const FollowersPage = () => {
               />
             }
             selectableRows
-            selectableRowsHighlight    
+            selectableRowsHighlight
             customStyles={paginationStyle}
           />
         </div>

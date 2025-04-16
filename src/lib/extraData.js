@@ -77,7 +77,7 @@ export const extraData = [
   },
   {
     id: 6,
-    title: "Order the PureVPN server for onebd268 month.",
+    title: "Order the PureVPN server for one month.",
     description:
       "The $10 fee is for use of the VPN server when you want to bypass hackers and spies online. Market to your social media networds without fear. Just use the coupon to redeem your month's worth of protection and use it whenever you have that special social media post to send over a private network. We also have other time limits, so just email us to see what they are. ",
     price: "$10.00 each",
@@ -96,6 +96,7 @@ export const extraData = [
       $25 for 25,000 emails/month
       $50 for 100,000 emails/month
     `,
+    price: "$10.00 starting",
     cost: 10,
     features: [
       "Private database on your dashboard to collect client’s names and email addresses.",

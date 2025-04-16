@@ -43,6 +43,7 @@ import ExploreServiceOrders from "./Page/Service/ExploreServiceOrders";
 import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
+import TeamManagement from "./Page/TeamManagement";
 
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
@@ -115,17 +116,17 @@ const routes = [
   {
     path: "/creator",
     element: <CreatorDashboard />,
-    allowedRoles: ["superAdmin", "admin", "editor"],
+    allowedRoles: ["superAdmin", "admin", "editor", "trial"],
   },
   {
     path: "/creator/create",
     element: <BookCreator />,
-    allowedRoles: ["superAdmin", "admin", "editor"],
+    allowedRoles: ["superAdmin", "admin", "editor", "trial"],
   },
   {
     path: "/creator/editor/:id",
     element: <EbookEditor />,
-    allowedRoles: ["superAdmin", "admin", "editor"],
+    allowedRoles: ["superAdmin", "admin", "editor", "trial"],
   },
   {
     path: "/creator/viewer/:id",
@@ -135,7 +136,7 @@ const routes = [
   {
     path: "/myEbooks",
     element: <MyBooks />,
-    allowedRoles: ["superAdmin", "admin", "editor"],
+    allowedRoles: ["superAdmin", "admin", "editor", "trial"],
   },
 
   // User Routes
@@ -174,46 +175,52 @@ const routes = [
   {
     path: "/video/create-video",
     element: <VideoCreatorPage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
   {
     path: "/video/my-videos",
     element: <VideoLibraryPage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
   {
     path: "/video/video-translation",
     element: <VideoTranslatePage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
 
   // Social Routes
   {
     path: "/social/profile",
     element: <SocialProfilePage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
   {
     path: "/social/post",
     element: <SocialPostPage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
   {
     path: "/chat",
     element: <Chat />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
   {
     path: "/social/analytics",
     element: <AnalyticsPage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
 
   //Follower Routes
   {
     path: "/followers",
     element: <FollowersPage />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    allowedRoles: ["superAdmin", "admin", "editor"],
+  },
+
+  {
+    path: "/team-management",
+    element: <TeamManagement />,
+    allowedRoles: ["superAdmin", "admin", "editor"],
   },
 
   // Landing Pages

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 // import { FcGoogle } from "react-icons/fc";
 // import { FaFacebook } from "react-icons/fa";
 import { Link as Lnk } from "react-router-dom";
@@ -18,6 +18,7 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const Login = () => {
+  const recaptchaRef = useRef();
   const plan = useSelector((state) => state.goSubscription);
   const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
@@ -117,6 +118,8 @@ const Login = () => {
           hideProgressBar: true,
         }
       );
+      setCaptchaToken("");
+      recaptchaRef.current?.reset();
     }
   };
 
@@ -221,6 +224,7 @@ const Login = () => {
           </div>
 
           <ReCAPTCHA
+            ref={recaptchaRef}
             sitekey={RECAPTCHA_SITE_KEY}
             onChange={handleCaptchaChange}
           />

@@ -26,7 +26,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
   const isPaidUser = () => {
     if (userRole === "superAdmin") return true;
     if (!user) return false;
-    if (!user.subscription || !user.subscription?.expiryDate) {
+    if (!user.subscription) {
       return false;
     }
     return true;
@@ -66,7 +66,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
         </button>
       </div>
       <nav className="space-y-2">
-        {isCreator && (
+        {(isCreator || user.trial) && (
           <>
             <Link
               to="/creator"
@@ -115,19 +115,17 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </Link>
         )}
 
-        {isPaidUser() && (
-          <Link
-            to="/chat"
-            onClick={() => {
-              dispatch(closePanel());
-            }}
-            className={`block py-2 px-3 rounded  ${
-              isActive("/chat") ? "bg-gray-700" : "text-gray-400"
-            }`}
-          >
-            Chat
-          </Link>
-        )}
+        <Link
+          to="/chat"
+          onClick={() => {
+            dispatch(closePanel());
+          }}
+          className={`block py-2 px-3 rounded  ${
+            isActive("/chat") ? "bg-gray-700" : "text-gray-400"
+          }`}
+        >
+          Chat
+        </Link>
 
         <div className="block">
           <button
@@ -216,7 +214,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           )}
         </div>
 
-        {isCreator && (
+        {isSuperAdmin && (
           <Link
             to="/user-management"
             onClick={() => {
@@ -227,6 +225,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             }`}
           >
             User Management
+          </Link>
+        )}
+
+        {isCreator && (
+          <Link
+            to="/team-management"
+            onClick={() => {
+              dispatch(closePanel());
+            }}
+            className={`block py-2 px-3 rounded  ${
+              isActive("/team-management") ? "bg-gray-700" : "text-gray-400"
+            }`}
+          >
+            Team Management
           </Link>
         )}
 
@@ -269,29 +281,6 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
             </Link>
           </>
         )}
-
-        <Link
-          to="/profile"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/profile") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Profile
-        </Link>
-        <Link
-          to="/change-password"
-          onClick={() => {
-            dispatch(closePanel());
-          }}
-          className={`block py-2 px-3 rounded  ${
-            isActive("/change-password") ? "bg-gray-700" : "text-gray-400"
-          }`}
-        >
-          Change Password
-        </Link>
       </nav>
     </aside>
   );
