@@ -52,35 +52,39 @@ const BlogPage = () => {
             ? blogs.map((blog) => (
                 <div
                   key={blog._id}
-                  className="bg-gray-700 p-4 rounded-lg flex justify-between w-full mb-2"
+                  className="bg-gray-700 p-4 rounded-lg w-full mb-4 flex flex-col sm:flex-row sm:items-start"
                 >
-                  <div className="flex">
-                    {" "}
-                    {blog.featuredImage ? (
+                  <div className="flex-shrink-0">
+                    {blog.featuredImage && (
                       <img
                         src={`${apiPort}${blog.featuredImage}`}
                         alt={blog.title}
-                        className="h-32 w-32 rounded"
+                        className="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover"
                       />
-                    ) : (
-                      ""
                     )}
-                    <div>
-                      <div className="mt-2 ml-2 text-xl">{blog.title}</div>
+                  </div>
+
+                  <div className="mt-4 sm:mt-0 sm:ml-4 flex flex-col">
+                    <div className="text-xl font-semibold">{blog.title}</div>
+
+                    {/* Only show content and button on large screens */}
+                    <div className="hidden mt-2  lg:line-clamp-3 overflow-hidden text-sm max-w-full">
                       <div
-                        className="mt-2 ml-2 line-clamp-3 overflow-hidden"
+                        className="prose prose-invert"
+                        style={{ overflowWrap: "break-word" }}
                         dangerouslySetInnerHTML={{ __html: blog.content }}
-                      ></div>
-                      <button
-                        className="text-blue-500 ml-2 hover:text-blue-400 flex items-center"
-                        onClick={() => navigate(`/blog/${blog._id}`,{
-                            state: { previousUrl: location.pathname },
-                          })}
-                      >
-                        Read More
-                        <FiArrowUpRight className="ml-1 " />
-                      </button>
+                      />
                     </div>
+                    <button
+                      className="text-blue-500 mt-2 hover:text-blue-400 flex items-center w-fit"
+                      onClick={() =>
+                        navigate(`/blog/${blog._id}`, {
+                          state: { previousUrl: location.pathname },
+                        })
+                      }
+                    >
+                      Read More <FiArrowUpRight className="ml-1" />
+                    </button>
                   </div>
                 </div>
               ))

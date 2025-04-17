@@ -15,8 +15,10 @@ export const plans = [
     title: "Basic",
     monthlyPrice: 15,
     yearlyPrice: 140,
-    monthlyId: "price_1R161JGZFcsysSu12JFM8okO",
-    yearlyId: "price_1R1634GZFcsysSu15Ba0bTyP",
+    // monthlyId: "price_1R161JGZFcsysSu12JFM8okO",  //test
+    // yearlyId: "price_1R1634GZFcsysSu15Ba0bTyP",   //test
+    monthlyId: "price_1REx54LdHeIPkFw4f9ocsOJ4",
+    yearlyId: "price_1REx54LdHeIPkFw4f9ocsOJ4",
     descriptions: [
       "Free access to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps at Author/Publisher Level.",
     ],
@@ -36,8 +38,10 @@ export const plans = [
     title: "Plus+",
     monthlyPrice: 55,
     yearlyPrice: 500,
-    monthlyId: "price_1R161zGZFcsysSu1TUBvHxM4",
-    yearlyId: "price_1R167NGZFcsysSu1pFFw8MLf",
+    // monthlyId: "price_1R161zGZFcsysSu1TUBvHxM4",
+    // yearlyId: "price_1R167NGZFcsysSu1pFFw8MLf",
+    monthlyId: "price_1REx6bLdHeIPkFw4XFllX59c",
+    yearlyId: "price_1REx71LdHeIPkFw4QIs82HZm",
     descriptions: [
       "Free access to Embellisher eReader and Creator Editor & Sales.",
       "Multimedia Landing Page Apps at Admin/Publisher Level.",
