@@ -49,6 +49,7 @@ import ExtraPurchase from "./Page/ExtraPurchase";
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
 import Chat from "./Page/Chat/Chat";
+import Contest from "./Page/Landing/Contest";
 
 // Components
 import PrivateRoute from "./components/PrivateRoute";
@@ -65,6 +66,7 @@ const routes = [
   { path: "/services", element: <Service /> },
   { path: "/about-us", element: <AboutUS /> },
   { path: "/pricing", element: <Pricing /> },
+  { path: "/contest", element: <Contest /> },
 
   // Admin Routes
   {
