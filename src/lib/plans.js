@@ -4,7 +4,7 @@ export const plans = [
     monthlyPrice: 0,
     yearlyPrice: 0,
     descriptions: [
-      "Access at Author/Reader-Only Level to Embellisher eReader and Creator Editor &and use of Creator Editor to create interactive landing pages.",
+      "Access at Author/Reader-Only Level to Embellisher eReader and Creator Editor and use of Creator Editor to create interactive landing pages.",
     ],
     features: [
       "Free access to Embellisher eReader and Creator Editor & Sales.",

@@ -203,11 +203,9 @@ const FollowersPage = () => {
   };
 
   return (
-    <Layout>
+    <Layout titleText={"Followers"}>
       <ToastContainer />
       <div className="p-6">
-        <h2 className="text-xl font-bold mb-4">My Followers</h2>
-
         <div className="mt-2">
           <p className="mb-1">Your Invite Link:</p>
           <div className="flex">

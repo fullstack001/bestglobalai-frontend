@@ -116,6 +116,24 @@ const Footer = () => {
             >
               <FaYoutube className="text-xl" /> YouTube
             </a>
+            <a
+              href="https://www.f6s.com/member/jim-musgrave1?follow=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Follow Jim Musgrave on F6S"
+            >
+              <img
+                src="https://www.f6s.com/images/f6s-follow-secondary.png"
+                border="0"
+                width="98"
+                height="29"
+                alt="Follow Jim Musgrave on F6S"
+                style={{
+                  padding: "0px",
+                  marginTop: "1px",
+                }}
+              />
+            </a>
           </div>
         </div>
       </footer>

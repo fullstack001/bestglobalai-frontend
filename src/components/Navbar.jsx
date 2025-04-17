@@ -59,6 +59,7 @@ const Navbar = ({ toggleSidebar, titleText }) => {
 
   const getTrialRemainingDays = () => {
     if (!user?.createdAt) return null;
+    console.log(user);
     const createdDate = new Date(user.createdAt);
     const now = new Date();
     const diffMs = 7 * 24 * 60 * 60 * 1000 - (now - createdDate);
@@ -87,7 +88,7 @@ const Navbar = ({ toggleSidebar, titleText }) => {
         {titleText || "Welcome to the ePub Creator Studio"}
       </h1>
 
-      {user && (
+      {user && !user.role === "superAdmin" && (
         <div className="text-sm md:text-base bg-red-500 p-3 rounded-lg shadow-lg hidden md:block animate-pulse">
           {trial && (
             <div className="flex items-center justify-between gap-4">

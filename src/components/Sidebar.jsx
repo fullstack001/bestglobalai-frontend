@@ -228,6 +228,20 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           </Link>
         )}
 
+        {isSuperAdmin && (
+          <Link
+            to="/extra-purchases"
+            onClick={() => {
+              dispatch(closePanel());
+            }}
+            className={`block py-2 px-3 rounded  ${
+              isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
+            }`}
+          >
+            Extra Purchase
+          </Link>
+        )}
+
         {isCreator && (
           <Link
             to="/team-management"

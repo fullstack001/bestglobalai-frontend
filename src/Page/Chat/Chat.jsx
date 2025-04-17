@@ -129,31 +129,36 @@ const Chat = () => {
   };
 
   return (
-    <Layout>
+    <Layout titleText={"Team Chat"}>
       <div className="flex h-[calc(100vh-110px)]">
         {/* Users List */}
         <div className="w-1/4 bg-gray-800 p-4 overflow-y-auto">
-          <h2 className="text-white text-xl mb-4">Users</h2>
-          {users.map((u) => (
-            <div
-              key={u._id}
-              onClick={() => setSelectedUser(u)}
-              className={`relative p-2 cursor-pointer flex justify-between items-center ${
-                selectedUser && selectedUser._id === u._id
-                  ? "bg-gray-600 text-blue-600"
-                  : "bg-gray-700 text-white"
-              }  rounded-lg mb-2`}
-            >
-              <span>
-                {u.memberEmail === email ? u.ownerName : u.memberName}
-              </span>
-              {unreadCounts[u.email] > 0 && (
-                <span className="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
-                  {unreadCounts[u.email]}
-                </span>
-              )}
-            </div>
-          ))}
+          {users.length > 0 ? (
+            <>
+              {users.map((u) => (
+                <div
+                  key={u._id}
+                  onClick={() => setSelectedUser(u)}
+                  className={`relative p-2 cursor-pointer flex justify-between items-center ${
+                    selectedUser && selectedUser._id === u._id
+                      ? "bg-gray-600 text-blue-600"
+                      : "bg-gray-700 text-white"
+                  }  rounded-lg mb-2`}
+                >
+                  <span>
+                    {u.memberEmail === email ? u.ownerName : u.memberName}
+                  </span>
+                  {unreadCounts[u.email] > 0 && (
+                    <span className="ml-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                      {unreadCounts[u.email]}
+                    </span>
+                  )}
+                </div>
+              ))}
+            </>
+          ) : (
+            <>No team members</>
+          )}
         </div>
 
         {/* Chat Area */}

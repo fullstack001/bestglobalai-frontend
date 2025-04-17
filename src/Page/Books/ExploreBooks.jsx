@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-
-  faEye,
-  faDownload,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEye, faDownload } from "@fortawesome/free-solid-svg-icons";
 import default_cover from "../../assets/images/covers/cover1.jpg";
 import Layout from "../../components/Layout";
 
@@ -16,9 +12,11 @@ const ExploreBooks = () => {
   const [ebooks, setEbooks] = useState([]);
   const navigate = useNavigate();
   const location = useLocation();
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchEbooks = async () => {
+      setLoading(true);
       try {
         const token = localStorage.getItem("token");
         const response = await axios.get(`${apiPort}/api/books/public`, {
@@ -29,6 +27,8 @@ const ExploreBooks = () => {
         setEbooks(response.data.books);
       } catch (error) {
         console.error("Error fetching ebooks:", error);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -57,11 +57,17 @@ const ExploreBooks = () => {
     }
   };
 
-  return (
-    <Layout>
-      <section className="mt-8">
-        <h2 className="text-xl font-semibold">Explore EBooks</h2>
+  if (loading) {
+    return (
+      <Layout titleText={"Explore EBooks"}>
+        <p>Loading...</p>
+      </Layout>
+    );
+  }
 
+  return (
+    <Layout titleText={"Explore EBooks"}>
+      <section className="mt-8">
         <div className="grid md:grid-cols-4 md:gap-4 lg:grid-cols-5 lg:gap-6 mt-4">
           {ebooks.length > 0 ? (
             ebooks.map((book) => (

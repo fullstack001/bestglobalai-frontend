@@ -104,7 +104,7 @@ function TeamManagement() {
   ];
 
   return (
-    <Layout titleText={"User Management"}>
+    <Layout titleText={"Team Management"}>
       <div className="p-4 mt-6">
         <Button
           style={{ backgroundColor: "#4CAF50", color: "white" }}
@@ -119,6 +119,23 @@ function TeamManagement() {
           progressPending={loading}
           highlightOnHover
           responsive
+          pagination
+          customStyles={{
+            headCells: {
+              style: {
+                fontWeight: "bold",
+                backgroundColor: "#1f2937", // gray-800
+                color: "#fff",
+              },
+            },
+            rows: {
+              style: {
+                backgroundColor: "#111827", // gray-900
+                color: "#e5e7eb", // gray-200
+                fontSize: "14px",
+              },
+            },
+          }}
         />
 
         {/* Add Member Modal */}

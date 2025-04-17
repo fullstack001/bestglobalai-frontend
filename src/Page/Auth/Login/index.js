@@ -27,6 +27,7 @@ const Login = () => {
   const [captchaToken, setCaptchaToken] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showFogotPasswordModal, setShowFogotPasswordModal] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   // Load stored credentials if "Remember Me" was checked
   useEffect(() => {
@@ -57,6 +58,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (loading) return; // Prevent multiple submissions
+    setLoading(true);
 
     if (!captchaToken) {
       toast.error("Please complete the reCAPTCHA verification.");
@@ -120,6 +124,8 @@ const Login = () => {
       );
       setCaptchaToken("");
       recaptchaRef.current?.reset();
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -234,7 +240,7 @@ const Login = () => {
               type="submit"
               className="w-full py-2 px-4 bg-blue-600 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
-              Log In
+              {loading ? "Logging ..." : "Log In"}
             </button>
           </div>
         </form>

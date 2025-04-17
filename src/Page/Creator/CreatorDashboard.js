@@ -5,7 +5,7 @@ import {
   setEbookTitle,
   setEbookAuthor,
   setCoverImage,
-} from "../../store/ebookSlice"; 
+} from "../../store/ebookSlice";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -38,20 +38,20 @@ const CreatorDashboard = () => {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
         let response;
-        if(role === "admin" || role === "superAdmin"){
+        if (role === "admin" || role === "superAdmin") {
           response = await axios.get(`${apiPort}/api/books`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-        }else{
+        } else {
           response = await axios.get(`${apiPort}/api/books/mine`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
         }
-        
+
         setEbooks(response.data.books);
       } catch (error) {
         console.error("Error fetching ebooks:", error);
@@ -85,12 +85,16 @@ const CreatorDashboard = () => {
   };
 
   const editEbook = (id) => {
-    navigate(`/creator/editor/${id}`, { state: { previousUrl: location.pathname } });
+    navigate(`/creator/editor/${id}`, {
+      state: { previousUrl: location.pathname },
+    });
   };
 
   const deleteEbook = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this ebook?");   
-    
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this ebook?"
+    );
+
     if (!confirmDelete) return; // If the user cancels, do nothing
 
     try {
@@ -103,7 +107,9 @@ const CreatorDashboard = () => {
   };
 
   const viewEbook = (id) => {
-    navigate(`/creator/viewer/${id}`, { state: { previousUrl: location.pathname } });
+    navigate(`/creator/viewer/${id}`, {
+      state: { previousUrl: location.pathname },
+    });
   };
 
   const downloadEbook = async (id) => {
@@ -123,9 +129,8 @@ const CreatorDashboard = () => {
   };
 
   return (
-    <Layout>
+    <Layout titleText={"Creator Dashboard"}>
       <section className="mt-8">
-        <h2 className="text-xl font-semibold">My EBooks</h2>
         <div className="grid md:grid-cols-4 md:gap-4 lg:grid-cols-5 lg:gap-6 mt-4">
           {ebooks.length > 0 ? (
             ebooks.map((book) => (
@@ -149,16 +154,19 @@ const CreatorDashboard = () => {
                 <p className="text-sm mt-2 text-gray-400 text-center">
                   {book.author}
                 </p>
-                
+
                 <div className="mt-2 flex justify-between">
-       
-                  {book.bookType === "created" ?<button
-                    className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1"
-                    onClick={() => editEbook(book._id)}
-                  >
-                    <FontAwesomeIcon icon={faEdit} />
-                  </button> : ""}
-                  
+                  {book.bookType === "created" ? (
+                    <button
+                      className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1"
+                      onClick={() => editEbook(book._id)}
+                    >
+                      <FontAwesomeIcon icon={faEdit} />
+                    </button>
+                  ) : (
+                    ""
+                  )}
+
                   <button
                     className="mt-3 px-2 py-1 bg-green-500 text-white rounded-lg mr-1"
                     onClick={() => viewEbook(book._id)}
@@ -209,7 +217,7 @@ const CreatorDashboard = () => {
               className="w-full mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded"
             />
           </div>
-          
+
           <div>
             <label className="block text-gray-400">Pagination direction</label>
             <select
@@ -231,7 +239,7 @@ const CreatorDashboard = () => {
               className="w-full mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded"
             />
           </div>
-        
+
           <button
             onClick={createEbook}
             className="w-full bg-blue-600 py-2 rounded text-white"

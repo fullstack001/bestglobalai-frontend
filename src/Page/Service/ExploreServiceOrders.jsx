@@ -13,8 +13,10 @@ const ExploreServiceOrders = () => {
   const [services, setServices] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [loading, setLoading] = useState(false);
 
   const fetchContacts = async (page) => {
+    setLoading(true);
     try {
       const token = localStorage.getItem("token");
       const role = localStorage.getItem("role");
@@ -34,6 +36,8 @@ const ExploreServiceOrders = () => {
       setTotalPages(response.data.totalServices);
     } catch (error) {
       console.error("Error fetching blogs:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -53,11 +57,17 @@ const ExploreServiceOrders = () => {
     });
   };
 
-  return (
-    <Layout>
-      <section className="mt-8">
-        <h2 className="text-xl font-semibold">Service Order Informations</h2>
+  if (loading) {
+    return (
+      <Layout titleText={"Service Order Informations"}>
+        <p>Loading...</p>
+      </Layout>
+    );
+  }
 
+  return (
+    <Layout titleText={"Service Order Informations"}>
+      <section className="mt-8">
         <div className=" mt-4">
           {services.length > 0 ? (
             services.map((service) => (
@@ -67,12 +77,8 @@ const ExploreServiceOrders = () => {
               >
                 <div>
                   <div className="flex">
-                    <div className="mt-2 text-center ml-2">
-                      {service.email}
-                    </div>
+                    <div className="mt-2 text-center ml-2">{service.email}</div>
                   </div>
-
-                 
                 </div>
 
                 <div>
@@ -83,8 +89,6 @@ const ExploreServiceOrders = () => {
                     >
                       <FontAwesomeIcon icon={faEye} className="" />
                     </button>
-
-                    
                   </div>
                 </div>
               </div>
@@ -97,24 +101,24 @@ const ExploreServiceOrders = () => {
 
       {/* Pagination Controls */}
       <div className="max-w-6xl mx-auto px-6 md:px-12 mt-8 text-center">
-          <button
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="px-4 py-2 bg-gray-700 text-white rounded-md disabled:opacity-50"
-          >
-            Previous
-          </button>
-          <span className="mx-4 text-lg">
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="px-4 py-2 bg-gray-700 text-white rounded-md disabled:opacity-50"
-          >
-            Next
-          </button>
-        </div>
+        <button
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+          className="px-4 py-2 bg-gray-700 text-white rounded-md disabled:opacity-50"
+        >
+          Previous
+        </button>
+        <span className="mx-4 text-lg">
+          Page {currentPage} of {totalPages}
+        </span>
+        <button
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+          className="px-4 py-2 bg-gray-700 text-white rounded-md disabled:opacity-50"
+        >
+          Next
+        </button>
+      </div>
     </Layout>
   );
 };

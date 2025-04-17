@@ -2,34 +2,32 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faEdit,
-  faTrash,
-  faEye,
-} from "@fortawesome/free-solid-svg-icons";
+import { faEdit, faTrash, faEye } from "@fortawesome/free-solid-svg-icons";
 import Layout from "../../components/Layout";
 const apiPort = process.env.REACT_APP_API_PORT;
 
 const BlogDashboard = () => {
   const [user, setUser] = useState(null);
   const [blogs, setBlogs] = useState([]);
+  const [fetching, setFetching] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
     const fetchBlogs = async () => {
+      setFetching(true);
       try {
         const token = localStorage.getItem("token");
         const role = localStorage.getItem("role");
         let response;
-        if ( role === "superAdmin") {
+        if (role === "superAdmin") {
           response = await axios.get(`${apiPort}/api/blogs`, {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-        } 
-        
+        }
+
         if (role === "admin") {
           response = await axios.get(`${apiPort}/api/blogs/mine`, {
             headers: {
@@ -41,6 +39,8 @@ const BlogDashboard = () => {
         setBlogs(response.data.blogs);
       } catch (error) {
         console.error("Error fetching blogs:", error);
+      } finally {
+        setFetching(false);
       }
     };
 
@@ -70,7 +70,9 @@ const BlogDashboard = () => {
   };
 
   const deleteBlog = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this blog?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this blog?"
+    );
     if (!confirmDelete) return; // If the user cancels, do nothing
 
     try {
@@ -88,10 +90,17 @@ const BlogDashboard = () => {
     });
   };
 
+  if (fetching) {
+    return (
+      <Layout titleText="Fetching Blogs">
+        <div>Loading...</div>
+      </Layout>
+    );
+  }
+
   return (
-    <Layout>
+    <Layout titleText="Blog List">
       <section className="mt-8">
-        <h2 className="text-xl font-semibold">Blogs</h2>
         <div className="flex justify-end">
           <button
             className="mt-3 px-4 py-1 bg-blue-500 text-white rounded-lg mr-1 text-lg"

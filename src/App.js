@@ -44,6 +44,7 @@ import ServiceOrderViewer from "./Page/Service/ServiceOrderView";
 import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
 import TeamManagement from "./Page/TeamManagement";
+import ExtraPurchase from "./Page/ExtraPurchase";
 
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
@@ -221,6 +222,12 @@ const routes = [
     path: "/team-management",
     element: <TeamManagement />,
     allowedRoles: ["superAdmin", "admin", "editor"],
+  },
+
+  {
+    path: "/extra-purchases",
+    element: <ExtraPurchase />,
+    allowedRoles: ["superAdmin"],
   },
 
   // Landing Pages

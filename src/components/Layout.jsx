@@ -109,7 +109,7 @@ const Layout = ({ children, titleText }) => {
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
-      <main className="flex-1 p-3 sm:p-8">
+      <main className="flex-1 p-3 sm:p-8 overflow-x-auto">
         <Navbar titleText={titleText} toggleSidebar={toggleSidebar} />
         {children}
       </main>
