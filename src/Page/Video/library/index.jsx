@@ -23,6 +23,9 @@ export default function VideoLibraryPage() {
   const [videoToDelete, setVideoToDelete] = useState(null);
 
   useEffect(() => {
+    // setInterval(() => {
+    //   fetchVideos();
+    // }, 20000);
     fetchVideos();
   }, []);
 
