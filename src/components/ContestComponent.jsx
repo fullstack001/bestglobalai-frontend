@@ -78,7 +78,10 @@ const ContestPromo = () => {
       <div className="text-lg font-bold text-[#c0392b] mb-4">{countdown}</div>
       <p className="text-lg font-semibold mb-6">
         👉{" "}
-        <a href="#raffle-form" className="text-[#27ae60] underline">
+        <a
+          href="http://www.rafflecopter.com/rafl/display/18ae07e98/"
+          className="text-[#27ae60] underline"
+        >
           Just fill out the form to enter the raffle.
         </a>
       </p>
