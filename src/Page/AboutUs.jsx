@@ -24,6 +24,14 @@ const teamMembers = [
     bio:
       "Ilonka Kalanchuk is a Full-Stack Engineer at Best Global AI, with a passion for scalable AI solutions and automation. Ilonka's expertise spans across various programming languages and frameworks, enabling her to develop robust and efficient software solutions. She is dedicated to optimizing processes and implementing automation to enhance productivity and reduce operational costs. Ilonka's innovative approach and problem-solving skills make her a key contributor to the development of cutting-edge AI technologies at Best Global AI. Her commitment to continuous learning and improvement ensures that the company stays ahead in the rapidly evolving field of artificial intelligence.",
   },
+  ,
+  {
+    name: "Vladyslav Drobakha",
+    role: "Security, QA Tester, Full-Stack Engineer",
+    image: "/images/16.png", // Make sure this image exists in your /public/images folder
+    bio:
+      "Vladyslav Drobakha is a multifaceted engineer at Best Global AI, combining expertise in cybersecurity, quality assurance testing, and full-stack development. With a deep understanding of both offensive and defensive security practices, Vladyslav ensures that all applications meet the highest standards of safety and reliability. His rigorous approach to QA helps identify critical bugs early in the development cycle, while his full-stack engineering skills bring robust and scalable solutions to life. Vladyslav is dedicated to maintaining performance, security, and user trust across all digital platforms at Best Global AI.",
+  },
 ];
 
 const AboutUs = () => {
@@ -66,7 +74,7 @@ const AboutUs = () => {
         </div>
 
         {/* Team Section */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {teamMembers.map((member, index) => (
             <div
               key={index}
