@@ -8,7 +8,7 @@ const ContestPromo = () => {
     const updateCountdown = () => {
       const now = new Date().getTime();
       const startTime = new Date("April 21, 2025 00:00:00").getTime();
-      const endTime = new Date("April 25, 2025 00:00:00").getTime();
+      const endTime = new Date("April 26, 2025 00:00:00").getTime();
 
       if (now < startTime) {
         setCountdown("⏳ Contest starts soon! Come back on April 21st!");
