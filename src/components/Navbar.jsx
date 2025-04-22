@@ -40,7 +40,6 @@ const Navbar = ({ toggleSidebar, titleText }) => {
     localStorage.removeItem("role");
     localStorage.removeItem("email");
     localStorage.removeItem("user");
-    localStorage.removeItem("_grecaptcha");
     localStorage.removeItem("userId");
     localStorage.removeItem("paidUser");
     localStorage.removeItem("ayrsahreRefId");
