@@ -55,6 +55,11 @@ const Nav = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
     localStorage.removeItem("email");
+    localStorage.removeItem("user");
+    localStorage.removeItem("_grecaptcha");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("paidUser");
+    localStorage.removeItem("ayrsahreRefId");
     setUser(null);
   };
 
@@ -124,7 +129,9 @@ const Nav = () => {
                       className="profile-image-preview h-8 w-8 cursor-pointer"
                     />
                   ) : (
-                    <span className=" px-2 cursor-pointer">{user.fullName.charAt(0).toUpperCase()}</span>
+                    <span className=" px-2 cursor-pointer">
+                      {user.fullName.charAt(0).toUpperCase()}
+                    </span>
                   )}
                 </div>
                 <p className="font-semibold">{user.fullName}</p>

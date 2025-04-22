@@ -55,7 +55,7 @@ const Login = () => {
   const handleCaptchaChange = (token) => {
     setCaptchaToken(token);
   };
-
+  console.log(rememberMe);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -124,7 +124,7 @@ const Login = () => {
       );
       setCaptchaToken("");
       recaptchaRef.current?.reset();
-    }finally{
+    } finally {
       setLoading(false);
     }
   };

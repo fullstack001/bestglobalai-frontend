@@ -29,15 +29,21 @@ const Navbar = ({ toggleSidebar, titleText }) => {
         }
       } catch (error) {
         console.error("Failed to fetch user data:", error);
-        localStorage.clear();
-        navigate("/");
+        handleLogout();
       }
     };
     fetchUser();
   }, []);
 
   const handleLogout = () => {
-    localStorage.clear();
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("email");
+    localStorage.removeItem("user");
+    localStorage.removeItem("_grecaptcha");
+    localStorage.removeItem("userId");
+    localStorage.removeItem("paidUser");
+    localStorage.removeItem("ayrsahreRefId");
     navigate("/");
   };
 
