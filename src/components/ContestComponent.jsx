@@ -8,7 +8,7 @@ const ContestPromo = () => {
     const updateCountdown = () => {
       const now = new Date().getTime();
       const startTime = new Date("April 21, 2025 00:00:00").getTime();
-      const endTime = new Date("April 26, 2025 00:00:00").getTime();
+      const endTime = new Date("May 1, 2025 00:00:00").getTime();
 
       if (now < startTime) {
         setCountdown("⏳ Contest starts soon! Come back on April 21st!");
@@ -92,6 +92,22 @@ const ContestPromo = () => {
       <p className="italic text-gray-500 mt-6">
         Let’s build something amazing—together.
       </p>
+      <hr className="my-8" />
+      <h3 className="text-xl font-semibold text-[#2c3e50] mt-6 mb-4">
+        📩 Stay Updated with AI Insights
+      </h3>
+      <p className="mb-4">
+        Signup for Professor Musgrave's opt-in newsletter that provides the
+        latest advances in AI social media marketing and other related news.
+      </p>
+      <a
+        href="https://bestglobalai.com/signup?ref=67aa111989d7a86e34468b07"
+        target="_blank"
+        rel="noreferrer"
+        className="inline-block bg-[#27ae60] text-white font-bold py-2 px-4 rounded hover:bg-[#219150] transition"
+      >
+        Subscribe Now
+      </a>
       <hr className="my-8" />
       <h3 className="text-2xl text-[#2c3e50] font-semibold mb-4">
         🌟 What Our Clients Say
