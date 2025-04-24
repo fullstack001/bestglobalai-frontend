@@ -51,8 +51,8 @@ const ContestPromo = () => {
           Best Global AI
         </a>
         , we’re giving away{" "}
-        <strong>three professionally crafted interactive landing pages</strong>—
-        designed by our extraordinary team of{" "}
+        <strong>three professionally crafted interactive landing pages</strong>
+        —designed by our extraordinary team of{" "}
         <strong>Ukrainian developers</strong> and guided by our Founder and CEO,{" "}
         <strong>Professor James Musgrave</strong>.
       </p>
@@ -76,15 +76,18 @@ const ContestPromo = () => {
         🕒 Countdown to Contest Close
       </h3>
       <div className="text-lg font-bold text-[#c0392b] mb-4">{countdown}</div>
-      <p className="text-lg font-semibold mb-6">
-        👉{" "}
-        <a
-          href="http://www.rafflecopter.com/rafl/display/18ae07e98/"
-          className="text-[#27ae60] underline"
+      <div className="my-8">
+        <iframe
+          src="https://docs.google.com/forms/d/e/1FAIpQLSfqzCleEzcpVcdhcKdGaJfhAB7Hsx8oVbbCKsWbuTT2N2Wl9Q/viewform?embedded=true"
+          width="100%"
+          height="1706"
+          frameBorder="0"
+          marginHeight={0}
+          marginWidth={0}
         >
-          Just fill out the form to enter the raffle.
-        </a>
-      </p>
+          Loading…
+        </iframe>
+      </div>
       <p>
         You can also ask questions directly to our friendly Conversational
         Avatar below!

@@ -67,6 +67,21 @@ const Landing = () => {
       <div className="">
         <Nav />
         <Hero />
+        <div className="bg-yellow-100 p-6 rounded-xl shadow-lg mt-12 text-center max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
+            🎁 Enter to Win a Free Professional Landing Page!
+          </h2>
+          <p className="mb-4 text-gray-700">
+            Enter to win a free professional landing page promotion for your
+            business. Click the button below.
+          </p>
+          <a
+            href="/contest"
+            className="inline-block bg-[#27ae60] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#219150] transition"
+          >
+            Enter the Contest
+          </a>
+        </div>
         <Feature />
         <Subscription />
         <Extra />
