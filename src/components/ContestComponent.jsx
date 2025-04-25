@@ -4,37 +4,6 @@ import React, { useEffect, useState } from "react";
 const ContestPromo = () => {
   const [countdown, setCountdown] = useState("");
 
-  useEffect(() => {
-    const updateCountdown = () => {
-      const now = new Date().getTime();
-      const startTime = new Date("April 21, 2025 00:00:00").getTime();
-      const endTime = new Date("May 1, 2025 00:00:00").getTime();
-
-      if (now < startTime) {
-        setCountdown("⏳ Contest starts soon! Come back on April 21st!");
-      } else if (now >= startTime && now <= endTime) {
-        const distance = endTime - now;
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor(
-          (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-        );
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-        setCountdown(
-          `${days}d ${hours}h ${minutes}m ${seconds}s left to enter!`
-        );
-      } else {
-        setCountdown(
-          "🎉 The contest is now closed. Thank you to everyone who entered!"
-        );
-      }
-    };
-
-    updateCountdown();
-    const interval = setInterval(updateCountdown, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="bg-[#f7f9fc] p-6 mt-12 md:p-10 rounded-xl shadow-md max-w-4xl mx-auto font-sans text-gray-800">
       <h2 className="text-2xl md:text-3xl font-bold text-[#2c3e50] mb-4">
@@ -102,6 +71,8 @@ const ContestPromo = () => {
       <p className="mb-4">
         Signup for Professor Musgrave's opt-in newsletter that provides the
         latest advances in AI social media marketing and other related news.
+        Those who signup will be given 15% off the add-on purchase of a
+        conversational avatar ($100-$200) value on
       </p>
       <a
         href="https://bestglobalai.com/signup?ref=67aa111989d7a86e34468b07"
@@ -134,6 +105,15 @@ const ContestPromo = () => {
         <br />
         <strong>– Delia R., Indie Publisher</strong>
       </blockquote>
+      <a
+        href="https://labs.heygen.com/interactive-avatar/share?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJSaWthX0JsdWVfU3VpdF9wdWJsaWMiLCJw%0D%0AcmV2aWV3SW1nIjoiaHR0cHM6Ly9maWxlczIuaGV5Z2VuLmFpL2F2YXRhci92My9lOWE2OTMzZTEw%0D%0AZjk0MjczYTcyYTQ4NGQ5OWZmNTYxOF81NTQzMC9wcmV2aWV3X3RhbGtfMS53ZWJwIiwibmVlZFJl%0D%0AbW92ZUJhY2tncm91bmQiOnRydWUsImtub3dsZWRnZUJhc2VJZCI6ImEyY2UzZjk1MjdiZDRjZGQ4%0D%0AODJkN2RlZTU0M2RjYjUwIiwidXNlcm5hbWUiOiIwNzQxZjdjNWUxZDM0YThjYTU5ODNkMWQ3OTY0%0D%0ANTUwYyJ9"
+        target="_blank"
+        rel="noreferrer"
+        className="fixed bottom-[5%] left-[5%] bg-[#27ae60] text-xl text-white p-4 rounded-full shadow-lg hover:bg-[#219150] transition"
+        style={{ zIndex: 1000 }}
+      >
+        💬
+      </a>
     </div>
   );
 };
