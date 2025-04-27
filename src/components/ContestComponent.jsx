@@ -1,5 +1,7 @@
 // ContestPromo.tsx
 import React, { useEffect, useState } from "react";
+import Tippy from "@tippyjs/react"; // Import Tippy.js
+import "tippy.js/dist/tippy.css"; // Import Tippy.js styles
 
 const ContestPromo = () => {
   const [countdown, setCountdown] = useState("");
@@ -105,15 +107,17 @@ const ContestPromo = () => {
         <br />
         <strong>– Delia R., Indie Publisher</strong>
       </blockquote>
-      <a
-        href="https://labs.heygen.com/interactive-avatar/share?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJSaWthX0JsdWVfU3VpdF9wdWJsaWMiLCJw%0D%0AcmV2aWV3SW1nIjoiaHR0cHM6Ly9maWxlczIuaGV5Z2VuLmFpL2F2YXRhci92My9lOWE2OTMzZTEw%0D%0AZjk0MjczYTcyYTQ4NGQ5OWZmNTYxOF81NTQzMC9wcmV2aWV3X3RhbGtfMS53ZWJwIiwibmVlZFJl%0D%0AbW92ZUJhY2tncm91bmQiOnRydWUsImtub3dsZWRnZUJhc2VJZCI6ImEyY2UzZjk1MjdiZDRjZGQ4%0D%0AODJkN2RlZTU0M2RjYjUwIiwidXNlcm5hbWUiOiIwNzQxZjdjNWUxZDM0YThjYTU5ODNkMWQ3OTY0%0D%0ANTUwYyJ9"
-        target="_blank"
-        rel="noreferrer"
-        className="fixed bottom-[5%] left-[5%] bg-[#27ae60] text-xl text-white p-4 rounded-full shadow-lg hover:bg-[#219150] transition"
-        style={{ zIndex: 1000 }}
-      >
-        💬
-      </a>
+      <Tippy content="Click here to ask Rika about the contest and our business. ">
+        <a
+          href="https://labs.heygen.com/interactive-avatar/share?share=eyJxdWFsaXR5IjoiaGlnaCIsImF2YXRhck5hbWUiOiJSaWthX0JsdWVfU3VpdF9wdWJsaWMiLCJw%0D%0AcmV2aWV3SW1nIjoiaHR0cHM6Ly9maWxlczIuaGV5Z2VuLmFpL2F2YXRhci92My9lOWE2OTMzZTEw%0D%0AZjk0MjczYTcyYTQ4NGQ5OWZmNTYxOF81NTQzMC9wcmV2aWV3X3RhbGtfMS53ZWJwIiwibmVlZFJl%0D%0AbW92ZUJhY2tncm91bmQiOnRydWUsImtub3dsZWRnZUJhc2VJZCI6ImEyY2UzZjk1MjdiZDRjZGQ4%0D%0AODJkN2RlZTU0M2RjYjUwIiwidXNlcm5hbWUiOiIwNzQxZjdjNWUxZDM0YThjYTU5ODNkMWQ3OTY0%0D%0ANTUwYyJ9"
+          target="_blank"
+          rel="noreferrer"
+          className="fixed bottom-[5%] left-[5%] bg-[#27ae60] text-xl text-white p-4 rounded-full shadow-lg hover:bg-[#219150] transition"
+          style={{ zIndex: 1000 }}
+        >
+          💬
+        </a>
+      </Tippy>
     </div>
   );
 };
