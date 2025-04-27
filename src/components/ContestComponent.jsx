@@ -85,6 +85,29 @@ const ContestPromo = () => {
         Subscribe Now
       </a>
       <hr className="my-8" />
+      <h3 className="text-xl font-semibold text-[#2c3e50] mt-6 mb-4">
+        📚 Free eBook for You
+      </h3>
+      <p className="mb-4">
+        Free gift from one of the 13 instructional eBooks you'll get when you
+        register for free at Best Global AI here:{" "}
+        <a
+          href="https://bestglobalai.com/signup"
+          target="_blank"
+          rel="noreferrer"
+          className="text-[#2980b9] font-bold"
+        >
+          https://bestglobalai.com/signup
+        </a>
+      </p>
+      <a
+        href="/assets/ebooks/How to Create an Interactive Landing Page in Your BGAI Editor.epub"
+        download
+        className="inline-block bg-[#27ae60] text-white font-bold py-2 px-4 rounded hover:bg-[#219150] transition"
+      >
+        Download Free eBook
+      </a>
+      <hr className="my-8" />
       <h3 className="text-2xl text-[#2c3e50] font-semibold mb-4">
         🌟 What Our Clients Say
       </h3>
