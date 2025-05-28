@@ -243,7 +243,8 @@ function EbookViewer() {
               epubOptions={{
                 allowPopups: true,
                 allowScriptedContent: true,
-                flow: "scrolled",
+                // flow: "scrolled",
+                paginated: 'paginated',
                 manager: "continuous",
               }}
             />
