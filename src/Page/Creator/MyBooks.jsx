@@ -52,9 +52,11 @@ const MyBooks = () => {
   };
 
   const deleteEbook = async (id) => {
-    const confirmDelete = window.confirm("Are you sure you want to delete this ebook?");
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this ebook?"
+    );
     if (!confirmDelete) return; // If the user cancels, do nothing
-    
+
     try {
       await axios.delete(`${apiPort}/api/books/${id}`);
       setEbooks((prevEbooks) => prevEbooks.filter((book) => book._id !== id));
@@ -98,7 +100,7 @@ const MyBooks = () => {
           },
         }
       );
-      alert(response.data.message);
+      // alert(response.data.message);
       setEbooks((prevEbooks) =>
         prevEbooks.map((book) =>
           book._id === id ? { ...book, private: false } : book
@@ -190,7 +192,9 @@ const MyBooks = () => {
 
                   <div className="relative group mt-3 ">
                     <button
-                      className="px-2 py-3 bg-gray-500 text-white rounded-lg mr-1"
+                      className={`px-2 py-3 text-white rounded-lg mr-1 ${
+                        book.private ? "bg-gray-500" : "bg-blue-500"
+                      }`}
                       onClick={() => publicEbook(book._id)}
                     >
                       <FaShareAlt />
