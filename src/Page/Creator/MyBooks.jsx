@@ -27,21 +27,21 @@ const MyBooks = () => {
     setEbooks((prev) => [...prev, newBook]);
   };
 
-  useEffect(() => {
-    const fetchEbooks = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get(`${apiPort}/api/books/mine`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setEbooks(response.data.books);
-      } catch (error) {
-        console.error("Error fetching ebooks:", error);
-      }
-    };
+  const fetchEbooks = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      const response = await axios.get(`${apiPort}/api/books/mine`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setEbooks(response.data.books);
+    } catch (error) {
+      console.error("Error fetching ebooks:", error);
+    }
+  };
 
+  useEffect(() => {
     fetchEbooks();
   }, []);
 
@@ -100,8 +100,8 @@ const MyBooks = () => {
           },
         }
       );
-      fetchEbooks(); // Refresh the list of ebooks after making it public
       // alert(response.data.message);
+      fetchEbooks();
       setEbooks((prevEbooks) =>
         prevEbooks.map((book) =>
           book._id === id ? { ...book, private: false } : book
@@ -201,7 +201,7 @@ const MyBooks = () => {
                       <FaShareAlt />
                     </button>
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
-                       {book.private ? 'Share eBook' : 'Disable Share' }
+                      {book.private ? "Share eBook" : "Disable Share"}
                     </div>
                   </div>
 
