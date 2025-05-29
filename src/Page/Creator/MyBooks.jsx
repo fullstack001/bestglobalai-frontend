@@ -100,6 +100,7 @@ const MyBooks = () => {
           },
         }
       );
+      fetchEbooks(); // Refresh the list of ebooks after making it public
       // alert(response.data.message);
       setEbooks((prevEbooks) =>
         prevEbooks.map((book) =>
@@ -193,14 +194,14 @@ const MyBooks = () => {
                   <div className="relative group mt-3 ">
                     <button
                       className={`px-2 py-3 text-white rounded-lg mr-1 ${
-                        book.private ? "bg-gray-500" : "bg-blue-500"
+                        book.private ? "bg-blue-500" : "bg-red-500"
                       }`}
                       onClick={() => publicEbook(book._id)}
                     >
                       <FaShareAlt />
                     </button>
                     <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 hidden group-hover:flex items-center justify-center bg-black text-white text-xs rounded px-2 py-1">
-                      Share eBook
+                       {book.private ? 'Share eBook' : 'Disable Share' }
                     </div>
                   </div>
 
