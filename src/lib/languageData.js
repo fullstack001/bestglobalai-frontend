@@ -143,10 +143,10 @@ export const languageData = [
         "name": "Hawaiian",
         "code": "haw"
     },
-    {
-        "name": "Hebrew",
-        "code": "he"
-    },
+    // {
+    //     "name": "Hebrew",
+    //     "code": "he"
+    // },
     {
         "name": "Hindi",
         "code": "hi"
