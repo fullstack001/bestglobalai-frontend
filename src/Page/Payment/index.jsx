@@ -10,6 +10,7 @@ import CheckoutForm from "./SubscriptionCheckout";
 
 import { clearPlan } from "../../store/goSubscription";
 import { setUser } from "../../store/userSlice";
+import {plans} from "../../lib/plans";
 
 const stripeKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 const baseUrl = process.env.REACT_APP_API_PORT;
@@ -17,84 +18,97 @@ const stripePromise = loadStripe(stripeKey);
 
 const Payment = ({ month, currency }) => {
   const navigate = useNavigate();
-  const [successMessage, setSuccessMessage] = useState(null);
-  const plan = useSelector((state) => state.goSubscription);
-
-  const dispatch = useDispatch();
   const email = localStorage.getItem("email");
+  
+  const [successMessage, setSuccessMessage] = useState(null);
+  const dispatch = useDispatch();
+  const plan = useSelector((state) => state.goSubscription);
+  const from = new URLSearchParams(window.location.search).get("from");
+  const planIndex = new URLSearchParams(window.location.search).get("planIndex");
+  const isMonthly = new URLSearchParams(window.location.search).get("isMonthly");
+  const selectedPlan = plans[planIndex];
+  console.log("Selected Plan:", selectedPlan);
+  
 
-  const stripePriceId = plan?.isMonthly ? plan?.monthlyId : plan?.yearlyId;
+  if (email) {
+    const stripePriceId = isMonthly ? selectedPlan?.monthlyId : selectedPlan?.yearlyId;
+    const totalPrice = isMonthly? selectedPlan?.monthlyPrice : selectedPlan?.yearlyPrice;
+    console.log("Stripe Price ID:", stripePriceId);
 
-  const handlePurchaseSubscription = (subscriptionType, subscriptionId) => {
-    axios
-      .post(`${baseUrl}/api/subscription/add-subscription`, {
-        email,
-        frequency: plan.isMonthly ? "monthly" : "yearly",
-        plan: plan.title,
-        subscriptionId,
-        subscriptionType,
-      })
-      .then((response) => {
-        setSuccessMessage(`Your subscription payment processed successfully.`);
+    const handlePurchaseSubscription = (subscriptionType, subscriptionId) => {
+      axios
+        .post(`${baseUrl}/api/subscription/add-subscription`, {
+          email,
+          frequency: isMonthly ? "monthly" : "yearly",
+          plan: selectedPlan.title,
+          totalPrice: totalPrice,
+          subscriptionId,
+          subscriptionType,
+        })
+        .then((response) => {
+          setSuccessMessage(
+            `Your subscription payment processed successfully.`
+          );
 
-        dispatch(clearPlan());
-        const { token, user, subscription } = response.data;
-        let role = user.role;
-        console.log(subscription);
-        dispatch(setUser({ ...user, subscription }));
+          dispatch(clearPlan());
+          const { token, user, subscription } = response.data;
+          let role = user.role;
+          console.log(subscription);
+          dispatch(setUser({ ...user, subscription }));
 
-        // Save token to localStorage (or cookie)
-        localStorage.setItem("token", token);
-        localStorage.setItem("role", role);
-        localStorage.setItem("email", user.email);
-        localStorage.setItem("userId", user._id);
-        localStorage.setItem("paidUser", user.isActive);
-        localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
+          // Save token to localStorage (or cookie)
+          localStorage.setItem("token", token);
+          localStorage.setItem("role", role);
+          localStorage.setItem("email", user.email);
+          localStorage.setItem("userId", user._id);
+          localStorage.setItem("paidUser", user.isActive);
+          localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
 
-        if (role === "superAdmin" || role === "admin" || role === "editor") {
-          navigate("/creator");
-        } else if (role === "user") {
-          navigate("/profile");
-        }
-      })
-      .catch(() => {
-        console.log("network error");
-      });
-  };
+          if (role === "superAdmin" || role === "admin" || role === "editor") {
+            navigate("/creator");
+          } else if (role === "user") {
+            navigate("/profile");
+          }
+        })
+        .catch(() => {
+          console.log("network error");
+        });
+    };
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-      <div className="bg-white rounded-lg p-6 w-full max-w-xl shadow-lg">
-        <div className="flex justify-between items-center my-4">
-          <h2 className="text-lg font-bold text-blue-600 mb-2">
-            Secure Payment
-          </h2>
-        </div>
-        {plan && (
-          <div className="flex justify-between font-bold text-xl w-full text-gray-600 mb-4">
-            <div>Selected Plan: {plan.title}</div>
-            <div>
-              {" "}
-              Price: $ {plan?.isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+        <div className="bg-white rounded-lg p-6 w-full max-w-xl shadow-lg">
+          <div className="flex justify-between items-center my-4">
+            <h2 className="text-lg font-bold text-blue-600 mb-2">
+              Secure Payment
+            </h2>
+          </div>
+          {plan && (
+            <div className="flex justify-between font-bold text-xl w-full text-gray-600 mb-4">
+              <div>Selected Plan: {plan.title}</div>
+              <div>
+                {" "}
+                Price: ${" "}
+                {plan?.isMonthly ? plan.monthlyPrice : plan.yearlyPrice}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
-        {successMessage ? (
-          <div className="mt-4 p-4 bg-green-100 text-green-800 rounded">
-            {successMessage}
-          </div>
-        ) : (
-          <>
-            <Elements stripe={stripePromise}>
-              <CheckoutForm
-                priceId={stripePriceId}
-                callBack={handlePurchaseSubscription}
-                email={email}
-              />
-            </Elements>
+          {successMessage ? (
+            <div className="mt-4 p-4 bg-green-100 text-green-800 rounded">
+              {successMessage}
+            </div>
+          ) : (
+            <>
+              <Elements stripe={stripePromise}>
+                <CheckoutForm
+                  priceId={stripePriceId}
+                  callBack={handlePurchaseSubscription}
+                  email={email}
+                />
+              </Elements>
 
-            {/* <div className="mb-6">
+              {/* <div className="mb-6">
               <label className="flex items-center space-x-2 mb-2">
                 <input
                   type="radio"
@@ -108,18 +122,21 @@ const Payment = ({ month, currency }) => {
                   <img src="/image/paypal.png" alt="paypal" className="h-8" />
                 </div>
               </label> */}
-            {/* {paymentMethod === "paypal" && (
+              {/* {paymentMethod === "paypal" && (
                 <PayPalButton
                   callback={handleAddCredit}
                   planId={coupon ? paypalDiscountPriceId : paypalPriceId}
                 />
               )} */}
-            {/* </div> */}
-          </>
-        )}
+              {/* </div> */}
+            </>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    navigate("/login");
+  }
 };
 
 export default Payment;

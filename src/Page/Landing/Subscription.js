@@ -102,26 +102,14 @@ const Subscription = () => {
               {plan.title}
             </h3>
             <div className="mb-4">
-              {plan.descriptions.map((description, i) => (
-                <li key={i} className="flex items-start mb-3">
-                  <span className="text-blue-500 mr-2">✔</span>
-                  <span>{description}</span>
-                </li>
-              ))}
+              {plan.descriptions}
             </div>
             <p className="text-4xl font-bold mb-4">
               ${isMonthly ? plan.monthlyPrice : plan.yearlyPrice}{" "}
               <span className="text-2xl">{isMonthly ? "Month" : "Year"}</span>
             </p>
             <hr className="mb-4" />
-            <ul className=" mb-6">
-              {plan.features.map((feature, i) => (
-                <li key={i} className="flex items-start mb-3">
-                  <span className="text-blue-500 mr-2">✔</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+            
             <button
               onClick={() => handlePayment(plan, "stripe")}
               className={` ${

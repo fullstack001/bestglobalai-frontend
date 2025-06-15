@@ -1,55 +1,46 @@
 import React, { useEffect, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
-import { Link } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-import { useSelector, useDispatch } from "react-redux";
 import CheckoutForm from "./component/CheckoutForm";
-import { clearExtra } from "../../store/getExtra";
-import {extraData} from "../../lib/extraData";
-import { use } from "react";
+import individualData from "../../lib/individualData";
+
 
 const stripeKey = process.env.REACT_APP_STRIPE_PUBLIC_KEY;
 const brandPort = process.env.REACT_APP_BRAND_PORT;
 const baseUrl = process.env.REACT_APP_API_PORT;
-const stripePromise = loadStripe(stripeKey);
+const stripePromise = stripeKey ? loadStripe(stripeKey) : Promise.reject(new Error("Stripe public key is missing"));
 
-const ExtraPayment = ({ amount, currency }) => {
+const IndividualPayment = () => {
   const navigate = useNavigate();
-  const [successMessage, setSuccessMessage] = useState(null);
-  const [selectedExtra, setSelectedExtra] = useState(null); 
-  // const extra = useSelector((state) => state.extra);
-  const dispatch = useDispatch();
-  const email = localStorage.getItem("email");
-  const extraIndex = new URLSearchParams(window.location.search).get("extraIndex");
-  
-  useEffect(() => {
-    // Find the selected extra based on the extraIndex
-    const foundExtra = extraData.find((item) => item.id === parseInt(extraIndex));
-    setSelectedExtra(foundExtra); // Update the state
-    console.log("Selected Extra:", foundExtra);
-  }, [extraIndex]);
+  const [successMessage, setSuccessMessage] = useState("");
+  const [selectedIndividual, setSelectedIndividual] = useState(null); 
+  const email = localStorage.getItem("email"); 
+  const individual = individualData[0]; 
+
+  useEffect(() => {     
+    setSelectedIndividual(individual); // Update the state
+    
+  }, []);
   
 
   const extraDelete = () => {
-    setSelectedExtra(null);
+    setSelectedIndividual(null);
   };
 
   const goHome = () => {
-    extraDelete();
-    // navigate("/");
+    extraDelete();  
     window.open(`${brandPort}`, "_self");
-
   };
+
   const hanldeAddCredit = async () => {
     try {
       const response = await axios.post(
-        `${baseUrl}/api/extra/purchase-request`,
+        `${baseUrl}/api/extra/individual-request`,
         {
           email,
-          selectedExtra,
+          selectedIndividual,
         }
       );
       if (response.status === 200) {
@@ -74,15 +65,15 @@ const ExtraPayment = ({ amount, currency }) => {
         <div className="space-y-6 mb-6">
           <div className="mb-6">
             <p className="text-gray-700 sm:text-xl text-base">Chosen Service</p>
-            <p className="text-3xl font-bold">{selectedExtra?.title} </p>
+            <p className="text-3xl font-bold">{selectedIndividual?.title} </p>
           </div>
           <div className="mb-6">
             <p className="text-gray-700 sm:text-xl text-base">Payment amount</p>
-            <p className="text-3xl font-bold">$ {selectedExtra?.cost}</p>
+            <p className="text-3xl font-bold">$ {selectedIndividual?.cost}</p>
           </div>
         </div>
         <Elements stripe={stripePromise}>
-          <CheckoutForm amount={selectedExtra?.cost} callBack={hanldeAddCredit} />
+          <CheckoutForm amount={selectedIndividual?.cost} callBack={hanldeAddCredit} />
         </Elements>
 
         <div className="flex justify-center items-center mt-10 space-x-2">
@@ -107,4 +98,4 @@ const ExtraPayment = ({ amount, currency }) => {
   );
 };
 
-export default ExtraPayment;
+export default IndividualPayment;

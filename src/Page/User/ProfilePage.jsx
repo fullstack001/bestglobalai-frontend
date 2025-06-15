@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Layout from "../../components/Layout";
 
 const apiPort = process.env.REACT_APP_API_PORT;
+const brandPort = process.env.REACT_APP_BRAND_PORT;
 
 const ProfilePage = () => {
   const [profile, setProfile] = useState({
@@ -163,7 +164,7 @@ const ProfilePage = () => {
               )}
               <div className="mb-4">
                 <Link
-                  to="/plans"
+                  to={brandPort}
                   className="bg-blue-600 px-4 py-2 rounded text-white"
                 >
                   {subscription ? "Change Plan" : "Subscribe"}

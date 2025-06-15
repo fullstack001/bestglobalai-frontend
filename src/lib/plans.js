@@ -1,60 +1,146 @@
 export const plans = [
   {
-    title: "Lite",
-    monthlyPrice: 0,
-    yearlyPrice: 0,
-    descriptions: [
-      "Access at Author/Reader-Only Level to Embellisher eReader and Creator Editor and use of Creator Editor to create interactive landing pages.",
-    ],
-    features: [
-      "Free access to Embellisher eReader and Creator Editor & Sales.",
-      "Multimedia Landing Page Apps at Author/Publisher Level.",
-    ],
+    title: "Marketing Executive Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
   },
   {
-    title: "Basic",
-    monthlyPrice: 15,
-    yearlyPrice: 140,
-    // monthlyId: "price_1R161JGZFcsysSu12JFM8okO",  //test
-    // yearlyId: "price_1R1634GZFcsysSu15Ba0bTyP",   //test
-    monthlyId: "price_1REx54LdHeIPkFw4f9ocsOJ4",
-    yearlyId: "price_1REx54LdHeIPkFw4f9ocsOJ4",
-    descriptions: [
-      "Free access to Embellisher eReader and Creator Editor & Sales Multimedia Landing Page Apps at Author/Publisher Level.",
-    ],
-
-    features: [
-      "Five team members.",
-      "Full access to Global Replica Video Creator Platform (1,060 stock replicas with 314 Talking Photos & Personal Replica Creator).",
-      "Full access to Global Replica Video Conversation Creator Platform (7+ personas, 123 stock replicas and personal replica creator).",
-      "3 free personal replicas.",
-      "25 new personal replica creations per month.",
-      "Up to 3 concurrent conversations.",
-      "Full access to Global Audience selection, campaign creation for social media marketing with up to ten different channels (Facebook, X, Instagram, Linkedin, YouTube, Pinterest, Reddit, and more).",
-      "Full access to scheduling and transmission of social media campaign, plus full monitoring/trafficking of results.",
-    ],
+    title: "Marketing Executive Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
   },
   {
-    title: "Plus+",
-    monthlyPrice: 55,
-    yearlyPrice: 500,
-    // monthlyId: "price_1R161zGZFcsysSu1TUBvHxM4",
-    // yearlyId: "price_1R167NGZFcsysSu1pFFw8MLf",
-    monthlyId: "price_1REx6bLdHeIPkFw4XFllX59c",
-    yearlyId: "price_1REx71LdHeIPkFw4QIs82HZm",
-    descriptions: [
-      "Free access to Embellisher eReader and Creator Editor & Sales.",
-      "Multimedia Landing Page Apps at Admin/Publisher Level.",
-      "Including user controls and control of organizing and labeling of your ePub3 promotion topics and descriptions for your clients.",
-    ],
-    features: [
-      "Ten team members.",
-      "Full access to Global Replica Video Creator Platform (1,060 stock replicas & personal replica creator).",
-      "Full access to Global Replica Video Conversation Creator Platform (7+ personas with 314 Talking Photos & Personal Replica Creator).",
-      "10 free personal replicas.",
-      "100 new personal replicas per month.",
-      "Full access to Global Audience selection, campaign creation for social media marketing with up to ten different channels (Facebook, X, Instagram, Linkedin, YouTube, Pinterest, Reddit, and more).",
-      "Full access to scheduling and transmission of social media campaigns, plus full monitoring/trafficking of results.",
-    ],
+    title: "Social Media Manager Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Social Media Manager Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
+  },
+  {
+    title: "Public Relations Manager Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Public Relations Manager Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
+  },
+  {
+    title: "Campaign Manager Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Campaign Manager Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
+  },
+  {
+    title: "Chief Executive Officer Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Chief Executive Officer Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
+  },
+  {
+    title: "Chief Financial Officer Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Chief Financial Officer Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
+  },
+  {
+    title: "Sales Executive Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Sales Executive Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
+  },
+  {
+    title: "Product Marketing Manager Mid-Level Package",
+    monthlyPrice: 39,
+    yearlyPrice: 421.2,
+    monthlyId: "price_1RY807LdHeIPkFw4GDWEul2L",
+    yearlyId: "price_1RYFspLdHeIPkFw42iwJC2aG",
+    descriptions:
+      "Mid-Level Package (2-5 products, unlimited edits and 3 team members)",
+  },
+  {
+    title: "Product Marketing Manager Executive-Level Package",
+    monthlyPrice: 59,
+    yearlyPrice: 637.2,
+    monthlyId: "price_1RYFtSLdHeIPkFw4LqyiNaCT",
+    yearlyId: "price_1RY80oLdHeIPkFw4pXtXHy8d",
+    descriptions:
+      "Executive-Level Package (15 products, unlimited edits and 5 team members)",
   },
 ];

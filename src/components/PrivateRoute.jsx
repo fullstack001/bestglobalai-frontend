@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 const PrivateRoute = ({ children, allowedRoles }) => {
   const user = useSelector((state) => state.user.user);
   const token = localStorage.getItem("token");
-  const trial = user.trial || false; // Ensure trial is defined
+  const trial = user?.trial || false;  // Ensure trial is defined
   const userRole = localStorage.getItem("role"); // Assuming role is stored in localStorage after login
   const isSubscriptionActive = () => {
     if (userRole === "superAdmin") return true;

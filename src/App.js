@@ -10,6 +10,7 @@ import Signup from "./Page/Auth/Signup";
 import ResetPassword from "./Page/Auth/ResetPassword";
 import Payment from "./Page/Payment";
 import ExtraPayment from "./Page/Payment/extraPayment";
+import IndividualPayment from "./Page/Payment/individualPayment";
 import PlanPage from "./Page/Plan";
 import CreatorDashboard from "./Page/Creator/CreatorDashboard";
 import BookCreator from "./Page/Creator/BookCreator";
@@ -153,6 +154,12 @@ const routes = [
     element: <ExtraPayment />,
     allowedRoles: ["superAdmin", "admin", "editor", "user"],
   },
+  {
+    path: "/individual-payment",
+    element: <IndividualPayment />,
+    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+  },
+  
   {
     path: "/plans",
     element: <PlanPage />,

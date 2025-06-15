@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 // import { FcGoogle } from "react-icons/fc";
 // import { FaFacebook } from "react-icons/fa";
 import { Link as Lnk } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,6 +18,8 @@ const apiPort = process.env.REACT_APP_API_PORT;
 const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const Login = () => {
+  const from = new URLSearchParams(window.location.search).get("from");
+
   const recaptchaRef = useRef();
   const plan = useSelector((state) => state.goSubscription);
   const extra = useSelector((state) => state.extra);
@@ -28,6 +30,9 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [showFogotPasswordModal, setShowFogotPasswordModal] = useState(false);
   const [loading, setLoading] = useState(false);
+
+  console.log("From:", from);
+  console.log("Plan:", plan);
 
   // Load stored credentials if "Remember Me" was checked
   useEffect(() => {
@@ -85,6 +90,19 @@ const Login = () => {
       localStorage.setItem("paidUser", user.isActive);
       localStorage.setItem("ayrshareRefId", user.ayrshareRefId);
 
+      const expires = new Date();
+      expires.setDate(expires.getDate() + 1); 
+      const expiresStr = "expires=" + expires.toUTCString();
+      const options = `; path=/; ${expiresStr}; SameSite=Lax`;
+
+      document.cookie = `token=${token}${options}`;
+      document.cookie = `role=${role}${options}`;
+      document.cookie = `email=${encodeURIComponent(user.email)}${options}`;
+      document.cookie = `userId=${user._id}${options}`;
+      document.cookie = `paidUser=${user.isActive}${options}`;
+      document.cookie = `ayrshareRefId=${user.ayrshareRefId}${options}`;
+      
+      
       // Store credentials if "Remember Me" is checked, otherwise remove them
       if (rememberMe) {
         localStorage.setItem("rememberedEmail", formData.email);

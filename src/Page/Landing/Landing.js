@@ -31,7 +31,7 @@ const Landing = () => {
           </a>
         </div>
         <Feature />
-        <Subscription />
+        {/* <Subscription /> */}
         <Extra />
         <Blog />
         <Footer />
