@@ -15,7 +15,7 @@ const Landing = () => {
       <div className="">
         <Nav />
         <Hero />
-        <div className="bg-yellow-100 p-6 rounded-xl shadow-lg mt-12 text-center max-w-5xl mx-auto">
+        {/* <div className="bg-yellow-100 p-6 rounded-xl shadow-lg mt-12 text-center max-w-5xl mx-auto">
           <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">
             🎁 Enter to Win a Free Professional Landing Page!
           </h2>
@@ -29,10 +29,10 @@ const Landing = () => {
           >
             Enter the Contest
           </a>
-        </div>
+        </div> */}
         <Feature />
         {/* <Subscription /> */}
-        <Extra />
+        {/* <Extra /> */}
         <Blog />
         <Footer />
         <Tippy content="Click here to ask any questions about our business plans.">
