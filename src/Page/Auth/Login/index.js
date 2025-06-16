@@ -92,15 +92,21 @@ const Login = () => {
 
       const expires = new Date();
       expires.setDate(expires.getDate() + 1); 
-      const expiresStr = "expires=" + expires.toUTCString();
-      const options = `; path=/; ${expiresStr}; SameSite=Lax`;
+    
+      const cookieBaseOptions = [
+        `path=/`,
+        `expires=${expires.toUTCString()}`,
+        `SameSite=Lax`,         // or 'None' if cross-origin and HTTPS
+        `Secure`,               // Only works on HTTPS, required for SameSite=None
+        `domain=.bestglobalai.com`,        // <-- KEY PART to make cookies accessible on subdomains
+      ].join('; ');
 
-      document.cookie = `token=${token}${options}`;
-      document.cookie = `role=${role}${options}`;
-      document.cookie = `email=${encodeURIComponent(user.email)}${options}`;
-      document.cookie = `userId=${user._id}${options}`;
-      document.cookie = `paidUser=${user.isActive}${options}`;
-      document.cookie = `ayrshareRefId=${user.ayrshareRefId}${options}`;
+      document.cookie = `token=${token}${cookieBaseOptions}`;
+      document.cookie = `role=${role}${cookieBaseOptions}`;
+      document.cookie = `email=${encodeURIComponent(user.email)}${cookieBaseOptions}`;
+      document.cookie = `userId=${user._id}${cookieBaseOptions}`;
+      document.cookie = `paidUser=${user.isActive}${cookieBaseOptions}`;
+      document.cookie = `ayrshareRefId=${user.ayrshareRefId}${cookieBaseOptions}`;
       
       
       // Store credentials if "Remember Me" is checked, otherwise remove them
