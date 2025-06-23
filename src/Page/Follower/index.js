@@ -280,7 +280,7 @@ const FollowersPage = () => {
       >
         <div className="bg-white p-6 rounded-md shadow-lg max-w-lg w-full">
           <div className="flex justify-between items-center">
-            <h2 className="text-2xl font-bold">Followr Details</h2>
+            <h2 className="text-2xl font-bold">Follower Details</h2>
             <button
               onClick={() => setIsModalOpen(false)}
               className="mt-4 text-gray-600"

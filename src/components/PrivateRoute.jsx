@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+const brandPort = process.env.REACT_APP_BRAND_PORT;
 
 const PrivateRoute = ({ children, allowedRoles }) => {
   const user = useSelector((state) => state.user.user);
@@ -24,7 +25,11 @@ const PrivateRoute = ({ children, allowedRoles }) => {
   }
 
   if (!allowedRoles.includes(userRole || "") && !trial) {
-    return <Navigate to="/plans" />;
+    window.open(
+      `${brandPort}`
+      // "_blank"
+    );
+    // return <Navigate to="/plans" />;
   }
 
   const restrictedPaths = [
