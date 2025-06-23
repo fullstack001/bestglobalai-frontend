@@ -46,7 +46,11 @@ const PrivateRoute = ({ children, allowedRoles }) => {
     !isSubscriptionActive() &&
     restrictedPaths.includes(window.location.pathname)
   ) {
-    return <Navigate to="/plans" replace />;
+    window.open(
+      `${brandPort}`
+      // "_blank"
+    );
+    // return <Navigate to="/plans" replace />;
   }
 
   return children;
