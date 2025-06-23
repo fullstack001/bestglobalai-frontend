@@ -25,10 +25,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
   }
 
   if (!allowedRoles.includes(userRole || "") && !trial) {
-    window.open(
-      `${brandPort}`
-      // "_blank"
-    );
+    window.location.href = brandPort;
     // return <Navigate to="/plans" />;
   }
 
@@ -46,10 +43,7 @@ const PrivateRoute = ({ children, allowedRoles }) => {
     !isSubscriptionActive() &&
     restrictedPaths.includes(window.location.pathname)
   ) {
-    window.open(
-      `${brandPort}`
-      // "_blank"
-    );
+    window.location.href = brandPort;
     // return <Navigate to="/plans" replace />;
   }
 
