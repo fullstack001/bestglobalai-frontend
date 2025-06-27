@@ -7,13 +7,14 @@ import { IoCloseCircleOutline } from "react-icons/io5";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import Layout from "../../components/Layout"; // Adjust the path as needed
+import Layout from "../../components/Layout";
 
 Modal.setAppElement("#root");
 const FollowersPage = () => {
   const apiPort = process.env.REACT_APP_API_PORT;
 
   const [followers, setFollowers] = useState([]);
+  const [selectedFollowers, setSelectedFollowers] = useState([]);
   const [inviteLink, setInviteLink] = useState("");
   const [file, setFile] = useState(null);
   const [followerDetails, setFollowerDetails] = useState(null);
@@ -243,6 +244,49 @@ const FollowersPage = () => {
         <div className="mt-4">
           <h3 className="text-lg font-bold mb-4">Follower List</h3>
 
+          {selectedFollowers.length > 0 && (
+            <div className="flex gap-4 mt-4 mb-4 justify-end">
+              <button
+                className="bg-green-600 text-white px-4 py-2 rounded"
+                onClick={async () => {
+                  try {
+                    const ids = selectedFollowers.map((f) => f._id);
+                    await axios.post(
+                      `${apiPort}/api/followers/sendBulkInvites`,
+                      { followerIds: ids },
+                      { headers: { Authorization: `Bearer ${token}` } }
+                    );
+                    toast.success("Bulk invites sent successfully.");
+                  } catch (error) {
+                    toast.error("Failed to send invites.");
+                  }
+                }}
+              >
+                Send Invites
+              </button>
+
+              <button
+                className="bg-red-600 text-white px-4 py-2 rounded"
+                onClick={async () => {
+                  try {
+                    const ids = selectedFollowers.map((f) => f._id);
+                    await axios.post(
+                      `${apiPort}/api/followers/deleteBulkFollowers`,
+                      { followerIds: ids },
+                      { headers: { Authorization: `Bearer ${token}` } }
+                    );
+                    toast.success("Followers deleted.");
+                    fetchFollowers(); // Refresh table
+                  } catch (error) {
+                    toast.error("Failed to delete followers.");
+                  }
+                }}
+              >
+                Delete Selected
+              </button>
+            </div>
+          )}
+
           <DataTable
             columns={columns}
             data={followers}
@@ -264,6 +308,9 @@ const FollowersPage = () => {
                   );
                 }}
               />
+            }
+            onSelectedRowsChange={(state) =>
+              setSelectedFollowers(state.selectedRows)
             }
             selectableRows
             selectableRowsHighlight
