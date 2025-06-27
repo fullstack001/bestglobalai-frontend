@@ -262,7 +262,7 @@ const FollowersPage = () => {
                   }
                 }}
               >
-                Send Invites
+                Send Selected Invites
               </button>
 
               <button
