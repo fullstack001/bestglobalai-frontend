@@ -100,6 +100,37 @@ const FollowersPage = () => {
     fetchFollowers();
   };
 
+
+  const uploadHubspotCsv = async () => {
+    if (!file) {
+      toast.error("No file selected.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append("csvFile", file);
+    try {
+      const response = await axios.post(
+        `${apiPort}/api/followers/uploadHubspotFollowers`,
+        formData,
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      toast.success(
+        //show success message
+        <div className="custom-toast flex">
+          <div className="custom-icon">✔️</div>
+          <div className="mt-4">{response.data.message}</div>
+        </div>,
+        {
+          className: "success-toast",
+          autoClose: 3000,
+          hideProgressBar: true,
+        }
+      );
+      fetchFollowers();
+    } catch (error) {
+      toast.error(error.response?.data?.message || "Upload failed.");
+    }
+  }
   const handleInvite = async (followerId) => {
     try {
       const response = await axios.post(
@@ -235,9 +266,16 @@ const FollowersPage = () => {
           />
           <button
             onClick={uploadCSV}
-            className="bg-blue-500 text-white px-4 py-2 mt-2"
+            className="bg-blue-500 text-white px-4 py-2 mt-2 mr-2"
           >
             Upload Followers CSV
+          </button>
+
+          <button
+            onClick={uploadHubspotCsv}
+            className="bg-green-500 text-white px-4 py-2 mt-2"
+          >
+            Upload Hubspot CSV
           </button>
         </div>
 
