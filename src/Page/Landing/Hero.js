@@ -11,12 +11,12 @@ const Hero = () => {
 
   return (
     <section
-      className="container py-28 mx-auto relative w-full min-h-screen bg-cover bg-center bg-opacity-30"
+      className="container py-28 mx-auto relative w-full min-h-screen bg-cover bg-center mt-16"
       style={{ backgroundImage: `url(${hero_background})` }}
     >
-      <div className="absolute inset-0 bg-black opacity-50"></div>
+      <div className="absolute inset-0 bg-black opacity-30"></div>
 
-      <div className="relative z-10 text-center text-white max-w-5xl mx-auto pt-10 md:pt-32 px-6 md:px-12">
+      <div className="relative z-10 text-center text-white max-w-5xl mx-auto pt-20 md:pt-60 px-6 md:px-12">
         <button
           className="bg-gray-800 text-lg px-8 py-1 rounded-full hover:bg-gray-800 transition duration-300 mb-8 text-gray-300"
         >
