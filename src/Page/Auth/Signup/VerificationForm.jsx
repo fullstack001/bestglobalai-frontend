@@ -8,7 +8,7 @@ const VerificationForm = ({ email, onSubmit }) => {
   const [timeLeft, setTimeLeft] = useState(600); // 10 minutes in seconds
   const [canResend, setCanResend] = useState(false);
 
-  useEffect((email, onSubmit) => {
+  useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft((prevTime) => {
         if (prevTime <= 1) {
@@ -68,6 +68,11 @@ const VerificationForm = ({ email, onSubmit }) => {
       <div className="mb-4">
         <p className="text-sm text-gray-300 dark:text-gray-400">
           A verification code has been sent to your email: {email}
+        </p>
+
+        <p className="text-sm text-gray-300 dark:text-gray-400 mt-2">
+          If you don't see it in your inbox, please check your spam or junk
+          folder.
         </p>
       </div>
 
