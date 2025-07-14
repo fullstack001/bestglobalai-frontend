@@ -49,7 +49,7 @@ const AboutUs = () => {
 
         {/* YouTube Video Section */}
         <div className="flex justify-center mb-12">
-          <div className="w-full md:w-3/4 lg:w-2/3 aspect-video">
+          <div className="w-full md:w-3/4 lg:w-2/3">
             <iframe
               width="560"
               height="315"
@@ -59,6 +59,7 @@ const AboutUs = () => {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               referrerPolicy="strict-origin-when-cross-origin"
               allowFullScreen
+              className="mx-auto rounded-lg border-white border-8 border-spacing-4 shadow-lg"
             ></iframe>
           </div>
         </div>

@@ -165,24 +165,32 @@ const Chat = () => {
         <div className="w-3/4 flex flex-col bg-gray-900">
           {/* Messages */}
           <div className="flex-1 p-4 overflow-y-auto">
-            {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`mb-2 ${
-                  msg.sender === email ? "text-right" : "text-left"
-                }`}
-              >
-                <span
-                  className={`inline-block p-2 rounded-lg ${
-                    msg.sender === email
-                      ? "bg-blue-500 text-white"
-                      : "bg-gray-700 text-gray-300"
-                  }`}
-                >
-                  {msg.text}
-                </span>
+            {selectedUser != null ? (
+              <>
+                {messages.map((msg, index) => (
+                  <div
+                    key={index}
+                    className={`mb-2 ${
+                      msg.sender === email ? "text-right" : "text-left"
+                    }`}
+                  >
+                    <span
+                      className={`inline-block p-2 rounded-lg ${
+                        msg.sender === email
+                          ? "bg-blue-500 text-white"
+                          : "bg-gray-700 text-gray-300"
+                      }`}
+                    >
+                      {msg.text}
+                    </span>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <div className="text-gray-500 text-center">
+                Click on Team member name before typing message.
               </div>
-            ))}
+            )}
           </div>
 
           {/* Input Area */}

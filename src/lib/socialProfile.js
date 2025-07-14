@@ -9,7 +9,9 @@ import {
   FaTiktok,
   FaTwitter,
   FaYoutube,
+  
 } from "react-icons/fa";
+import { FaThreads } from "react-icons/fa6";
 import { GiButterfly } from "react-icons/gi";
 
 export const socialProfiles = [
@@ -60,6 +62,12 @@ export const socialProfiles = [
     icon: <FaTelegram className="text-blue-400 w-8 h-8" />,
     active: false,
     key: "telegram",
+  },
+  {
+    name: "Threads",
+    icon: <FaThreads className="text-black w-8 h-8" />,
+    active: false,
+    key: "threads",
   },
   {
     name: "TikTok",

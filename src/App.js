@@ -46,6 +46,7 @@ import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
 import TeamManagement from "./Page/TeamManagement";
 import ExtraPurchase from "./Page/ExtraPurchase";
+import CategoriesPage from "./Page/Category";
 
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
@@ -224,6 +225,11 @@ const routes = [
   {
     path: "/followers",
     element: <FollowersPage />,
+    allowedRoles: ["superAdmin", "admin", "editor"],
+  },
+  {
+    path: "/category",
+    element: <CategoriesPage />,
     allowedRoles: ["superAdmin", "admin", "editor"],
   },
 
