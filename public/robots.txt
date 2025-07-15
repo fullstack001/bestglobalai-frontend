@@ -1,3 +1,28 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: https://bestglobalai.com/sitemap.xml
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /dashboard/
+Disallow: /api/
+Disallow: /_next/
+Disallow: /static/
+
+# Allow important pages
+Allow: /contact
+Allow: /blogs
+Allow: /reader
+Allow: /login
+Allow: /signup
+Allow: /pricing
+Allow: /about
+Allow: /privacy
+Allow: /terms
+Allow: /faq
+
+# Crawl delay (optional)
+Crawl-delay: 1
