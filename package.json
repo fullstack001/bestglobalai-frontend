@@ -64,6 +64,7 @@
     "redux": "^5.0.1",
     "slate": "0.87.0",
     "slate-react": "0.87.0",
+    "slugify": "^1.6.6",
     "socket.io-client": "^4.8.1",
     "stream-http": "^3.2.0",
     "styled-components": "^6.1.13",

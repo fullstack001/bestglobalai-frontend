@@ -248,7 +248,7 @@ const routes = [
   // Landing Pages
   { path: "/contact", element: <Contact /> },
   { path: "/blogs", element: <BlogPage /> },
-  { path: "/blog/:id", element: <BlogDetail /> },
+  { path: "/blog/:slug", element: <BlogDetail /> },
 
   // Reader Routes
   { path: "/reader", element: <BookReader /> },

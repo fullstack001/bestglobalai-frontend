@@ -478,7 +478,7 @@ const FollowersPage = () => {
             </button>
           </div>
           {followerDetails && (
-            <div>
+            <div className="mt-4">
               <p>
                 <strong>First Name:</strong> {followerDetails.firstName}
               </p>
@@ -520,12 +520,12 @@ const FollowersPage = () => {
               {/* Add more fields as necessary */}
             </div>
           )}
-          <button
+          {/* <button
             onClick={() => setIsModalOpen(false)}
             className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
           >
             Close
-          </button>
+          </button> */}
         </div>
       </Modal>
     </Layout>
