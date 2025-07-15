@@ -71,10 +71,10 @@ const BlogPage = () => {
                       <h4 className="text-lg font-semibold mb-2 line-clamp-2">
                         {blog.title}
                       </h4>
-                      <div
+                      {/* <div
                         className="text-sm text-gray-300 mb-3 line-clamp-2 prose prose-invert"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
-                      />
+                      /> */}
 
                       <button
                         onClick={() =>
