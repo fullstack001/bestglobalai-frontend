@@ -17,7 +17,7 @@ const BlogPage = () => {
   const fetchBlogs = async (page) => {
     try {
       const response = await axios.get(
-        `${apiPort}/api/blogs/paginated?page=${page}&limit=10`
+        `${apiPort}/api/blogs/paginated?page=${page}&limit=12`
       );
       setBlogs(response.data.blogs);
       setTotalPages(response.data.totalPages);
@@ -57,7 +57,7 @@ const BlogPage = () => {
                   <div
                     key={blog._id}
                     className="bg-gray-800 rounded-lg overflow-hidden flex flex-col shadow hover:shadow-lg transition duration-200 cursor-po
-                  inter border-2 border-gray-700 "
+                  inter border-2 border-gray-700 max-h-[250px]"
                   >
                     {blog.featuredImage && (
                       <img
