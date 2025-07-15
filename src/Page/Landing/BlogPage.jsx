@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { FiArrowUpRight } from "react-icons/fi";
 import { useNavigate, useLocation } from "react-router-dom";
+import slugify from "slugify";
 import Nav from "./Nav";
 import Footer from "./Footer";
 
@@ -13,11 +14,10 @@ const BlogPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const location = useLocation();
-
   const fetchBlogs = async (page) => {
     try {
       const response = await axios.get(
-        `${apiPort}/api/blogs/paginated?page=${page}&limit=10`
+        `${apiPort}/api/blogs/paginated?page=${page}&limit=12`
       );
       setBlogs(response.data.blogs);
       setTotalPages(response.data.totalPages);
@@ -41,54 +41,64 @@ const BlogPage = () => {
       <div className="">
         <Nav />
         <div className="max-w-6xl mx-auto px-6 md:px-12 py-26 text-center mb-12">
-          <h3 className="text-4xl sm:text-4xl md:text-6xl mt-6">
+          <h3 className="text-2xl sm:text-4xl md:text-4xl mt-28">
             Our latest insight & update
           </h3>
         </div>
 
         {/* Blog Cards */}
         <div className="max-w-6xl mx-auto px-6 md:px-12 min-h-screen">
-          {blogs.length > 0
-            ? blogs.map((blog) => (
-                <div
-                  key={blog._id}
-                  className="bg-gray-700 p-4 rounded-lg w-full mb-4 flex flex-col sm:flex-row sm:items-start"
-                >
-                  <div className="flex-shrink-0">
+          {blogs.length > 0 ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 ">
+              {blogs.map((blog) => {
+                const slug = slugify(blog.title, { lower: true, strict: true });
+
+                return (
+                  <div
+                    key={blog._id}
+                    className="bg-gray-800 rounded-lg overflow-hidden flex flex-col shadow hover:shadow-lg transition duration-200 cursor-po
+                  inter border-2 border-gray-700 max-h-[250px]"
+                  >
                     {blog.featuredImage && (
                       <img
                         src={`${apiPort}${blog.featuredImage}`}
                         alt={blog.title}
-                        className="w-20 h-20 sm:w-24 sm:h-24 rounded object-cover"
+                        className="w-full h-40 object-cover"
                       />
                     )}
-                  </div>
 
-                  <div className="mt-4 sm:mt-0 sm:ml-4 flex flex-col">
-                    <div className="text-xl font-semibold">{blog.title}</div>
-
-                    {/* Only show content and button on large screens */}
-                    <div className="hidden mt-2  lg:line-clamp-3 overflow-hidden text-sm max-w-full">
-                      <div
-                        className="prose prose-invert"
-                        style={{ overflowWrap: "break-word" }}
+                    <div className="p-4 flex-1 flex flex-col justify-between">
+                      <h4 className="text-lg font-semibold mb-2 line-clamp-2">
+                        {blog.title}
+                      </h4>
+                      {/* <div
+                        className="text-sm text-gray-300 mb-3 line-clamp-2 prose prose-invert"
                         dangerouslySetInnerHTML={{ __html: blog.content }}
-                      />
+                      /> */}
+
+                      <button
+                        onClick={() =>
+                          navigate(`/blog/${slug}`, {
+                            state: {
+                              blogId: blog._id,
+                              previousUrl: location.pathname,
+                            },
+                          })
+                        }
+                        className="text-blue-500 hover:text-blue-400 mt-auto flex items-center w-fit"
+                      >
+                        Read More <FiArrowUpRight className="ml-1" />
+                      </button>
                     </div>
-                    <button
-                      className="text-blue-500 mt-2 hover:text-blue-400 flex items-center w-fit"
-                      onClick={() =>
-                        navigate(`/blog/${blog._id}`, {
-                          state: { previousUrl: location.pathname },
-                        })
-                      }
-                    >
-                      Read More <FiArrowUpRight className="ml-1" />
-                    </button>
                   </div>
-                </div>
-              ))
-            : "No blogs available."}
+                );
+              })}
+            </div>
+          ) : (
+            <div className="text-center py-12 text-gray-400">
+              No blogs available.
+            </div>
+          )}
         </div>
 
         {/* Pagination Controls */}

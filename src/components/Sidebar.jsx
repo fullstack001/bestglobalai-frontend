@@ -101,7 +101,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           Explore Ebooks
         </Link>
 
-        {isPaidUser() && (
+        {/* {isPaidUser() && (
           <Link
             to="/followers"
             onClick={() => {
@@ -113,7 +113,42 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           >
             Followers
           </Link>
-        )}
+        )} */}
+
+<div className="block">
+          <button
+            onClick={() => handleTogglePanel("followers")}
+            className="flex items-center justify-between w-full py-2 px-3 rounded text-left text-gray-400 hover:bg-gray-700"
+          >
+            <span>Followers</span>
+            <FontAwesomeIcon
+              icon={panelActive === "followers" ? faChevronUp : faChevronDown}
+            />
+          </button>
+          {panelActive === "followers" && (
+            <div className="ml-4 mt-2 space-y-2">
+              <Link
+                to="/category"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/category") ? "bg-gray-700" : "text-gray-400"
+                }`}
+              >
+                Category
+              </Link>
+              <Link
+                to="/followers"
+                className={`block py-2 px-3 rounded ${
+                  isActive("/followers")
+                    ? "bg-gray-700"
+                    : "text-gray-400"
+                }`}
+              >
+               My Followers
+              </Link>
+            
+            </div>
+          )}
+        </div>
 
         <Link
           to="/chat"

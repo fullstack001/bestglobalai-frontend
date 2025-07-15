@@ -46,6 +46,7 @@ import BookReader from "./Page/Reader/BookReader";
 import FollowersPage from "./Page/Follower";
 import TeamManagement from "./Page/TeamManagement";
 import ExtraPurchase from "./Page/ExtraPurchase";
+import CategoriesPage from "./Page/Category";
 
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
@@ -226,6 +227,11 @@ const routes = [
     element: <FollowersPage />,
     allowedRoles: ["superAdmin", "admin", "editor"],
   },
+  {
+    path: "/category",
+    element: <CategoriesPage />,
+    allowedRoles: ["superAdmin", "admin", "editor"],
+  },
 
   {
     path: "/team-management",
@@ -242,7 +248,7 @@ const routes = [
   // Landing Pages
   { path: "/contact", element: <Contact /> },
   { path: "/blogs", element: <BlogPage /> },
-  { path: "/blog/:id", element: <BlogDetail /> },
+  { path: "/blog/:slug", element: <BlogDetail /> },
 
   // Reader Routes
   { path: "/reader", element: <BookReader /> },

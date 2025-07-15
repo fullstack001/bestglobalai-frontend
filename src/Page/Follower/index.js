@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import DataTable from "react-data-table-component";
 import Modal from "react-modal";
@@ -17,10 +17,14 @@ const FollowersPage = () => {
   const [selectedFollowers, setSelectedFollowers] = useState([]);
   const [inviteLink, setInviteLink] = useState("");
   const [file, setFile] = useState(null);
+  const fileInputRef = useRef(null);
   const [followerDetails, setFollowerDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [categories, setCategories] = useState([]);
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
+  const [selectedCategory, setSelectedCategory] = useState("all");
+
   const fetchFollowers = async () => {
     try {
       const response = await axios.get(
@@ -31,9 +35,46 @@ const FollowersPage = () => {
           },
         }
       );
-      setFollowers(response.data.followers);
+      let allFollowers = response.data.followers;
+      // console.log(selectedCategory);
+      // if (selectedCategory !== "all") {
+      //   allFollowers = allFollowers.filter(
+      //     (f) => f.category?.toString() === selectedCategory
+      //   );
+      // }
+      // console.log("Fetched Followers:", allFollowers);
+      setFollowers(allFollowers);
     } catch (error) {
       console.error("Error fetching followers:", error);
+    }
+  };
+
+  const fetchFollowersByCategory = async (categoryId) => {
+    try { 
+      const response = await axios.post(
+        `${apiPort}/api/followers/category`,
+        { categoryId },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setFollowers(response.data.followers);
+    } catch (error) {
+      console.error("Error fetching followers by category:", error);
+      toast.error("Failed to fetch followers by category.");
+    }
+  };
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(`${apiPort}/api/categories`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCategories(res.data);
+    } catch (err) {
+      console.error("Failed to fetch categories");
     }
   };
 
@@ -56,6 +97,7 @@ const FollowersPage = () => {
 
     fetchInviteLinks();
     fetchFollowers();
+    fetchCategories();
   }, []);
 
   const uploadCSV = async () => {
@@ -100,7 +142,6 @@ const FollowersPage = () => {
     fetchFollowers();
   };
 
-
   const uploadHubspotCsv = async () => {
     if (!file) {
       toast.error("No file selected.");
@@ -126,11 +167,15 @@ const FollowersPage = () => {
           hideProgressBar: true,
         }
       );
+      setFile(null);
+      if (fileInputRef.current) {
+        fileInputRef.current.value = ""; // Reset the file input
+      }
       fetchFollowers();
     } catch (error) {
       toast.error(error.response?.data?.message || "Upload failed.");
     }
-  }
+  };
   const handleInvite = async (followerId) => {
     try {
       const response = await axios.post(
@@ -168,7 +213,6 @@ const FollowersPage = () => {
     // Assuming you have a state to control the modal visibility and another to store the follower details
     setFollowerDetails(followerDetails);
     setIsModalOpen(true);
-    console.log(response);
   };
 
   const columns = [
@@ -209,6 +253,40 @@ const FollowersPage = () => {
         >
           Send Invite
         </button>
+      ),
+    },
+    {
+      name: "Category",
+      selector: (row) =>
+        categories.find((cat) => cat._id === (row.category?._id || row.category))?.name || "",
+      sortable: true,
+      cell: (row) => (
+        <select
+          value={row.category?._id || row.category}
+          onChange={async (e) => {
+            try {
+              await axios.post(
+                `${apiPort}/api/followers/updateCategory`,
+                {
+                  followerId: row._id,
+                  categoryId: e.target.value,
+                },
+                { headers: { Authorization: `Bearer ${token}` } }
+              );
+              toast.success("Category updated.");
+              fetchFollowersByCategory(selectedCategory);
+            } catch (err) {
+              toast.error("Failed to update category.");
+            }
+          }}
+          className="p-1 rounded border"
+        >
+          {categories.map((cat) => (
+            <option key={cat._id} value={cat._id}>
+              {cat.name}
+            </option>
+          ))}
+        </select>
       ),
     },
     {
@@ -262,22 +340,44 @@ const FollowersPage = () => {
           <h3 className="text-lg font-bold mt-6">Upload Followers CSV</h3>
           <input
             type="file"
+            ref={fileInputRef}
             onChange={(e) => setFile(e.target.files?.[0] || null)}
           />
-          <button
+          {/* <button
             onClick={uploadCSV}
             className="bg-blue-500 text-white px-4 py-2 mt-2 mr-2"
           >
             Upload Followers CSV
-          </button>
+          </button> */}
 
           <button
             onClick={uploadHubspotCsv}
             className="bg-green-500 text-white px-4 py-2 mt-2"
           >
-            Upload Hubspot CSV
-          </button>
+            Upload Leads CSV
+          </button>        
         </div>
+
+        <div className="flex justify-end items-center mb-4 gap-4">
+          <label className="text-sm font-medium">Filter by Category:</label>
+          <select
+            value={selectedCategory}
+            onChange={(e) => {              
+              const selected  = e.target.value;
+              setSelectedCategory(selected);
+              fetchFollowersByCategory(selected); 
+            }}
+            className="p-2 border rounded text-gray-700"
+          >
+            <option value="all">All</option>
+            {categories.map((cat) => (
+              <option key={cat._id} value={cat._id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      
 
         <div className="mt-4">
           <h3 className="text-lg font-bold mb-4">Follower List</h3>
@@ -295,6 +395,7 @@ const FollowersPage = () => {
                       { headers: { Authorization: `Bearer ${token}` } }
                     );
                     toast.success("Bulk invites sent successfully.");
+                    setSelectedFollowers([]);
                   } catch (error) {
                     toast.error("Failed to send invites.");
                   }
@@ -314,6 +415,7 @@ const FollowersPage = () => {
                       { headers: { Authorization: `Bearer ${token}` } }
                     );
                     toast.success("Followers deleted.");
+                    setSelectedFollowers([]); // Clear selection after deletion
                     fetchFollowers(); // Refresh table
                   } catch (error) {
                     toast.error("Failed to delete followers.");
@@ -324,6 +426,8 @@ const FollowersPage = () => {
               </button>
             </div>
           )}
+
+         
 
           <DataTable
             columns={columns}
@@ -374,7 +478,7 @@ const FollowersPage = () => {
             </button>
           </div>
           {followerDetails && (
-            <div>
+            <div className="mt-4">
               <p>
                 <strong>First Name:</strong> {followerDetails.firstName}
               </p>
@@ -416,12 +520,12 @@ const FollowersPage = () => {
               {/* Add more fields as necessary */}
             </div>
           )}
-          <button
+          {/* <button
             onClick={() => setIsModalOpen(false)}
             className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
           >
             Close
-          </button>
+          </button> */}
         </div>
       </Modal>
     </Layout>

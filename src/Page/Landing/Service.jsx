@@ -121,7 +121,31 @@ const Service = () => {
         </div>
         <form onSubmit={handleSubmit}>
           <ToastContainer />
-          <div className="flex justify-between">
+          <div className="mt-8">
+            {categories.map((category, index) => (
+              <div key={index}>
+                <h2 className="mt-6 text-xl font-bold">{category.title}</h2>
+                {category.apis.map((api, idx) => (
+                  <div key={idx} className="mt-2 flex">
+                    <input
+                      type="checkbox"
+                      id={`api-${index}-${idx}`}
+                      value={api.label}
+                      checked={selectedAPIs.some(
+                        (selectedApi) => selectedApi.label === api.label
+                      )}
+                      onChange={(e) => handleCheckboxChange(e, api)}
+                    />
+                    <label htmlFor={`api-${index}-${idx}`} className="ml-2">
+                      {api.label}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-4">
             <div>
               <label htmlFor="emailInput" className="block mt-4 font-semibold">
                 Enter Your Email:
@@ -145,28 +169,6 @@ const Service = () => {
               </button>
             </div>
           </div>
-
-          {categories.map((category, index) => (
-            <div key={index}>
-              <h2 className="mt-6 text-xl font-bold">{category.title}</h2>
-              {category.apis.map((api, idx) => (
-                <div key={idx} className="mt-2 flex">
-                  <input
-                    type="checkbox"
-                    id={`api-${index}-${idx}`}
-                    value={api.label}
-                    checked={selectedAPIs.some(
-                      (selectedApi) => selectedApi.label === api.label
-                    )}
-                    onChange={(e) => handleCheckboxChange(e, api)}
-                  />
-                  <label htmlFor={`api-${index}-${idx}`} className="ml-2">
-                    {api.label}
-                  </label>
-                </div>
-              ))}
-            </div>
-          ))}
         </form>
       </div>
       <Footer />
