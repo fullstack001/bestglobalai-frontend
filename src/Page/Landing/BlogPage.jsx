@@ -40,8 +40,8 @@ const BlogPage = () => {
     <div className="bg-gray-950 text-white font-sans">
       <div className="">
         <Nav />
-        <div className="max-w-6xl mx-auto px-6 md:px-12 py-26 text-center mb-12">
-          <h3 className="text-2xl sm:text-4xl md:text-4xl mt-28">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 py-26 text-center mt-20">
+          <h3 className="text-2xl sm:text-4xl md:text-4xl py-20">
             Our latest insight & update
           </h3>
         </div>

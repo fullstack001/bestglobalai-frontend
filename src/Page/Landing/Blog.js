@@ -24,9 +24,7 @@ const Blog = () => {
     <section className="py-20 text-white">
       {/* Section Header */}
       <div className="max-w-6xl mx-auto px-6 md:px-12 text-center mb-12">
-        <button className="bg-gray-800 text-lg px-8 py-1 rounded-full hover:bg-gray-700 transition duration-300 mb-8 text-gray-300">
-          From Our Blog
-        </button>
+      
         <h3 className="text-4xl sm:text-4xl md:text-6xl mt-6">
           Our latest insight & update
         </h3>

@@ -50,7 +50,7 @@ const FollowersPage = () => {
   };
 
   const fetchFollowersByCategory = async (categoryId) => {
-    try { 
+    try {
       const response = await axios.post(
         `${apiPort}/api/followers/category`,
         { categoryId },
@@ -258,7 +258,9 @@ const FollowersPage = () => {
     {
       name: "Category",
       selector: (row) =>
-        categories.find((cat) => cat._id === (row.category?._id || row.category))?.name || "",
+        categories.find(
+          (cat) => cat._id === (row.category?._id || row.category)
+        )?.name || "",
       sortable: true,
       cell: (row) => (
         <select
@@ -355,17 +357,17 @@ const FollowersPage = () => {
             className="bg-green-500 text-white px-4 py-2 mt-2"
           >
             Upload Leads CSV
-          </button>        
+          </button>
         </div>
 
         <div className="flex justify-end items-center mb-4 gap-4">
           <label className="text-sm font-medium">Filter by Category:</label>
           <select
             value={selectedCategory}
-            onChange={(e) => {              
-              const selected  = e.target.value;
+            onChange={(e) => {
+              const selected = e.target.value;
               setSelectedCategory(selected);
-              fetchFollowersByCategory(selected); 
+              fetchFollowersByCategory(selected);
             }}
             className="p-2 border rounded text-gray-700"
           >
@@ -377,13 +379,50 @@ const FollowersPage = () => {
             ))}
           </select>
         </div>
-      
 
         <div className="mt-4">
           <h3 className="text-lg font-bold mb-4">Follower List</h3>
 
           {selectedFollowers.length > 0 && (
             <div className="flex gap-4 mt-4 mb-4 justify-end">
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="p-2 border rounded text-gray-700"
+              >
+                <option value="all">Select Category</option>
+                {categories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+                ))}
+              </select>
+
+              <button
+                className="bg-yellow-600 text-white px-4 py-2 rounded"
+                onClick={async () => {
+                  if (selectedCategory === "all") {
+                    toast.error("Please select a valid category.");
+                    return;
+                  }
+                  try {
+                    const ids = selectedFollowers.map((f) => f._id);
+                    await axios.post(
+                      `${apiPort}/api/followers/bulkUpdateCategory`,
+                      { followerIds: ids, categoryId: selectedCategory },
+                      { headers: { Authorization: `Bearer ${token}` } }
+                    );
+                    toast.success("Categories assigned successfully.");
+                    setSelectedFollowers([]);
+                    fetchFollowersByCategory(selectedCategory);
+                  } catch (err) {
+                    toast.error("Failed to assign categories.");
+                  }
+                }}
+              >
+                Assign Category
+              </button>
+
               <button
                 className="bg-green-600 text-white px-4 py-2 rounded"
                 onClick={async () => {
@@ -426,8 +465,6 @@ const FollowersPage = () => {
               </button>
             </div>
           )}
-
-         
 
           <DataTable
             columns={columns}

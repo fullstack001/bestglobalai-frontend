@@ -88,14 +88,19 @@ const Contact = () => {
   return (
     <div className="bg-gray-950 text-white font-sans">
       <Nav />
+      <div
+        className="mt-[60px] bg-cover bg-center rounded-lg shadow-lg"
+        style={{ backgroundImage: "url('/images/contact_banner.jpg')" }}
+      >
+        <div className="col-span-2 mt-2 text-center py-36">
+          <h2 className="text-5xl font-semibold">Contact Us</h2>
+        </div>
+      </div>
       <form onSubmit={handleSubmit}>
-        <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-2 gap-16 items-center mt-24 container py-20">
+        <div className="max-w-6xl mx-auto px-6 md:px-12 grid grid-cols-2 gap-8 items-center container py-20">
           <div className="col-span-2">
             <ToastContainer />
-          </div>
-          <div className="col-span-2 mt-2 text-center">
-            <h2 className="text-3xl font-semibold">Contact Us</h2>
-          </div>
+          </div>          
           <div className="mt-2">
             <div>
               <label htmlFor="firstName">First Name</label>
@@ -158,17 +163,17 @@ const Contact = () => {
               <textarea
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
-                className="w-full p-2 mt-1 rounded-md text-black"
+                className="w-full p-2 mt-1 rounded-md text-black min-h-[100px]"
               ></textarea>
             </div>
           </div>
 
           <div className="col-span-2 mt-2 text-center">
             <button
-              className="bg-blue-500 text-white text-2xl px-4 py-2 rounded-lg"
+              className="bg-blue-500 text-white text-xl px-8 py-2 rounded-lg font-semibold hover:bg-blue-600 transition duration-200"
               type="submit"
             >
-              {loading ? "Sending..." : "Send"}
+              {loading ? "Sending..." : "Submit"}
             </button>
           </div>
         </div>
