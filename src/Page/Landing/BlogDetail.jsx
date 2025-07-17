@@ -9,6 +9,7 @@ import Footer from "./Footer";
 const apiPort = process.env.REACT_APP_API_PORT;
 
 const BlogDetail = () => {
+  console.log("useParams:", useParams());
   const { id } = useParams();
   const { slug } = useParams();
   const location = useLocation();
@@ -19,37 +20,24 @@ const BlogDetail = () => {
 
   useEffect(() => {
     const fetchBlogDetails = async () => {
-      try {
-        if (location.state?.blogId) {
-          // If blogId is passed in state (from "Read More")
-          const res = await axios.get(
-            `${apiPort}/api/blogs/${location.state.blogId}`
-          );
+      try {       
+          const res = await axios.get(`${apiPort}/api/blogs/${slug}`);
+          if (res.status !== 200) {
+            throw new Error("Failed to fetch blog details");
+          }
+
           const blog = res.data.blog;
           setTitle(blog.title);
           setContent(blog.content);
           setFeaturedImage(blog.featuredImage || null);
-        } else {
-          // Fallback: fetch all blogs and find by slug
-          const res = await axios.get(`${apiPort}/api/blogs`);
-          const found = res.data.blogs.find(
-            (b) => slug === slugify(b.title, { lower: true, strict: true })
-          );
-          if (found) {
-            setTitle(found.title);
-            setContent(found.content);
-            setFeaturedImage(found.featuredImage || null);
-          } else {
-            navigate("/404");
-          }
-        }
+        
       } catch (error) {
         console.error("Error loading book details:", error);
       }
     };
 
     fetchBlogDetails();
-  }, [slug, location.state, navigate]);
+  }, [id, slug, navigate]);
 
   return (
     <div className="bg-gray-950 text-white font-sans">

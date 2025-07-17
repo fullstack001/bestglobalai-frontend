@@ -11,7 +11,6 @@ import Layout from "../../components/Layout";
 const apiPort = process.env.REACT_APP_API_PORT;
 const openAiApiKey = process.env.REACT_APP_OPENAI_API_KEY;
 
-
 const BlogCreator = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -120,14 +119,14 @@ const BlogCreator = () => {
           </label>
           <input
             type="file"
-             accept="image/*"
+            accept="image/*"
             onChange={handleImageChange}
             className="w-full mt-1 px-3 py-2 bg-gray-700 text-gray-200 rounded"
           />
         </div>
 
         {previewImage && (
-          <div className="mt-4">           
+          <div className="mt-4">
             <img
               src={previewImage}
               alt="Preview"
@@ -136,8 +135,10 @@ const BlogCreator = () => {
           </div>
         )}
 
-<div className="mt-4">
-          <label className="block text-gray-400">Generate Content with AI</label>
+        <div className="mt-4">
+          <label className="block text-gray-400">
+            Generate Content with AI
+          </label>
           <input
             type="text"
             value={keyword}

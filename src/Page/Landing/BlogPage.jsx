@@ -57,7 +57,7 @@ const BlogPage = () => {
                   <div
                     key={blog._id}
                     className="bg-gray-800 rounded-lg overflow-hidden flex flex-col shadow hover:shadow-lg transition duration-200 cursor-po
-                  inter border-2 border-gray-700 max-h-[250px]"
+                  inter border-2 border-gray-700"
                   >
                     {blog.featuredImage && (
                       <img
@@ -77,14 +77,7 @@ const BlogPage = () => {
                       /> */}
 
                       <button
-                        onClick={() =>
-                          navigate(`/blog/${slug}`, {
-                            state: {
-                              blogId: blog._id,
-                              previousUrl: location.pathname,
-                            },
-                          })
-                        }
+                        onClick={() => navigate(`/blog/${blog.name}`)}
                         className="text-blue-500 hover:text-blue-400 mt-auto flex items-center w-fit"
                       >
                         Read More <FiArrowUpRight className="ml-1" />

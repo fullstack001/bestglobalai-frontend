@@ -16,6 +16,13 @@ code {
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  nav > div.text-sm,
+  nav > div.text-sm > span {
+    @apply text-white;
+  }
+}
+
 .ql-snow .ql-editor pre.ql-syntax{
   background-color: #fff !important;
   color: #000 !important;
@@ -91,6 +98,10 @@ code {
 #heygen-streaming-embed.expand{
   height: 250px !important;
   width: calc(250px* 16 / 9) !important;
+}
+
+.flowbite-pagination-info {
+  color: white; /* or any color */
 }
 
 @media (max-width: 768px) {

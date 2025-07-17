@@ -63,29 +63,29 @@ const BlogDashboard = () => {
     fetchUser();
   }, []);
 
-  const editBlog = (id) => {
-    navigate(`/admin/blogs/editor/${id}`, {
+  const editBlog = (name) => {
+    navigate(`/admin/blogs/editor/${name}`, {
       state: { previousUrl: location.pathname },
     });
   };
 
-  const deleteBlog = async (id) => {
+  const deleteBlog = async (name) => {
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this blog?"
     );
     if (!confirmDelete) return; // If the user cancels, do nothing
 
     try {
-      await axios.delete(`${apiPort}/api/blogs/${id}`);
-      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog._id !== id));
+      await axios.delete(`${apiPort}/api/blogs/${name}`);
+      setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.name !== name));
       alert("Blog deleted successfully.");
     } catch (error) {
       console.error("Error deleting blog:", error);
     }
   };
 
-  const viewBlog = (id) => {
-    navigate(`/admin/blogs/viewer/${id}`, {
+  const viewBlog = (name) => {
+    navigate(`/admin/blogs/viewer/${name}`, {
       state: { previousUrl: location.pathname },
     });
   };
@@ -134,21 +134,21 @@ const BlogDashboard = () => {
                 <div className="mt-2 flex justify-between">
                   <button
                     className="mt-3 px-2 py-1 bg-blue-500 text-white rounded-lg mr-1 h-fit"
-                    onClick={() => editBlog(blog._id)}
+                    onClick={() => editBlog(blog.name)}
                   >
                     <FontAwesomeIcon icon={faEdit} />
                   </button>
 
                   <button
                     className="mt-3 px-2 py-1 bg-green-500 text-white rounded-lg mr-1 h-fit"
-                    onClick={() => viewBlog(blog._id)}
+                    onClick={() => viewBlog(blog.name)}
                   >
                     <FontAwesomeIcon icon={faEye} className="" />
                   </button>
 
                   <button
                     className="mt-3 px-2 py-1 bg-red-500 text-white rounded-lg mr-1 h-fit"
-                    onClick={() => deleteBlog(blog._id)}
+                    onClick={() => deleteBlog(blog.name)}
                   >
                     <FontAwesomeIcon icon={faTrash} className="" />
                   </button>

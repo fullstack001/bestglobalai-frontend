@@ -4,9 +4,8 @@ import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Layout from "../../components/Layout";
 const apiPort = process.env.REACT_APP_API_PORT;
 
-const BlogViewer = () => {
+const BlogViewer = () => { 
   const { id } = useParams();
-
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [featuredImage, setFeaturedImage] = useState(null);
@@ -27,7 +26,6 @@ const BlogViewer = () => {
       try {
         const response = await axios.get(`${apiPort}/api/blogs/${id}`);
         const blog = response.data.blog;
-
         setTitle(blog.title);
         setContent(blog.content);
         setFeaturedImage(blog.featuredImage || null);
