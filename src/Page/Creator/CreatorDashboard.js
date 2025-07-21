@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   setEbookTitle,
   setEbookAuthor,
@@ -21,6 +21,17 @@ import Layout from "../../components/Layout"; // Adjust the path as needed
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
+const jobTitles = [
+  "Social Media Manager",
+  "Product Marketing Manager",
+  "Sales Executive",
+  "Chief Financial Officer",
+  "Chief Executive Officer",
+  "Campaign Manager",
+  "Public Relations Manager",
+  "Marketing Executive",
+];
+
 const CreatorDashboard = () => {
   const [bookTitle, setBookTitle] = useState("");
   const [author, setAuthor] = useState("");
@@ -31,6 +42,9 @@ const CreatorDashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Get user data from global Redux state
+  const userData = useSelector((state) => state.user.user);
 
   useEffect(() => {
     const fetchEbooks = async () => {
@@ -52,7 +66,28 @@ const CreatorDashboard = () => {
           });
         }
 
-        setEbooks(response.data.books);
+        let books = response.data.books;
+
+        // Apply filter only if role is not superAdmin
+        if (role !== "superAdmin") {
+          books = books.filter((book) => {
+            // If book title is one of the job titles
+            if (jobTitles.includes(book.title)) {
+              // Check if user's subscription plan contains this specific job title
+              const userPlan = userData?.subscription?.plan || "";
+              const hasSpecificJobTitleInPlan = userPlan
+                .toLowerCase()
+                .includes(book.title.toLowerCase());
+
+              // Only keep the book if user has this specific job title in their plan
+              return hasSpecificJobTitleInPlan;
+            }
+            // Keep all books that are not job title books
+            return true;
+          });
+        }
+
+        setEbooks(books);
       } catch (error) {
         console.error("Error fetching ebooks:", error);
       }

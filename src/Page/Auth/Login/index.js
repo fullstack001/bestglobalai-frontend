@@ -80,6 +80,7 @@ const Login = () => {
       const { token, user, subscription } = response.data;
       let role = user.role;
       dispatch(setUser({ ...user, subscription }));
+      console.log(user);
 
       // Save token to localStorage (or cookie)
       localStorage.setItem("token", token);
