@@ -33,10 +33,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
 
-  console.log("From:", from);
-  console.log("Plan:", plan);
-
-  // Load stored credentials if "Remember Me" was checked
+  
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     const savedPassword = localStorage.getItem("rememberedPassword");
@@ -62,7 +59,7 @@ const Login = () => {
   const handleCaptchaChange = (token) => {
     setCaptchaToken(token);
   };
-  console.log(rememberMe);
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
 

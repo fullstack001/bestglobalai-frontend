@@ -48,10 +48,9 @@ function EbookViewer() {
         const ebookFileUrl = bookData.ebookFile;
         const watermarkFileUrl = bookData.watermarkFile;
         const bookContents = bookData.pages;
-
-        // 🟩 Pick watermark or normal based on role
+              
         const selectedUrl =
-          role === "user"
+          role === "user" || !localStorage.getItem("token")
             ? `${apiPort}${watermarkFileUrl}`
             : `${apiPort}${ebookFileUrl}`;
 

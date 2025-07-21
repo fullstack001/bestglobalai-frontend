@@ -136,7 +136,7 @@ const routes = [
   {
     path: "/creator/viewer/:id",
     element: <EbookViewer />,
-    allowedRoles: ["superAdmin", "admin", "editor", "user"],
+    // allowedRoles: ["superAdmin", "admin", "editor", "user"],
   },
   {
     path: "/myEbooks",
