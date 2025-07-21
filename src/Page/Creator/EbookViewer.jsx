@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef, useCallback } from "react";
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import { ReactReader } from "react-reader";
-import { debounce, set } from "lodash";
+import { debounce } from "lodash";
 import { languageData } from "../../lib/languageData";
 
 import logo_icon from "../../assets/icons/logo.svg";
@@ -24,7 +24,7 @@ function EbookViewer() {
   const [bookType, setBookType] = useState("");
 
   const [translatedText, setTranslatedText] = useState("");
-  const [language, setLanguage] = useState("en"); // Default language: English
+  const [language, setLanguage] = useState("en");
   const [originalContent, setOriginalContent] = useState("");
   const [translating, setTranslating] = useState(false);
 
@@ -40,7 +40,6 @@ function EbookViewer() {
   const previousLocation = currentLocation.state?.previousUrl || "/";
 
   useEffect(() => {
-    // Fetch the ebook file path from the backend
     const fetchEbookContent = async () => {
       try {
         const role = localStorage.getItem("role");
@@ -50,11 +49,13 @@ function EbookViewer() {
         const watermarkFileUrl = bookData.watermarkFile;
         const bookContents = bookData.pages;
 
-        setBookUrl(
+        // 🟩 Pick watermark or normal based on role
+        const selectedUrl =
           role === "user"
             ? `${apiPort}${watermarkFileUrl}`
-            : `${apiPort}${ebookFileUrl}`
-        );
+            : `${apiPort}${ebookFileUrl}`;
+
+        setBookUrl(selectedUrl);
         setTitle(bookData.title);
         setAuthor(bookData.author);
         setAudioItems(bookData.audioItems);
@@ -70,7 +71,6 @@ function EbookViewer() {
     fetchEbookContent();
   }, [id]);
 
-  // ✅ Fix resize error using debounced event listener
   useEffect(() => {
     const resizeObserverError = (event) => {
       if (
@@ -84,12 +84,12 @@ function EbookViewer() {
     return () => {
       window.removeEventListener("error", resizeObserverError);
     };
+
     const handleResize = debounce(() => {
       if (renditionRef.current) {
         requestAnimationFrame(() => {
           try {
-            console.log("Resizing ReactReader...");
-            renditionRef.current.resize(); // ✅ Ensure safe resizing
+            renditionRef.current.resize();
           } catch (error) {
             console.warn("Resize error caught:", error);
           }
@@ -101,7 +101,6 @@ function EbookViewer() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // ✅ Inject CSS inside ReactReader's iFrame
   const injectCustomStyles = () => {
     if (renditionRef.current) {
       renditionRef.current.themes.default({
@@ -130,19 +129,7 @@ function EbookViewer() {
   };
 
   const handleTranslate = () => {
-    setTranslatedText(
-      "Please be patient. Translations take time to convert from html text."
-    ); // Show loading message
-    if (renditionRef.current) {
-      renditionRef.current.themes.default({
-        iframe: {
-          width: "100% !important",
-          height: "auto !important",
-          "min-height": "300px !important",
-        },
-      });
-    }
-
+    setTranslatedText("Please be patient. Translations take time.");
     if (originalContent) {
       translateContent(originalContent);
     }
@@ -154,23 +141,20 @@ function EbookViewer() {
       if (renditionRef.current) {
         try {
           const range = await renditionRef.current.getRange(epubcfi);
-          if (!range || !range.commonAncestorContainer) return; // ✅ Ensure range is valid
+          if (!range || !range.commonAncestorContainer) return;
 
-          const firstPart = range.commonAncestorContainer.baseURI.split(
-            ".xhtml"
-          )[0];
-          const pageNumber = Number(firstPart.charAt(firstPart.length - 1));
+          const uri = range.commonAncestorContainer.baseURI;
+          const match = uri.match(/chapter(\d+)\.xhtml/);
+          if (!match) return;
+
+          const pageNumber = parseInt(match[1], 10);
           const pageContent = bookContents[pageNumber];
           setOriginalContent(pageContent.content);
-          // setTranslatedText(''); // Clear translated text when location changes
         } catch (error) {
-          console.error(
-            "Error fetching content for the current location:",
-            error
-          );
+          console.error("Error fetching content for current location:", error);
         }
       }
-    }, 500), // Adjust debounce time as needed
+    }, 500),
     [bookContents]
   );
 
@@ -178,9 +162,7 @@ function EbookViewer() {
     navigate(previousLocation);
   };
 
-  if (!bookUrl) {
-    return <p>Loading ebook...</p>;
-  }
+  if (!bookUrl) return <p>Loading ebook...</p>;
 
   return (
     <div className="p-8 bg-gray-800 min-h-screen text-white">
@@ -231,59 +213,65 @@ function EbookViewer() {
               url={bookUrl}
               location={location}
               locationChanged={handleLocationChanged}
-              // epubInitOptions={{
-              //   openAs: 'epub',
-              // }}
               getRendition={(rendition) => {
                 if (rendition) {
                   renditionRef.current = rendition;
-                  injectCustomStyles(); // ✅ Apply custom styles on render
+                  injectCustomStyles();
                 }
               }}
               epubOptions={{
                 allowPopups: true,
                 allowScriptedContent: true,
-                // flow: "scrolled",
-                paginated: 'paginated',
+                paginated: "paginated",
                 manager: "continuous",
+              }}
+              epubInitOptions={{ openAs: "epub" }}
+              showToc={true}
+              error={(err) => {
+                console.error("📕 EPUB Load Error:", err);
+                alert(
+                  "Failed to load EPUB. Please ensure the file is valid and not corrupted."
+                );
               }}
             />
           </div>
 
-          {bookType === "created" ? (
-            <div>
-              {" "}
-              <div className="mt-4">
-                <select
-                  className="bg-gray-700 text-white py-2 px-4 rounded-lg mb-2"
-                  value={language}
-                  onChange={(e) => setLanguage(e.target.value)}
-                >
-                  {languageData.map((lang) => (
-                    <option
-                      key={lang.code}
-                      value={lang.code}
-                    >{`${lang.name}`}</option>
-                  ))}
-                </select>
-                <button
-                  onClick={handleTranslate}
-                  className="bg-blue-500 text-white py-2 px-4 ml-0 md:ml-2 rounded-lg"
-                >
-                  Translate
-                </button>
-              </div>
+          {bookUrl && (
+            <a
+              href={bookUrl}
+              download
+              className="text-blue-300 text-sm underline mt-2 inline-block"
+            >
+              Download EPUB
+            </a>
+          )}
+
+          {bookType === "created" && (
+            <div className="mt-4">
+              <select
+                className="bg-gray-700 text-white py-2 px-4 rounded-lg mb-2"
+                value={language}
+                onChange={(e) => setLanguage(e.target.value)}
+              >
+                {languageData.map((lang) => (
+                  <option key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+              <button
+                onClick={handleTranslate}
+                className="bg-blue-500 text-white py-2 px-4 ml-2 rounded-lg"
+              >
+                Translate
+              </button>
               <div className="flex mt-4 bg-gray-700 p-4 rounded-lg">
-                {translating ? (
-                  <p>
-                    <img
-                      src="/spinners/spinner.svg"
-                      alt="spinner"
-                      className="w-10 h-10 mr-2"
-                    />
-                  </p>
-                ) : (
-                  <p></p>
+                {translating && (
+                  <img
+                    src="/spinners/spinner.svg"
+                    alt="spinner"
+                    className="w-10 h-10 mr-2"
+                  />
                 )}
                 <div
                   className="items-center"
@@ -292,79 +280,64 @@ function EbookViewer() {
                     __html: translatedText || "No translation available.",
                   }}
                 />
-              </div>{" "}
+              </div>
             </div>
-          ) : (
-            ""
           )}
         </div>
+
         <div>
-          {selectedTab === 0 && (
-            <div>
-              {audioItems.length > 0
-                ? audioItems.map((item) => (
-                    <div key={item._id}>
-                      <audio
-                        className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
-                        controls
-                      >
-                        <source
-                          src={`${apiPort}${item.fileUrl}`}
-                          type="audio/ogg"
-                        />
-                        <source
-                          src={`${apiPort}${item.fileUrl}`}
-                          type="audio/mp3"
-                        />
-                        Your browser does not support the audio element.
-                      </audio>
-                      <div className="mt-1 text-center mb-2">{item.title}</div>
-                    </div>
-                  ))
-                : "Audio doesn't exist"}
-            </div>
-          )}
-          {selectedTab === 1 && (
-            <div>
-              {videoItems.length > 0
-                ? videoItems.map((item) => (
-                    <div key={item._id}>
-                      <video
-                        className="w-full max-w-3xl mb-2 rounded-lg shadow-lg"
-                        controls
-                      >
-                        <source
-                          src={`${apiPort}${item.fileUrl}`}
-                          type="video/mp4"
-                        />
-                        Your browser does not support the video element.
-                      </video>
-                      <div className="mt-1 text-center mb-2">{item.title}</div>
-                    </div>
-                  ))
-                : "Video doesn't exist"}
-            </div>
-          )}
-          {selectedTab === 2 && (
-            <div>
-              {youtubeItems.length > 0
-                ? youtubeItems.map((item) => (
-                    <div key={item._id}>
-                      <iframe
-                        className="w-full h-auto"
-                        src={`${item.link}?autoplay=1`}
-                        title="YouTube video player"
-                        sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
-                        frameBorder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                      ></iframe>
-                      <div className="mt-1 text-center mb-2">{item.title}</div>
-                    </div>
-                  ))
-                : "Youtube video doesn't exist"}
-            </div>
-          )}
+          {selectedTab === 0 &&
+            (audioItems.length > 0
+              ? audioItems.map((item) => (
+                  <div key={item._id}>
+                    <audio
+                      className="w-full mb-2 rounded-lg shadow-lg"
+                      controls
+                    >
+                      <source
+                        src={`${apiPort}${item.fileUrl}`}
+                        type="audio/mp3"
+                      />
+                      Your browser does not support the audio element.
+                    </audio>
+                    <div className="mt-1 text-center mb-2">{item.title}</div>
+                  </div>
+                ))
+              : "Audio doesn't exist")}
+          {selectedTab === 1 &&
+            (videoItems.length > 0
+              ? videoItems.map((item) => (
+                  <div key={item._id}>
+                    <video
+                      className="w-full mb-2 rounded-lg shadow-lg"
+                      controls
+                    >
+                      <source
+                        src={`${apiPort}${item.fileUrl}`}
+                        type="video/mp4"
+                      />
+                    </video>
+                    <div className="mt-1 text-center mb-2">{item.title}</div>
+                  </div>
+                ))
+              : "Video doesn't exist")}
+          {selectedTab === 2 &&
+            (youtubeItems.length > 0
+              ? youtubeItems.map((item) => (
+                  <div key={item._id}>
+                    <iframe
+                      className="w-full h-64 mb-2"
+                      src={`${item.link}?autoplay=0`}
+                      title="YouTube video player"
+                      sandbox="allow-scripts allow-same-origin allow-popups allow-forms allow-modals"
+                      frameBorder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                    <div className="mt-1 text-center mb-2">{item.title}</div>
+                  </div>
+                ))
+              : "YouTube video doesn't exist")}
         </div>
       </div>
     </div>

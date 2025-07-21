@@ -270,7 +270,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
               dispatch(closePanel());
             }}
             className={`block py-2 px-3 rounded  ${
-              isActive("/user-management") ? "bg-gray-700" : "text-gray-400"
+              isActive("/extra-purchases") ? "bg-gray-700" : "text-gray-400"
             }`}
           >
             Extra Purchase
