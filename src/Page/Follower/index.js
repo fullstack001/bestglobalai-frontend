@@ -21,6 +21,7 @@ const FollowersPage = () => {
   const [followerDetails, setFollowerDetails] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [categories, setCategories] = useState([]);
+  const [shareLink, setShareLink] = useState("");
   const userId = localStorage.getItem("userId");
   const token = localStorage.getItem("token");
   const [selectedCategory, setSelectedCategory] = useState("all");
@@ -180,7 +181,7 @@ const FollowersPage = () => {
     try {
       const response = await axios.post(
         `${apiPort}/api/followers/sendInvites/${followerId}`,
-        {},
+        {ebookLink: shareLink},
         {
           // Added empty object for data
           headers: { Authorization: `Bearer ${token}` }, // Correctly placed headers
@@ -291,6 +292,36 @@ const FollowersPage = () => {
         </select>
       ),
     },
+   
+    {
+      name: "eBook Viewed",
+      selector: (row) => row.viewed,
+      cell: (row) => {
+        if (row.viewed === true) {
+          return <span className="text-green-600 text-lg">✔️</span>;
+        } else if (row.viewed === false) {
+          return <span className="text-red-600 text-lg">❌</span>;
+        } else {
+          return <span className="text-gray-500 italic">Not Sent</span>;
+        }
+      },
+      sortable: true,
+    },
+    {
+      name: "Last Read",
+      selector: (row) => row.updatedAt || "",
+      cell: (row) => {
+        if (row.viewed === true && row.updatedAt) {
+          return <span className="text-gray-800">{row.updatedAt}</span>;
+        } else if (row.viewed === false) {
+          return <span className="text-gray-400 italic">—</span>;
+        } else {
+          return <span className="text-gray-500 italic">Not Sent</span>;
+        }
+      },
+      sortable: true,
+    },
+    
     {
       name: "Actions",
       cell: (row) => (
@@ -335,6 +366,19 @@ const FollowersPage = () => {
             >
               Copy
             </button>
+          </div>
+        </div>
+
+        <div className="mt-4">
+          <p className="mb-1">Your Share eBook Link:</p>
+          <div className="flex">
+            <input
+              className="flex-grow p-2 border text-gray-700 rounded-l"
+              value={shareLink}
+              onChange={(e) => setShareLink(e.target.value)}
+               placeholder="Paste eBook link here"
+            />
+            
           </div>
         </div>
 
@@ -430,7 +474,7 @@ const FollowersPage = () => {
                     const ids = selectedFollowers.map((f) => f._id);
                     await axios.post(
                       `${apiPort}/api/followers/sendBulkInvites`,
-                      { followerIds: ids },
+                      { followerIds: ids, ebookLink: shareLink, },
                       { headers: { Authorization: `Bearer ${token}` } }
                     );
                     toast.success("Bulk invites sent successfully.");

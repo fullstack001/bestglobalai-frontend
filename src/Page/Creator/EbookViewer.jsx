@@ -9,6 +9,8 @@ import logo_icon from "../../assets/icons/logo.svg";
 
 const apiPort = process.env.REACT_APP_API_PORT;
 
+
+
 function EbookViewer() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -27,6 +29,7 @@ function EbookViewer() {
   const [language, setLanguage] = useState("en");
   const [originalContent, setOriginalContent] = useState("");
   const [translating, setTranslating] = useState(false);
+  const [inviteToken, setInviteToken] = useState("");
 
   const renditionRef = useRef(null);
 
@@ -40,19 +43,32 @@ function EbookViewer() {
   const previousLocation = currentLocation.state?.previousUrl || "/";
 
   useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const invite = searchParams.get("invite");   
+
     const fetchEbookContent = async () => {
       try {
         const role = localStorage.getItem("role");
-        const response = await axios.get(`${apiPort}/api/books/${id}`);
+        let response;
+        if (invite) {         
+          response = await axios.get(`${apiPort}/api/books/${id}`, {
+            params: { invite: invite },
+          });
+         
+        }else{
+          response = await axios.get(`${apiPort}/api/books/${id}`);
+        }
+      
         const bookData = response.data.book;
         const ebookFileUrl = bookData.ebookFile;
         const watermarkFileUrl = bookData.watermarkFile;
         const bookContents = bookData.pages;
-              
+
         const selectedUrl =
-          role === "user" || !localStorage.getItem("token")
-            ? `${apiPort}${watermarkFileUrl}`
-            : `${apiPort}${ebookFileUrl}`;
+          // role === "user" || !localStorage.getItem("token")
+          //   ? `${apiPort}${watermarkFileUrl}`
+          //   : 
+            `${apiPort}${ebookFileUrl}`;
 
         setBookUrl(selectedUrl);
         setTitle(bookData.title);
