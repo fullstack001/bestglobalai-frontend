@@ -64,7 +64,7 @@ const SubscribersTrackPage = () => {
                   className="border-b border-gray-600 py-1"
                 >
                   <div>Book Title: <strong> {book.bookTitle}</strong></div>
-                  <div>Views: {book.viewCount > 0 ? book.viewCount :   "Not Viewed"}</div>
+                  <div>Views: {book.viewCount > 0 ? "Viewed" :   "Not Viewed"}</div>
                   {book.viewCount? <div>Last Viewed: {new Date(book.lastUpdatedAt).toLocaleString()}</div>: "" }
                   
                 </div>
