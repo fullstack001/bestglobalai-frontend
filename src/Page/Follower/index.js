@@ -37,13 +37,7 @@ const FollowersPage = () => {
         }
       );
       let allFollowers = response.data.followers;
-      // console.log(selectedCategory);
-      // if (selectedCategory !== "all") {
-      //   allFollowers = allFollowers.filter(
-      //     (f) => f.category?.toString() === selectedCategory
-      //   );
-      // }
-      // console.log("Fetched Followers:", allFollowers);
+     
       setFollowers(allFollowers);
     } catch (error) {
       console.error("Error fetching followers:", error);
@@ -388,13 +382,7 @@ const FollowersPage = () => {
             type="file"
             ref={fileInputRef}
             onChange={(e) => setFile(e.target.files?.[0] || null)}
-          />
-          {/* <button
-            onClick={uploadCSV}
-            className="bg-blue-500 text-white px-4 py-2 mt-2 mr-2"
-          >
-            Upload Followers CSV
-          </button> */}
+          />         
 
           <button
             onClick={uploadHubspotCsv}
@@ -471,6 +459,10 @@ const FollowersPage = () => {
                 className="bg-green-600 text-white px-4 py-2 rounded"
                 onClick={async () => {
                   try {
+                    if (!shareLink) {
+                      toast.error("Please enter a share link.");  
+                      return;
+                    }
                     const ids = selectedFollowers.map((f) => f._id);
                     await axios.post(
                       `${apiPort}/api/followers/sendBulkInvites`,

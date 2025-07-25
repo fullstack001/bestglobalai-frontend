@@ -47,6 +47,8 @@ import FollowersPage from "./Page/Follower";
 import TeamManagement from "./Page/TeamManagement";
 import ExtraPurchase from "./Page/ExtraPurchase";
 import CategoriesPage from "./Page/Category";
+import SubscribersPage from "./Page/Subscribers";
+import SubscribersTrackPage from "./Page/Subscribers/subscribers";
 
 import AboutUS from "./Page/AboutUs";
 import Pricing from "./Page/Pricing";
@@ -238,7 +240,16 @@ const routes = [
     element: <TeamManagement />,
     allowedRoles: ["superAdmin", "admin", "editor"],
   },
-
+  {
+    path: "/subscribers",
+    element: <SubscribersPage />,
+    allowedRoles: ["superAdmin", "admin"],
+  },
+  {
+    path: "/subscribers/track",
+    element: <SubscribersTrackPage />,
+    allowedRoles: ["superAdmin", "admin"],
+  },
   {
     path: "/extra-purchases",
     element: <ExtraPurchase />,

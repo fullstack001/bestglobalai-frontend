@@ -45,6 +45,7 @@ function EbookViewer() {
   useEffect(() => {
     const searchParams = new URLSearchParams(window.location.search);
     const invite = searchParams.get("invite");   
+    const subscriberInvite = searchParams.get("subscriberInvite");
 
     const fetchEbookContent = async () => {
       try {
@@ -53,9 +54,13 @@ function EbookViewer() {
         if (invite) {         
           response = await axios.get(`${apiPort}/api/books/${id}`, {
             params: { invite: invite },
+          });         
+        }else if (subscriberInvite) {
+          response = await axios.get(`${apiPort}/api/books/${id}`, {
+            params: { subscriberInvite: subscriberInvite },
           });
-         
-        }else{
+        } 
+        else{
           response = await axios.get(`${apiPort}/api/books/${id}`);
         }
       
