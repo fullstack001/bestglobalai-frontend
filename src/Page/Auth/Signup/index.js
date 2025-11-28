@@ -5,7 +5,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import logo_icon from "../../../assets/icons/logo.svg";
@@ -13,10 +12,8 @@ import VerificationForm from "./VerificationForm";
 import { setUser } from "../../../store/userSlice";
 
 const apiPort = process.env.REACT_APP_API_PORT;
-const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 function Signup() {
-  const recaptchaRef = useRef();
   const plan = useSelector((state) => state.goSubscription);
   const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
@@ -29,7 +26,6 @@ function Signup() {
   });
   const [referralCode, setReferralCode] = useState("");
   const [showVerification, setShowVerification] = useState(false);
-  const [captchaToken, setCaptchaToken] = useState("");
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -46,32 +42,12 @@ function Signup() {
     });
   };
 
-  const handleCaptchaChange = (token) => {
-    setCaptchaToken(token); // Set the reCAPTCHA token
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!captchaToken) {
-      toast.error(
-        <div className="custom-toast flex">
-          <IoCloseCircleOutline className="custom-icon" />
-          <div className="mt-4">Please complete the reCAPTCHA.</div>
-        </div>,
-        {
-          className: "error-toast",
-          autoClose: 3000,
-          hideProgressBar: true,
-        }
-      );
-      return;
-    }
 
     try {
       const response = await axios.post(`${apiPort}/api/auth/signup`, {
         ...formData,
-        captchaToken,
         referralCode,
       });
 
@@ -89,8 +65,6 @@ function Signup() {
           hideProgressBar: true,
         }
       );
-      setCaptchaToken("");
-      recaptchaRef.current?.reset();
     }
   };
 
@@ -237,13 +211,6 @@ function Signup() {
                 </div>
               )}
 
-              <div className="mt-4">
-                <ReCAPTCHA
-                  ref={recaptchaRef}
-                  sitekey={RECAPTCHA_SITE_KEY}
-                  onChange={handleCaptchaChange}
-                />
-              </div>
               <div>
                 <button
                   type="submit"

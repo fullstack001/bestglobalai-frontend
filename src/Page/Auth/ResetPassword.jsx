@@ -6,12 +6,10 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import ReCAPTCHA from "react-google-recaptcha";
 
 import logo_icon from "../../assets/icons/logo.svg";
 
 const apiPort = process.env.REACT_APP_API_PORT;
-const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const ResetPasswprdPage = () => {
   const navigate = useNavigate();
@@ -20,7 +18,6 @@ const ResetPasswprdPage = () => {
     password: "",
     confirm_password: "",
   });
-  const [captchaToken, setCaptchaToken] = useState("");
   const [token, setToken] = useState("");
 
   useEffect(() => {
@@ -40,10 +37,6 @@ const ResetPasswprdPage = () => {
     });
   };
 
-  const handleCaptchaChange = (token) => {
-    setCaptchaToken(token);
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirm_password) {
@@ -51,16 +44,10 @@ const ResetPasswprdPage = () => {
       return;
     }
 
-    if (!captchaToken) {
-      toast.error("Please complete the reCAPTCHA verification.");
-      return;
-    }
-
     try {
       await axios.post(`${apiPort}/api/auth/reset-password`, {
         resetToken: token,
         newPassword: formData.password,
-        captchaToken,
       });
       toast.success("Password reset successfully");
 
@@ -139,11 +126,6 @@ const ResetPasswprdPage = () => {
               />
             </div>
           </div>
-
-          <ReCAPTCHA
-            sitekey={RECAPTCHA_SITE_KEY}
-            onChange={handleCaptchaChange}
-          />
 
           <div>
             <button

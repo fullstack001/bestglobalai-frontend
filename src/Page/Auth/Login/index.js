@@ -7,7 +7,6 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IoCloseCircleOutline } from "react-icons/io5";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setUser } from "../../../store/userSlice";
@@ -16,24 +15,20 @@ import ForgotPasswordModal from "./ForgotPasswordModal";
 import VerificationForm from "../Signup/VerificationForm";
 
 const apiPort = process.env.REACT_APP_API_PORT;
-const RECAPTCHA_SITE_KEY = process.env.REACT_APP_RECAPTCHA_SITE_KEY;
 
 const Login = () => {
   const from = new URLSearchParams(window.location.search).get("from");
 
-  const recaptchaRef = useRef();
   const plan = useSelector((state) => state.goSubscription);
   const extra = useSelector((state) => state.extra);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [captchaToken, setCaptchaToken] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
   const [showFogotPasswordModal, setShowFogotPasswordModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const [showVerification, setShowVerification] = useState(false);
 
-  
   useEffect(() => {
     const savedEmail = localStorage.getItem("rememberedEmail");
     const savedPassword = localStorage.getItem("rememberedPassword");
@@ -56,25 +51,15 @@ const Login = () => {
     setRememberMe(e.target.checked);
   };
 
-  const handleCaptchaChange = (token) => {
-    setCaptchaToken(token);
-  };
-  
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (loading) return; // Prevent multiple submissions
     setLoading(true);
 
-    if (!captchaToken) {
-      toast.error("Please complete the reCAPTCHA verification.");
-      return;
-    }
-
     try {
       const response = await axios.post(`${apiPort}/api/auth/login`, {
         ...formData,
-        captchaToken,
       });
 
       const { token, user, subscription } = response.data;
@@ -153,8 +138,6 @@ const Login = () => {
           }
         );
       }
-      setCaptchaToken("");
-      recaptchaRef.current?.reset();
     } finally {
       setLoading(false);
     }
@@ -262,12 +245,6 @@ const Login = () => {
                   Recover Password
                 </div>
               </div>
-
-              <ReCAPTCHA
-                ref={recaptchaRef}
-                sitekey={RECAPTCHA_SITE_KEY}
-                onChange={handleCaptchaChange}
-              />
 
               <div>
                 <button
